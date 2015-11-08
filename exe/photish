@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'photish/cli'
+
+photish = Photish::CLI.new
+photish.start
