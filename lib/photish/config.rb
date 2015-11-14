@@ -14,7 +14,7 @@ module Photish
     end
 
     def override!(hash)
-      cleaned_hash = clean(hash)
+      cleaned_hash = compact_symbolize(hash)
       config.merge!(cleaned_hash)
     end
 
@@ -23,19 +23,21 @@ module Photish
     attr_reader :config_file_path
 
     def config
-      @config ||= default_config_hash.merge(config_file_hash)
+      @config ||= default_config.merge(file_config)
     end
 
-    def default_config_hash
+    def default_config
       DefaultConfig.hash
     end
 
-    def config_file_hash
-      clean(YAML.load_file(config_file_path))
+    def file_config
+      compact_symbolize(YAML.load_file(config_file_path))
     end
 
-    def clean(hash)
-      hash.compact.deep_symbolize_keys
+    def compact_symbolize(hash)
+      hash
+        .compact
+        .deep_symbolize_keys
     end
   end
 end
