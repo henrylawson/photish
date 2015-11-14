@@ -12,18 +12,23 @@ TEXT
     file
   end
 
-  subject { Photish::Config.new(config_file.path) }
+  subject do
+    Photish::Config.new(config_file.path, {
+      photo_dir: '/my/folder',
+      key_not_in_file: 'override_val'
+    })
+  end
 
   context 'the key is defined in the config file' do
     context 'there is no override value' do
       it 'returns the config value' do
-        expect(subject.val(:photo_dir)).to eq('/config/photo_dir')
+        expect(subject.val(:output_dir)).to eq('/config/output_dir')
       end
     end
 
     context 'there is an override value' do
       it 'returns the override value' do
-        expect(subject.val(:photo_dir, '/my/folder')).to eq('/my/folder')
+        expect(subject.val(:photo_dir)).to eq('/my/folder')
       end
     end
   end
@@ -37,7 +42,7 @@ TEXT
 
     context 'there is an override value' do
       it 'returns the override value' do
-        expect(subject.val(:random_key, 'override_val')).to eq('override_val')
+        expect(subject.val(:key_not_in_file)).to eq('override_val')
       end
     end
   end
