@@ -7,19 +7,16 @@ module Photish
 
     desc "generate", "Generates the gallery static site"
     method_option :photo_dir,
-                  aliases: "-pd",
+                  aliases: "-p",
                   desc: "The directory where the photos live"
     method_option :site_dir,
-                  aliases: "-sd",
+                  aliases: "-s",
                   desc: "The location of the site config and template files"
     method_option :output_dir,
-                  aliases: "-od",
+                  aliases: "-o",
                   desc: "The output directory where the generated site should go"
     def generate
-      puts Photish::Generation.new(
-        options[:photo_dir],
-        options[:site_dir],
-        options[:output_dir]).execute
+      Photish::Generation.new(options).execute
     end
   end
 end
