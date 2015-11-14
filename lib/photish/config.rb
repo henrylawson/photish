@@ -7,7 +7,7 @@ module Photish
   class Config
     def initialize(config_file_path)
       @config_file_path = config_file_path
-      @config = DefaultConfig.hash 
+      @config = DefaultConfig.hash
       override!(config_file_hash)
     end
 
