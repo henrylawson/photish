@@ -8,6 +8,7 @@ describe Photish::Config do
 ---
 photo_dir: /config/photo_dir
 output_dir: /config/output_dir
+site_dir: /config/site_dir
 TEXT
       file.close
       file
@@ -18,7 +19,8 @@ TEXT
     before do
       subject.override!({
         photo_dir: '/my/folder',
-        key_not_in_file: 'override_val'
+        key_not_in_file: 'override_val',
+        site_dir: nil
       })
     end
 
@@ -32,6 +34,12 @@ TEXT
       context 'there is an override value' do
         it 'returns the override value' do
           expect(subject.val(:photo_dir)).to eq('/my/folder')
+        end
+      end
+
+      context 'there is an override value but it is nil' do
+        it 'returns the config value' do
+          expect(subject.val(:site_dir)).to eq('/config/site_dir')
         end
       end
     end
