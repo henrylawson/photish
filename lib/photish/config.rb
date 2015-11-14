@@ -1,12 +1,14 @@
 require 'yaml'
 require 'active_support'
 require 'active_support/core_ext'
+require 'photish/default_config'
 
 module Photish
   class Config
     def initialize(config_file_path)
       @config_file_path = config_file_path
-      @config = config_file_hash
+      @config = DefaultConfig.hash 
+      override!(config_file_hash)
     end
 
     def val(key)
