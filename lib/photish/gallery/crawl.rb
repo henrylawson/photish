@@ -7,11 +7,11 @@ module Photish
         @base_dir = base_dir
       end
 
-      def collections
-        @collections ||= Dir.entries(base_dir)
-                            .reject { |file| ['.', '..'].include?(file) }
-                            .map    { |file| File.join(base_dir, file) }
-                            .map    { |file| Collection.new(file) }
+      def albums
+        @albums ||= Dir.entries(base_dir)
+                       .reject { |file| ['.', '..'].include?(file) }
+                       .map    { |file| File.join(base_dir, file) }
+                       .map    { |file| Album.new(file) }
       end
 
       private

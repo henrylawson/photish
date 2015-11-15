@@ -1,6 +1,6 @@
 module Photish
   module Gallery
-    class Collection
+    class Album
       def initialize(path)
         @path = path
       end

@@ -4,9 +4,9 @@ require 'tmpdir'
 describe Photish::Gallery::Crawl do
   before(:each) do
     @dir = Dir.mktmpdir('photish')
-    setup_collection1
-    setup_collection2
-    setup_collection3
+    setup_album1
+    setup_album2
+    setup_album3
   end
 
   after(:each) do
@@ -15,51 +15,51 @@ describe Photish::Gallery::Crawl do
 
   subject { Photish::Gallery::Crawl.new(@dir) }
 
-  it 'crawls the collections' do
-    expect(subject.collections
-                  .map(&:name)).to contain_exactly('collection1',
-                                                   'collection2',
-                                                   'collection3')
+  it 'crawls the albums' do
+    expect(subject.albums
+                  .map(&:name)).to contain_exactly('album1',
+                                                   'album2',
+                                                   'album3')
   end
 
-  it 'loads all the photos in each collection' do
-    expect(subject.collections
-                  .find { |c| c.name == 'collection1' } 
+  it 'loads all the photos in each album' do
+    expect(subject.albums
+                  .find { |c| c.name == 'album1' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog1',
                                                    'dog2')
-    expect(subject.collections
-                  .find { |c| c.name == 'collection2' } 
+    expect(subject.albums
+                  .find { |c| c.name == 'album2' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog3',
                                                    'dog4')
-    expect(subject.collections
-                  .find { |c| c.name == 'collection3' } 
+    expect(subject.albums
+                  .find { |c| c.name == 'album3' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog5',
                                                    'dog6',
                                                    'dog7')
   end
 
-  def setup_collection1
-    collection1 = File.join(@dir, 'collection1')
-    FileUtils::mkdir_p(collection1)
-    FileUtils::cp(fixture_file('dog1.jpg'), collection1)
-    FileUtils::cp(fixture_file('dog2.jpg'), collection1)
+  def setup_album1
+    album1 = File.join(@dir, 'album1')
+    FileUtils::mkdir_p(album1)
+    FileUtils::cp(fixture_file('dog1.jpg'), album1)
+    FileUtils::cp(fixture_file('dog2.jpg'), album1)
   end
 
-  def setup_collection2
-    collection2 = File.join(@dir, 'collection2')
-    FileUtils::mkdir_p(collection2)
-    FileUtils::cp(fixture_file('dog3.jpg'), collection2)
-    FileUtils::cp(fixture_file('dog4.jpg'), collection2)
+  def setup_album2
+    album2 = File.join(@dir, 'album2')
+    FileUtils::mkdir_p(album2)
+    FileUtils::cp(fixture_file('dog3.jpg'), album2)
+    FileUtils::cp(fixture_file('dog4.jpg'), album2)
   end
 
-  def setup_collection3
-    collection3 = File.join(@dir, 'collection3')
-    FileUtils::mkdir_p(collection3)
-    FileUtils::cp(fixture_file('dog5.jpg'), collection3)
-    FileUtils::cp(fixture_file('dog6.jpg'), collection3)
-    FileUtils::cp(fixture_file('dog7.jpg'), collection3)
+  def setup_album3
+    album3 = File.join(@dir, 'album3')
+    FileUtils::mkdir_p(album3)
+    FileUtils::cp(fixture_file('dog5.jpg'), album3)
+    FileUtils::cp(fixture_file('dog6.jpg'), album3)
+    FileUtils::cp(fixture_file('dog7.jpg'), album3)
   end
 end
