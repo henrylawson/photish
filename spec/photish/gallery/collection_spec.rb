@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'tmpdir'
 
-describe Photish::Gallery::Crawl do
+describe Photish::Gallery::Collection do
   before(:each) do
     @dir = Dir.mktmpdir('photish')
     setup_album1
@@ -13,7 +13,7 @@ describe Photish::Gallery::Crawl do
     FileUtils.remove_entry_secure @dir
   end
 
-  subject { Photish::Gallery::Crawl.new(@dir) }
+  subject { Photish::Gallery::Collection.new(@dir) }
 
   it 'crawls the albums' do
     expect(subject.albums

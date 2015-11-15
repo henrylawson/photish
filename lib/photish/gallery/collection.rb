@@ -2,7 +2,7 @@ require 'pry'
 
 module Photish
   module Gallery
-    class Crawl
+    class Collection
       def initialize(base_dir)
         @base_dir = base_dir
       end
