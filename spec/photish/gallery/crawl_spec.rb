@@ -16,24 +16,24 @@ describe Photish::Gallery::Crawl do
   subject { Photish::Gallery::Crawl.new(@dir) }
 
   it 'crawls the collections' do
-    expect(subject.load
+    expect(subject.collections
                   .map(&:name)).to contain_exactly('collection1',
                                                    'collection2',
                                                    'collection3')
   end
 
   it 'loads all the photos in each collection' do
-    expect(subject.load
+    expect(subject.collections
                   .find { |c| c.name == 'collection1' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog1',
                                                    'dog2')
-    expect(subject.load
+    expect(subject.collections
                   .find { |c| c.name == 'collection2' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog3',
                                                    'dog4')
-    expect(subject.load
+    expect(subject.collections
                   .find { |c| c.name == 'collection3' } 
                   .photos
                   .map(&:name)).to contain_exactly('dog5',

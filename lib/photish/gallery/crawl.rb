@@ -7,7 +7,7 @@ module Photish
         @base_dir = base_dir
       end
 
-      def load
+      def collections
         @collections ||= Dir.entries(base_dir)
                             .reject { |file| ['.', '..'].include?(file) }
                             .map    { |file| File.join(base_dir, file) }
