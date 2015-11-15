@@ -2,6 +2,7 @@ require 'yaml'
 require 'active_support'
 require 'active_support/core_ext'
 require 'photish/config/default_config'
+require 'photish/config/file_config'
 
 module Photish
   module Config
@@ -28,11 +29,11 @@ module Photish
       end
 
       def default_config
-        DefaultConfig.new.hash
+        compact_symbolize DefaultConfig.new.hash
       end
 
       def file_config
-        compact_symbolize(YAML.load_file(config_file_path))
+        compact_symbolize FileConfig.new(config_file_path).hash
       end
 
       def compact_symbolize(hash)
