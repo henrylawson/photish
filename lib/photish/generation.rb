@@ -14,7 +14,7 @@ module Photish
 
     def execute
       log_important_config_values
-      log_album_and_photos
+      log_album_and_photo_names
 
       write_rendered_index
     end
@@ -29,7 +29,7 @@ module Photish
       log "Output directory: #{config.val(:output_dir)}"
     end
 
-    def log_album_and_photos
+    def log_album_and_photo_names
       collection.albums.each do |album|
         log album.name
         log album.photos.map(&:name)
