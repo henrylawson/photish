@@ -7,39 +7,27 @@ require 'photish/config/file_config'
 module Photish
   module Config
     class Settings
-      def initialize(config_file_path)
-        @config_file_path = config_file_path
+      def initialize(config = nil)
+        @config = compact_symbolize(config) || {}
       end
 
       def val(key)
         config[key.to_sym]
       end
 
-      def override!(hash)
+      def override(hash)
         cleaned_hash = compact_symbolize(hash)
-        config.merge!(cleaned_hash)
+        self.class.new(config.merge(cleaned_hash))
       end
 
       private
 
-      attr_reader :config_file_path
-
-      def config
-        @config ||= default_config.merge(file_config)
-      end
-
-      def default_config
-        compact_symbolize DefaultConfig.new.hash
-      end
-
-      def file_config
-        compact_symbolize FileConfig.new(config_file_path).hash
-      end
+      attr_reader :config
 
       def compact_symbolize(hash)
         hash
           .compact
-          .deep_symbolize_keys
+          .deep_symbolize_keys if hash
       end
     end
   end
