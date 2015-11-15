@@ -13,24 +13,41 @@ module Photish
     end
 
     def execute
-      log "Photo directory: #{config.val(:photo_dir)}"
-      log "Site directory: #{config.val(:site_dir)}"
-      log "Output directory: #{config.val(:output_dir)}"
+      log_important_config_values
+      log_album_and_photos
 
-      collection.albums.each do |album|
-        log album.name
-        log album.photos.map(&:name)
-      end
-
-      template_index_file = File.join(config.val(:site_dir), 'index.slim')
-      output_index_file = File.join(config.val(:output_dir), 'index.html')
-      FileUtils.mkdir_p(config.val(:output_dir))
-      File.write(output_index_file, Tilt.new(template_index_file).render(collection))
+      write_rendered_index
     end
 
     private
 
     attr_reader :runtime_config
+
+    def log_important_config_values
+      log "Photo directory: #{config.val(:photo_dir)}"
+      log "Site directory: #{config.val(:site_dir)}"
+      log "Output directory: #{config.val(:output_dir)}"
+    end
+
+    def log_album_and_photos
+      collection.albums.each do |album|
+        log album.name
+        log album.photos.map(&:name)
+      end
+    end
+
+    def write_rendered_index
+      FileUtils.mkdir_p(config.val(:output_dir))
+      File.write(output_index_file, Tilt.new(template_index_file).render(collection))
+    end
+
+    def template_index_file
+      File.join(config.val(:site_dir), 'index.slim')
+    end
+
+    def output_index_file
+      File.join(config.val(:output_dir), 'index.html')
+    end
 
     def collection
       @colleciton ||= Gallery::Collection.new(config.val(:photo_dir))
