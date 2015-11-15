@@ -38,7 +38,11 @@ module Photish
 
     def write_rendered_index
       FileUtils.mkdir_p(config.val(:output_dir))
-      File.write(output_index_file, Tilt.new(template_index_file).render(collection))
+      File.write(output_index_file, rendered_index)
+    end
+
+    def rendered_index
+      Tilt.new(template_index_file).render(collection)
     end
 
     def template_index_file
