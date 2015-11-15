@@ -2,6 +2,7 @@ require 'photish/log'
 require 'photish/config/settings'
 require 'photish/config/location'
 require 'photish/gallery/collection'
+require 'tilt'
 
 module Photish
   class Generation
@@ -20,6 +21,11 @@ module Photish
         log album.name
         log album.photos.map(&:name)
       end
+
+      template_index_file = File.join(config.val(:site_dir), 'index.slim')
+      output_index_file = File.join(config.val(:output_dir), 'index.html')
+      FileUtils.mkdir_p(config.val(:output_dir))
+      File.write(output_index_file, Tilt.new(template_index_file).render(collection))
     end
 
     private
@@ -27,7 +33,7 @@ module Photish
     attr_reader :runtime_config
 
     def collection
-      Gallery::Collection.new(config.val(:photo_dir))
+      @colleciton ||= Gallery::Collection.new(config.val(:photo_dir))
     end
 
     def config
