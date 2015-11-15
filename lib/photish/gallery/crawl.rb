@@ -10,8 +10,8 @@ module Photish
       def load
         @collections ||= Dir.entries(base_dir)
                             .reject { |file| ['.', '..'].include?(file) }
-                            .map { |file| File.join(base_dir, file) }
-                            .map { |file| Collection.new(file) }
+                            .map    { |file| File.join(base_dir, file) }
+                            .map    { |file| Collection.new(file) }
       end
 
       private
