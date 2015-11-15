@@ -1,3 +1,5 @@
+require 'photish/gallery/photo'
+
 module Photish
   module Gallery
     class Album

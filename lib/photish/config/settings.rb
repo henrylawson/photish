@@ -8,7 +8,7 @@ module Photish
   module Config
     class Settings
       def initialize(config = nil)
-        @config = compact_symbolize(config) || {}
+        @config = compact_symbolize(config)
       end
 
       def val(key)
@@ -25,9 +25,9 @@ module Photish
       attr_reader :config
 
       def compact_symbolize(hash)
-        hash
+        (hash || {})
           .compact
-          .deep_symbolize_keys if hash
+          .deep_symbolize_keys
       end
     end
   end

@@ -1,6 +1,7 @@
 require 'photish/log'
 require 'photish/config/settings'
 require 'photish/config/location'
+require 'photish/gallery/collection'
 
 module Photish
   class Generation
@@ -14,6 +15,11 @@ module Photish
       log "Photo directory: #{config.val(:photo_dir)}"
       log "Site directory: #{config.val(:site_dir)}"
       log "Output directory: #{config.val(:output_dir)}"
+
+      Gallery::Collection.new(config.val(:photo_dir)).albums.each do |album|
+        log album.name
+        log album.photos.map(&:name)
+      end
     end
 
     private

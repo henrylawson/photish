@@ -7,6 +7,7 @@ describe Photish::Gallery::Collection do
     setup_album1
     setup_album2
     setup_album3
+    copy_text_file_to_root
   end
 
   after(:each) do
@@ -39,6 +40,10 @@ describe Photish::Gallery::Collection do
                   .map(&:name)).to contain_exactly('dog5',
                                                    'dog6',
                                                    'dog7')
+  end
+  
+  def copy_text_file_to_root
+    FileUtils::cp(fixture_file('text.txt'), @dir)
   end
 
   def setup_album1

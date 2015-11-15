@@ -1,4 +1,4 @@
-require 'pry'
+require 'photish/gallery/album'
 
 module Photish
   module Gallery
@@ -11,6 +11,7 @@ module Photish
         @albums ||= Dir.entries(base_dir)
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(base_dir, file) }
+                       .reject { |file| !Dir.exist?(file) }
                        .map    { |file| Album.new(file) }
       end
 
