@@ -22,8 +22,7 @@ module Photish
 
     def config
       @config ||= Config::Settings
-        .new
-        .override(default_config)
+        .new(default_config)
         .override(file_config)
         .override(runtime_config)
     end
