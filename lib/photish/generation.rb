@@ -1,14 +1,14 @@
 require 'photish/log'
-require 'photish/config'
-require 'photish/config_location'
+require 'photish/config/settings'
+require 'photish/config/location'
 
 module Photish
   class Generation
     include Photish::Log
 
     def initialize(options)
-      config_location = ConfigLocation.new(options[:site_dir])
-      @config = Config.new(config_location.path)
+      config_location = Config::Location.new(options[:site_dir])
+      @config = Config::Settings.new(config_location.path)
       @config.override!(options)
     end
 

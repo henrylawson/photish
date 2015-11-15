@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Photish::Config do
+describe Photish::Config::Settings do
   context '#val' do
     let(:config_file) do
       file = Tempfile.new('config_file')
@@ -13,7 +13,7 @@ TEXT
       file
     end
 
-    subject { Photish::Config.new(config_file.path) }
+    subject { Photish::Config::Settings.new(config_file.path) }
 
     before do
       subject.override!({
