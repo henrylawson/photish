@@ -6,7 +6,7 @@ module Photish
       end
 
       def name
-        File.basename(path, '.*')
+        @name ||= File.basename(path, '.*')
       end
 
       private
