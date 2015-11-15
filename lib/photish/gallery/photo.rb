@@ -1,11 +1,17 @@
 module Photish
   module Gallery
     class Photo
-      attr_reader :name
-
-      def initialize(name)
-        @name = name
+      def initialize(path)
+        @path = path
       end
+
+      def name
+        File.basename(path, '.*')
+      end
+
+      private
+
+      attr_reader :path
     end
   end
 end

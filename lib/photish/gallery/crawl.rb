@@ -8,21 +8,10 @@ module Photish
       end
 
       def load
-        collections = []
-        Dir.foreach(base_dir) do |item|
-          next if ['.', '..'].include?(item)
-          item_path = File.join(base_dir, item)
-          if Dir.exist?(item_path)
-            photos = []
-            Dir.foreach(item_path) do |photo|
-              next if ['.', '..'].include?(photo)
-              photo_path = File.join(item_path, photo)
-              photos << Photo.new(File.basename(photo_path, ".*")) if File.exist?(photo_path)
-            end
-            collections << Collection.new(item, photos)
-          end
-        end
-        collections
+        @collections ||= Dir.entries(base_dir)
+                            .reject { |file| ['.', '..'].include?(file) }
+                            .map { |file| File.join(base_dir, file) }
+                            .map { |file| Collection.new(file) }
       end
 
       private
