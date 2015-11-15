@@ -16,7 +16,7 @@ module Photish
       log "Site directory: #{config.val(:site_dir)}"
       log "Output directory: #{config.val(:output_dir)}"
 
-      Gallery::Collection.new(config.val(:photo_dir)).albums.each do |album|
+      collection.albums.each do |album|
         log album.name
         log album.photos.map(&:name)
       end
@@ -25,6 +25,10 @@ module Photish
     private
 
     attr_reader :runtime_config
+
+    def collection
+      Gallery::Collection.new(config.val(:photo_dir))
+    end
 
     def config
       @config ||= Config::Settings
