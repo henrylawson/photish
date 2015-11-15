@@ -1,6 +1,6 @@
-# Photish
+# Photish Todo
 
-## Todo - Must Have
+## Must Have
 
 1. Generate URLs for albums
 1. Generate URLs for photos
@@ -8,7 +8,7 @@
 1. Render and write photo HTML
 1. Convert and persist image quality versions
 
-## Todo - Might Have
+## Might Have
 
 1. Fix up requires in spec/lib
 1. Load in YAML files for Albums and Photos
