@@ -4,7 +4,7 @@ module Photish
   module Gallery
     class Photo
 
-      include Urlable
+      include ::Photish::Gallery::Traits::Urlable
 
       def initialize(parent, path)
         @parent = parent

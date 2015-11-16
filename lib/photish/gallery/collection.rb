@@ -1,18 +1,14 @@
-require 'photish/gallery/album'
+require 'photish/gallery/traits/sub_groupable'
 
 module Photish
   module Gallery
     class Collection
-      def initialize(base_dir)
-        @base_dir = base_dir
+      def initialize(path)
+        @path = path
       end
 
       def albums
-        @albums ||= Dir.entries(base_dir)
-                       .reject { |file| ['.', '..'].include?(file) }
-                       .map    { |file| File.join(base_dir, file) }
-                       .reject { |file| !Dir.exist?(file) }
-                       .map    { |file| Album.new(self, file) }
+        sub_groups(Album)
       end
 
       def url
@@ -29,7 +25,9 @@ module Photish
 
       private
 
-      attr_reader :base_dir
+      attr_reader :path
+
+      include ::Photish::Gallery::Traits::SubGroupable
     end
   end
 end

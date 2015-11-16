@@ -7,6 +7,9 @@ describe Photish::Gallery::Album do
     FileUtils.mkdir_p(@album_dir)
     FileUtils::cp(fixture_file('dog1.jpg'), @album_dir)
     FileUtils::cp(fixture_file('dog2.jpg'), @album_dir)
+    FileUtils.mkdir_p(File.join(@album_dir, 'Day 1'))
+    FileUtils.mkdir_p(File.join(@album_dir, 'Day 2'))
+    FileUtils.mkdir_p(File.join(@album_dir, 'Day 3'))
   end
 
   after(:each) do
@@ -20,6 +23,19 @@ describe Photish::Gallery::Album do
       expect(subject.photos
                     .map(&:name)).to contain_exactly('dog1',
                                                      'dog2')
+    end
+  end
+  
+  context '#albums' do
+    it 'loads all the albums inside this album' do
+      expect(subject.albums
+                    .map(&:name)).to contain_exactly('Day 1',
+                                                     'Day 2',
+                                                     'Day 3')
+      expect(subject.albums
+                    .map(&:url)).to contain_exactly('rio-de-janeiro/day-1/index.html',
+                                                    'rio-de-janeiro/day-2/index.html',
+                                                    'rio-de-janeiro/day-3/index.html')
     end
   end
 
