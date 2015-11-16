@@ -50,7 +50,7 @@ module Photish
     end
 
     def output_index_file
-      File.join(config.val(:output_dir), 'index.html')
+      File.join(config.val(:output_dir), collection.url_parts)
     end
 
     def collection

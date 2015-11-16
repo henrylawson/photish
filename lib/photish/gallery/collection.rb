@@ -1,3 +1,4 @@
+require 'photish/gallery/album'
 require 'photish/gallery/traits/sub_groupable'
 
 module Photish
