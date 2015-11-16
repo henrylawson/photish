@@ -2,8 +2,6 @@
 
 ## Must Have
 
-1. Generate URLs for albums
-1. Generate URLs for photos
 1. Render and write album HTML
 1. Render and write photo HTML
 1. Convert and persist image quality versions
