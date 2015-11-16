@@ -12,7 +12,19 @@ module Photish
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(base_dir, file) }
                        .reject { |file| !Dir.exist?(file) }
-                       .map    { |file| Album.new(file) }
+                       .map    { |file| Album.new(self, file) }
+      end
+
+      def url
+        url_parts.join('/')
+      end
+
+      def url_parts
+        base_url_parts + ['index.html']
+      end
+
+      def base_url_parts
+        []
       end
 
       private

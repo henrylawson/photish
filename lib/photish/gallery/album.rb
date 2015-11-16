@@ -1,9 +1,14 @@
 require 'photish/gallery/photo'
+require 'photish/gallery/traits/urlable'
 
 module Photish
   module Gallery
     class Album
-      def initialize(path)
+
+      include Urlable
+
+      def initialize(parent, path)
+        @parent = parent
         @path = path
       end
 
@@ -15,12 +20,13 @@ module Photish
         @photos ||= Dir.entries(path)
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(path, file) }
-                       .map    { |file| Photo.new(file) }
+                       .map    { |file| Photo.new(self, file) }
       end
 
       private
       
-      attr_reader :path
+      attr_reader :path,
+                  :parent
     end
   end
 end

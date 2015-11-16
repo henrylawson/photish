@@ -16,32 +16,52 @@ describe Photish::Gallery::Collection do
 
   subject { Photish::Gallery::Collection.new(@dir) }
 
-  it 'crawls the albums' do
-    expect(subject.albums
-                  .map(&:name)).to contain_exactly('album1',
-                                                   'album2',
-                                                   'album3')
+  context '#albums' do
+    it 'crawls the albums' do
+      expect(subject.albums
+                    .map(&:name)).to contain_exactly('album1',
+                                                     'album2',
+                                                     'album3')
+    end
+
+    it 'loads all the photos in each album' do
+      expect(subject.albums
+                    .find { |c| c.name == 'album1' }
+                    .photos
+                    .map(&:name)).to contain_exactly('dog1',
+                                                     'dog2')
+      expect(subject.albums
+                    .find { |c| c.name == 'album2' }
+                    .photos
+                    .map(&:name)).to contain_exactly('dog3',
+                                                     'dog4')
+      expect(subject.albums
+                    .find { |c| c.name == 'album3' }
+                    .photos
+                    .map(&:name)).to contain_exactly('dog5',
+                                                     'dog6',
+                                                     'dog7')
+    end
   end
 
-  it 'loads all the photos in each album' do
-    expect(subject.albums
-                  .find { |c| c.name == 'album1' } 
-                  .photos
-                  .map(&:name)).to contain_exactly('dog1',
-                                                   'dog2')
-    expect(subject.albums
-                  .find { |c| c.name == 'album2' } 
-                  .photos
-                  .map(&:name)).to contain_exactly('dog3',
-                                                   'dog4')
-    expect(subject.albums
-                  .find { |c| c.name == 'album3' } 
-                  .photos
-                  .map(&:name)).to contain_exactly('dog5',
-                                                   'dog6',
-                                                   'dog7')
+  context '#url' do
+    it 'is the snake version of the name with html file' do
+      expect(subject.url).to eq('index.html')
+    end
   end
-  
+
+  context '#url_parts' do
+    it 'is the snake version of the name with html file' do
+      expect(subject.url_parts).to eq(['index.html'])
+    end
+  end
+
+  context '#base_url_parts' do
+    it 'is the snake version of the name' do
+      expect(subject.base_url_parts).to eq([])
+    end
+  end
+
   def copy_text_file_to_root
     FileUtils::cp(fixture_file('text.txt'), @dir)
   end

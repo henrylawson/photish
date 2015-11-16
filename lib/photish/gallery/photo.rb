@@ -1,7 +1,13 @@
+require 'photish/gallery/traits/urlable'
+
 module Photish
   module Gallery
     class Photo
-      def initialize(path)
+
+      include Urlable
+
+      def initialize(parent, path)
+        @parent = parent
         @path = path
       end
 
@@ -11,7 +17,8 @@ module Photish
 
       private
 
-      attr_reader :path
+      attr_reader :path,
+                  :parent
     end
   end
 end
