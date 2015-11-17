@@ -33,15 +33,15 @@ describe Photish::Gallery::Album do
                                                      'Day 2',
                                                      'Day 3')
       expect(subject.albums
-                    .map(&:url)).to contain_exactly('rio-de-janeiro/day-1/index.html',
-                                                    'rio-de-janeiro/day-2/index.html',
-                                                    'rio-de-janeiro/day-3/index.html')
+                    .map(&:url)).to contain_exactly('/rio-de-janeiro/day-1/index.html',
+                                                    '/rio-de-janeiro/day-2/index.html',
+                                                    '/rio-de-janeiro/day-3/index.html')
     end
   end
 
   context '#url' do
     it 'is the snake version of the name with html file' do
-      expect(subject.url).to eq('rio-de-janeiro/index.html')
+      expect(subject.url).to eq('/rio-de-janeiro/index.html')
     end
   end
 

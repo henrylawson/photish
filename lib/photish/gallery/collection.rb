@@ -13,7 +13,7 @@ module Photish
       end
 
       def url
-        url_parts.join('/')
+        '/' + url_parts.join('/')
       end
 
       def url_parts

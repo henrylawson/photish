@@ -15,7 +15,7 @@ describe Photish::Gallery::Photo do
 
   context '#url' do
     it 'is the snake version of the name with html file' do
-      expect(subject.url).to eq('pets/cute-dog/index.html')
+      expect(subject.url).to eq('/pets/cute-dog/index.html')
     end
   end
 

@@ -16,7 +16,9 @@ module Photish
       log_important_config_values
       log_album_and_photo_names
 
-      write_rendered_index
+      write_rendered_index_page
+      write_rendered_album_pages
+      write_rendered_photo_pages
     end
 
     private
@@ -36,7 +38,25 @@ module Photish
       end
     end
 
-    def write_rendered_index
+    def write_rendered_album_pages
+      collection.albums.each do |album|
+        rendered_album = Tilt.new(template_album_file).render(album)
+        FileUtils.mkdir_p(File.join(config.val(:output_dir), album.base_url_parts))
+        output_album_file = File.join(config.val(:output_dir), album.url_parts)
+        File.write(output_album_file, rendered_album)
+      end
+    end
+
+    def write_rendered_photo_pages
+      collection.albums.map(&:photos).flatten.each do |photo|
+        rendered_photo = Tilt.new(template_photo_file).render(photo)
+        FileUtils.mkdir_p(File.join(config.val(:output_dir), photo.base_url_parts))
+        output_photo_file = File.join(config.val(:output_dir), photo.url_parts)
+        File.write(output_photo_file, rendered_photo)
+      end
+    end
+
+    def write_rendered_index_page
       FileUtils.mkdir_p(config.val(:output_dir))
       File.write(output_index_file, rendered_index)
     end
@@ -47,6 +67,14 @@ module Photish
 
     def template_index_file
       File.join(config.val(:site_dir), 'index.slim')
+    end
+
+    def template_album_file
+      File.join(config.val(:site_dir), 'album.slim')
+    end
+
+    def template_photo_file
+      File.join(config.val(:site_dir), 'photo.slim')
     end
 
     def output_index_file

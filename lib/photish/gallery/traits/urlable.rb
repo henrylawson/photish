@@ -5,7 +5,7 @@ module Photish
     module Traits
       module Urlable
         def url
-          url_parts.join('/')
+          '/' + url_parts.join('/')
         end
 
         def url_parts
