@@ -24,7 +24,8 @@ module Photish
       end
 
       def all_photos
-        all_albums.map(&:photos).flatten
+        all_albums.map(&:photos)
+                  .flatten
       end
 
       private

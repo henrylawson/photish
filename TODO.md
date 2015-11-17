@@ -2,8 +2,7 @@
 
 ## Must Have
 
-1. Render and write album HTML
-1. Render and write photo HTML
+1. Test the page generation code better
 1. Convert and persist image quality versions
 
 ## Might Have
