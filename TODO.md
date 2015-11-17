@@ -9,12 +9,17 @@
 ## Might Have
 
 1. Fix up requires in spec/lib
+1. User _site github pages convention
+1. Allow for relative/absolute file paths
 1. Load in YAML files for Albums and Photos
 1. Configurable image quality versions
 1. Configurable URL generation patterns
+1. Determine if helpers needed in the template engine
+1. Determine how site assets will be loaded in
 1. Understand different host environments, what their needs are around URLs
 1. Configurable template engines
 1. `init` command to get started
 1. `demo` command to generate different demonstrations
+1. `run` service to reload and regenerate
 1. Better README.md
-1. Actual website
+1. Actual website, using photish
