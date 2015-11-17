@@ -1,12 +1,13 @@
 require 'photish/gallery/photo'
 require 'photish/gallery/traits/urlable'
-require 'photish/gallery/traits/sub_groupable'
+require 'photish/gallery/traits/albumable'
 
 module Photish
   module Gallery
     class Album
 
       include ::Photish::Gallery::Traits::Urlable
+      include ::Photish::Gallery::Traits::Albumable
 
       def initialize(parent, path)
         @parent = parent
@@ -25,16 +26,14 @@ module Photish
                        .map    { |file| Photo.new(self, file) }
       end
       
-      def albums
-        sub_groups(Album)
-      end
-
       private
       
       attr_reader :path,
                   :parent
 
-      include ::Photish::Gallery::Traits::SubGroupable
+      def album_class
+        self.class
+      end
     end
   end
 end

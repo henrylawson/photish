@@ -39,7 +39,7 @@ module Photish
     end
 
     def write_rendered_album_pages
-      collection.albums.each do |album|
+      collection.all_albums.each do |album|
         rendered_album = Tilt.new(template_album_file).render(album)
         FileUtils.mkdir_p(File.join(config.val(:output_dir), album.base_url_parts))
         output_album_file = File.join(config.val(:output_dir), album.url_parts)
@@ -48,7 +48,7 @@ module Photish
     end
 
     def write_rendered_photo_pages
-      collection.albums.map(&:photos).flatten.each do |photo|
+      collection.all_photos.each do |photo|
         rendered_photo = Tilt.new(template_photo_file).render(photo)
         FileUtils.mkdir_p(File.join(config.val(:output_dir), photo.base_url_parts))
         output_photo_file = File.join(config.val(:output_dir), photo.url_parts)
