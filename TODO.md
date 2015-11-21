@@ -22,3 +22,5 @@
 1. `run` service to reload and regenerate
 1. Better README.md
 1. Actual website, using photish
+1. A sitemap feature
+1. A breadcrumb feature
