@@ -3,6 +3,9 @@ require 'mini_magick'
 module Photish
   module Render
     class ImageConversion
+
+      include Photish::Log
+
       def initialize(output_dir)
         @output_dir = output_dir
       end
@@ -15,6 +18,7 @@ module Photish
             convert << image.path
             convert.merge!(image.quality_params)
             convert << output_file
+            log "Performing image conversion #{convert.command}"
           end
         end
       end
