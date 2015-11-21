@@ -24,6 +24,11 @@ module Photish
                   .flatten
       end
 
+      def all_images
+        all_photos.map(&:images)
+                  .flatten
+      end
+
       private
 
       attr_reader :path
