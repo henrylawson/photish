@@ -56,7 +56,15 @@ module Photish
     end
 
     def collection
-      @collection ||= Gallery::Collection.new(photo_dir)
+      @collection ||= Gallery::Collection.new(photo_dir, qualities)
+    end
+
+    def qualities
+      [
+        OpenStruct.new(name: 'High',   params: ['-resize', '800x600']),
+        OpenStruct.new(name: 'Medium', params: ['-resize', '500x500']),
+        OpenStruct.new(name: 'Low',    params: ['-resize', '200x200'])
+      ]
     end
   end
 end

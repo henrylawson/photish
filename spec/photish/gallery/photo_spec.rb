@@ -32,8 +32,17 @@ describe Photish::Gallery::Photo do
   end
 
   context '#name' do
-    it 'is the raw folder name' do
+    it 'is the raw file name' do
       expect(subject.name).to eq('Cute Dog')
+    end
+  end
+
+  context '#images' do
+    it 'has an image for each quality' do
+      expect(subject.images
+                    .map(&:quality_name)).to contain_exactly('High',
+                                                             'Medium',
+                                                             'Low')
     end
   end
 end
@@ -41,5 +50,13 @@ end
 class PhotoParent
   def base_url_parts
     ['pets']
+  end
+
+  def qualities
+    [
+      OpenStruct.new(name: 'High',   params: ['-resize', '800x600']),
+      OpenStruct.new(name: 'Medium', params: ['-resize', '500x500']),
+      OpenStruct.new(name: 'Low',    params: ['-resize', '200x200'])
+    ]
   end
 end

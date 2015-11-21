@@ -1,6 +1,8 @@
 require 'photish/gallery/photo'
 require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/albumable'
+require 'active_support'
+require 'active_support/core_ext'
 
 module Photish
   module Gallery
@@ -8,6 +10,8 @@ module Photish
 
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
+
+      delegate :qualities, to: :parent, allow_nil: true
 
       def initialize(parent, path)
         @parent = parent
@@ -25,11 +29,13 @@ module Photish
                        .reject { |file| !File.file?(file) }
                        .map    { |file| Photo.new(self, file) }
       end
-      
+
       private
-      
+
       attr_reader :path,
                   :parent
+
+      alias_method :base_url_name, :name
 
       def album_class
         self.class

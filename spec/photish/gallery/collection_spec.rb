@@ -14,7 +14,7 @@ describe Photish::Gallery::Collection do
     FileUtils.remove_entry_secure @dir
   end
 
-  subject { Photish::Gallery::Collection.new(@dir) }
+  subject { Photish::Gallery::Collection.new(@dir, []) }
 
   context '#albums' do
     it 'crawls the albums' do

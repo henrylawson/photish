@@ -13,7 +13,13 @@ module Photish
         end
 
         def base_url_parts
-          parent.base_url_parts + [CGI.escape(name.downcase.gsub(' ', '-'))]
+          parent.base_url_parts + [slugify(base_url_name)]
+        end
+
+        private
+
+        def slugify(word)
+          CGI.escape(word.downcase.gsub(' ', '-'))
         end
       end
     end

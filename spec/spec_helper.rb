@@ -7,6 +7,7 @@ require 'photish/config/file_config'
 require 'photish/gallery/album'
 require 'photish/gallery/photo'
 require 'photish/gallery/collection'
+require 'photish/gallery/image'
 
 def fixture_file(path)
   File.join(File.dirname(__FILE__), 'fixtures', path)

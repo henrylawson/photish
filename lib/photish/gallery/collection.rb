@@ -8,8 +8,11 @@ module Photish
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
 
-      def initialize(path)
+      attr_reader :qualities
+
+      def initialize(path, qualities)
         @path = path
+        @qualities = qualities
       end
 
       def base_url_parts
