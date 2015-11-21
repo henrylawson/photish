@@ -2,7 +2,7 @@ require 'mini_magick'
 
 module Photish
   module Render
-    class Image
+    class ImageConversion
       def initialize(output_dir)
         @output_dir = output_dir
       end

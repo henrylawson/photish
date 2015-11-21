@@ -3,7 +3,6 @@
 ## Must Have
 
 1. Test the page generation code better
-1. Convert and persist image quality versions
 
 ## Might Have
 

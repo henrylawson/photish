@@ -14,6 +14,16 @@ module Photish
           albums.map { |album| [album] + album.all_albums }
                 .flatten
         end
+
+        def all_photos
+          all_albums.map(&:photos)
+                    .flatten
+        end
+
+        def all_images
+          all_photos.map(&:images)
+                    .flatten
+        end
       end
     end
   end
