@@ -1,7 +1,7 @@
 require 'photish/log'
-require 'photish/config/settings'
-require 'photish/config/location'
+require 'photish/config/app_settings'
 require 'photish/gallery/collection'
+require 'photish/render/site'
 require 'tilt'
 
 module Photish
@@ -9,26 +9,24 @@ module Photish
     include Photish::Log
 
     def initialize(runtime_config)
-      @runtime_config = runtime_config
+      @config = Photish::Config::AppSettings.new(runtime_config)
+                                            .config
     end
 
     def execute
       log_important_config_values
       log_album_and_photo_names
-
-      write_rendered_index_page
-      write_rendered_album_pages
-      write_rendered_photo_pages
+      render_site
     end
 
     private
 
-    attr_reader :runtime_config
+    attr_reader :config
 
     def log_important_config_values
-      log "Photo directory: #{config.val(:photo_dir)}"
-      log "Site directory: #{config.val(:site_dir)}"
-      log "Output directory: #{config.val(:output_dir)}"
+      log "Photo directory: #{photo_dir}"
+      log "Site directory: #{site_dir}"
+      log "Output directory: #{output_dir}"
     end
 
     def log_album_and_photo_names
@@ -38,67 +36,25 @@ module Photish
       end
     end
 
-    def write_rendered_album_pages
-      collection.all_albums.each do |album|
-        rendered_album = Tilt.new(template_album_file).render(album)
-        FileUtils.mkdir_p(File.join(config.val(:output_dir), album.base_url_parts))
-        output_album_file = File.join(config.val(:output_dir), album.url_parts)
-        File.write(output_album_file, rendered_album)
-      end
+    def render_site
+      Photish::Render::Site.new(collection, site_dir, output_dir)
+                           .all
     end
 
-    def write_rendered_photo_pages
-      collection.all_photos.each do |photo|
-        rendered_photo = Tilt.new(template_photo_file).render(photo)
-        FileUtils.mkdir_p(File.join(config.val(:output_dir), photo.base_url_parts))
-        output_photo_file = File.join(config.val(:output_dir), photo.url_parts)
-        File.write(output_photo_file, rendered_photo)
-      end
+    def photo_dir
+      config.val(:photo_dir)
     end
 
-    def write_rendered_index_page
-      FileUtils.mkdir_p(config.val(:output_dir))
-      File.write(output_index_file, rendered_index)
+    def output_dir
+      config.val(:output_dir)
     end
 
-    def rendered_index
-      Tilt.new(template_index_file).render(collection)
-    end
-
-    def template_index_file
-      File.join(config.val(:site_dir), 'index.slim')
-    end
-
-    def template_album_file
-      File.join(config.val(:site_dir), 'album.slim')
-    end
-
-    def template_photo_file
-      File.join(config.val(:site_dir), 'photo.slim')
-    end
-
-    def output_index_file
-      File.join(config.val(:output_dir), collection.url_parts)
+    def site_dir
+      config.val(:site_dir)
     end
 
     def collection
-      @colleciton ||= Gallery::Collection.new(config.val(:photo_dir))
-    end
-
-    def config
-      @config ||= Config::Settings
-        .new(default_config)
-        .override(file_config)
-        .override(runtime_config)
-    end
-
-    def file_config
-      config_location = Config::Location.new(runtime_config[:site_dir])
-      Config::FileConfig.new(config_location.path).hash
-    end
-
-    def default_config
-      Config::DefaultConfig.new.hash
+      @collection ||= Gallery::Collection.new(photo_dir)
     end
   end
 end
