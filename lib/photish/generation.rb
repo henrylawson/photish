@@ -16,7 +16,7 @@ module Photish
     def execute
       log_important_config_values
       log_album_and_photo_names
-      render_site
+      render_whole_site
     end
 
     private
@@ -36,8 +36,10 @@ module Photish
       end
     end
 
-    def render_site
-      Photish::Render::Site.new(collection, site_dir, output_dir)
+    def render_whole_site
+      Photish::Render::Site.new(collection,
+                                site_dir,
+                                output_dir)
                            .all
     end
 
