@@ -35,7 +35,7 @@ describe Photish::Gallery::Image do
 
   context '#name' do
     it 'is the raw file name' do
-      expect(subject.name).to eq('Cute Dog')
+      expect(subject.name).to eq('Cute Dog High')
     end
   end
 end

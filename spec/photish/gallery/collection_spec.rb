@@ -14,7 +14,7 @@ describe Photish::Gallery::Collection do
     FileUtils.remove_entry_secure @dir
   end
 
-  subject { Photish::Gallery::Collection.new(@dir, []) }
+  subject { Photish::Gallery::Collection.new(@dir, [OpenStruct.new(name: 'low')]) }
 
   context '#albums' do
     it 'crawls the albums' do
@@ -41,6 +41,32 @@ describe Photish::Gallery::Collection do
                     .map(&:name)).to contain_exactly('dog5',
                                                      'dog6',
                                                      'dog7')
+    end
+  end
+
+  context '#all_photos' do
+    it 'loads all photos in all albums' do
+      expect(subject.all_photos
+                    .map(&:name)).to contain_exactly('dog1',
+                                                     'dog2',
+                                                     'dog3',
+                                                     'dog4',
+                                                     'dog5',
+                                                     'dog6',
+                                                     'dog7')
+    end
+  end
+
+  context '#all_images' do
+    it 'loads all images in all photos in all albums' do
+      expect(subject.all_images
+                    .map(&:name)).to contain_exactly('dog1 low',
+                                                     'dog2 low',
+                                                     'dog3 low',
+                                                     'dog4 low',
+                                                     'dog5 low',
+                                                     'dog6 low',
+                                                     'dog7 low')
     end
   end
 

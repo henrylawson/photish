@@ -16,7 +16,7 @@ module Photish
       end
 
       def name
-        @name ||= File.basename(path, '.*')
+        @name ||= "#{basename} #{quality_name}"
       end
 
       private
@@ -28,7 +28,11 @@ module Photish
       alias_method :base_url_name, :name
 
       def url_end
-        "#{slugify(name)}-#{slugify(quality_name)}#{extension}"
+        "#{slugify(basename)}-#{slugify(quality_name)}#{extension}"
+      end
+
+      def basename
+        @basename ||= File.basename(path, '.*')
       end
 
       def extension
