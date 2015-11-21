@@ -7,7 +7,11 @@ module Photish
 
       include ::Photish::Gallery::Traits::Urlable
 
-      delegate :name, to: :quality, prefix: true, allow_nil: true
+      delegate :name,
+               :params,
+               to: :quality, prefix: true, allow_nil: true
+
+      attr_reader :path
 
       def initialize(parent, path, quality)
         @parent = parent
@@ -21,8 +25,7 @@ module Photish
 
       private
 
-      attr_reader :path,
-                  :parent,
+      attr_reader :parent,
                   :quality
 
       alias_method :base_url_name, :name

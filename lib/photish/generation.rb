@@ -2,7 +2,6 @@ require 'photish/log'
 require 'photish/config/app_settings'
 require 'photish/gallery/collection'
 require 'photish/render/site'
-require 'tilt'
 
 module Photish
   class Generation
