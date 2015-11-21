@@ -9,7 +9,7 @@ module Photish
         end
 
         def url_parts
-          base_url_parts + ['index.html']
+          base_url_parts + [url_end]
         end
 
         def base_url_parts

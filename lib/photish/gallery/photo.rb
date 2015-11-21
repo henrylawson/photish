@@ -19,6 +19,10 @@ module Photish
 
       attr_reader :path,
                   :parent
+
+      def url_end
+        'index.html'
+      end
     end
   end
 end

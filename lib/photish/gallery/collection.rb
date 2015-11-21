@@ -28,6 +28,10 @@ module Photish
       def album_class
         Album
       end
+
+      def url_end
+        'index.html'
+      end
     end
   end
 end
