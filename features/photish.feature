@@ -9,10 +9,3 @@ Feature: Photish
     Then the output should contain "/var/tmp/site"
     And the output should contain "/var/tmp/photo"
     And the output should contain "/var/tmp/output"
-
-  Scenario: Outputs the provided directories using short arg names
-    Given a config file at "/var/tmp/site"
-    When I run `photish generate -s /var/tmp/site -p /var/tmp/photo -o /var/tmp/output`
-    Then the output should contain "/var/tmp/site"
-    And the output should contain "/var/tmp/photo"
-    And the output should contain "/var/tmp/output"
