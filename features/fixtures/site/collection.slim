@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Simple Photo Site
+  body
+    h1 Collection "My Photo Site"
+    h2 Albums
+    ul
+      - albums.each do |album|
+        li
+          a href=album.url
+            | #{album.name}
+    h2 Photos
+    ul
+      - all_photos.each do |photo|
+        li
+          a href=photo.url
+            | #{photo.name}
+    h2 Images
+    ul
+      - all_images.each do |image|
+        li
+          a href=image.url
+            | #{image.name}

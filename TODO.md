@@ -23,3 +23,4 @@
 1. Actual website, using photish
 1. A sitemap feature
 1. A breadcrumb feature
+1. Startup bash script should install image magick

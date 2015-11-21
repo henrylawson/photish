@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Photo Page
+  body
+    h1 Photo "#{name}"
+    h2 Images
+    ul
+      - images.each do |image|
+        li
+          a href=image.url
+            | #{image.name}
+            img src=image.url

@@ -3,6 +3,7 @@ require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/albumable'
 require 'active_support'
 require 'active_support/core_ext'
+require 'filemagic'
 
 module Photish
   module Gallery
@@ -27,6 +28,7 @@ module Photish
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(path, file) }
                        .reject { |file| !File.file?(file) }
+                       .reject { |file| !FileMagic.new(FileMagic::MAGIC_MIME).file(file).match(formats) }
                        .map    { |file| Photo.new(self, file) }
       end
 
@@ -43,6 +45,12 @@ module Photish
 
       def url_end
         'index.html'
+      end
+
+      def formats
+        Regexp.union([
+          /image/i
+        ])
       end
     end
   end

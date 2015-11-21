@@ -16,6 +16,7 @@ module Photish
       log_important_config_values
       log_album_and_photo_names
       render_whole_site
+      log 'Site generation completed successfully'
     end
 
     private

@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "slim"
   spec.add_dependency "tilt"
   spec.add_dependency "mini_magick"
+  spec.add_dependency "ruby-filemagic"
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"

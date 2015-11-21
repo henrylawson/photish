@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Album Page
+  body
+    h1 Album "#{name}"
+    h2 Sub Albums
+    ul
+      - albums.each do |album|
+        li
+          a href=album.url
+            | #{album.name}
+      - if albums.empty?
+        li
+          | Empty
+    h2 Photos
+    ul
+      - photos.each do |photo|
+        li
+          a href=photo.url
+            | #{photo.name}
+      - if photos.empty?
+        li
+          | Empty
