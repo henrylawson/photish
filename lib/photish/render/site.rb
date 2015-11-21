@@ -10,7 +10,7 @@ module Photish
       end
 
       def all
-        write_rendered_index_page
+        write_rendered_collection_page
         write_rendered_album_pages
         write_rendered_photo_pages
       end
@@ -31,13 +31,13 @@ module Photish
                              .render(collection.all_photos)
       end
 
-      def write_rendered_index_page
-        Photish::Render::Page.new(template_index_file, output_dir)
+      def write_rendered_collection_page
+        Photish::Render::Page.new(template_collection_file, output_dir)
                              .render(collection)
       end
 
-      def template_index_file
-        File.join(site_dir, 'index.slim')
+      def template_collection_file
+        File.join(site_dir, 'collection.slim')
       end
 
       def template_album_file
