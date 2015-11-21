@@ -17,7 +17,6 @@
 1. Configurable template engines
 1. `init` command to get started
 1. `demo` command to generate different demonstrations, https://github.com/guard/listen
-1. `run` service to reload and regenerate
 1. `deploy` to deploy to github pages
 1. Better README.md
 1. Actual website, using photish
