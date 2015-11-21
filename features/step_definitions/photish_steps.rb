@@ -26,4 +26,9 @@ Then(/^the site should be available via HTTP$/) do
 end
 
 Then(/^not contain any dead links$/) do
+  Anemone.crawl(@uri) do |anemone|
+    anemone.on_every_page do |page|
+      expect(page.code).to eq(200), "Expected 200, got #{page.code} for URL #{page.url}"
+    end
+  end
 end
