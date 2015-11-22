@@ -36,3 +36,8 @@ Then(/^not contain any dead links$/) do
   error_message = ->{ "Got a non 200 for URLs:#{@pages.map(&:url).map { |u| "\n=> #{u}" }.join}" }
   expect(@pages.any? { |page| page.code != 200 }).to be_falsey, error_message
 end
+
+
+And(/^binding pry$/) do
+  binding.pry
+end

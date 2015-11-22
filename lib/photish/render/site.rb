@@ -11,6 +11,7 @@ module Photish
       end
 
       def all
+        move_non_ignored_site_contents
         collection_template.render(collection)
         album_template.render(collection.all_albums)
         photo_template.render(collection.all_photos)
@@ -22,6 +23,11 @@ module Photish
       attr_reader :collection,
                   :site_dir,
                   :output_dir
+
+      def move_non_ignored_site_contents
+        FileUtils.mkdir_p(output_dir)
+        FileUtils.cp_r(non_ignored_site_contents, output_dir)
+      end
 
       def image_conversion
         Photish::Render::ImageConversion.new(output_dir)
@@ -37,6 +43,10 @@ module Photish
 
       def collection_template
         Photish::Render::Page.new(layout_file, template_collection_file, output_dir)
+      end
+
+      def non_ignored_site_contents
+        Dir.glob(File.join(site_dir, '[!_]*'))
       end
 
       def layout_file
