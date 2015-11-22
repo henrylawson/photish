@@ -14,6 +14,7 @@ module Photish
         Array(images).each do |image|
           output_file = File.join(output_dir, image.url_parts)
           FileUtils.mkdir_p(File.join(output_dir, image.base_url_parts))
+
           MiniMagick::Tool::Convert.new do |convert|
             convert << image.path
             convert.merge!(image.quality_params)

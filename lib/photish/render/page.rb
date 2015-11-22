@@ -15,10 +15,13 @@ module Photish
       def render(models)
         Array(models).each do |model|
           rendered_model = render_template_and_layout(model)
-          FileUtils.mkdir_p(File.join(output_dir, model.base_url_parts))
-          output_file = File.join(output_dir, model.url_parts)
-          log "Rendering #{model.url} with template #{template_file} to #{output_file}"
-          File.write(output_file, rendered_model)
+          output_model_file = relative_to_output_dir(model.url_parts)
+          output_model_dir = relative_to_output_dir(model.base_url_parts)
+
+          log "Rendering #{model.url} with template #{template_file} to #{output_model_file}"
+
+          FileUtils.mkdir_p(output_model_dir)
+          File.write(output_model_file, rendered_model)
         end
       end
 
@@ -27,6 +30,10 @@ module Photish
       attr_reader :template_file,
                   :layout_file,
                   :output_dir
+
+      def relative_to_output_dir(url_parts)
+        File.join(output_dir, url_parts)
+      end
 
       def render_template_and_layout(model)
         layout.render(model) do
