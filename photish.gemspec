@@ -10,17 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["henry.lawson@foinq.com"]
 
   spec.summary       = %q{A static photo site generator}
-  spec.description   = %q{A static photo site generator}
+  spec.description   = %q{Using a collection of photos grouped by folder, photish will generate a the website content using templates that you provide.}
   spec.homepage      = "https://github.com/henrylawson/photish"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
