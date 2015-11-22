@@ -5,3 +5,8 @@ qualities:
     params: []
   - name: Low
     params: ['-resize', '200x200']
+templates:
+  layout: layout.slim
+  collection: collection.slim
+  album: album.slim
+  photo: photo.slim

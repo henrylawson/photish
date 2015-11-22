@@ -37,10 +37,10 @@ module Photish
     end
 
     def render_whole_site
-      Photish::Render::Site.new(collection,
+      Photish::Render::Site.new(templates,
                                 site_dir,
                                 output_dir)
-                           .all
+                           .all_for(collection)
     end
 
     def photo_dir
@@ -62,6 +62,10 @@ module Photish
     def qualities
       config.val(:qualities)
             .map { |quality| OpenStruct.new(quality) }
+    end
+
+    def templates
+      OpenStruct.new(config.val(:templates))
     end
   end
 end

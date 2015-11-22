@@ -33,7 +33,12 @@ Then(/^all (.*) pages and images should be available$/) do |number|
 end
 
 Then(/^not contain any dead links$/) do
-  error_message = ->{ "Got a non 200 for URLs:#{@pages.map(&:url).map { |u| "\n=> #{u}" }.join}" }
+  error_message = -> do 
+    failed_urls = @pages.reject! { |p| p.code == 200 }
+                        .map { |p| "=> #{p.code} | #{p.url}\n" }
+                        .join
+    "Got a non 200 for URLs:\n#{failed_urls}"
+  end
   expect(@pages.any? { |page| page.code != 200 }).to be_falsey, error_message
 end
 
