@@ -16,4 +16,3 @@ Feature: Photish
     Then the site should be available via HTTP
     And all 47 pages and images should be available
     And not contain any dead links
-    And binding pry
