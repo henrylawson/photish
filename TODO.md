@@ -2,11 +2,10 @@
 
 ## Must Have
 
-1. Test the page generation code better
+1. Fix up requires in spec/lib
 
 ## Might Have
 
-1. Fix up requires in spec/lib
 1. Allow for relative/absolute with/without hostname URLs
 1. Load in YAML files for Albums and Photos
 1. Configurable image quality versions

@@ -26,7 +26,6 @@ module Photish
       attr_reader :template_file,
                   :output_dir
 
-
       def template
         @template ||= Tilt.new(template_file)
       end

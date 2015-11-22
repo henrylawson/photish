@@ -25,10 +25,17 @@ Then(/^the site should be available via HTTP$/) do
   end
 end
 
-Then(/^not contain any dead links$/) do
+Then(/^all pages and images should be available$/) do
+  @pages = []
   Anemone.crawl(@uri) do |anemone|
     anemone.on_every_page do |page|
-      expect(page.code).to eq(200), "Expected 200, got #{page.code} for URL #{page.url}"
+      @pages << page
     end
   end
+  expect(@pages.count).to eq(37)
+end
+
+Then(/^not contain any dead links$/) do
+  error_message = ->{ "Got a non 200 for URLs:#{@pages.map(&:url).map { |u| "\n=> #{u}" }.join}" }
+  expect(@pages.any? { |page| page.code != 200 }).to be_falsey, error_message
 end

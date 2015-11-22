@@ -22,3 +22,15 @@ html
       - if photos.empty?
         li
           | Empty
+    h2 Photos
+    ul
+      - all_photos.each do |photo|
+        li
+          a href=photo.url
+            | #{photo.name}
+    h2 Images
+    ul
+      - all_images.each do |image|
+        li
+          a href=image.url
+            | #{image.name}
