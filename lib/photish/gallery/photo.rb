@@ -1,4 +1,5 @@
 require 'photish/gallery/traits/urlable'
+require 'photish/gallery/traits/metadatable'
 require 'photish/gallery/image'
 require 'active_support'
 require 'active_support/core_ext'
@@ -9,6 +10,7 @@ module Photish
     class Photo
 
       include ::Photish::Gallery::Traits::Urlable
+      include ::Photish::Gallery::Traits::Metadatable
 
       delegate :qualities, to: :parent, allow_nil: true
 

@@ -3,7 +3,6 @@
 ## Must Have
 
 1. Load in YAML files for Albums and Photos
-1. Make image meta data available in model
 
 ## Might Have
 
