@@ -1,6 +1,7 @@
 require 'photish/gallery/photo'
 require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/albumable'
+require 'photish/gallery/traits/metadatable'
 require 'active_support'
 require 'active_support/core_ext'
 require 'filemagic'
@@ -11,6 +12,7 @@ module Photish
 
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
+      include ::Photish::Gallery::Traits::Metadatable
 
       delegate :qualities, to: :parent, allow_nil: true
 

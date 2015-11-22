@@ -1,5 +1,6 @@
 require 'photish/gallery/album'
 require 'photish/gallery/traits/albumable'
+require 'photish/gallery/traits/metadatable'
 
 module Photish
   module Gallery
@@ -7,6 +8,7 @@ module Photish
 
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
+      include ::Photish::Gallery::Traits::Metadatable
 
       attr_reader :qualities
 

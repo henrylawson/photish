@@ -88,6 +88,26 @@ describe Photish::Gallery::Collection do
     end
   end
 
+  context '#metadata' do
+    context 'when a YAML file is present' do
+      it 'has all the data loaded' do
+        metadata_file = File.join(@dir + '.yml')
+        FileUtils.cp(fixture_file('metadata.yml'), metadata_file)
+
+        expect(subject.metadata.description).to eq('Description')
+        expect(subject.metadata.notes).to eq(['Note 1', 'Note 2'])
+        expect(subject.metadata.category.title).to eq('Title')
+        expect(subject.metadata.category.blurb).to eq('Blurb')
+      end
+    end
+
+    context 'when no YAML file is present' do
+      it 'returns nil' do
+        expect(subject.metadata).to eq(nil)
+      end
+    end
+  end
+
   def copy_text_file_to_root
     FileUtils::cp(fixture_file('text.txt'), @dir)
   end
