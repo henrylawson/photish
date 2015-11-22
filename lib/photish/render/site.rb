@@ -28,15 +28,19 @@ module Photish
       end
 
       def album_template
-        Photish::Render::Page.new(template_album_file, output_dir)
+        Photish::Render::Page.new(layout_file, template_album_file, output_dir)
       end
 
       def photo_template
-        Photish::Render::Page.new(template_photo_file, output_dir)
+        Photish::Render::Page.new(layout_file, template_photo_file, output_dir)
       end
 
       def collection_template
-        Photish::Render::Page.new(template_collection_file, output_dir)
+        Photish::Render::Page.new(layout_file, template_collection_file, output_dir)
+      end
+
+      def layout_file
+        File.join(site_dir, 'layout.slim')
       end
 
       def template_collection_file

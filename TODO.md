@@ -2,7 +2,6 @@
 
 ## Must Have
 
-1. Determine how to have a universal layout
 1. Determine how site assets will be loaded in
 1. Determine if helpers needed in the template engine
 
