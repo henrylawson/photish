@@ -3,10 +3,22 @@ module Photish
     class DefaultConfig
       def hash
         {
+          port: 9876,
           site_dir: File.join(Dir.pwd, 'site'),
           photo_dir: File.join(Dir.pwd, 'photos'),
           output_dir: File.join(Dir.pwd, 'output'),
-          port: 9882
+          qualities: [
+            { name: 'Original',
+              params: [] },
+            { name: 'Low',
+              params: ['-resize', '200x200'] }
+          ],
+          templates: {
+            layout: 'layout.slim',
+            collection: 'collection.slim',
+            album: 'album.slim',
+            photo: 'photo.slim'
+          }
         }
       end
     end
