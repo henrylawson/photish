@@ -22,14 +22,14 @@ Then(/^the site should be available via HTTP$/) do
   end
 end
 
-Then(/^all pages and images should be available$/) do
+Then(/^all (.*) pages and images should be available$/) do |number|
   @pages = []
   Anemone.crawl(@uri) do |anemone|
     anemone.on_every_page do |page|
       @pages << page
     end
   end
-  expect(@pages.count).to eq(37)
+  expect(@pages.count).to eq(number.to_i)
 end
 
 Then(/^not contain any dead links$/) do
