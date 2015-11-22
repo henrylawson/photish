@@ -7,7 +7,9 @@
 
 1. `init` command to get started
 1. `deploy` to deploy to github pages
-1. Better README.md
+1. README.md Usage Instructions
+1. README.md Development Instructions
+1. Clean up gemspec, set minimum dependencies, ruby + gems, description
 1. Actual website, using photish
 1. Startup bash script should install image magick, libmagic, exiftool
 
