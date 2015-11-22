@@ -33,7 +33,7 @@ Then(/^all (.*) pages and images should be available$/) do |number|
 end
 
 Then(/^not contain any dead links$/) do
-  error_message = -> do 
+  error_message = -> do
     failed_urls = @pages.reject! { |p| p.code == 200 }
                         .map { |p| "=> #{p.code} | #{p.url}\n" }
                         .join
