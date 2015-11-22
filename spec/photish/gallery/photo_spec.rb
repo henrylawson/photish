@@ -37,6 +37,13 @@ describe Photish::Gallery::Photo do
     end
   end
 
+  context '#exif' do
+    it 'has the image meta data' do
+      expect(subject.exif.encoding_process).to eq('Baseline DCT, Huffman coding')
+      expect(subject.exif.mega_pixels).to eq(0.24)
+    end
+  end
+
   context '#images' do
     it 'has an image for each quality' do
       expect(subject.images

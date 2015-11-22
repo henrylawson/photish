@@ -2,6 +2,7 @@ require 'photish/gallery/traits/urlable'
 require 'photish/gallery/image'
 require 'active_support'
 require 'active_support/core_ext'
+require 'mini_exiftool'
 
 module Photish
   module Gallery
@@ -22,6 +23,10 @@ module Photish
 
       def images
         qualities.map { |quality| Photish::Gallery::Image.new(self, path, quality) }
+      end
+
+      def exif
+        MiniExiftool.new(path)
       end
 
       private
