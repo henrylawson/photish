@@ -14,5 +14,6 @@ Feature: Photish
 
     When I run `photish host` interactively
     Then the site should be available via HTTP
-    And all 39 pages and images should be available
+    And all 47 pages and images should be available
     And not contain any dead links
+    And binding pry

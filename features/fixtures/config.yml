@@ -1,2 +1,11 @@
 ---
 port: 9876
+qualities:
+  - name: Original
+    params: []
+  - name: High
+    params: ['-resize', '800x600']
+  - name: Medium
+    params: ['-resize', '500x500']
+  - name: Low
+    params: ['-resize', '200x200']

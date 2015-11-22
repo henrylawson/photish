@@ -60,11 +60,8 @@ module Photish
     end
 
     def qualities
-      [
-        OpenStruct.new(name: 'High',   params: ['-resize', '800x600']),
-        OpenStruct.new(name: 'Medium', params: ['-resize', '500x500']),
-        OpenStruct.new(name: 'Low',    params: ['-resize', '200x200'])
-      ]
+      config.val(:qualities)
+            .map { |quality| OpenStruct.new(quality) }
     end
   end
 end
