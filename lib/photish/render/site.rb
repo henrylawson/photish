@@ -40,19 +40,19 @@ module Photish
       end
 
       def layout_file
-        File.join(site_dir, 'layout.slim')
+        File.join(site_dir, '_templates', 'layout.slim')
       end
 
       def template_collection_file
-        File.join(site_dir, 'collection.slim')
+        File.join(site_dir, '_templates', 'collection.slim')
       end
 
       def template_album_file
-        File.join(site_dir, 'album.slim')
+        File.join(site_dir,  '_templates', 'album.slim')
       end
 
       def template_photo_file
-        File.join(site_dir, 'photo.slim')
+        File.join(site_dir, '_templates', 'photo.slim')
       end
     end
   end

@@ -6,7 +6,7 @@ Feature: Photish
   Scenario: Generates the site and runs it on a HTTP server
     Given a config file
     And a photo directory
-    And a site directory with templates
+    And a site directory
 
     When I run `photish generate`
     Then the output should contain "Site generation completed successfully"
