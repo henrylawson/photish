@@ -1,5 +1,7 @@
 h1 Photo "#{name}"
 h2 Images
+- if metadata.try(:description)
+  p #{metadata.try(:description)}
 ul
   - images.each do |image|
     li

@@ -2,76 +2,95 @@
 
 Photish is a simple, convention based (but configurable) static photo site
 generator. Photish allows you to order and group your photo collections by
-folder. Metadata can be written along side the photo in a YAML file with the
-same name as the photo.
+folder. Metadata can be written along side the photo in a
+[YAML](http://yaml.org/) file with the same name as the photo.
 
 Photish will crawl through your directory of photos and metadata, and render
-the information in your website templates. It will also read your configuration
-and automatically convert your images to your configured size, dimensions,
-colourscheme, etc. Using this information, Photish creates a complete static
-website that can be hosted on an NGINX, Apache web server, or even Github
-pages site.
+the information in your website templates. Photish supports all template
+engines implemented by [Tilt](https://github.com/rtomayko/tilt) (currently over
+30 formats). It will also read your configuration and automatically convert
+your images to your configured size, dimensions, colourscheme, etc using
+[ImageMagick](http://www.imagemagick.org/script/index.php). Using this
+information, Photish creates a complete static website that can be hosted on an
+[NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
+even on [Github Pages](https://pages.github.com/).
 
 ## Photish Concepts
 
 Photish turns this:
 
-    Photos
-    ├── Big Dogs
-    │   ├── Tired Dogs.jpg
-    │   └── Winking Dog.jpg
-    └── Small Dogs
-        ├── Fluffy Dogs
-        │   ├── Exhausted Dogs.jpg
-        │   ├── Fluffy Dog.jpg
-        │   ├── Fluffy Dog.yml
-        └── Squishy Dogs
-            ├── Big Ear Dog.jpg
-            ├── Big Ear Dog.yml
-            └── Sleepy Dog.jpg
+    ./my_new_photo_site
+    ├── config.yml
+    ├── photos
+    │   ├── Big Dogs
+    │   │   ├── Tired Dogs.jpg
+    │   │   └── Winking Dog.jpg
+    │   └── Small Dogs
+    │       ├── Fluffy Dogs
+    │       │   ├── Exhausted Dogs.jpg
+    │       │   ├── Exhausted Dogs.yml
+    │       │   ├── Many Dogs.jpg
+    │       │   └── Many Dogs.yml
+    │       ├── Sleepy Dog.jpg
+    │       ├── Sleepy Dog.yml
+    │       └── Squishy Dogs
+    │           └── Big Ear Dog.jpg
+    └── site
+        ├── _templates
+        │   ├── album.slim
+        │   ├── collection.slim
+        │   ├── layout.slim
+        │   └── photo.slim
+        ├── custom.html
+        └── styles
+            └── basic.css
 
 Into this:
 
-    website
-    ├── index.html
-    ├── big-dogs
-    │   ├── index.html
-    │   ├── tired-dogs
-    │   │   ├── images
-    │   │   │   ├── tired-dogs-low.jpg
-    │   │   │   └── tired-dogs-original.jpg
-    │   │   └── index.html
-    │   └── winking-dog
-    │       ├── images
-    │       │   ├── winking-dog-low.jpg
-    │       │   └── winking-dog-original.jpg
-    │       └── index.html
-    └── small-dogs
-        ├── fluffy-dogs
-        │   ├── exhausted-dogs
-        │   │   ├── images
-        │   │   │   ├── exhausted-dogs-low.jpg
-        │   │   │   └── exhausted-dogs-original.jpg
-        │   │   └── index.html
-        │   ├── fluffy-dog
-        │   │   ├── images
-        │   │   │   ├── fluffy-dog-low.jpg
-        │   │   │   └── fluffy-dog-original.jpg
-        │   │   └── index.html
-        │   ├── index.html
-        ├── index.html
-        └── squishy-dogs
-            ├── big-ear-dog
-            │   ├── images
-            │   │   ├── big-ear-dog-low.jpg
-            │   │   └── big-ear-dog-original.jpg
-            │   └── index.html
-            ├── index.html
-            └── sleepy-dog
-                ├── images
-                │   ├── sleepy-dog-low.jpg
-                │   └── sleepy-dog-original.jpg
-                └── index.html
+    ./my_new_photo_site
+    └── output
+        ├── big-dogs
+        │   ├── index.html
+        │   ├── tired-dogs
+        │   │   ├── images
+        │   │   │   ├── tired-dogs-low.jpg
+        │   │   │   └── tired-dogs-original.jpg
+        │   │   └── index.html
+        │   └── winking-dog
+        │       ├── images
+        │       │   ├── winking-dog-low.jpg
+        │       │   └── winking-dog-original.jpg
+        │       └── index.html
+        ├── custom.html
+        ├── index.html
+        ├── small-dogs
+        │   ├── fluffy-dogs
+        │   │   ├── exhausted-dogs
+        │   │   │   ├── images
+        │   │   │   │   ├── exhausted-dogs-low.jpg
+        │   │   │   │   └── exhausted-dogs-original.jpg
+        │   │   │   └── index.html
+        │   │   ├── index.html
+        │   │   └── many-dogs
+        │   │       ├── images
+        │   │       │   ├── many-dogs-low.jpg
+        │   │       │   └── many-dogs-original.jpg
+        │   │       └── index.html
+        │   ├── index.html
+        │   ├── sleepy-dog
+        │   │   ├── images
+        │   │   │   ├── sleepy-dog-low.jpg
+        │   │   │   └── sleepy-dog-original.jpg
+        │   │   └── index.html
+        │   └── squishy-dogs
+        │       ├── big-ear-dog
+        │       │   ├── images
+        │       │   │   ├── big-ear-dog-low.jpg
+        │       │   │   └── big-ear-dog-original.jpg
+        │       │   └── index.html
+        │       └── index.html
+        └── styles
+            └── basic.css
 
 A breakdown of the before and after is as follows:
 
