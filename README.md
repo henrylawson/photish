@@ -167,12 +167,33 @@ The local version of your website will be visible at [http://localhost:9876/](ht
 
 ### Customizing Templates
 
+Below is the documentation for the various data available inside
+each of the templates.
+
+{template_type} is a place holder as depending on your chosen template engine
+the file extension will change. By default the template engine is Slim, so
+templates will end with _slim_.
+
+#### The `templates/layout.{template_type}` File
+
+TODO: Text here
+
+#### The `templates/collection.{template_type}` File
+
+TODO: Text here
+
+#### The `templates/album.{template_type}` File
+
+TODO: Text here
+
+#### The `templates/photo.{template_type}` File
+
 TODO: Text here
 
 ## Development
 
 If you would like to contribute to Photish by creating a new feature or fixing
-bugs, you are more then welcome too!
+bugs, you are more then welcome!
 
 To develop:
 
@@ -185,10 +206,11 @@ To develop:
 
 To release:
 
-    $ git add -p && git commit -m 'Final commit'    # finish up changes
-    $ rake                                          # ensure all tests pass
-    $ vim lib/photish/version.rb                    # update version
-    $ rake release                                  # release to rubygems
+    $ git add -p                      # add in changed files
+    $ git commit -m 'Final commit'    # finish up changes
+    $ rake                            # ensure all tests pass
+    $ vim lib/photish/version.rb      # update version
+    $ rake release                    # release to rubygems
 
 ## Contributing
 
