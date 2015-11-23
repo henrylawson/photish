@@ -170,23 +170,23 @@ The local version of your website will be visible at [http://localhost:9876/](ht
 Below is the documentation for the various data available inside
 each of the templates.
 
-{template_type} is a place holder as depending on your chosen template engine
+{type} is a place holder as depending on your chosen template engine
 the file extension will change. By default the template engine is Slim, so
 templates will end with _slim_.
 
-#### The `templates/layout.{template_type}` File
+#### The `templates/layout.{type}` File
 
 TODO: Text here
 
-#### The `templates/collection.{template_type}` File
+#### The `templates/collection.{type}` File
 
 TODO: Text here
 
-#### The `templates/album.{template_type}` File
+#### The `templates/album.{type}` File
 
 TODO: Text here
 
-#### The `templates/photo.{template_type}` File
+#### The `templates/photo.{type}` File
 
 TODO: Text here
 
