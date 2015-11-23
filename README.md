@@ -73,13 +73,15 @@ Into this:
                 │   └── sleepy-dog-original.jpg
                 └── index.html
 
-For the **Collection** of photos in "Photos" an _index.html_ was created.  And
-each **Album** (that is a folder in the "Photos" collection), also got an
-_index.html_ in a slugified sub folder. Finally, each **Photo** (an image file
-in the album), got another _index.html_ created in a slugified sub folder named
-after the original photo. For each of these photos, a version of the **Image**
-was made in both "low" and "original" quality as was configured in the config
-file (the number of versions is configurable).
+A breakdown of the before and after is as follows:
+
+1. For the **Collection** of photos in "Photos" an _index.html_ was created
+1. For each **Album** (that is a folder in the "Photos" collection), an
+   _index.html_ was created in a slugified sub folder
+1. For each **Photo** (an image file in the album), another _index.html_ was
+   created in a slugified sub folder named after the original photo
+1. For each of these Photos, a version of the **Image** was made in both "low"
+   and "original" quality in a sub folder called _images_
 
 ### Collection
 
