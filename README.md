@@ -15,6 +15,28 @@ information, Photish creates a complete static website that can be hosted on an
 [NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
 even on [Github Pages](https://pages.github.com/).
 
+## Table of Contents
+
+- Overview
+- Installation
+- Usage
+  - Initialize
+    - Basic Photish Structure
+    - Template Engines
+    - Site Assets, CSS, Images, JavaScript
+    - Config File Options
+    - Customizing Templates
+      - Layout Template
+      - Collection Template
+      - Album Template
+      - Photo Template
+  - Generate
+    - Execution Order
+  - Host
+- Development
+- Contributing
+- License
+
 ## Overview
 
 Photish turns this:
