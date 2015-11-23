@@ -271,7 +271,7 @@ model when rendered.
 
 Attribute or Method | Description
 ------------------- | -----------
-name                | the name of the folder, i.e. `photos/My album/` will become 'My album'
+name                | the name of the folder, i.e. `photos/My album/` will become `My album`
 url                 | the URL of this page
 metadata            | an object with methods for the attributes in the `{album_name}.yml` file stored at the same level as the album
 all_albums          | an array of all child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb)
@@ -294,6 +294,7 @@ Attribute or Method | Description
 name                | the name of the photo, i.e. `photos/My album/My dog.jpg` will become `My dog`
 url                 | the URL of this page
 metadata            | an object with methods for the attributes in the `{photo_name}.yml` file stored at the same level as the photo
+exif                | an object with methods for the exif data of the original photo file
 images              | an array of all the [Images](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/image.rb) for this photo, an Image will be a version of the photo in the quality configured in `config.yml`
 
 ### Generate
