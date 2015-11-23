@@ -17,25 +17,25 @@ even on [Github Pages](https://pages.github.com/).
 
 ## Table of Contents
 
-- Overview
-- Installation
-- Usage
-  - Initialize
-    - Basic Photish Structure
-    - Template Engines
-    - Site Assets, CSS, Images, JavaScript
-    - Config File Options
-    - Customizing Templates
-      - Layout Template
-      - Collection Template
-      - Album Template
-      - Photo Template
-  - Generate
-    - Execution Order
-  - Host
-- Development
-- Contributing
-- License
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Initialize](#initialize)
+    - [Basic Photish Structure](#basic-photish-structure)
+    - [Template Engines](#template-engines)
+    - [Site Assets](#site-assets)
+    - [Config File Options](#config-file-options)
+    - [Customizing Templates](#customizing-templates)
+      - [Layout Template](#layout-template)
+      - [Collection Template](#collection-template)
+      - [Album Template](#album-template)
+      - [Photo Template](#photo-template)
+  - [Generate](#generate)
+    - [Execution Order](#execution-order)
+  - [Host](#host)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Overview
 
@@ -181,7 +181,7 @@ the file extension of the template engine you prefer
 1. Update `config.yml` to reference your newly created template files
 1. Re write the basic template code in your chosen language
 
-#### Site Assets, CSS, Images, JavaScript
+#### Site Assets
 
 Any content not starting with an `_` (underscore) in the `site` folder will be
 copied to the `output` folder.
