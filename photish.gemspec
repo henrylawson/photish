@@ -11,9 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A static photo site generator}
   spec.description   = %q{Photish is a simple, convention based (but
-  configurable) static photo site generator. Photish allows you to group your
-  photo collections by folder.  Metadata can be written alongside the photo in
-  a [YAML](http://yaml.org/) file with the same name as the photo.}
+  configurable) static photo site generator.}
   spec.homepage      = "https://github.com/henrylawson/photish"
   spec.license       = "MIT"
 
