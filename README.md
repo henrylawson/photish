@@ -2,7 +2,7 @@
 
 Photish is a simple, convention based (but configurable) static photo site
 generator. Photish allows you to order and group your photo collections by
-folder. Metadata can be written along side the photo in a
+folder. Metadata can be written alongside the photo in a
 [YAML](http://yaml.org/) file with the same name as the photo.
 
 Photish will crawl through your directory of photos and metadata, and render
@@ -105,7 +105,7 @@ A breakdown of the before and after is as follows:
 The number of Images and the quality of each is completely configurable. Using
 the templating language of your choice you can easily generate a Photo
 collection driven website with all of your photos available in various
-qualities.
+qualities and formats.
 
 ## Installation
 
@@ -137,14 +137,16 @@ A skeleton site can be created by running the below command inside the
 
 Inside your `my_new_photo_site` folder, you will have a:
 
-1. `photos` folder, for your photo collection and metadata
-1. `site` folder for your templates, assets and static pages
-1. `site/_templates` folder for your templates
-1. `site/_templates/layout.slim` file for the basic layout for all pages
-1. `site/_templates/collection.slim` template file for your collection page
-1. `site/_templates/album.slim` template file for your album page(s)
-1. `site/_templates/photo.slim` template file for your photo page(s)
-1. `config.yml` file to store all configuration in YAML format
+| File                              | Purpose                                            |
+| --------------------------------- | -------------------------------------------------- |
+| `photos`                          | folder, for your photo collection and metadata     |
+| `site`                            | folder for your templates, assets and static pages |
+| `site/_templates`                 | folder for your templates                          |
+| `site/_templates/layout.slim`     | file for the basic layout for all pages            |
+| `site/_templates/collection.slim` | template file for your collection page             |
+| `site/_templates/album.slim`      | template file for your album page(s)               |
+| `site/_templates/photo.slim`      | template file for your photo page(s)               |
+| `config.yml`                      | file to store all configuration in YAML format     |
 
 #### Template Engines
 
