@@ -1,9 +1,9 @@
 # Photish
 
 Photish is a simple, convention based (but configurable) static photo site
-generator. Photish allows you to order and group your photo collections by
-folder. Metadata can be written alongside the photo in a
-[YAML](http://yaml.org/) file with the same name as the photo.
+generator. Photish allows you to group your photo collections by folder.
+Metadata can be written alongside the photo in a [YAML](http://yaml.org/) file
+with the same name as the photo.
 
 Photish will crawl through your directory of photos and metadata, and render
 the information in your website templates. Photish supports all template
