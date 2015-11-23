@@ -1,17 +1,17 @@
-Given(/^a config file$/) do
-  path = File.join(@working_directory)
-  @config = YAML.load_file(fixture_file('config.yml'))
-  FileUtils.cp_r(fixture_file('config.yml'), path)
+Then(/^the config file should be created$/) do
+  config_path = File.join(@working_directory, 'config.yml')
+  expect(File.exists?(config_path)).to be_truthy
+  @config = YAML.load_file(config_path)
 end
 
-Given(/^a photo directory$/) do
+Then(/^a photos directory should be created$/) do
   path = File.join(@working_directory, 'photos')
-  FileUtils.cp_r(fixture_file('photos'), path)
+  expect(Dir.exists?(path)).to be_truthy
 end
 
-Given(/^a site directory$/) do
+Then(/^a site directory should be created$/) do
   path = File.join(@working_directory, 'site')
-  FileUtils.cp_r(fixture_file('site'), path)
+  expect(Dir.exists?(path)).to be_truthy
 end
 
 Then(/^the site should be available via HTTP$/) do
