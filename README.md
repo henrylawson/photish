@@ -15,7 +15,7 @@ information, Photish creates a complete static website that can be hosted on an
 [NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
 even on [Github Pages](https://pages.github.com/).
 
-## Photish Concepts
+## Overview
 
 Photish turns this:
 
@@ -133,6 +133,8 @@ A skeleton site can be created by running the below command inside the
 
     $ photish init
 
+#### Basic Photish Structure
+
 Inside your `my_new_photo_site` folder, you will have a:
 
 1. `photos` folder, for your photo collection and metadata
@@ -144,7 +146,7 @@ Inside your `my_new_photo_site` folder, you will have a:
 1. `site/_templates/photo.slim` template file for your photo page(s)
 1. `config.yml` file to store all configuration in YAML format
 
-### Template Engines
+#### Template Engines
 
 By default Photish uses [Slim](http://slim-lang.com/) as the template language.
 The templates can be in any format supported by
