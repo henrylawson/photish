@@ -174,19 +174,27 @@ each of the templates.
 the file extension will change. By default the template engine is Slim, so
 templates will end with _slim_.
 
-#### The `templates/layout.{type}` File
+#### Layout Template
+
+**Default Location:** `./site/_templates/layout.{type}`
 
 TODO: Text here
 
-#### The `templates/collection.{type}` File
+#### Collection Template
+
+**Default Location:** `./site/_templates/collection.{type}`
 
 TODO: Text here
 
-#### The `templates/album.{type}` File
+#### Album Template
+
+**Default Location:** `./site/_templates/album.{type}`
 
 TODO: Text here
 
-#### The `templates/photo.{type}` File
+#### Photo Template
+
+**Default Location:** `./site/_templates/photo.{type}`
 
 TODO: Text here
 
