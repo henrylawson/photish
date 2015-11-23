@@ -198,17 +198,17 @@ A below is a basic `config.yml` file:
 
 The meanings and purpose of each field is defined below:
 
-Field                | Purpose
-------------------   | -------
-port                 | the port number that the `photish host` command will bind to
-qualities            | an array of `name` and `params` fields for images
-qualities[]/name     | the name of the Image quality
-qualities[]/params   | the parameters to be provided to the ImageMagick `convert` utility  for the Image file quality
-templates            | a listing of the various template files
-templates/layout     | the layout template file in the `site/_templates` folder
-templates/collection | the collection template file in the `site/_templates` folder
-templates/album      | the album template file in the `site/_templates` folder
-templates/photo      | the photo template file in the `site/_templates` folder
+Field                  | Purpose
+---------------------- | -------
+`port`                 | the port number that the `photish host` command will bind to
+`qualities`            | an array of `name` and `params` fields for images
+`qualities[]/name`     | the name of the Image quality
+`qualities[]/params`   | the parameters to be provided to the ImageMagick `convert` utility  for the Image file quality
+`templates`            | a listing of the various template files
+`templates/layout`     | the layout template file in the `site/_templates` folder
+`templates/collection` | the collection template file in the `site/_templates` folder
+`templates/album`      | the album template file in the `site/_templates` folder
+`templates/photo`      | the photo template file in the `site/_templates` folder
 
 #### Customizing Templates
 
