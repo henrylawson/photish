@@ -225,7 +225,24 @@ the file extension will change. By default the template engine is
 
 `site/_templates/layout.{type}`
 
-TODO: Text here
+The layout template is the base layout for all the other templates. The
+`collection`, `album` and `photo` templates will be rendered inside this
+layout.
+
+The layout template **must** include the `yield` statement to bind the sub
+template inside it.
+
+Below is an example Slim template, the other templates will be bound where
+the `yield` statement is:
+
+```slim
+doctype html
+html
+  head
+    title Master Layout
+  body
+    == yield
+```
 
 ##### Collection Template
 
