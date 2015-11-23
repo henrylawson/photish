@@ -2,7 +2,6 @@
 
 ## Must Have
 
-1. Clean up gemspec, set minimum dependencies, ruby + gems, description
 1. `init` command to get started
 
 ## Might Have
