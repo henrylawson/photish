@@ -111,9 +111,7 @@ qualities and formats.
 
 Install the gem locally by running:
 
-```bash
-$ gem install photish
-```
+    $ gem install photish
 
 Alternatively, use [Bundler](http://bundler.io/). Create a folder for your
 photo site so you can track the version of Photish you are building with:
@@ -186,17 +184,19 @@ generated file, the generated file will clobber the asset.
 
 Below is a basic `config.yml` file:
 
-    port: 9876
-    qualities:
-      - name: Original
-        params: []
-      - name: Low
-        params: ['-resize', '200x200']
-    templates:
-      layout: layout.slim
-      collection: collection.slim
-      album: album.slim
-      photo: photo.slim
+```yaml
+port: 9876
+qualities:
+  - name: Original
+    params: []
+  - name: Low
+    params: ['-resize', '200x200']
+templates:
+  layout: layout.slim
+  collection: collection.slim
+  album: album.slim
+  photo: photo.slim
+```
 
 The meanings and purpose of each field is defined below:
 
