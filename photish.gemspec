@@ -10,7 +10,10 @@ Gem::Specification.new do |spec|
   spec.email         = ["henry.lawson@foinq.com"]
 
   spec.summary       = %q{A static photo site generator}
-  spec.description   = %q{Using a collection of photos grouped by folder, photish will generate a the website content using templates that you provide.}
+  spec.description   = %q{Photish is a simple, convention based (but
+  configurable) static photo site generator. Photish allows you to group your
+  photo collections by folder.  Metadata can be written alongside the photo in
+  a [YAML](http://yaml.org/) file with the same name as the photo.}
   spec.homepage      = "https://github.com/henrylawson/photish"
   spec.license       = "MIT"
 
@@ -18,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.required_ruby_version = '>= 1.8.6'
 
   spec.add_dependency "thor", "~> 0.1"
   spec.add_dependency "activesupport", "~> 4.2"
