@@ -194,9 +194,9 @@ The local version of your website will be visible at [http://localhost:9876/](ht
 Below is the documentation for the various data available inside
 each of the templates.
 
-`{type}` is a place holder as depending on your chosen template engine
-the file extension will change. By default the template engine is Slim, so
-templates will end with _slim_.
+**Note:** `{type}` is a place holder depending on your chosen template engine
+the file extension will change. By default the template engine is
+[Slim](http://slim-lang.com/), so templates will end with the _slim_ extension.
 
 #### Layout Template
 
