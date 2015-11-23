@@ -144,6 +144,8 @@ Inside your `my_new_photo_site` folder, you will have a:
 1. `site/_templates/photo.slim` template file for your photo page(s)
 1. `config.yml` file to store all configuration in YAML format
 
+### Template Engines
+
 By default Photish uses [Slim](http://slim-lang.com/) as the template language.
 The templates can be in any format supported by
 [Tilt](https://github.com/rtomayko/tilt). To use a different template language:
