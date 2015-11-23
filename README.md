@@ -12,6 +12,8 @@ colourscheme, etc. Using this information, Photish creates a complete static
 website that can be hosted on an NGINX, Apache web server, or even Github
 pages site.
 
+## Photish Concepts
+
 Photish turns this:
 
     Photos
@@ -71,13 +73,29 @@ Into this:
                 │   └── sleepy-dog-original.jpg
                 └── index.html
 
-Above we can see that for the **Collection** of photos in "Photos" an
-_index.html_ was created.  And each **Album**, that is folder in the "Photos"
-collection, also got an _index.html_ in a slugified sub folder. Finally, each
-**Photo** in each album, got another _index.html_ created in a sub folder named
-after the original photo. For each of these photos, a version of the image was
-made in both "low" and "original" quality - the number of versions is
-configurable.
+For the **Collection** of photos in "Photos" an _index.html_ was created.  And
+each **Album** (that is a folder in the "Photos" collection), also got an
+_index.html_ in a slugified sub folder. Finally, each **Photo** (an image file
+in the album), got another _index.html_ created in a slugified sub folder named
+after the original photo. For each of these photos, a version of the **Image**
+was made in both "low" and "original" quality as was configured in the config
+file (the number of versions is configurable).
+
+### Collection
+
+TODO: Text here
+
+### Albums
+
+TODO: Text here
+
+### Photos
+
+TODO: Text here
+
+### Images
+
+TODO: Text here
 
 ## Installation
 
@@ -98,27 +116,7 @@ photo site so you can track the version of Photish you are building with:
 
 Once you have photish installed. Get started with the following commands:
 
-### Creating a Base Site
-
-TODO: Text here
-
-### Important Concepts
-
-TODO: Text here
-
-#### Collection
-
-TODO: Text here
-
-#### Albums
-
-TODO: Text here
-
-#### Photos
-
-TODO: Text here
-
-#### Images
+### Initialize
 
 TODO: Text here
 
@@ -126,13 +124,18 @@ TODO: Text here
 
 TODO: Text here
 
-TODO: Text here
-
 ### Host
 
 TODO: Text here
 
+### Customizing Templates
+
+TODO: Text here
+
 ## Development
+
+If you would like to contribute to Photish by creating a new feature or fixing
+bugs, you are more then welcome too!
 
 To develop:
 
