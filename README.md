@@ -137,16 +137,16 @@ A skeleton site can be created by running the below command inside the
 
 Inside your `my_new_photo_site` folder, you will have a:
 
-| File or Folder                    | Purpose                                            |
-| --------------------------------- | -------------------------------------------------- |
-| `photos`                          | folder, for your photo collection and metadata     |
-| `site`                            | folder for your templates, assets and static pages |
-| `site/_templates`                 | folder for your templates                          |
-| `site/_templates/layout.slim`     | file for the basic layout for all pages            |
-| `site/_templates/collection.slim` | template file for your collection page             |
-| `site/_templates/album.slim`      | template file for your album page(s)               |
-| `site/_templates/photo.slim`      | template file for your photo page(s)               |
-| `config.yml`                      | file to store all configuration in YAML format     |
+File or Folder                    | Purpose
+--------------------------------- | -------
+`photos`                          | folder, for your photo collection and metadata
+`site`                            | folder for your templates, assets and static pages
+`site/_templates`                 | folder for your templates
+`site/_templates/layout.slim`     | file for the basic layout for all pages
+`site/_templates/collection.slim` | template file for your collection page
+`site/_templates/album.slim`      | template file for your album page(s)
+`site/_templates/photo.slim`      | template file for your photo page(s)
+`config.yml`                      | file to store all configuration in YAML format
 
 #### Template Engines
 
@@ -182,7 +182,33 @@ generated file, the generated file will clobber the asset.
 
 #### Config File Options
 
-TODO: Content here
+A below is a basic `config.yml` file:
+
+    port: 9876
+    qualities:
+      - name: Original
+        params: []
+      - name: Low
+        params: ['-resize', '200x200']
+    templates:
+      layout: layout.slim
+      collection: collection.slim
+      album: album.slim
+      photo: photo.slim
+
+The meanings and purpose of each field is defined below:
+
+Field                | Purpose
+------------------   | -------
+port                 | the port number that the `photish host` command will bind to
+qualities            | an array of `name` and `params` fields for images
+qualities[]/name     | the name of the Image quality
+qualities[]/params   | the parameters to be provided to the ImageMagick `convert` utility  for the Image file quality
+templates            | a listing of the various template files
+templates/layout     | the layout template file in the `site/_templates` folder
+templates/collection | the collection template file in the `site/_templates` folder
+templates/album      | the album template file in the `site/_templates` folder
+templates/photo      | the photo template file in the `site/_templates` folder
 
 #### Customizing Templates
 
