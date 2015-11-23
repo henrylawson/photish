@@ -195,25 +195,25 @@ the file extension will change. By default the template engine is
 
 ##### Layout Template
 
-**Default Location:** `site/_templates/layout.{type}`
+`site/_templates/layout.{type}`
 
 TODO: Text here
 
 ##### Collection Template
 
-**Default Location:** `site/_templates/collection.{type}`
+`site/_templates/collection.{type}`
 
 TODO: Text here
 
 ##### Album Template
 
-**Default Location:** `site/_templates/album.{type}`
+`site/_templates/album.{type}`
 
 TODO: Text here
 
 ##### Photo Template
 
-**Default Location:** `site/_templates/photo.{type}`
+`site/_templates/photo.{type}`
 
 TODO: Text here
 
