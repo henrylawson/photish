@@ -133,7 +133,7 @@ A skeleton site can be created by running the below command inside the
 
     $ photish init
 
-Inside your `my_new_photo_site` folder, ensure you have a:
+Inside your `my_new_photo_site` folder, you will have a:
 
 1. `photos` folder, for your photo collection and metadata
 1. `site` folder for your templates, assets and static pages
@@ -144,8 +144,11 @@ Inside your `my_new_photo_site` folder, ensure you have a:
 1. `site/_templates/photo.slim` template file for your photo page(s)
 1. `config.yml` file to store all configuration in YAML format
 
-**Note:** your template can be in any format supported by
-[Tilt](https://github.com/rtomayko/tilt)
+By default Photish uses [Slim](http://slim-lang.com/) as the template language.
+The templates can be in any format supported by
+[Tilt](https://github.com/rtomayko/tilt). Simply rename the template files to
+have the file extension of the template engine you prefer, and re write the
+contents of template file in your preferred language.
 
 ### Generate
 
@@ -170,31 +173,31 @@ The local version of your website will be visible at [http://localhost:9876/](ht
 Below is the documentation for the various data available inside
 each of the templates.
 
-{type} is a place holder as depending on your chosen template engine
+`{type}` is a place holder as depending on your chosen template engine
 the file extension will change. By default the template engine is Slim, so
 templates will end with _slim_.
 
 #### Layout Template
 
-**Default Location:** `./site/_templates/layout.{type}`
+**Default Location:** `site/_templates/layout.{type}`
 
 TODO: Text here
 
 #### Collection Template
 
-**Default Location:** `./site/_templates/collection.{type}`
+**Default Location:** `site/_templates/collection.{type}`
 
 TODO: Text here
 
 #### Album Template
 
-**Default Location:** `./site/_templates/album.{type}`
+**Default Location:** `site/_templates/album.{type}`
 
 TODO: Text here
 
 #### Photo Template
 
-**Default Location:** `./site/_templates/photo.{type}`
+**Default Location:** `site/_templates/photo.{type}`
 
 TODO: Text here
 
