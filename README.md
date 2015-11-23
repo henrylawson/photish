@@ -137,7 +137,7 @@ A skeleton site can be created by running the below command inside the
 
 Inside your `my_new_photo_site` folder, you will have a:
 
-| File                              | Purpose                                            |
+| File or Folder                    | Purpose                                            |
 | --------------------------------- | -------------------------------------------------- |
 | `photos`                          | folder, for your photo collection and metadata     |
 | `site`                            | folder for your templates, assets and static pages |
