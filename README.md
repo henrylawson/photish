@@ -170,12 +170,12 @@ The Generate command does the following:
 
 1. Crawls the `photos` directory for photos and metadata
 1. Creates a site structure of Collection, Album(s), Photo(s) and Image(s)
-1. Copies all files in the `site` folder beginning with an `_` (underscore) to
-   the `output` folder as these are viewed as "static" assets
+1. Copies all files in the `site` folder **not** beginning with an `_`
+   (underscore) to the `output` folder as these are viewed as "static" assets
 1. Renders the HTML _index_ file(s) for the Collection, Album(s), Photo(s) and
-   Image(s)
-1. Converts all Photo(s) to the configured quality versions
-1. Writes all the files to the `output` folder to be served by a HTTP server
+   Image(s) to the `output` folder
+1. Converts all Photo(s) to the configured quality versions, writing various
+   images to the `output` folder
 
 ### Host
 
