@@ -10,6 +10,7 @@
 1. `deploy` to deploy to github pages
 1. Exception and error handling to have clearer errors
 1. Startup bash script should install image magick, libmagic, exiftool
+1. README table of contents
 
 ## Potential Features
 
