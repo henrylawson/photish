@@ -111,7 +111,9 @@ qualities and formats.
 
 Install the gem locally by running:
 
-    $ gem install photish
+```bash
+$ gem install photish
+```
 
 Alternatively, use [Bundler](http://bundler.io/). Create a folder for your
 photo site so you can track the version of Photish you are building with:
@@ -182,7 +184,7 @@ generated file, the generated file will clobber the asset.
 
 #### Config File Options
 
-A below is a basic `config.yml` file:
+Below is a basic `config.yml` file:
 
     port: 9876
     qualities:
