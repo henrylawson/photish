@@ -146,9 +146,12 @@ Inside your `my_new_photo_site` folder, you will have a:
 
 By default Photish uses [Slim](http://slim-lang.com/) as the template language.
 The templates can be in any format supported by
-[Tilt](https://github.com/rtomayko/tilt). Simply rename the template files to
-have the file extension of the template engine you prefer, and re write the
-contents of template file in your preferred language.
+[Tilt](https://github.com/rtomayko/tilt). To use a different template language:
+
+1. Create a `layout`, `collection`, `album` and `photo` file with
+the file extension of the template engine you prefer
+1. Update `config.yml` to reference your newly created template files
+1. Re write the basic template code in your chosen language
 
 ### Generate
 
