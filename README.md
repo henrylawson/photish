@@ -26,7 +26,9 @@ It is highly recommended to read through the [Installation](#installation) and
 [Usage](#usage) sections before seriously using Photish, however to get up and
 running:
 
-1. Ensure ImageMagick and Exiftool are installed (see [Dependencies](#dependencies))
+1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php) and
+   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
+   [Dependencies](#dependencies))
 1. Install Photish `gem install photish`
 1. Create a base project with `photish init`
 1. Generate the HTML using `photish generate`
