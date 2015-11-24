@@ -150,7 +150,7 @@ photo site so you can track the version of Photish you are building with:
     $ echo 'gem "photish"' >> Gemfile
     $ bundle install
 
-## Dependencies
+### Dependencies
 
 Photish has dependencies on certain utilities:
 
