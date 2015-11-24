@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'photish'
 require 'photish/log/logger'
@@ -8,8 +11,6 @@ require 'photish/gallery/album'
 require 'photish/gallery/photo'
 require 'photish/gallery/collection'
 require 'photish/gallery/image'
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 
 def fixture_file(path)
   File.join(File.dirname(__FILE__), 'fixtures', path)

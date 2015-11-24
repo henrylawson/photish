@@ -4,17 +4,16 @@ body {
   margin:0;
   padding:0;
 }
-
+h1 {
+  font-size:200%;
+}
 .header {
   border-bottom:30px solid #e9e9e9;
   padding:10px 50px 10px 50px;
 }
-.header h1 {
-  font-size:200%;
-}
 .album .album-title {
-  border-top:1px solid #f1f1f1;
   border-bottom:1px solid #f1f1f1;
+  border-top:1px solid #f1f1f1;
   padding:10px 50px 10px 50px;
 }
 .album .album-photos a {
@@ -27,8 +26,8 @@ body {
 }
 .album .album-photos a img {
   display:block;
-  padding:0;
   margin:0;
+  padding:0;
 }
 a {
   color:#F16272;
