@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
+
 # Photish
 
 Photish is a simple, convention based (but configurable) static photo site
