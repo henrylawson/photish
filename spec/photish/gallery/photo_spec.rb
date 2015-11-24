@@ -40,7 +40,6 @@ describe Photish::Gallery::Photo do
   context '#exif' do
     it 'has the image meta data' do
       expect(subject.exif.encoding_process).to match(/Huffman coding/)
-      expect(subject.exif.mega_pixels).to eq(0.24)
     end
   end
 
