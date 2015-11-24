@@ -1,10 +1,13 @@
-h1 Photo "#{name}"
-h2 Images
-- if metadata.try(:description)
-  p #{metadata.try(:description)}
-ul
-  - images.each do |image|
-    li
-      a href=image.url
-        | #{image.name}
-        img src=image.url
+div.album
+  div.album-title
+    a href=url
+      | #{name}
+  - if metadata.try(:description)
+    div.album-blurb
+      p #{metadata.try(:description)}
+  div.album-photos
+    - images.each do |image|
+      div.album-photo
+        a href=image.url title=image.name
+          img src=image.url alt=image.quality_name
+

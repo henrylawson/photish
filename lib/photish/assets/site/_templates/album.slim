@@ -1,31 +1,21 @@
-h1 Album "#{name}"
-h2 Sub Albums
-ul
+div.album
+  div.album-title
+    a href=url
+      | #{name}
+  div.album-photos
+    - photos.each do |photo|
+      div.album-photo
+        a href=photo.url title=photo.name
+          img src=photo.images.find{|i|i.quality_name=='Low'}.url alt=photo.name
+
+div.sub-albums
   - albums.each do |album|
-    li
-      a href=album.url
-        | #{album.name}
-  - if albums.empty?
-    li
-      | Empty
-h2 Photos
-ul
-  - photos.each do |photo|
-    li
-      a href=photo.url
-        | #{photo.name}
-  - if photos.empty?
-    li
-      | Empty
-h2 Photos
-ul
-  - all_photos.each do |photo|
-    li
-      a href=photo.url
-        | #{photo.name}
-h2 Images
-ul
-  - all_images.each do |image|
-    li
-      a href=image.url
-        | #{image.name}
+    div.album
+      div.album-title
+        a href=album.url
+          | &#8667; #{album.name}
+      div.album-photos
+        - album.photos.each do |photo|
+          div.album-photo
+            a href=photo.url title=photo.name
+              img src=photo.images.find{ |i| i.quality_name == 'Low' }.url alt=photo.name

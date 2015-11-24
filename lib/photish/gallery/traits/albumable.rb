@@ -17,6 +17,7 @@ module Photish
 
         def all_photos
           all_albums.map(&:photos)
+                    .concat(self.try(:photos) || [])
                     .flatten
         end
 

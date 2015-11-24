@@ -1,16 +1,18 @@
 doctype html
 html
   head
-    title Master Template
+    title PHOTISH EXAMPLE SITE
     link href="/styles/basic.css" media="screen" rel="stylesheet" type="text/css"
   body
-    == yield
-
-    h2 Asset Links
-    ul
-      li
-        a href="/custom.html"
-          | My Custom Page
-      li
-        a href="/styles/basic.css"
-          | CSS Download
+    div.header
+      a href="/"
+        h1 PHOTISH
+    div.content
+      == yield
+    div.footer
+      | Site assets:
+      a href="/custom.html"
+        | My Custom Page
+      | &nbsp;|&nbsp;
+      a href="/styles/basic.css"
+        | CSS Download
