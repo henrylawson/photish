@@ -20,6 +20,19 @@ information, Photish creates a complete static website that can be hosted on an
 [NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
 even on [Github Pages](https://pages.github.com/).
 
+## Getting Started
+
+It is highly recommended to read through the [Installation](#installation) and
+[Usage](#usage) sections before seriously using Photish, however to get up and
+running:
+
+1. Ensure ImageMagick and Exiftool are installed (see [Dependencies](#dependencies))
+1. Install Photish `gem install photish`
+1. Create a base project with `photish init`
+1. Generate the HTML using `photish generate`
+1. Run a local HTTP to view the site with `photish host`
+1. View your photo site at [http://localhost:9876](http://localhost:9876/)
+
 ## Table of Contents
 
 - [Overview](#overview)
