@@ -161,13 +161,13 @@ Photish has dependencies on certain utilities:
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
-  $ brew install imagemagick
-  $ brew install exiftool
+    $ brew install imagemagick
+    $ brew install exiftool
 
 **On Ubuntu or Debian**
 
-  $ sudo apt-get install imagemagick
-  $ sudo apt-get libimage-exiftool-perl
+    $ sudo apt-get install imagemagick
+    $ sudo apt-get libimage-exiftool-perl
 
 ## Usage
 
