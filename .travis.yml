@@ -4,4 +4,5 @@ rvm:
 before_install:
   - gem install bundler -v 1.10.6
   - sudo apt-get install libmagic-dev
+  - sudo apt-get install libimage-exiftool-perl
 script: rake spec
