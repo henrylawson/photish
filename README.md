@@ -169,9 +169,9 @@ photo site so you can track the version of Photish you are building with:
 
 Photish has dependencies on certain utilities:
 
-- [ImageMagick](http://www.imagemagick.org/script/index.php), for Image
+- [ImageMagick](http://www.imagemagick.org/script/index.php) for Image
   conversion
-- [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/), for image metadata
+- [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
 
 **On MacOSX, using [Brew](http://brew.sh/)**
