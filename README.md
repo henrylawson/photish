@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
 [![Code Climate](https://codeclimate.com/github/henrylawson/photish/badges/gpa.svg)](https://codeclimate.com/github/henrylawson/photish)
 [![Test Coverage](https://codeclimate.com/github/henrylawson/photish/badges/coverage.svg)](https://codeclimate.com/github/henrylawson/photish/coverage)
-[![Issue Count](https://codeclimate.com/github/henrylawson/photish/badges/issue_count.svg)](https://codeclimate.com/github/henrylawson/photish)
+[![Issue Count](https://codeclimate.com/github/henrylawson/photish/badges/issue_count.svg)](https://codeclimate.com/github/henrylawson/photish/issues)
 # Photish
 
 Photish is a simple, convention based (but configurable) static photo site
