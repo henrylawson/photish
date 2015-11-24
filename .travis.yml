@@ -6,3 +6,6 @@ before_install:
   - sudo apt-get install libmagic-dev
   - sudo apt-get install libimage-exiftool-perl
 script: rake spec
+addons:
+    code_climate:
+        repo_token: ae398c193255da8c5e030cb6251f053c76757635e5215e65efa32f52d003a519
