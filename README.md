@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
+[![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
 
 # Photish
 
