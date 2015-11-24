@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class TestMixin
-  include Photish::Log
+  include Photish::Log::Logger
 end
 
 describe Photish::Log do

@@ -4,7 +4,7 @@ module Photish
   module Render
     class ImageConversion
 
-      include Photish::Log
+      include Photish::Log::Logger
 
       def initialize(output_dir)
         @output_dir = output_dir

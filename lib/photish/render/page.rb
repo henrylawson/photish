@@ -4,7 +4,7 @@ module Photish
   module Render
     class Page
 
-      include Photish::Log
+      include Photish::Log::Logger
 
       def initialize(layout_file, template_file, output_dir)
         @layout_file = layout_file
