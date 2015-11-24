@@ -24,6 +24,7 @@ even on [Github Pages](https://pages.github.com/).
 
 - [Overview](#overview)
 - [Installation](#installation)
+  - [Dependencies](#dependencies)
 - [Usage](#usage)
   - [Initialize](#initialize)
     - [Basic Photish Structure](#basic-photish-structure)
@@ -148,6 +149,25 @@ photo site so you can track the version of Photish you are building with:
     $ bundle init
     $ echo 'gem "photish"' >> Gemfile
     $ bundle install
+
+## Dependencies
+
+Photish has dependencies on certain utilities:
+
+- [ImageMagick](http://www.imagemagick.org/script/index.php), for Image
+  conversion
+- [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/), for image metadata
+  retrieval
+
+**On MacOSX, using [Brew](http://brew.sh/)**
+
+  $ brew install imagemagick
+  $ brew install exiftool
+
+**On Ubuntu or Debian**
+
+  $ sudo apt-get install imagemagick
+  $ sudo apt-get libimage-exiftool-perl
 
 ## Usage
 
