@@ -1,45 +1,43 @@
 body {
-  padding:0px;
-  margin:0px;
   font-family:sans-serif, arial, helvetica;
   font-size:12pt;
+  margin:0;
+  padding:0;
 }
 
-div.header {
-  padding:10px 50px 10px 50px;
+.header {
   border-bottom:30px solid #e9e9e9;
+  padding:10px 50px 10px 50px;
 }
-div.header h1 {
+.header h1 {
   font-size:200%;
 }
-div.album {
-}
-div.album div.album-title {
-  padding:10px 50px 10px 50px;
+.album .album-title {
   border-top:1px solid #f1f1f1;
   border-bottom:1px solid #f1f1f1;
-}
-div.album div.album-photos a {
-  padding:0;
-  margin:0;
-  line-height:0;
-}
-div.album div.album-photos div.album-photo, div.album-blurb {
   padding:10px 50px 10px 50px;
 }
-div.album div.album-photos a img {
+.album .album-photos a {
+  line-height:0;
+  margin:0;
+  padding:0;
+}
+.album .album-photos .album-photo, .album-blurb {
+  padding:10px 50px 10px 50px;
+}
+.album .album-photos a img {
+  display:block;
   padding:0;
   margin:0;
-  display:block;
 }
 a {
-  text-decoration:none;
   color:#F16272;
+  text-decoration:none;
 }
-div.sub-albums a {
+.sub-albums a {
   font-size:90%;
 }
-div.footer {
+.footer {
   border-top:30px solid #e9e9e9;
   padding:10px 50px 10px 50px;
 }

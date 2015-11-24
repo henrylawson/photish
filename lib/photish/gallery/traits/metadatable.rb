@@ -6,7 +6,7 @@ module Photish
     module Traits
       module Metadatable
         def metadata
-          return unless File.exists?(metadata_file)
+          return unless File.exist?(metadata_file)
           RecursiveOpenStruct.new(YAML.load_file(metadata_file))
         end
 

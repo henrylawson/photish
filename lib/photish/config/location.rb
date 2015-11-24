@@ -1,5 +1,5 @@
- module Photish
-   module Config
+module Photish
+  module Config
     class Location
       FILE_NAME = 'config.yml'
 
@@ -17,7 +17,7 @@
       attr_reader :site_dir
 
       def ensure_expected_path_exists
-        return if File.exists?(expected_path)
+        return if File.exist?(expected_path)
         raise "Config file does not exist at #{expected_path}"
       end
 
