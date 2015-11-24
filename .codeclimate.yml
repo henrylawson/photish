@@ -1,0 +1,15 @@
+---
+engines:
+  csslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+  - "**.css"
+  - "**.rb"
+exclude_paths:
+- features/**/*
+- spec/**/*
