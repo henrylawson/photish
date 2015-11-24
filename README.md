@@ -167,7 +167,7 @@ Photish has dependencies on certain utilities:
 **On Ubuntu or Debian**
 
     $ sudo apt-get install imagemagick
-    $ sudo apt-get libimage-exiftool-perl
+    $ sudo apt-get install libimage-exiftool-perl
 
 ## Usage
 
