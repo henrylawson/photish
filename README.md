@@ -40,7 +40,7 @@ and running:
 
 - [Photish](#photish)
   - [Getting Started](#getting-started)
-- [Table of Contents](#table-of-conents)
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
