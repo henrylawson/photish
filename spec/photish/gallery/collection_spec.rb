@@ -108,6 +108,20 @@ describe Photish::Gallery::Collection do
     end
   end
 
+  context '#breadcrumbs' do
+    it 'returns a single unordered list with the collection' do
+      expect(subject.breadcrumbs).to have_tag('ul', with: { class: 'breadcrumbs' }) do
+        with_tag 'li', with: { class: 'breadcrumb crumb-0 crumb-first crumb-last crumb-only' }
+      end
+    end
+
+    it 'has the correct details for this crumb' do
+      expect(subject.breadcrumbs).to have_tag('li', with: { class: 'crumb-0' }) do
+        with_tag 'a', with: { href: subject.url }, text: subject.name
+      end
+    end
+  end
+
   def copy_text_file_to_root
     FileUtils::cp(fixture_file('text.txt'), @dir)
   end

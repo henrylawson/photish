@@ -11,7 +11,12 @@ require 'photish/gallery/album'
 require 'photish/gallery/photo'
 require 'photish/gallery/collection'
 require 'photish/gallery/image'
+require 'rspec-html-matchers'
 
 def fixture_file(path)
   File.join(File.dirname(__FILE__), 'fixtures', path)
+end
+
+RSpec.configure do |config|
+  config.include RSpecHtmlMatchers
 end

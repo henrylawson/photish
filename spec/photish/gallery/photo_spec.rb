@@ -71,11 +71,39 @@ describe Photish::Gallery::Photo do
       end
     end
   end
+
+  context '#breadcrumbs' do
+    it 'returns a single unordered list with the album' do
+      expect(subject.breadcrumbs).to have_tag('ul', with: { class: 'breadcrumbs' }) do
+        with_tag 'li', with: { class: 'breadcrumb crumb-0 crumb-first' }
+        with_tag 'li', with: { class: 'breadcrumb crumb-1' }
+        with_tag 'li', with: { class: 'breadcrumb crumb-2 crumb-last' }
+      end
+    end
+
+    it 'has the correct deails for this crumb' do
+      expect(subject.breadcrumbs).to have_tag('li', with: { class: 'crumb-2' }) do
+        with_tag 'a', with: { href: subject.url }, text: subject.name
+      end
+    end
+  end
 end
 
 class PhotoParent
   def base_url_parts
     ['pets']
+  end
+
+  def name
+    'Pets'
+  end
+
+  def url
+    '/pets'
+  end
+
+  def parents_and_me
+    [PhotoParentParent.new, self]
   end
 
   def qualities
@@ -84,5 +112,19 @@ class PhotoParent
       OpenStruct.new(name: 'Medium', params: ['-resize', '500x500']),
       OpenStruct.new(name: 'Low',    params: ['-resize', '200x200'])
     ]
+  end
+end
+
+class PhotoParentParent
+  def name
+    'Photo Parent Parent'
+  end
+
+  def url
+    '/photo-parent-parent'
+  end
+
+  def parents_and_me
+    [self]
   end
 end

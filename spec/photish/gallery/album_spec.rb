@@ -82,10 +82,37 @@ describe Photish::Gallery::Album do
       end
     end
   end
+
+  context '#breadcrumbs' do
+    it 'returns a single unordered list with the album' do
+      expect(subject.breadcrumbs).to have_tag('ul', with: { class: 'breadcrumbs' }) do
+        with_tag 'li', with: { class: 'breadcrumb crumb-0 crumb-first' }
+        with_tag 'li', with: { class: 'breadcrumb crumb-1 crumb-last' }
+      end
+    end
+
+    it 'has the correct deails for this crumb' do
+      expect(subject.breadcrumbs).to have_tag('li', with: { class: 'crumb-1' }) do
+        with_tag 'a', with: { href: subject.url }, text: subject.name
+      end
+    end
+  end
 end
 
 class AlbumParent
   def base_url_parts
     []
+  end
+
+  def name
+    'Home'
+  end
+
+  def url
+    '/'
+  end
+
+  def parents_and_me
+    [self]
   end
 end

@@ -27,9 +27,10 @@ It is strongly recommended to read through the [Installation](#installation)
 and [Usage](#usage) sections before seriously using Photish, however to get up
 and running:
 
-1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php) and
-   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
-   [Dependencies](#dependencies))
+1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php),
+   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) and
+   [Nokogiri](http://www.nokogiri.org/tutorials/installing_nokogiri.html) are
+   installed (see [Dependencies](#dependencies))
 1. Install Photish `gem install photish`
 1. Create a base project with `photish init`
 1. Generate the HTML using `photish generate`
@@ -86,6 +87,8 @@ Photish turns this:
         │   ├── layout.slim
         │   └── photo.slim
         ├── custom.html
+        ├── images
+        │   └── crumbs.gif
         └── styles
             └── basic.css
 
@@ -133,6 +136,8 @@ Into this:
         │       │   │   └── big-ear-dog-original.jpg
         │       │   └── index.html
         │       └── index.html
+        ├── images
+        │   └── crumbs.gif
         └── styles
             └── basic.css
 
@@ -174,6 +179,8 @@ Photish has dependencies on certain utilities:
   conversion
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
+- [Nokogiri](http://www.nokogiri.org/tutorials/installing_nokogiri.html) for
+  XML writing and parsing
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
@@ -229,10 +236,11 @@ The templates can be in any format supported by
 Any content not starting with an `_` (underscore) in the `site` folder will be
 copied to the `output` folder.
 
-In the example in the Overview section. There are 2 static asset files. These
-are:
+In the example in the Overview section. There are a few static asset files.
+These are:
 
 1. `site/styles/basic.css`
+1. `site/images/crumbs.gif`
 1. `site/custom.html`
 
 Both of these files were copied by Photish to the output folder, respecting

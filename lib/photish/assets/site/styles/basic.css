@@ -24,6 +24,9 @@ h1 {
 .album .album-photos .album-photo, .album-blurb {
   padding:10px 50px 10px 50px;
 }
+.site-breadcrumbs {
+  font-size:90%;
+}
 .album .album-photos a img {
   display:block;
   margin:0;
@@ -39,4 +42,27 @@ a {
 .footer {
   border-top:30px solid #e9e9e9;
   padding:10px 50px 10px 50px;
+}
+ul.breadcrumbs, ul.breadcrumbs li {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+ul.breadcrumbs {
+  border:1px solid #dedede;
+  height:2.3em;
+}
+ul.breadcrumbs li {
+  color:#777;
+  float:left;
+  line-height:2.3em;
+  padding-left:.75em;
+}
+ul.breadcrumbs li a {
+  background:url(/images/crumbs.gif) no-repeat right center;
+  display:block;
+  padding:0 15px 0 0;
+}
+ul.breadcrumbs li a:link, ul.breadcrumbs li a:visited {
+  text-decoration:none;
 }

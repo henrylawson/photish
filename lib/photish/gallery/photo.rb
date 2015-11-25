@@ -1,5 +1,6 @@
 require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/metadatable'
+require 'photish/gallery/traits/breadcrumbable'
 require 'photish/gallery/image'
 require 'active_support'
 require 'active_support/core_ext'
@@ -11,6 +12,7 @@ module Photish
 
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Metadatable
+      include ::Photish::Gallery::Traits::Breadcrumbable
 
       delegate :qualities, to: :parent, allow_nil: true
 
