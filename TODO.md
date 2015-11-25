@@ -15,3 +15,4 @@
 1. URL customization, relative, absolute with or without hostname URLs (for
    different host envs)
 1. Proper asset pipeline for CSS
+1. Share on RubyWebToolkit, StaticGen, etc
