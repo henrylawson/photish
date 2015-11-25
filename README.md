@@ -316,6 +316,7 @@ Attribute or Method | Description
 ------------------- | -----------
 url                 | the URL of this page
 metadata            | an object with methods for the attributes in the `photos.yml` file
+albums              | an array of child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb) within this folder
 all_albums          | an array of all child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb)
 all_photos          | an array of all child [Photos](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/photo.rb)
 all_images          | an array of all child [Images](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/image.rb)
@@ -336,6 +337,7 @@ Attribute or Method | Description
 name                | the name of the folder, i.e. `photos/My album/` will become `My album`
 url                 | the URL of this page
 metadata            | an object with methods for the attributes in the `{album_name}.yml` file stored at the same level as the album
+albums              | an array of child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb) within this folder
 all_albums          | an array of all child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb)
 all_photos          | an array of all child [Photos](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/photo.rb)
 all_images          | an array of all child [Images](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/image.rb)
