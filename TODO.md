@@ -16,3 +16,5 @@
    different host envs)
 1. Proper asset pipeline for CSS
 1. Share on RubyWebToolkit, StaticGen, etc
+1. A Rakefile task for each of the generate commands
+1. RDoc documentation for classes
