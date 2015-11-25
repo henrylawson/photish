@@ -1,5 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
 [![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
+[![Dependency Status](https://gemnasium.com/henrylawson/photish.svg)](https://gemnasium.com/henrylawson/photish)
 [![Code Climate](https://codeclimate.com/github/henrylawson/photish/badges/gpa.svg)](https://codeclimate.com/github/henrylawson/photish)
 [![Test Coverage](https://codeclimate.com/github/henrylawson/photish/badges/coverage.svg)](https://codeclimate.com/github/henrylawson/photish/coverage)
 [![Issue Count](https://codeclimate.com/github/henrylawson/photish/badges/issue_count.svg)](https://codeclimate.com/github/henrylawson/photish/issues)
