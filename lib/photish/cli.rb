@@ -12,7 +12,7 @@ module Photish
       Command::Generation.new(options).execute
     end
 
-    desc "host", "Serves the HTML on a HTTP server at http://localhost:9876/"
+    desc "host", "Serves the HTML on a HTTP server"
     def host
       Command::Host.new(options).execute
     end
