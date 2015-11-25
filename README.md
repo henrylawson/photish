@@ -38,6 +38,9 @@ and running:
 
 ## Table of Contents
 
+- [Photish](#photish)
+  - [Getting Started](#getting-started)
+- [Table of Contents](#table-of-conents)
 - [Overview](#overview)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
