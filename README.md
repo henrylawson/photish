@@ -32,7 +32,7 @@ and running:
 1. Install Photish `gem install photish`
 1. Create a base project with `photish init`
 1. Generate the HTML using `photish generate`
-1. Run a local HTTP to view the site with `photish host`
+1. Run a local HTTP server to view the site with `photish host`
 1. View your photo site at [http://localhost:9876](http://localhost:9876/)
 
 ## Table of Contents
