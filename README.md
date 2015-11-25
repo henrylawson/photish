@@ -22,9 +22,9 @@ even on [Github Pages](https://pages.github.com/).
 
 ## Getting Started
 
-It is highly recommended to read through the [Installation](#installation) and
-[Usage](#usage) sections before seriously using Photish, however to get up and
-running:
+It is strongly recommended to read through the [Installation](#installation)
+and [Usage](#usage) sections before seriously using Photish, however to get up
+and running:
 
 1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php) and
    [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
