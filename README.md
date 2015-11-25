@@ -36,11 +36,8 @@ and running:
 1. Run a local HTTP server to view the site with `photish host`
 1. View your photo site at [http://localhost:9876](http://localhost:9876/)
 
-## Table of Contents
+# Documentation
 
-- [Photish](#photish)
-  - [Getting Started](#getting-started)
-- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
