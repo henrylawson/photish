@@ -417,9 +417,9 @@ The local version of your website will be visible at [http://localhost:9876/](ht
 
 ### Rake Task
 
-If you would prefer to use Photish as a task in a rake. A helper
-class is available to create custom rake tasks that call Photish. The helper
-class is defined in
+If you would prefer to use Photish as a task in
+[Rake](http://rake.rubyforge.org/). A helper class is available to create
+custom rake tasks that call Photish. The helper class is defined in
 [Photish::Rake::Task](https://github.com/henrylawson/photish/blob/master/lib/photish/rake/task.rb).
 
 In your Rakefile, simply add the following to wrap the generate command:
