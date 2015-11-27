@@ -42,21 +42,6 @@ Then(/^not contain any dead links$/) do
   expect(@pages.any? { |page| page.code != 200 }).to be_falsey, error_message
 end
 
-When(/^I add a file$/) do
-  FileUtils.cp_r(File.join(@working_directory, 'site', 'custom.html'),
-                 File.join(@working_directory, 'site', 'new.html'))
-end
-
-When(/^I remove a file$/) do
-  FileUtils.rm_rf(File.join(@working_directory, 'site', 'custom.html'))
-end
-
-When(/^I modify a file$/) do
-  File.open(File.join(@working_directory, 'site', 'styles', 'basic.css'), 'a') do |f|
-    f.puts "body { background-color:#f9f9f9; }"
-  end
-end
-
 And(/^binding pry$/) do
   binding.pry
 end
