@@ -11,6 +11,7 @@ module Photish
 
       def execute
         FileUtils.cp_r(config_file, Dir.pwd)
+        FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))
         FileUtils.cp_r(photos_dir, Dir.pwd)
         FileUtils.cp_r(site_dir, Dir.pwd)
         log "Photish site initiated successfully"
@@ -22,6 +23,10 @@ module Photish
 
       def config_file
         asset_path('config.yml')
+      end
+
+      def gitignore_file
+        asset_path('gitignore')
       end
 
       def photos_dir
