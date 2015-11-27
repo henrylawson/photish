@@ -17,7 +17,13 @@ task :gather_coverage do
   CodeClimate::TestReporter::Formatter.new.format(SimpleCov.result)
 end
 
-task :default => [:spec,
+desc 'Clean output folders'
+task :clean do
+  FileUtils.rm_rf('coverage')
+end
+
+task :default => [:clean,
+                  :spec,
                   :features,
                   :gather_coverage]
 

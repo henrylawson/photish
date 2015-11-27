@@ -1,4 +1,12 @@
 #!/usr/bin/env ruby
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'codeclimate-test-reporter'
+
+  SimpleCov.command_name "photish-binary-#{Process.pid}"
+  SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..'))
+  SimpleCov.start CodeClimate::TestReporter.configuration.profile
+end
 
 require 'photish/cli/interface'
 Photish::CLI::Interface.start

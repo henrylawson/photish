@@ -10,5 +10,6 @@ require 'net/http'
 require 'anemone'
 
 Before do
+  set_environment_variable('COVERAGE', 'true')
   @working_directory = File.join('tmp', 'aruba')
 end
