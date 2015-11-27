@@ -413,7 +413,11 @@ server to serve the HTML files:
 
     $ photish host
 
-The local version of your website will be visible at [http://localhost:9876/](http://localhost:9876/)
+The local version of your website will be visible at
+[http://localhost:9876/](http://localhost:9876/).
+
+The Host command will also automatically regenerate the website on startup and
+when a file is added, removed or modified in the `photo_dir` or `site_dir`.
 
 ### Rake Task
 
