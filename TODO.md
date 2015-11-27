@@ -2,7 +2,6 @@
 
 ## In Progress
 
-1. A .gitignore file for the `init` project
 1. Change logging to colorize on command options
 1. Pipe WEBrick logging to log module
 

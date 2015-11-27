@@ -6,7 +6,6 @@ require 'photish/gallery/traits/breadcrumbable'
 module Photish
   module Gallery
     class Collection
-
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
       include ::Photish::Gallery::Traits::Metadatable

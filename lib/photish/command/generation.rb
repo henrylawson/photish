@@ -6,34 +6,35 @@ require 'photish/render/site'
 module Photish
   module Command
     class Generation
-      include ::Photish::Log::Logger
-
       def initialize(runtime_config)
         @config = Photish::Config::AppSettings.new(runtime_config)
                                               .config
+        @log = Logging.logger[self]
+        Photish::Log::Logger.setup_logging
       end
 
       def execute
         log_important_config_values
         log_album_and_photo_names
         render_whole_site
-        log 'Site generation completed successfully'
+        log.info 'Site generation completed successfully'
       end
 
       private
 
-      attr_reader :config
+      attr_reader :config, 
+                  :log
 
       def log_important_config_values
-        log "Photo directory: #{photo_dir}"
-        log "Site directory: #{site_dir}"
-        log "Output directory: #{output_dir}"
+        log.info "Photo directory: #{photo_dir}"
+        log.info "Site directory: #{site_dir}"
+        log.info "Output directory: #{output_dir}"
       end
 
       def log_album_and_photo_names
         collection.albums.each do |album|
-          log album.name
-          log album.photos.map(&:name)
+          log.info album.name
+          log.info album.photos.map(&:name)
         end
       end
 

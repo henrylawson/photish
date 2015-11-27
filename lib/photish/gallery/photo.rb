@@ -9,7 +9,6 @@ require 'mini_exiftool'
 module Photish
   module Gallery
     class Photo
-
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Metadatable
       include ::Photish::Gallery::Traits::Breadcrumbable

@@ -3,10 +3,10 @@ require 'photish/log/logger'
 module Photish
   module Command
     class Init
-      include ::Photish::Log::Logger
-
       def initialize(runtime_config)
         @runtime_config = runtime_config
+        @log = Logging.logger[self]
+        Photish::Log::Logger.setup_logging
       end
 
       def execute
@@ -14,12 +14,13 @@ module Photish
         FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))
         FileUtils.cp_r(photos_dir, Dir.pwd)
         FileUtils.cp_r(site_dir, Dir.pwd)
-        log "Photish site initiated successfully"
+        log.info "Photish site initiated successfully"
       end
 
       private
 
-      attr_reader :runtime_config
+      attr_reader :runtime_config,
+                  :log
 
       def config_file
         asset_path('config.yml')

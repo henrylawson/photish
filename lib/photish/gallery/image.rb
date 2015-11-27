@@ -4,7 +4,6 @@ require 'active_support/core_ext'
 module Photish
   module Gallery
     class Image
-
       include ::Photish::Gallery::Traits::Urlable
 
       delegate :name,

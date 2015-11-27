@@ -10,7 +10,6 @@ require 'filemagic'
 module Photish
   module Gallery
     class Album
-
       include ::Photish::Gallery::Traits::Urlable
       include ::Photish::Gallery::Traits::Albumable
       include ::Photish::Gallery::Traits::Metadatable

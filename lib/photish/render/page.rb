@@ -3,13 +3,11 @@ require 'tilt'
 module Photish
   module Render
     class Page
-
-      include Photish::Log::Logger
-
       def initialize(layout_file, template_file, output_dir)
         @layout_file = layout_file
         @template_file = template_file
         @output_dir = output_dir
+        @log = Logging.logger[self]
       end
 
       def render(models)
@@ -18,7 +16,7 @@ module Photish
           output_model_file = relative_to_output_dir(model.url_parts)
           output_model_dir = relative_to_output_dir(model.base_url_parts)
 
-          log "Rendering #{model.url} with template #{template_file} to #{output_model_file}"
+          log.info "Rendering #{model.url} with template #{template_file} to #{output_model_file}"
 
           FileUtils.mkdir_p(output_model_dir)
           File.write(output_model_file, rendered_model)
@@ -29,7 +27,8 @@ module Photish
 
       attr_reader :template_file,
                   :layout_file,
-                  :output_dir
+                  :output_dir,
+                  :log
 
       def relative_to_output_dir(url_parts)
         File.join(output_dir, url_parts)
