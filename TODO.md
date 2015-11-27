@@ -2,9 +2,6 @@
 
 ## In Progress
 
-1. Change logging to colorize on command options
-1. Pipe WEBrick logging to log module
-
 ## Backlog
 
 1. Custom user created helpers in templates

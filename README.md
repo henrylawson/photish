@@ -255,7 +255,7 @@ generated file, the generated file will clobber the asset.
 
 #### Config File Options
 
-Below is a basic `config.yml` file:
+Below is a complete `config.yml` file:
 
 ```yaml
 port: 9876
@@ -269,6 +269,10 @@ templates:
   collection: collection.slim
   album: album.slim
   photo: photo.slim
+logging:
+  colorize: true
+  level: 'info'
+  output: ['stdout', 'file']
 ```
 
 The meanings and purpose of each field is defined below:
@@ -284,6 +288,10 @@ Field                  | Purpose
 `templates/collection` | the collection template file in the `site/_templates` folder
 `templates/album`      | the album template file in the `site/_templates` folder
 `templates/photo`      | the photo template file in the `site/_templates` folder
+`logging`              | a listing of the various logging options
+`logging/colorize`     | when outputting to `STDOUT`, `true` to use color, `false` for none
+`logging/level`        | the default logging level, it is advised to keep this at `info`
+`logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
 
 #### Customizing Templates
 

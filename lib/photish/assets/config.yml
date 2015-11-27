@@ -10,3 +10,7 @@ templates:
   collection: collection.slim
   album: album.slim
   photo: photo.slim
+logging:
+  colorize: true
+  level: 'info'
+  output: ['stdout', 'file']

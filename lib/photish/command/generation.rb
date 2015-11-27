@@ -10,10 +10,11 @@ module Photish
         @config = Photish::Config::AppSettings.new(runtime_config)
                                               .config
         @log = Logging.logger[self]
-        Photish::Log::Logger.setup_logging
       end
 
       def execute
+        Photish::Log::Logger.setup_logging(config)
+
         log_important_config_values
         log_album_and_photo_names
         render_whole_site

@@ -32,13 +32,5 @@ describe Photish::Config::Location do
         end
       end
     end
-
-    context 'file does not exist' do
-      let(:site_dir) { nil }
-      
-      it 'raises error' do
-        expect { subject.path }.to raise_error(/does not exist/)
-      end
-    end
   end
 end

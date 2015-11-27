@@ -9,10 +9,11 @@ module Photish
         @config = Photish::Config::AppSettings.new(runtime_config)
                                               .config
         @log = Logging.logger[self]
-        Photish::Log::Logger.setup_logging
       end
 
       def execute
+        Photish::Log::Logger.setup_logging(config)
+
         trap 'INT' do server.shutdown end
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         server.start

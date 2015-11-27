@@ -4,12 +4,14 @@ module Photish
   module Command
     class Init
       def initialize(runtime_config)
-        @runtime_config = runtime_config
+        @config = Photish::Config::AppSettings.new(runtime_config)
+                                              .config
         @log = Logging.logger[self]
-        Photish::Log::Logger.setup_logging
       end
 
       def execute
+        Photish::Log::Logger.setup_logging(config)
+
         FileUtils.cp_r(config_file, Dir.pwd)
         FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))
         FileUtils.cp_r(photos_dir, Dir.pwd)
@@ -19,7 +21,7 @@ module Photish
 
       private
 
-      attr_reader :runtime_config,
+      attr_reader :config,
                   :log
 
       def config_file

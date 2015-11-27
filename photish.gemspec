@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "anemone", "~> 0.7"
   spec.add_dependency "mini_exiftool", "~> 2.5"
   spec.add_dependency "recursive-open-struct", "~> 0.6"
-  spec.add_dependency "colorize", "~> 0.7"
   spec.add_dependency "nokogiri", "~> 1.6"
   spec.add_dependency "logging", "~> 2.0"
 

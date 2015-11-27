@@ -8,7 +8,8 @@ module Photish
       end
 
       def hash
-        @hash ||= YAML.load_file(config_file_path)
+        return {} if !File.exist?(config_file_path)
+        YAML.load_file(config_file_path)
       end
 
       private

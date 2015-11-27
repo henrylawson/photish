@@ -18,6 +18,11 @@ module Photish
             collection: 'collection.slim',
             album: 'album.slim',
             photo: 'photo.slim'
+          },
+          logging: {
+            colorize: true,
+            output: ['stdout', 'file'],
+            level: 'info'
           }
         }
       end
