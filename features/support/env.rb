@@ -1,7 +1,6 @@
 require 'simplecov'
 require 'codeclimate-test-reporter'
-SimpleCov.add_filter 'vendor'
-SimpleCov.formatters = []
+SimpleCov.command_name 'cucumber'
 SimpleCov.start CodeClimate::TestReporter.configuration.profile
 
 require 'pry'

@@ -1,7 +1,6 @@
 require 'simplecov'
 require 'codeclimate-test-reporter'
-SimpleCov.add_filter 'vendor'
-SimpleCov.formatters = []
+SimpleCov.command_name 'rspec'
 SimpleCov.start CodeClimate::TestReporter.configuration.profile
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)

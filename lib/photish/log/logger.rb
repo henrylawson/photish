@@ -18,7 +18,7 @@ module Photish
         setup_file_output if output_to_file?(config)
 
         Logging.logger.root.level = logging_level(config)
-        setup_complete = true
+        self.setup_complete = true
       end
 
       private
