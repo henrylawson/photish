@@ -56,6 +56,7 @@ and running:
   - [Generate](#generate)
     - [Execution Order](#execution-order)
   - [Host](#host)
+  - [Rake Task](#rake-task)
 - [Development](#development)
 - [Contributing](#contributing)
 - [License](#license)
@@ -413,6 +414,24 @@ server to serve the HTML files:
     $ photish host
 
 The local version of your website will be visible at [http://localhost:9876/](http://localhost:9876/)
+
+### Rake Task
+
+If you would prefer to use Photish as a task in a rake. A helper
+class is available to create custom rake tasks that call Photish. The helper
+class is defined in
+[Photish::Rake::Task](https://github.com/henrylawson/photish/blob/master/lib/photish/rake/task.rb).
+
+In your Rakefile, simply add the following to wrap the generate command:
+
+```ruby
+Photish::Rake::Task.new(:generate, 'Compiles the project to HTML') do |t|
+  t.options = "generate"
+end
+```
+
+The above code will define a rake task called `generate` which can be ran
+by using `rake generate`. It is the equivalent of `photish generate`.
 
 ## Development
 

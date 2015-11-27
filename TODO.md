@@ -6,7 +6,6 @@
 
 1. Custom user created helpers in templates
 1. RDoc documentation for classes
-1. A Rakefile task for each of the commands
 1. A `deploy` command as a gem to deploy to github pages, netlify, amazon s3
 1. Monitor for file changes and regenerate for `host` command
 1. URL customization, relative, absolute with or without hostname URLs (for
