@@ -5,14 +5,20 @@ module Photish
     class Logger
       include Singleton
 
+      attr_accessor :setup_complete
+
+      def initialize
+        @setup_complete = false
+      end
+
       def setup_logging(config)
-        return if !!@setup_complete
+        return if setup_complete
         setup_color_scheme if colorize?(config)
         setup_stdout_output if output_to_stdout?(config)
         setup_file_output if output_to_file?(config)
 
         Logging.logger.root.level = logging_level(config)
-        @setup_complete = true
+        setup_complete = true
       end
 
       private
