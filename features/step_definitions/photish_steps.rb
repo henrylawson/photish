@@ -16,7 +16,7 @@ end
 
 Then(/^the site should be available via HTTP$/) do
   @uri = URI.parse("http://localhost:#{@config['port']}/")
-  Retriable.retriable(tries: 3, base_interval: 0.5) do
+  Retriable.retriable(tries: 10, base_interval: 0.5) do
     response = Net::HTTP.get_response(@uri)
     expect(response.kind_of?(Net::HTTPSuccess)).to be_truthy
   end

@@ -2,8 +2,6 @@
 
 ## In Progress
 
-1. Monitor for file changes and regenerate for `host` command
-
 ## Backlog
 
 1. Custom user created helpers in templates

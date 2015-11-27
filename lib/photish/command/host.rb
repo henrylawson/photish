@@ -14,19 +14,25 @@ module Photish
       def execute
         Photish::Log::Logger.instance.setup_logging(config)
 
-        trap 'INT' do server.shutdown end
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         log.info "Monitoring paths #{paths_to_monitor}"
-        listener.start
-        server.start
-        listener.stop
-        log.info "Photish host has shutdown"
+
+        regenerate_entire_site
+        start_http_server_with_listener
       end
 
       private
 
       attr_reader :runtime_config,
                   :log
+
+      def start_http_server_with_listener
+        trap 'INT' do server.shutdown end
+        listener.start
+        server.start
+        listener.stop
+        log.info "Photish host has shutdown"
+      end
 
       def config
         @config ||= Photish::Config::AppSettings.new(runtime_config)
@@ -46,7 +52,7 @@ module Photish
           log.info "File was added #{added}" if added.present?
           log.info "File was removed #{removed}" if removed.present?
 
-          regenerate
+          regenerate_entire_site
         end
       end
 
@@ -62,7 +68,7 @@ module Photish
         ]
       end
 
-      def regenerate
+      def regenerate_entire_site
         log.info "Regenerating site"
         Photish::Command::Generate.new(runtime_config)
                                    .execute
