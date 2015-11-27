@@ -10,7 +10,16 @@ Cucumber::Rake::Task.new(:features) do |t|
   t.cucumber_opts = "features --format pretty"
 end
 
-task :default => [:spec, :features]
+desc 'Gather code climate results'
+task :gather_coverage do
+  require 'simplecov'
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter::Formatter.new.format(SimpleCov.result)
+end
+
+task :default => [:spec,
+                  :features,
+                  :gather_coverage]
 
 namespace :photish do
   Photish::Rake::Task.new(:init, 'Creates a basic project') do |t|

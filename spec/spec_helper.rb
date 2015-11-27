@@ -1,5 +1,8 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+require 'simplecov'
+require 'codeclimate-test-reporter'
+SimpleCov.add_filter 'vendor'
+SimpleCov.formatters = []
+SimpleCov.start CodeClimate::TestReporter.configuration.profile
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'photish'
