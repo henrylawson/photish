@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'aruba', git: 'git@github.com:cucumber/aruba.git', ref: '0a3bffa'
+  gem 'aruba', git: 'https://github.com/cucumber/aruba.git', ref: '0a3bffa'
 end
