@@ -13,7 +13,7 @@ module Photish
       end
 
       def execute
-        Photish::Log::Logger.setup_logging(config)
+        Photish::Log::Logger.instance.setup_logging(config)
 
         log_important_config_values
         log_album_and_photo_names

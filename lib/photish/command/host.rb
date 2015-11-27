@@ -12,7 +12,7 @@ module Photish
       end
 
       def execute
-        Photish::Log::Logger.setup_logging(config)
+        Photish::Log::Logger.instance.setup_logging(config)
 
         trap 'INT' do server.shutdown end
         log.info "Site will be running at http://0.0.0.0:#{port}/"

@@ -10,7 +10,7 @@ module Photish
       end
 
       def execute
-        Photish::Log::Logger.setup_logging(config)
+        Photish::Log::Logger.instance.setup_logging(config)
 
         FileUtils.cp_r(config_file, Dir.pwd)
         FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))

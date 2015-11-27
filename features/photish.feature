@@ -3,7 +3,7 @@ Feature: Photish
   As a CLI
   I want to run a single command to create a static site
 
-  Scenario: Generates the site and runs it on a HTTP server
+  Scenario: Generates the site and runs it on a HTTP server using CLI
     When I run `photish init`
     Then the output should contain "Photish site initiated successfully"
     And the exit status should be 0

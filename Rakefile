@@ -24,4 +24,6 @@ namespace :photish do
   Photish::Rake::Task.new(:host, 'Starts a HTTP and hosts the code') do |t|
     t.options = "host"
   end
+
+  task :all => [:init, :generate, :host]
 end
