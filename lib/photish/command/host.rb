@@ -17,7 +17,6 @@ module Photish
         trap 'INT' do server.shutdown end
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         server.start
-        log.info "Site has been shutdown"
       end
 
       private
