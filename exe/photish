@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'photish/cli'
-Photish::CLI.start
+require 'photish/cli/interface'
+Photish::CLI::Interface.start

@@ -5,7 +5,7 @@ require 'photish/render/site'
 
 module Photish
   module Command
-    class Generation
+    class Generate
       def initialize(runtime_config)
         @config = Photish::Config::AppSettings.new(runtime_config)
                                               .config
