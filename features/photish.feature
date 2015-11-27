@@ -19,3 +19,6 @@ Feature: Photish
     Then the site should be available via HTTP
     And all 26 pages and images should be available
     And not contain any dead links
+
+    When I send the signal "INT" to the command started last
+    Then the output should contain "Photish host has shutdown"

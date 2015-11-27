@@ -4,8 +4,7 @@ module Photish
   module Command
     class Init
       def initialize(runtime_config)
-        @config = Photish::Config::AppSettings.new(runtime_config)
-                                              .config
+        @runtime_config = runtime_config
         @log = Logging.logger[self]
       end
 
@@ -21,8 +20,13 @@ module Photish
 
       private
 
-      attr_reader :config,
+      attr_reader :runtime_config,
                   :log
+
+      def config
+        @config ||= Photish::Config::AppSettings.new(runtime_config)
+                                                .config
+      end
 
       def config_file
         asset_path('config.yml')

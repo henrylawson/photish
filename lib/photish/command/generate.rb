@@ -7,8 +7,7 @@ module Photish
   module Command
     class Generate
       def initialize(runtime_config)
-        @config = Photish::Config::AppSettings.new(runtime_config)
-                                              .config
+        @runtime_config = runtime_config
         @log = Logging.logger[self]
       end
 
@@ -23,8 +22,13 @@ module Photish
 
       private
 
-      attr_reader :config, 
+      attr_reader :runtime_config,
                   :log
+
+      def config
+        @config ||= Photish::Config::AppSettings.new(runtime_config)
+                                                .config
+      end
 
       def log_important_config_values
         log.info "Photo directory: #{photo_dir}"
