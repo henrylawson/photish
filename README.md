@@ -522,6 +522,15 @@ If the above code is saved to `site/_plugins/shout.rb` Photish will detect the
 plugin ruby file at runtime and it will load and make the method available in
 the template.
 
+A Template Helper Plugin `self.is_for?(type)` method could potentially receive
+any of the below types, simply return true for the types the Template Helper
+Plugin supports:
+
+1. `Photish::Plugin::Type::Collection`
+1. `Photish::Plugin::Type::Album`
+1. `Photish::Plugin::Type::Photo`
+1. `Photish::Plugin::Type::Image`
+
 A usage example is below
 
 **site/_templates/photo.slim**
