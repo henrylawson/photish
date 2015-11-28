@@ -15,8 +15,8 @@ module Photish
         Photish::Log::Logger.instance.setup_logging(config)
 
         log_important_config_values
-        log_album_and_photo_names
         load_all_plugins
+        log_album_and_photo_names
         render_whole_site
         log.info 'Site generation completed successfully'
       end

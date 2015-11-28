@@ -13,8 +13,5 @@ html
       == yield
     div.footer
       | Site assets:
-      a href="/custom.html"
-        | My Custom Page
-      | &nbsp;|&nbsp;
-      a href="/styles/basic.css"
-        | CSS Download
+      == links_with_seperator([{text: 'My Custom Page', url: '/custom.html'},
+                               {text: 'CSS Download',   url: '/styles/basic.css'}], '|')
