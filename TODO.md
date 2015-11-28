@@ -16,3 +16,5 @@
 1. RDoc documentation for classes
 1. More intelligent regeneration based on changes
 1. Use recursive struct not hash like thing for config
+1. Change `init` to have `--example` and normal for barebones
+1. Add `Gemfile` to `init`
