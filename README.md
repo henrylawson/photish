@@ -424,7 +424,7 @@ Custom template helpers are supported through [Plugins](#plugins).
 By default, Photish comes with the following helpers:
 
 Method      | Description
--------------------------
+----------- | -----------
 breadcrumbs | an unordered list of pages above the current page in the hierarchy
 
 ### Generate
