@@ -18,7 +18,7 @@ module Photish
         Photish::Command::Host.new(options).execute
       end
 
-      desc "init", "Creates a basic Photish site sctructure"
+      desc "init", "Creates a basic Photish site structure"
       def init
         Photish::Command::Init.new(options).execute
       end
