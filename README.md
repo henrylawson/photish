@@ -216,6 +216,7 @@ File or Folder                    | Purpose
 --------------------------------- | -------
 `photos`                          | folder, for your photo collection and metadata
 `site`                            | folder for your templates, assets and static pages
+`site/_plugins`                   | folder for plugins to be loaded from
 `site/_templates`                 | folder for your templates
 `site/_templates/layout.slim`     | file for the basic layout for all pages
 `site/_templates/collection.slim` | template file for your collection page
