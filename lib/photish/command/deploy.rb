@@ -8,6 +8,8 @@ module Photish
         log.info "Requested engine: #{requested_engine}"
 
         return no_engine_found unless engine
+
+        log.info "Deploying with engine #{engine}"
         engine.new(config, log).deploy
       end
 
@@ -22,7 +24,9 @@ module Photish
       end
 
       def engine
-        deploy_plugins.find { |p| p.engine_name == requested_engine }
+        @engine ||= deploy_plugins.find do |p|
+          p.engine_name == requested_engine
+        end
       end
 
       def deploy_plugins
