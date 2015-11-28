@@ -28,7 +28,7 @@ module Photish
 
       def load_all_plugins
         Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
-          require file
+          load file
         end
 
         Photish::Plugin::Repository.all_plugins.each do |plugin|
