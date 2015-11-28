@@ -1,10 +1,15 @@
 require 'active_support'
 require 'active_support/core_ext'
+require 'photish/plugins/plugin'
 
 module Photish
   module Gallery
     class Image
-      include ::Photish::Gallery::Traits::Urlable
+      include Photish::Gallery::Traits::Urlable
+
+      Photish::Plugin.constants.each do |plugin_klazz|
+        include plugin_klazz if plugin_klazz.is_for?(PluginType::Image)
+      end
 
       delegate :name,
                :params,

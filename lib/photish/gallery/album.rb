@@ -3,6 +3,7 @@ require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/albumable'
 require 'photish/gallery/traits/metadatable'
 require 'photish/gallery/traits/breadcrumbable'
+require 'photish/plugins/plugin'
 require 'active_support'
 require 'active_support/core_ext'
 require 'filemagic'
@@ -10,10 +11,14 @@ require 'filemagic'
 module Photish
   module Gallery
     class Album
-      include ::Photish::Gallery::Traits::Urlable
-      include ::Photish::Gallery::Traits::Albumable
-      include ::Photish::Gallery::Traits::Metadatable
-      include ::Photish::Gallery::Traits::Breadcrumbable
+      include Photish::Gallery::Traits::Urlable
+      include Photish::Gallery::Traits::Albumable
+      include Photish::Gallery::Traits::Metadatable
+      include Photish::Gallery::Traits::Breadcrumbable
+
+      Photish::Plugin.constants.each do |plugin_klazz|
+        include plugin_klazz if plugin_klazz.is_for?(PluginType::Album)
+      end
 
       delegate :qualities, to: :parent, allow_nil: true
 
