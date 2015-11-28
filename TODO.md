@@ -15,3 +15,4 @@
 1. Share on RubyWebToolkit, StaticGen, etc
 1. RDoc documentation for classes
 1. More intelligent regeneration based on changes
+1. Use recursive struct not hash like thing for config

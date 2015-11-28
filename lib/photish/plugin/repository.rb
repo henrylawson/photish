@@ -3,6 +3,17 @@ module Photish
   module Plugin
     module Repository
       class << self
+        def reload(log, site_dir)
+          log.info "Loading plugins..."
+          Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
+            load file
+          end
+
+          all_plugins.each do |plugin|
+            log.info "Found plugin #{plugin}"
+          end
+        end
+
         def plugins_for(type)
           all_plugins.reject { |m| !m.is_for?(type) }
         end

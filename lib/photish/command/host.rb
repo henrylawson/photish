@@ -2,16 +2,12 @@ require 'photish/log/logger'
 require 'photish/log/access_log'
 require 'webrick'
 require 'listen'
+require 'photish/command/base'
 
 module Photish
   module Command
-    class Host
-      def initialize(runtime_config)
-        @runtime_config = runtime_config
-        @log = Logging.logger[self]
-      end
-
-      def execute
+    class Host < Base
+      def run
         Photish::Log::Logger.instance.setup_logging(config)
 
         log.info "Site will be running at http://0.0.0.0:#{port}/"
@@ -23,20 +19,12 @@ module Photish
 
       private
 
-      attr_reader :runtime_config,
-                  :log
-
       def start_http_server_with_listener
         trap 'INT' do server.shutdown end
         listener.start
         server.start
         listener.stop
         log.info "Photish host has shutdown"
-      end
-
-      def config
-        @config ||= Photish::Config::AppSettings.new(runtime_config)
-                                                .config
       end
 
       def server

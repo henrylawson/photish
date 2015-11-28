@@ -2,6 +2,7 @@ require 'thor'
 require 'photish/command/generate'
 require 'photish/command/host'
 require 'photish/command/init'
+require 'photish/command/deploy'
 
 module Photish
   module CLI
@@ -21,6 +22,12 @@ module Photish
       desc "init", "Creates a basic Photish site structure"
       def init
         Photish::Command::Init.new(options).execute
+      end
+
+      desc "deploy", "Deploys the static site, using the specified engine"
+      method_option :engine, required: true
+      def deploy
+        Photish::Command::Deploy.new(options).execute
       end
     end
   end

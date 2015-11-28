@@ -22,3 +22,7 @@ Feature: Photish
 
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"
+
+    When I run `photish deploy --engine tmpdir`
+    Then the output should contain "Deployment to tmpdir successful"
+    And the exit status should be 0

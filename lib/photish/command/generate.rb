@@ -2,18 +2,12 @@ require 'photish/log/logger'
 require 'photish/config/app_settings'
 require 'photish/gallery/collection'
 require 'photish/render/site'
+require 'photish/command/base'
 
 module Photish
   module Command
-    class Generate
-      def initialize(runtime_config)
-        @runtime_config = runtime_config
-        @log = Logging.logger[self]
-      end
-
-      def execute
-        Photish::Log::Logger.instance.setup_logging(config)
-
+    class Generate < Base
+      def run
         log_important_config_values
         load_all_plugins
         log_album_and_photo_names
@@ -23,22 +17,8 @@ module Photish
 
       private
 
-      attr_reader :runtime_config,
-                  :log
-
       def load_all_plugins
-        Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
-          load file
-        end
-
-        Photish::Plugin::Repository.all_plugins.each do |plugin|
-          log.info "Found plugin #{plugin}"
-        end
-      end
-
-      def config
-        @config ||= Photish::Config::AppSettings.new(runtime_config)
-                                                .config
+        Photish::Plugin::Repository.reload(log, site_dir)
       end
 
       def log_important_config_values

@@ -1,16 +1,10 @@
 require 'photish/log/logger'
+require 'photish/command/base'
 
 module Photish
   module Command
-    class Init
-      def initialize(runtime_config)
-        @runtime_config = runtime_config
-        @log = Logging.logger[self]
-      end
-
-      def execute
-        Photish::Log::Logger.instance.setup_logging(config)
-
+    class Init < Base
+      def run
         FileUtils.cp_r(config_file, Dir.pwd)
         FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))
         FileUtils.cp_r(photos_dir, Dir.pwd)
@@ -19,14 +13,6 @@ module Photish
       end
 
       private
-
-      attr_reader :runtime_config,
-                  :log
-
-      def config
-        @config ||= Photish::Config::AppSettings.new(runtime_config)
-                                                .config
-      end
 
       def config_file
         asset_path('config.yml')
