@@ -16,6 +16,7 @@ module Photish
 
         log_important_config_values
         log_album_and_photo_names
+        load_all_plugins
         render_whole_site
         log.info 'Site generation completed successfully'
       end
@@ -24,6 +25,16 @@ module Photish
 
       attr_reader :runtime_config,
                   :log
+
+      def load_all_plugins
+        Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
+          require file
+        end
+
+        Photish::Plugin::Repository.all_plugins.each do |plugin|
+          log.info "Found plugin #{plugin}"
+        end
+      end
 
       def config
         @config ||= Photish::Config::AppSettings.new(runtime_config)

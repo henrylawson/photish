@@ -1,7 +1,7 @@
 div.album
   div.album-title
     a href=url
-      | #{name}
+      == yell_very_loud
   - if metadata.try(:description)
     div.album-blurb
       p #{metadata.try(:description)}
