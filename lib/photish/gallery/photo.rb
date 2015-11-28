@@ -2,7 +2,7 @@ require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/metadatable'
 require 'photish/gallery/traits/breadcrumbable'
 require 'photish/gallery/image'
-require 'photish/plugins/plugin'
+require 'photish/plugin/pluginable'
 require 'active_support'
 require 'active_support/core_ext'
 require 'mini_exiftool'
@@ -13,14 +13,12 @@ module Photish
       include Photish::Gallery::Traits::Urlable
       include Photish::Gallery::Traits::Metadatable
       include Photish::Gallery::Traits::Breadcrumbable
-
-      Photish::Plugin.constants.each do |plugin_klazz|
-        include plugin_klazz if plugin_klazz.is_for?(PluginType::Photo)
-      end
+      include Photish::Plugin::Pluginable
 
       delegate :qualities, to: :parent, allow_nil: true
 
       def initialize(parent, path)
+        super
         @parent = parent
         @path = path
       end
@@ -35,6 +33,10 @@ module Photish
 
       def exif
         MiniExiftool.new(path)
+      end
+
+      def plugin_type
+        Photish::Plugin::Type::Photo
       end
 
       private

@@ -38,6 +38,22 @@ describe Photish::Gallery::Image do
       expect(subject.name).to eq('Cute Dog High')
     end
   end
+
+  context 'allows for plugins' do
+    it 'responds to plugin method' do
+      expect(subject.hello).to eq('yes')
+    end
+  end
+end
+
+module Photish::Plugin::MyImagePlugin
+  def self.is_for?(type)
+    Photish::Plugin::Type::Image == type
+  end
+
+  def hello
+    'yes'
+  end
 end
 
 class ImageParent

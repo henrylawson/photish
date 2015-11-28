@@ -147,4 +147,20 @@ describe Photish::Gallery::Collection do
     FileUtils::cp(fixture_file('dog6.jpg'), album3)
     FileUtils::cp(fixture_file('dog7.jpg'), album3)
   end
+
+  context 'allows for plugins' do
+    it 'responds to plugin method' do
+      expect(subject.hello).to eq('yes')
+    end
+  end
+end
+
+module Photish::Plugin::MyCollectionPlugin
+  def self.is_for?(type)
+    Photish::Plugin::Type::Collection == type
+  end
+
+  def hello
+    'yes'
+  end
 end

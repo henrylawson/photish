@@ -87,6 +87,22 @@ describe Photish::Gallery::Photo do
       end
     end
   end
+
+  context 'allows for plugins' do
+    it 'responds to plugin method' do
+      expect(subject.hello).to eq('yes')
+    end
+  end
+end
+
+module Photish::Plugin::MyPhotoPlugin
+  def self.is_for?(type)
+    Photish::Plugin::Type::Photo == type
+  end
+
+  def hello
+    'yes'
+  end
 end
 
 class PhotoParent

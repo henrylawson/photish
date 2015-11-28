@@ -25,7 +25,7 @@ describe Photish::Gallery::Album do
                                                      'dog2')
     end
   end
-  
+
   context '#albums' do
     it 'loads all the albums inside this album' do
       expect(subject.albums
@@ -96,6 +96,22 @@ describe Photish::Gallery::Album do
         with_tag 'a', with: { href: subject.url }, text: subject.name
       end
     end
+  end
+
+  context 'allows for plugins' do
+    it 'responds to plugin method' do
+      expect(subject.hello).to eq('yes')
+    end
+  end
+end
+
+module Photish::Plugin::MyAlbumPlugin
+  def self.is_for?(type)
+    Photish::Plugin::Type::Album == type
+  end
+
+  def hello
+    'yes'
   end
 end
 

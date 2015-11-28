@@ -1,15 +1,12 @@
 require 'active_support'
 require 'active_support/core_ext'
-require 'photish/plugins/plugin'
+require 'photish/plugin/pluginable'
 
 module Photish
   module Gallery
     class Image
       include Photish::Gallery::Traits::Urlable
-
-      Photish::Plugin.constants.each do |plugin_klazz|
-        include plugin_klazz if plugin_klazz.is_for?(PluginType::Image)
-      end
+      include Photish::Plugin::Pluginable
 
       delegate :name,
                :params,
@@ -18,6 +15,7 @@ module Photish
       attr_reader :path
 
       def initialize(parent, path, quality)
+        super
         @parent = parent
         @path = path
         @quality = quality
@@ -25,6 +23,10 @@ module Photish
 
       def name
         @name ||= "#{basename} #{quality_name}"
+      end
+
+      def plugin_type
+        Photish::Plugin::Type::Image
       end
 
       private

@@ -3,7 +3,7 @@ require 'photish/gallery/traits/urlable'
 require 'photish/gallery/traits/albumable'
 require 'photish/gallery/traits/metadatable'
 require 'photish/gallery/traits/breadcrumbable'
-require 'photish/plugins/plugin'
+require 'photish/plugin/pluginable'
 require 'active_support'
 require 'active_support/core_ext'
 require 'filemagic'
@@ -15,14 +15,12 @@ module Photish
       include Photish::Gallery::Traits::Albumable
       include Photish::Gallery::Traits::Metadatable
       include Photish::Gallery::Traits::Breadcrumbable
-
-      Photish::Plugin.constants.each do |plugin_klazz|
-        include plugin_klazz if plugin_klazz.is_for?(PluginType::Album)
-      end
+      include Photish::Plugin::Pluginable
 
       delegate :qualities, to: :parent, allow_nil: true
 
       def initialize(parent, path)
+        super
         @parent = parent
         @path = path
       end
@@ -38,6 +36,10 @@ module Photish
                        .reject { |file| !File.file?(file) }
                        .reject { |file| !FileMagic.new(FileMagic::MAGIC_MIME).file(file).match(formats) }
                        .map    { |file| Photo.new(self, file) }
+      end
+
+      def plugin_type
+        Photish::Plugin::Type::Album
       end
 
       private
