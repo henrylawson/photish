@@ -302,8 +302,8 @@ Field                  | Purpose
 `logging/level`        | the default logging level, it is advised to keep this at `info`
 `logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
 `url`                  | a listing of the various url options
-`url/host`             | default is to leave this configuration blank, however if you would like URLs generated with a specific host prefix, you can define it here
-`url/base`             | default is to leave this configuration blank, if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
+`url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it is '/' or do not set this configuration at all
+`url/base`             | if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
 
 #### Customizing Templates
 
