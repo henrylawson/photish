@@ -12,7 +12,7 @@ module Photish
           run
         rescue => e
           log.fatal "An exception occured #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
-          false
+          exit(false)
         end
       end
 
