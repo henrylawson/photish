@@ -288,21 +288,21 @@ The meanings and purpose of each field is defined below:
 
 Field                  | Purpose
 ---------------------- | -------
-`port`                 | the port number that the `photish host` command will bind to
+`port`                 | the port number that the `photish host` command will bind to, default is `9876`
 `qualities`            | an array of `name` and `params` fields for **Images**
 `qualities[]/name`     | the name of the **Image** quality
 `qualities[]/params`   | the parameters to be provided to the ImageMagick `convert` utility  for the **Image** file quality
 `templates`            | a listing of the various template files
-`templates/layout`     | the layout template file in the `site/_templates` folder
-`templates/collection` | the collection template file in the `site/_templates` folder
-`templates/album`      | the album template file in the `site/_templates` folder
-`templates/photo`      | the photo template file in the `site/_templates` folder
+`templates/layout`     | the layout template file in the `site/_templates` folder, must be overridden if using a different template engine
+`templates/collection` | the collection template file in the `site/_templates` folder, must be overridden if using a different template engine
+`templates/album`      | the album template file in the `site/_templates` folder, must be overridden if using a different template engine
+`templates/photo`      | the photo template file in the `site/_templates` folder, must be overridden if using a different template engine
 `logging`              | a listing of the various logging options
 `logging/colorize`     | when outputting to `STDOUT`, `true` to use color, `false` for none
 `logging/level`        | the default logging level, it is advised to keep this at `info`
 `logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
 `url`                  | a listing of the various url options
-`url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it is '/' or do not set this configuration at all
+`url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it as '/' or do not set this configuration at all
 `url/base`             | if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
 
 #### Customizing Templates
