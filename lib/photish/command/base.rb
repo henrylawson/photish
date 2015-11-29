@@ -7,11 +7,13 @@ module Photish
       end
 
       def execute
-        Photish::Log::Logger.instance.setup_logging(config)
-        run
-      rescue => e
-        log.fatal "An exception occured #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
-        false
+        setup_logging
+        begin
+          run
+        rescue => e
+          log.fatal "An exception occured #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
+          false
+        end
       end
 
       protected
@@ -22,6 +24,12 @@ module Photish
       def config
         @config ||= Photish::Config::AppSettings.new(runtime_config)
                                                 .config
+      end
+
+      private
+
+      def setup_logging
+        Photish::Log::Logger.instance.setup_logging(config)
       end
     end
   end

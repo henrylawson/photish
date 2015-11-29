@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Photish::Log::Logger do
   subject { Photish::Log::Logger.instance }
   
-  let(:config) { Photish::Config::Settings.new(config_hash) }
+  let(:config) { RecursiveOpenStruct.new(config_hash) }
 
   after do
     Logging.logger.root.clear_appenders

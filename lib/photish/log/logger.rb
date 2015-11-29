@@ -22,19 +22,19 @@ module Photish
       private
 
       def logging_level(config)
-        config.val(:logging)[:level].to_sym
+        config.logging.level.to_sym
       end
 
       def colorize?(config)
-        config.val(:logging)[:colorize]
+        config.logging.colorize
       end
 
       def output_to_stdout?(config)
-        config.val(:logging)[:output].include?('stdout')
+        config.logging.output.include?('stdout')
       end
 
       def output_to_file?(config)
-        config.val(:logging)[:output].include?('file')
+        config.logging.output.include?('file')
       end
 
       def setup_color_scheme

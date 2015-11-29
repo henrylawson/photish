@@ -13,6 +13,12 @@ module Photish
 
       private
 
+      delegate :port,
+               :output_dir,
+               :site_dir,
+               :photo_dir,
+               to: :config
+
       def start_http_server_with_listener
         trap 'INT' do server.shutdown end
         listener.start
@@ -40,7 +46,7 @@ module Photish
 
       def paths_to_monitor
         [site_dir,
-         photos_dir]
+         photo_dir]
       end
 
       def access_log
@@ -54,22 +60,6 @@ module Photish
         log.info "Regenerating site"
         Photish::Command::Generate.new(runtime_config)
                                    .execute
-      end
-
-      def port
-        config.val(:port)
-      end
-
-      def output_dir
-        config.val(:output_dir)
-      end
-
-      def site_dir
-        config.val(:site_dir)
-      end
-
-      def photos_dir
-        config.val(:photo_dir)
       end
     end
   end

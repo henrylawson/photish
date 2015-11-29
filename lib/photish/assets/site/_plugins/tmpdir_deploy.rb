@@ -7,7 +7,7 @@ class Photish::Plugin::TmpdirDeploy
 
   def deploy
     tmpdir = Dir.mktmpdir
-    FileUtils.cp_r(config.val(:output_dir), tmpdir)
+    FileUtils.cp_r(config.output_dir, tmpdir)
 
     log.info "Static site deployed to directory: #{tmpdir}"
     log.info "Deployment to tmpdir successful"

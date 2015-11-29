@@ -11,6 +11,13 @@ module Photish
 
       private
 
+      delegate :output_dir,
+               :site_dir,
+               :photo_dir,
+               :qualities,
+               :templates,
+               to: :config
+
       def load_all_plugins
         Photish::Plugin::Repository.reload(log, site_dir)
       end
@@ -35,29 +42,12 @@ module Photish
                              .all_for(collection)
       end
 
-      def photo_dir
-        config.val(:photo_dir)
-      end
-
-      def output_dir
-        config.val(:output_dir)
-      end
-
-      def site_dir
-        config.val(:site_dir)
-      end
-
       def collection
-        @collection ||= Gallery::Collection.new(photo_dir, qualities)
+        @collection ||= Gallery::Collection.new(photo_dir, qualities_mapped)
       end
 
-      def qualities
-        config.val(:qualities)
-              .map { |quality| OpenStruct.new(quality) }
-      end
-
-      def templates
-        OpenStruct.new(config.val(:templates))
+      def qualities_mapped
+        qualities.map { |quality| OpenStruct.new(quality) }
       end
     end
   end

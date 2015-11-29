@@ -3,15 +3,20 @@ module Photish
     class Deploy < Base
       def run
         load_all_plugins
-        log.info "Requested engine: #{requested_engine}"
+        log.info "Requested engine: #{engine}"
 
         return no_engine_found unless engine
 
-        log.info "Deploying with engine #{engine}"
-        engine.new(config, log).deploy
+        log.info "Deploying with engine #{engine_class}"
+        engine_class.new(config, log).deploy
       end
 
       private
+
+      delegate :engine,
+               :site_dir,
+               to: :config
+
 
       def no_engine_found
         log.info "No engine found..."
@@ -21,9 +26,9 @@ module Photish
         Photish::Plugin::Repository.reload(log, site_dir)
       end
 
-      def engine
+      def engine_class
         @engine ||= deploy_plugins.find do |p|
-          p.engine_name == requested_engine
+          p.engine_name == engine
         end
       end
 
@@ -33,14 +38,6 @@ module Photish
 
       def deploy_plugin_type
         Photish::Plugin::Type::Deploy
-      end
-
-      def requested_engine
-        config.val(:engine)
-      end
-
-      def site_dir
-        config.val(:site_dir)
       end
     end
   end
