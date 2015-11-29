@@ -1,9 +1,3 @@
-require 'photish/gallery/album'
-require 'photish/gallery/traits/albumable'
-require 'photish/gallery/traits/metadatable'
-require 'photish/gallery/traits/breadcrumbable'
-require 'photish/plugin/pluginable'
-
 module Photish
   module Gallery
     class Collection

@@ -1,6 +1,3 @@
-require 'yaml'
-require 'recursive_open_struct'
-
 module Photish
   module Gallery
     module Traits

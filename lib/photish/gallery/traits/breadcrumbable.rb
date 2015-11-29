@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 module Photish
   module Gallery
     module Traits

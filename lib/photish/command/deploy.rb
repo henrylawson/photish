@@ -1,5 +1,3 @@
-require 'photish/command/base'
-
 module Photish
   module Command
     class Deploy < Base

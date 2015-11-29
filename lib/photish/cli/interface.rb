@@ -1,9 +1,3 @@
-require 'thor'
-require 'photish/command/generate'
-require 'photish/command/host'
-require 'photish/command/init'
-require 'photish/command/deploy'
-
 module Photish
   module CLI
     class Interface < Thor

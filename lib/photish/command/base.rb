@@ -10,7 +10,7 @@ module Photish
         Photish::Log::Logger.instance.setup_logging(config)
         run
       rescue => e
-        log.fatal "An exception occured #{e.backtrace}"
+        log.fatal "An exception occured #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
         false
       end
 

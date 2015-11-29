@@ -1,9 +1,3 @@
-require 'yaml'
-require 'active_support'
-require 'active_support/core_ext'
-require 'photish/config/default_config'
-require 'photish/config/file_config'
-
 module Photish
   module Config
     class Settings

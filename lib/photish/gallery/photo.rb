@@ -1,12 +1,3 @@
-require 'photish/gallery/traits/urlable'
-require 'photish/gallery/traits/metadatable'
-require 'photish/gallery/traits/breadcrumbable'
-require 'photish/gallery/image'
-require 'photish/plugin/pluginable'
-require 'active_support'
-require 'active_support/core_ext'
-require 'mini_exiftool'
-
 module Photish
   module Gallery
     class Photo

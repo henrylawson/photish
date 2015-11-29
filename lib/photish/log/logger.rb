@@ -1,5 +1,3 @@
-require 'logging'
-
 module Photish
   module Log
     class Logger

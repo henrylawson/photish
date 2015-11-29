@@ -1,9 +1,3 @@
-require 'photish/log/logger'
-require 'photish/config/app_settings'
-require 'photish/gallery/collection'
-require 'photish/render/site'
-require 'photish/command/base'
-
 module Photish
   module Command
     class Generate < Base

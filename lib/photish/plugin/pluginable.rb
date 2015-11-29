@@ -1,6 +1,3 @@
-require 'photish/plugin/type'
-require 'photish/plugin/repository'
-
 module Photish
   module Plugin
     module Pluginable

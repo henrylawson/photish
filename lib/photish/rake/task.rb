@@ -1,6 +1,3 @@
-require 'photish/cli/interface'
-require 'rake'
-
 module Photish
   module Rake
     class Task

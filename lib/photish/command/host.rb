@@ -1,9 +1,3 @@
-require 'photish/log/logger'
-require 'photish/log/access_log'
-require 'webrick'
-require 'listen'
-require 'photish/command/base'
-
 module Photish
   module Command
     class Host < Base

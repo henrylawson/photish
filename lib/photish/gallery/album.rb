@@ -1,13 +1,3 @@
-require 'photish/gallery/photo'
-require 'photish/gallery/traits/urlable'
-require 'photish/gallery/traits/albumable'
-require 'photish/gallery/traits/metadatable'
-require 'photish/gallery/traits/breadcrumbable'
-require 'photish/plugin/pluginable'
-require 'active_support'
-require 'active_support/core_ext'
-require 'filemagic'
-
 module Photish
   module Gallery
     class Album

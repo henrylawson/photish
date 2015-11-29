@@ -1,6 +1,3 @@
-require 'photish/log/logger'
-require 'photish/command/base'
-
 module Photish
   module Command
     class Init < Base

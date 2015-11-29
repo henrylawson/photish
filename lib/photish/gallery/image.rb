@@ -1,7 +1,3 @@
-require 'active_support'
-require 'active_support/core_ext'
-require 'photish/plugin/pluginable'
-
 module Photish
   module Gallery
     class Image

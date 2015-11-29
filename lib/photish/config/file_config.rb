@@ -1,5 +1,3 @@
-require 'yaml'
-
 module Photish
   module Config
     class FileConfig

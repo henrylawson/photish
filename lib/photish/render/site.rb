@@ -1,6 +1,3 @@
-require 'photish/render/page'
-require 'photish/render/image_conversion'
-
 module Photish
   module Render
     class Site

@@ -1,5 +1,3 @@
-require 'tilt'
-
 module Photish
   module Render
     class Page

@@ -1,5 +1,3 @@
-require 'cgi'
-
 module Photish
   module Gallery
     module Traits

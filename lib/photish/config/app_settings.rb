@@ -1,6 +1,3 @@
-require 'photish/config/settings'
-require 'photish/config/location'
-
 module Photish
   module Config
     class AppSettings

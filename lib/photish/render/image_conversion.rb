@@ -1,5 +1,3 @@
-require 'mini_magick'
-
 module Photish
   module Render
     class ImageConversion
