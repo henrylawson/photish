@@ -16,3 +16,5 @@
    created by generator
 1. Change `init` to have `--example` and normal for barebones, add `Gemfile` to
    `init`
+1. Provide generic way to override config from arguments to allow for hostname
+   override on deploy etc.
