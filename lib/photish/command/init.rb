@@ -3,6 +3,7 @@ module Photish
     class Init < Base
       def run
         FileUtils.cp_r(config_file, Dir.pwd)
+        FileUtils.cp_r(gemfile_file, Dir.pwd)
         FileUtils.cp_r(gitignore_file, File.join(Dir.pwd, '.gitignore'))
         FileUtils.cp_r(photo_dir, Dir.pwd)
         FileUtils.cp_r(site_dir, Dir.pwd)
@@ -10,6 +11,10 @@ module Photish
       end
 
       private
+
+      def gemfile_file
+        asset_path('Gemfile')
+      end
 
       def config_file
         asset_path('config.yml')
