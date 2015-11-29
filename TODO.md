@@ -18,3 +18,5 @@
    `init`
 1. Provide generic way to override config from arguments to allow for hostname
    override on deploy etc.
+1. Add timestamp to file log appender and any other details to make it more
+   useable
