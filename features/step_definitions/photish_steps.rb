@@ -1,7 +1,6 @@
 Then(/^the config file should be created$/) do
   config_path = File.join(@working_directory, 'config.yml')
   expect(File.exists?(config_path)).to be_truthy
-  @config = YAML.load_file(config_path)
 end
 
 Then(/^a photos directory should be created$/) do
@@ -15,7 +14,7 @@ Then(/^a site directory should be created$/) do
 end
 
 Then(/^the site should be available via HTTP$/) do
-  @uri = URI.parse("http://localhost:#{@config['port']}/")
+  @uri = URI.parse("http://localhost:9876/")
   Retriable.retriable(tries: 10, base_interval: 0.5) do
     response = Net::HTTP.get_response(@uri)
     expect(response.kind_of?(Net::HTTPSuccess)).to be_truthy
