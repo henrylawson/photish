@@ -7,7 +7,9 @@ module Photish
       include Photish::Gallery::Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
-      delegate :qualities, to: :parent, allow_nil: true
+      delegate :qualities,
+               :url_info,
+               to: :parent, allow_nil: true
 
       def initialize(parent, path)
         super

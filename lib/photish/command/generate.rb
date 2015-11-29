@@ -16,6 +16,7 @@ module Photish
                :photo_dir,
                :qualities,
                :templates,
+               :url,
                to: :config
 
       def load_all_plugins
@@ -43,7 +44,9 @@ module Photish
       end
 
       def collection
-        @collection ||= Gallery::Collection.new(photo_dir, qualities_mapped)
+        @collection ||= Gallery::Collection.new(photo_dir,
+                                                qualities_mapped,
+                                                url)
       end
 
       def qualities_mapped

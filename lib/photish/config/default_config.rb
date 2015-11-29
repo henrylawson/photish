@@ -23,6 +23,10 @@ module Photish
             colorize: true,
             output: ['stdout', 'file'],
             level: 'info'
+          },
+          url: {
+            host: '/',
+            base: nil
           }
         }
       end

@@ -3,7 +3,7 @@ module Photish
     module Traits
       module Urlable
         def url
-          '/' + url_parts.join('/')
+          [host, url_parts].flatten.join('/')
         end
 
         def url_parts
@@ -15,6 +15,14 @@ module Photish
         end
 
         private
+
+        def host
+          normalized_host || ''
+        end
+
+        def normalized_host
+          url_info.host.try(:chomp, '/')
+        end
 
         def slugify(word)
           CGI.escape(word.downcase.gsub(' ', '-'))

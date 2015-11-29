@@ -279,6 +279,9 @@ logging:
   colorize: true
   level: 'info'
   output: ['stdout', 'file']
+url:
+  host: http://mydomain.com
+  base: 'subdirectory'
 ```
 
 The meanings and purpose of each field is defined below:
@@ -298,6 +301,9 @@ Field                  | Purpose
 `logging/colorize`     | when outputting to `STDOUT`, `true` to use color, `false` for none
 `logging/level`        | the default logging level, it is advised to keep this at `info`
 `logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
+`url`                  | a listing of the various url options
+`url/host`             | default is to leave this configuration blank, however if you would like URLs generated with a specific host prefix, you can define it here
+`url/base`             | default is to leave this configuration blank, if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
 
 #### Customizing Templates
 

@@ -7,12 +7,14 @@ module Photish
       include Photish::Gallery::Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
-      attr_reader :qualities
+      attr_reader :qualities,
+                  :url_info
 
-      def initialize(path, qualities)
+      def initialize(path, qualities, url_info)
         super
         @path = path
         @qualities = qualities
+        @url_info = url_info
       end
 
       def name
@@ -20,7 +22,7 @@ module Photish
       end
 
       def base_url_parts
-        []
+        [url_info.base].flatten.compact
       end
 
       def plugin_type

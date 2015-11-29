@@ -14,7 +14,12 @@ describe Photish::Gallery::Collection do
     FileUtils.remove_entry_secure @dir
   end
 
-  subject { Photish::Gallery::Collection.new(@dir, [OpenStruct.new(name: 'low')]) }
+  let(:url_host) { nil }
+  let(:url_base) { nil }
+
+  subject { Photish::Gallery::Collection.new(@dir, 
+                                             [OpenStruct.new(name: 'low')],
+                                             OpenStruct.new(host: url_host, base: url_base)) }
 
   context '#albums' do
     it 'crawls the albums' do
@@ -71,8 +76,35 @@ describe Photish::Gallery::Collection do
   end
 
   context '#url' do
-    it 'is the snake version of the name with html file' do
-      expect(subject.url).to eq('/index.html')
+    context 'no URL config provided' do
+      it 'is the index at the root' do
+        expect(subject.url).to eq('/index.html')
+      end
+    end
+
+    context 'host is provieded' do
+      let(:url_host) { 'https://mysite.com' }
+
+      it 'is the index at the root with host' do
+        expect(subject.url).to eq('https://mysite.com/index.html')
+      end
+    end
+
+    context 'base is provided' do
+      let(:url_base) { 'subdir' }
+
+      it 'is the index within the base' do
+        expect(subject.url).to eq('/subdir/index.html')
+      end
+    end
+
+    context 'base and host are provided' do
+      let(:url_host) { 'https://mysite.com' }
+      let(:url_base) { 'subdir' }
+
+      it 'is the index within the base' do
+        expect(subject.url).to eq('https://mysite.com/subdir/index.html')
+      end
     end
   end
 

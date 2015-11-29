@@ -8,6 +8,9 @@ module Photish
                :params,
                to: :quality, prefix: true, allow_nil: true
 
+      delegate :url_info,
+               to: :parent, allow_nil: true
+
       attr_reader :path
 
       def initialize(parent, path, quality)

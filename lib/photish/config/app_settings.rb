@@ -2,7 +2,7 @@ module Photish
   module Config
     class AppSettings
       def initialize(runtime_config)
-        @runtime_config = compact_symbolize(runtime_config)
+        @runtime_config = symbolize(runtime_config)
       end
 
       def config
@@ -20,12 +20,12 @@ module Photish
       end
 
       def file_config
-        compact_symbolize(FileConfig.new(file_config_location)
+        symbolize(FileConfig.new(file_config_location)
                                             .hash)
       end
 
       def default_config
-        compact_symbolize(DefaultConfig.new.hash)
+        symbolize(DefaultConfig.new.hash)
       end
 
       def file_config_location
@@ -33,9 +33,8 @@ module Photish
                         .path
       end
 
-      def compact_symbolize(hash)
+      def symbolize(hash)
         (hash || {})
-          .compact
           .deep_symbolize_keys
       end
     end

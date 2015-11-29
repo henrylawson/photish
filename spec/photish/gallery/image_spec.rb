@@ -60,4 +60,8 @@ class ImageParent
   def base_url_parts
     ['pets', 'cute-dog']
   end
+
+  def url_info
+    OpenStruct.new(host: '/')
+  end
 end
