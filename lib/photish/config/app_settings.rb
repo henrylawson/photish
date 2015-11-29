@@ -20,16 +20,16 @@ module Photish
       end
 
       def file_config
-        compact_symbolize(Config::FileConfig.new(file_config_location)
+        compact_symbolize(FileConfig.new(file_config_location)
                                             .hash)
       end
 
       def default_config
-        compact_symbolize(Config::DefaultConfig.new.hash)
+        compact_symbolize(DefaultConfig.new.hash)
       end
 
       def file_config_location
-        Config::Location.new(runtime_config[:site_dir])
+        FileConfigLocation.new(runtime_config[:site_dir])
                         .path
       end
 

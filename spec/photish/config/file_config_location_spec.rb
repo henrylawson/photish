@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Photish::Config::Location do
+describe Photish::Config::FileConfigLocation do
   context '#path' do
-    subject { Photish::Config::Location.new(site_dir) }
+    subject { Photish::Config::FileConfigLocation.new(site_dir) }
 
     context 'file exists' do
       before(:each) do
@@ -16,7 +16,7 @@ describe Photish::Config::Location do
 
       context 'no site directory provided' do
         let(:site_dir) { nil }
-        let(:location) { File.join(Dir.pwd, Photish::Config::Location::FILE_NAME) }
+        let(:location) { File.join(Dir.pwd, Photish::Config::FileConfigLocation::FILE_NAME) }
 
         it 'config file is in current working directory' do
           expect(subject.path).to eq(location)
@@ -25,7 +25,7 @@ describe Photish::Config::Location do
 
       context 'site directory provided' do
         let(:site_dir) { '/tmp/site_dir' }
-        let(:location) { File.join(site_dir, Photish::Config::Location::FILE_NAME) }
+        let(:location) { File.join(site_dir, Photish::Config::FileConfigLocation::FILE_NAME) }
         
         it 'config is in the site directory' do
           expect(subject.path).to eq(location)

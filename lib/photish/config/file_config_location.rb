@@ -1,6 +1,6 @@
 module Photish
   module Config
-    class Location
+    class FileConfigLocation
       FILE_NAME = 'config.yml'
 
       def initialize(site_dir)
