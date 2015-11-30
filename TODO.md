@@ -21,3 +21,4 @@
 1. Add timestamp to file log appender and any other details to make it more
    useable
 1. Video transcoding and template rendering
+1. Review gem dependencies - remove what is not needed
