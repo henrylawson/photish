@@ -26,11 +26,5 @@ module Photish::Plugin::FooterLinks
     end
     doc.to_html
   end
-
-  private
-
-  def text(link_text, seperator)
-
-  end
 end
 
