@@ -52,19 +52,24 @@ module Photish
       end
 
       def setup_stdout_output
-        Logging.appenders.stdout(
+        stdout_appender = Logging.appenders.stdout(
           'stdout',
           layout: Logging.layouts.pattern(
             pattern: '[%d] %-5l %c: %m\n',
             color_scheme: 'bright'
           )
         )
-        Logging.logger.root.add_appenders('stdout')
+        Logging.logger.root.add_appenders(stdout_appender)
       end
 
       def setup_file_output
         FileUtils.mkdir_p('log')
-        file_appender = Logging.appenders.file('log/photish.log')
+        file_appender = Logging.appenders.file(
+           'log/photish.log',
+           layout: Logging.layouts.pattern(
+              pattern: '[%d] %-5l %c: %m\n',
+           )
+        )
         Logging.logger.root.add_appenders(file_appender)
       end
     end

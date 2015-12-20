@@ -2,8 +2,7 @@
 
 ## In Progress
 
-1. Add timestamp to file log appender and any other details to make it more
-   usable
+1. Review gem dependencies - remove what is not needed, update what is needed
 
 ## Backlog
 
@@ -19,5 +18,4 @@
 1. Provide generic way to override config from arguments to allow for host name
    override on deploy etc.
 1. Video transcoding and template rendering
-1. Review gem dependencies - remove what is not needed, update what is needed
 1. Thread pooling and parallel forking for transcodes
