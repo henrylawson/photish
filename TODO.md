@@ -2,6 +2,7 @@
 
 ## In Progress
 
+1. Work out why coverage has dropped so dramatically
 1. Change `init` to have `--example` and normal for barebones, add `Gemfile` to
    `init`
 
