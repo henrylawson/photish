@@ -7,7 +7,7 @@ require 'photish/rake/task'
 RSpec::Core::RakeTask.new(:spec)
 
 Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format pretty"
+  t.cucumber_opts = "features --format pretty --tags ~@wip"
 end
 
 desc 'Gather code climate results'

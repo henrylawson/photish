@@ -14,6 +14,7 @@ module Photish
       end
 
       desc "init", "Creates a basic Photish site structure"
+      option :example, type: :boolean
       def init
         Photish::Command::Init.new(options).execute
       end

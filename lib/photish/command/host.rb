@@ -59,7 +59,7 @@ module Photish
       def regenerate_entire_site
         log.info "Regenerating site"
         Photish::Command::Generate.new(runtime_config)
-                                   .execute
+                                  .execute
       end
     end
   end

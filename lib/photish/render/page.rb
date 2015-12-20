@@ -9,6 +9,7 @@ module Photish
       end
 
       def render(models)
+        return template_missing unless File.exist?(template_file)
         Array(models).each do |model|
           rendered_model = render_template_and_layout(model)
           output_model_file = relative_to_output_dir(model.url_parts)
@@ -27,6 +28,10 @@ module Photish
                   :layout_file,
                   :output_dir,
                   :log
+
+      def template_missing
+        log.info "Template not found #{template_file}, skipping rendering"
+      end
 
       def relative_to_output_dir(url_parts)
         File.join(output_dir, url_parts)
