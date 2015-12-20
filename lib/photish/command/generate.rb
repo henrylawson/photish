@@ -2,9 +2,7 @@ module Photish
   module Command
     class Generate < Base
       def run
-        log_important_config_values
         load_all_plugins
-        log_album_and_photo_names
         render_whole_site
         log.info 'Site generation completed successfully'
       end
@@ -22,18 +20,6 @@ module Photish
 
       def load_all_plugins
         Photish::Plugin::Repository.reload(log, site_dir)
-      end
-
-      def log_important_config_values
-        log.info "Photo directory: #{photo_dir}"
-        log.info "Site directory: #{site_dir}"
-        log.info "Output directory: #{output_dir}"
-      end
-
-      def log_album_and_photo_names
-        collection.albums.each do |album|
-          log.info "Found album, #{album.name} with photos: #{album.photos.map(&:name)}"
-        end
       end
 
       def render_whole_site
