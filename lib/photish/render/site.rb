@@ -9,6 +9,7 @@ module Photish
       end
 
       def all_for(collection)
+        delete_non_known_image_files
         move_non_ignored_site_contents
 
         collection_template.render(collection)
@@ -24,6 +25,15 @@ module Photish
                   :site_dir,
                   :output_dir,
                   :max_workers
+
+      def delete_non_known_image_files
+        files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
+          relative_file_path = f.gsub(/#{output_dir}\/?/, '')
+          File.file?(f) && change_manifest.keys.exclude?(relative_file_path)
+        end
+        puts files_to_delete
+        FileUtils.rm_rf(files_to_delete)
+      end
 
       def move_non_ignored_site_contents
         FileUtils.mkdir_p(output_dir)
@@ -68,6 +78,10 @@ module Photish
 
       def templates_dir
         '_templates'
+      end
+
+      def change_manifest
+        ChangeManifest.new(output_dir)
       end
     end
   end

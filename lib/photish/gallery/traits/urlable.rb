@@ -6,6 +6,10 @@ module Photish
           [host, url_parts].flatten.join('/')
         end
 
+        def url_path
+          url_parts.join('/')
+        end
+
         def url_parts
           base_url_parts + [url_end]
         end

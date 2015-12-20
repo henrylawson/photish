@@ -16,7 +16,7 @@ module Photish
           Thread.new do
             begin
               while image = image_queue.pop(true)
-                convert(image) if changed?(output_path(image), image.path)
+                convert(image) if changed?(image.url_path, image.path)
               end
             rescue ThreadError => e
               log.info "Expected exception, queue is empty #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
@@ -47,7 +47,7 @@ module Photish
       def convert(image)
         create_parent_directories(image)
         convert_with_imagemagick(image)
-        record(output_path(image), image.path)
+        record(image.url_path, image.path)
       end
 
       def convert_with_imagemagick(image)

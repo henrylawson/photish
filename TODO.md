@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Cleanup orphaned files
+1. Cleanup orphaned photo files
 
 ## Backlog
 

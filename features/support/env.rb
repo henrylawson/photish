@@ -7,8 +7,16 @@ require 'retriable'
 require 'uri'
 require 'net/http'
 require 'anemone'
+require 'rspec'
 
 Before do
   set_environment_variable('COVERAGE', 'true')
   @working_directory = File.join('tmp', 'aruba')
 end
+
+RETRY_OPTIONS = {
+  tries: 10,
+  base_interval: 0.5,
+  on: [RSpec::Expectations::ExpectationNotMetError,
+       Errno::ECONNREFUSED]
+}

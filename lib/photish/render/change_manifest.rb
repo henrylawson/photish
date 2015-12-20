@@ -6,9 +6,7 @@ module Photish
       end
 
       def record(key, file_path = nil)
-        update do |db|
-          db[key] = md5_of_file(file_path || key)
-        end
+        db[key] = md5_of_file(file_path || key)
       end
 
       def changed?(key, file_path = nil)
@@ -16,7 +14,11 @@ module Photish
       end
 
       def flush_to_disk
-        File.open(db_file, 'w') { |f| f.write((@db || {}).to_yaml) }
+        File.open(db_file, 'w') { |f| f.write((db || {}).to_yaml) }
+      end
+
+      def keys
+        db.keys
       end
 
       private
@@ -28,21 +30,11 @@ module Photish
       end
       
       def old_md5_of_file(file_path)
-        read_from_file[file_path]
+        db[file_path]
       end
 
-      def update
-        db = read_from_file
-        yield(db)
-        write_to_file(db)
-      end
-
-      def read_from_file
+      def db
         @db ||= File.exist?(db_file) ? YAML.load_file(db_file) : {}
-      end
-
-      def write_to_file(db)
-        @db = db
       end
 
       def db_file

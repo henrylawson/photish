@@ -39,6 +39,7 @@ Feature: Photish
 
     When I remove an album of photos
     Then the album should be gone
+    And the album generated files should be gone
 
     When I edit a template
     Then I should see the change appear in the template
