@@ -1,7 +1,6 @@
 require 'simplecov'
-require 'codeclimate-test-reporter'
 SimpleCov.command_name 'cucumber'
-SimpleCov.start CodeClimate::TestReporter.configuration.profile
+SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..', '..'))
 
 require 'pry'
 require 'retriable'
