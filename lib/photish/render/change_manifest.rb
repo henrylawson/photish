@@ -17,10 +17,6 @@ module Photish
         File.open(db_file, 'w') { |f| f.write((db || {}).to_yaml) }
       end
 
-      def keys
-        db.keys
-      end
-
       private
 
       attr_reader :output_dir

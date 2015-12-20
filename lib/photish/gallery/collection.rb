@@ -29,6 +29,13 @@ module Photish
         Photish::Plugin::Type::Collection
       end
 
+      def all_url_paths
+        [url_path,
+         all_albums.map(&:url_path),
+         all_photos.map(&:url_path),
+         all_images.map(&:url_path)].flatten
+      end
+
       private
 
       attr_reader :path
