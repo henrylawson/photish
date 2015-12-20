@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Add feature test for change and regenerate
+1. Cleanup orphaned files
 
 ## Backlog
 
