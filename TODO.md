@@ -2,7 +2,9 @@
 
 ## In Progress
 
-1. Review gem dependencies - remove what is not needed, update what is needed
+1. More intelligent regeneration based on changes, delete files in output not
+   created by generator
+1. Thread pooling and parallel forking for transcodes
 
 ## Backlog
 
@@ -13,9 +15,6 @@
    `sitemap.xml`
 1. Share on RubyWebToolkit, StaticGen, etc
 1. RDoc documentation for classes, perhaps use the badge too
-1. More intelligent regeneration based on changes, delete files in output not
-   created by generator
 1. Provide generic way to override config from arguments to allow for host name
    override on deploy etc.
 1. Video transcoding and template rendering
-1. Thread pooling and parallel forking for transcodes
