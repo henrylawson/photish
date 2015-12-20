@@ -1,10 +1,11 @@
 module Photish
   module Render
     class Site
-      def initialize(templates, site_dir, output_dir)
+      def initialize(templates, site_dir, output_dir, max_workers)
         @templates = templates
         @site_dir = site_dir
         @output_dir = output_dir
+        @max_workers = max_workers
       end
 
       def all_for(collection)
@@ -21,7 +22,8 @@ module Photish
 
       attr_reader :templates,
                   :site_dir,
-                  :output_dir
+                  :output_dir,
+                  :max_workers
 
       def move_non_ignored_site_contents
         FileUtils.mkdir_p(output_dir)
@@ -29,7 +31,7 @@ module Photish
       end
 
       def image_conversion
-        Photish::Render::ImageConversion.new(output_dir)
+        Photish::Render::ImageConversion.new(output_dir, max_workers)
       end
 
       def album_template

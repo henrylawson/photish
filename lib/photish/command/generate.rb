@@ -17,6 +17,7 @@ module Photish
                :qualities,
                :templates,
                :url,
+               :max_workers,
                to: :config
 
       def load_all_plugins
@@ -39,7 +40,8 @@ module Photish
       def render_whole_site
         Photish::Render::Site.new(templates,
                                   site_dir,
-                                  output_dir)
+                                  output_dir,
+                                  max_workers)
                              .all_for(collection)
       end
 

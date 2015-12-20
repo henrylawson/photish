@@ -1,17 +1,18 @@
 module Photish
   module Render
     class ImageConversion
-      def initialize(output_dir)
+      def initialize(output_dir, max_workers)
         @output_dir = output_dir
+        @max_workers = max_workers
         @log = Logging.logger[self]
       end
 
       def render(images)
         image_queue = to_queue(images)
 
-        log.info "Rendering #{images.count} across #{max_cpus} threads"
+        log.info "Rendering #{images.count} across #{max_workers} threads"
 
-        workers = (0...max_cpus).map do
+        workers = (0...max_workers).map do
           Thread.new do
             begin
               while image = image_queue.pop(true)
@@ -29,7 +30,8 @@ module Photish
       private
 
       attr_reader :output_dir,
-                  :log
+                  :log,
+                  :max_workers
 
       delegate :record,
                :changed?,
@@ -63,10 +65,6 @@ module Photish
 
       def create_parent_directories(image)
         FileUtils.mkdir_p(File.join(output_dir, image.base_url_parts))
-      end
-
-      def max_cpus
-        Facter.value('processors')['count']
       end
 
       def change_manifest
