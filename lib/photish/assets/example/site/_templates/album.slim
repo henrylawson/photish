@@ -6,7 +6,7 @@ div.album
     - photos.each do |photo|
       div.album-photo
         a href=photo.url title=photo.name
-          img src=photo.images.find { |i|i.quality_name=='Low' }.url alt=photo.name
+          img src=photo.images.find{ |i|i.quality_name=='Low' }.url alt=photo.name
 
 div.sub-albums
   - albums.each do |album|
@@ -18,4 +18,4 @@ div.sub-albums
         - album.photos.each do |photo|
           div.album-photo
             a href=photo.url title=photo.name
-              img src=photo.images.find { |i| i.quality_name == 'Low' }.url alt=photo.name
+              img src=photo.images.find{ |i| i.quality_name == 'Low' }.url alt=photo.name

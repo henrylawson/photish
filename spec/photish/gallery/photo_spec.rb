@@ -143,8 +143,4 @@ class PhotoParentParent
   def url
     '/photo-parent-parent'
   end
-
-  def parents_and_me
-    [self]
-  end
 end
