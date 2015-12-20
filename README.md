@@ -567,10 +567,10 @@ To develop:
 
 To release:
 
+    $ vim lib/photish/version.rb      # update version
     $ git add -p                      # add in changed files
     $ git commit -m 'Final commit'    # finish up changes
     $ rake                            # ensure all tests pass
-    $ vim lib/photish/version.rb      # update version
     $ rake release                    # release to rubygems
 
 ## Contributing
