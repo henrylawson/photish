@@ -20,21 +20,26 @@ module Photish
         File.open(db_file, 'w') { |f| f.write((db || {}).to_yaml) }
       end
 
+      def preload
+        db
+      end
+
       private
 
       attr_reader :output_dir,
                   :dirty
 
       def checksum_of_file(file_path)
-        XXhash.xxh32_stream(File.open(file_path))
+        Digest::MD5.file(file_path).hexdigest
       end
-      
+
       def old_checksum_of_file(file_path)
         db[file_path]
       end
 
       def db
-        @db ||= File.exist?(db_file) ? YAML.load_file(db_file) : {}
+        return @db if @db
+        @db = File.exist?(db_file) ? YAML.load_file(db_file) : {}
       end
 
       def db_file

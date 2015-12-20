@@ -34,7 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "logging", "~> 2.0"
   spec.add_dependency "listen", "~> 3.0"
   spec.add_dependency "facter", "~> 2.4"
-  spec.add_dependency "xxhash", "~> 0.3.0"
 
   spec.add_development_dependency "anemone", "~> 0.7"
   spec.add_development_dependency "bundler", "~> 1.10"

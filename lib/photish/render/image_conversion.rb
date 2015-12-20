@@ -12,6 +12,7 @@ module Photish
 
         log.info "Rendering #{images.count} across #{max_workers} threads"
 
+        change_manifest.preload
         workers = (0...max_workers).map do
           Thread.new do
             begin

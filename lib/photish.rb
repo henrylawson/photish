@@ -14,7 +14,6 @@ require 'filemagic'
 require 'recursive_open_struct'
 require 'cgi'
 require 'facter'
-require 'xxhash'
 
 # Photish
 require 'photish/plugin/type'
