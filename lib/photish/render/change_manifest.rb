@@ -5,14 +5,14 @@ module Photish
         @output_dir = output_dir
       end
 
-      def record(key, file_path)
+      def record(key, file_path = nil)
         update do |db|
-          db[key] = md5_of_file(file_path)
+          db[key] = md5_of_file(file_path || key)
         end
       end
 
-      def changed?(key, file_path)
-        md5_of_file(file_path) != old_md5_of_file(key)
+      def changed?(key, file_path = nil)
+        md5_of_file(file_path || key) != old_md5_of_file(key)
       end
 
       def flush_to_disk

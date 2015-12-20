@@ -2,9 +2,7 @@
 
 ## In Progress
 
-1. More intelligent regeneration based on changes, delete files in output not
-   created by generator
-1. Thread pooling and parallel forking for transcodes
+1. Add feature test for change and regenerate
 
 ## Backlog
 
