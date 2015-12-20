@@ -13,6 +13,7 @@ require 'thor'
 require 'filemagic'
 require 'recursive_open_struct'
 require 'cgi'
+require 'facter'
 
 # Photish
 require 'photish/plugin/type'
