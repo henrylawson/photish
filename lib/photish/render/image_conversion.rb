@@ -15,7 +15,7 @@ module Photish
           Thread.new do
             begin
               while image = image_queue.pop(true)
-                convert(image)
+                convert(image) if changed?(output_path(image), image.path)
               end
             rescue ThreadError => e
               log.info "Expected exception, queue is empty #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
@@ -23,12 +23,18 @@ module Photish
           end
         end
         workers.map(&:join)
+        flush_to_disk
       end
 
       private
 
       attr_reader :output_dir,
                   :log
+
+      delegate :record,
+               :changed?,
+               :flush_to_disk,
+               to: :change_manifest
 
       def to_queue(images)
         image_queue = Queue.new
@@ -39,15 +45,20 @@ module Photish
       def convert(image)
         create_parent_directories(image)
         convert_with_imagemagick(image)
+        record(output_path(image), image.path)
       end
 
       def convert_with_imagemagick(image)
         MiniMagick::Tool::Convert.new do |convert|
           convert << image.path
           convert.merge!(image.quality_params)
-          convert << File.join(output_dir, image.url_parts)
+          convert << output_path(image)
           log.info "Performing image conversion #{convert.command}"
         end
+      end
+
+      def output_path(image)
+        File.join(output_dir, image.url_parts)
       end
 
       def create_parent_directories(image)
@@ -56,6 +67,10 @@ module Photish
 
       def max_cpus
         Facter.value('processors')['count']
+      end
+
+      def change_manifest
+        @change_manifest ||= ChangeManifest.new(output_dir)
       end
     end
   end

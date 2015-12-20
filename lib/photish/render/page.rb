@@ -10,6 +10,17 @@ module Photish
 
       def render(models)
         return template_missing unless File.exist?(template_file)
+        render_all(models)
+      end
+
+      private
+
+      attr_reader :template_file,
+                  :layout_file,
+                  :output_dir,
+                  :log
+
+      def render_all(models)
         Array(models).each do |model|
           rendered_model = render_template_and_layout(model)
           output_model_file = relative_to_output_dir(model.url_parts)
@@ -21,13 +32,6 @@ module Photish
           File.write(output_model_file, rendered_model)
         end
       end
-
-      private
-
-      attr_reader :template_file,
-                  :layout_file,
-                  :output_dir,
-                  :log
 
       def template_missing
         log.info "Template not found #{template_file}, skipping rendering"

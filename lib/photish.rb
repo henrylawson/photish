@@ -44,6 +44,7 @@ require 'photish/gallery/collection'
 require 'photish/render/page'
 require 'photish/render/site'
 require 'photish/render/image_conversion'
+require 'photish/render/change_manifest'
 require 'photish/rake/task'
 require 'photish/version'
 
