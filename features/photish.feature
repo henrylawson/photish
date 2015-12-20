@@ -17,6 +17,8 @@ Feature: Photish
     And the exit status should be 0
 
   Scenario: Generates an example site and runs it
+    Given the default aruba exit timeout is 60 seconds
+
     When I run `photish init --example`
     Then the output should contain "Photish site initiated successfully"
     And the exit status should be 0
@@ -31,7 +33,17 @@ Feature: Photish
     When I run `photish host` interactively
     Then the site should be available via HTTP
     And all 26 pages and images should be available
-    And not contain any dead links
+
+    When I add an album of photos
+    Then the album should appear
+
+    When I remove an album of photos
+    Then the album should be gone
+
+    When I edit a template
+    Then I should see the change appear in the template
+
+    And all 26 pages and images should be available
 
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"

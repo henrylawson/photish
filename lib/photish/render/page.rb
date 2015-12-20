@@ -10,7 +10,6 @@ module Photish
 
       def render(models)
         return template_missing unless File.exist?(template_file)
-        return no_changes unless changed?(template_file) || changed?(layout_file)
         render_all(models)
       end
 
@@ -20,11 +19,6 @@ module Photish
                   :layout_file,
                   :output_dir,
                   :log
-
-      delegate :record,
-               :changed?,
-               :flush_to_disk,
-               to: :change_manifest
 
       def render_all(models)
         Array(models).each do |model|
@@ -37,18 +31,10 @@ module Photish
           FileUtils.mkdir_p(output_model_dir)
           File.write(output_model_file, rendered_model)
         end
-
-        record(template_file)
-        record(layout_file)
-        flush_to_disk
       end
 
       def template_missing
         log.info "Template not found #{template_file}, skipping rendering"
-      end
-
-      def no_changes
-        log.info "No changes for template or layout, skipping rendering"
       end
 
       def relative_to_output_dir(url_parts)
@@ -67,10 +53,6 @@ module Photish
 
       def layout
         @layout ||= Tilt.new(layout_file)
-      end
-
-      def change_manifest
-        @change_manifest ||= ChangeManifest.new(output_dir)
       end
     end
   end
