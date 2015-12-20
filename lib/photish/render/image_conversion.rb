@@ -10,7 +10,7 @@ module Photish
       def render(images)
         image_queue = to_queue(images)
 
-        log.info "Rendering #{images.count} across #{max_workers} threads"
+        log.info "Rendering #{images.count} images across #{max_workers} threads"
 
         change_manifest.preload
         workers = (0...max_workers).map do
