@@ -32,7 +32,7 @@ and running:
    [Nokogiri](http://www.nokogiri.org/tutorials/installing_nokogiri.html) are
    installed (see [Dependencies](#dependencies))
 1. Install Photish `gem install photish`
-1. Create a base project with `photish init`
+1. Create a base project with `photish init --example`
 1. Generate the HTML using `photish generate`
 1. Run a local HTTP server to view the site with `photish host`
 1. View your photo site at [http://localhost:9876](http://localhost:9876/)
@@ -205,6 +205,10 @@ Once you have photish installed. Get started with the following commands:
 
 A skeleton site can be created by running the below command inside the
 `my_new_photo_site` folder:
+
+    $ photish init --example
+
+A barebones site can be created with:
 
     $ photish init
 
