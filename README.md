@@ -21,6 +21,13 @@ information, Photish creates a complete static website that can be hosted on an
 [NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
 even on [Github Pages](https://pages.github.com/).
 
+Photish has been created with speed and efficiency in mind. Threads are used
+to parallelize image transcoding to achieve maximum utilization of your CPU
+during generation. A cache file is then used to ensure that unless the image
+has changed, it is not needlessly regenerated. This results in a responsive
+and fast local development environment, making it easy to perfect the design
+of your photo based website without having to wait for regeneration.
+
 ## Getting Started
 
 It is strongly recommended to read through the [Installation](#installation)
