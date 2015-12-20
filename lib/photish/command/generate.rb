@@ -32,8 +32,7 @@ module Photish
 
       def log_album_and_photo_names
         collection.albums.each do |album|
-          log.info album.name
-          log.info album.photos.map(&:name)
+          log.info "Found album, #{album.name} with photos: #{album.photos.map(&:name)}"
         end
       end
 

@@ -3,29 +3,33 @@ module Photish
     class ChangeManifest
       def initialize(output_dir)
         @output_dir = output_dir
+        @dirty = false
       end
 
       def record(key, file_path = nil)
-        db[key] = md5_of_file(file_path || key)
+        @dirty = true
+        db[key] = checksum_of_file(file_path || key)
       end
 
       def changed?(key, file_path = nil)
-        md5_of_file(file_path || key) != old_md5_of_file(key)
+        checksum_of_file(file_path || key) != old_checksum_of_file(key)
       end
 
       def flush_to_disk
+        return unless dirty
         File.open(db_file, 'w') { |f| f.write((db || {}).to_yaml) }
       end
 
       private
 
-      attr_reader :output_dir
+      attr_reader :output_dir,
+                  :dirty
 
-      def md5_of_file(file_path)
-        Digest::MD5.file(file_path).hexdigest
+      def checksum_of_file(file_path)
+        XXhash.xxh32_stream(File.open(file_path))
       end
       
-      def old_md5_of_file(file_path)
+      def old_checksum_of_file(file_path)
         db[file_path]
       end
 

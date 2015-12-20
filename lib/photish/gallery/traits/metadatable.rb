@@ -4,7 +4,7 @@ module Photish
       module Metadatable
         def metadata
           return unless File.exist?(metadata_file)
-          RecursiveOpenStruct.new(YAML.load_file(metadata_file))
+          @metadata ||= RecursiveOpenStruct.new(YAML.load_file(metadata_file))
         end
 
         private

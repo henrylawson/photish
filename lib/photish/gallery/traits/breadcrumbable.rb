@@ -17,7 +17,8 @@ module Photish
         end
 
         def parents_and_me
-          [parent.try(:parents_and_me), self].flatten.compact
+          @parents_and_me ||= [parent.try(:parents_and_me),
+                               self].flatten.compact
         end
 
         private

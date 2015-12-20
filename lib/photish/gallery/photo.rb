@@ -21,11 +21,11 @@ module Photish
       end
 
       def images
-        qualities.map { |quality| Photish::Gallery::Image.new(self, path, quality) }
+        @images ||= qualities.map { |quality| Photish::Gallery::Image.new(self, path, quality) }
       end
 
       def exif
-        MiniExiftool.new(path)
+        @exif ||= MiniExiftool.new(path)
       end
 
       def plugin_type

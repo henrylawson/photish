@@ -11,19 +11,19 @@ module Photish
         end
 
         def all_albums
-          albums.map { |album| [album] + album.all_albums }
-                .flatten
+          @all_albums ||= albums.map { |album| [album] + album.all_albums }
+                                .flatten
         end
 
         def all_photos
-          all_albums.map(&:photos)
-                    .concat(self.try(:photos) || [])
-                    .flatten
+          @all_photos ||= all_albums.map(&:photos)
+                                    .concat(self.try(:photos) || [])
+                                    .flatten
         end
 
         def all_images
-          all_photos.map(&:images)
-                    .flatten
+          @all_images ||= all_photos.map(&:images)
+                                    .flatten
         end
       end
     end
