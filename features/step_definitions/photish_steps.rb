@@ -22,21 +22,23 @@ Then(/^the site should be available via HTTP$/) do
 end
 
 Then(/^all (.*) pages and images should be available$/) do |number|
-  pages = []
-  Anemone.crawl(@uri) do |anemone|
-    anemone.on_every_page do |page|
-      pages << page
+  Retriable.retriable(RETRY_OPTIONS) do
+    pages = []
+    Anemone.crawl(@uri) do |anemone|
+      anemone.on_every_page do |page|
+        pages << page
+      end
     end
-  end
-  expect(pages.count).to eq(number.to_i)
+    expect(pages.count).to eq(number.to_i)
 
-  error_message = -> do
-    failed_urls = pages.reject! { |p| p.code == 200 }
-                        .map { |p| "=> #{p.code} | #{p.url}\n" }
-                        .join
-    "Got a non 200 for URLs:\n#{failed_urls}"
+    error_message = -> do
+      failed_urls = pages.reject! { |p| p.code == 200 }
+                          .map { |p| "=> #{p.code} | #{p.url}\n" }
+                          .join
+      "Got a non 200 for URLs:\n#{failed_urls}"
+    end
+    expect(pages.any? { |page| page.code != 200 }).to be_falsey, error_message
   end
-  expect(pages.any? { |page| page.code != 200 }).to be_falsey, error_message
 end
 
 When(/^I add an album of photos$/) do

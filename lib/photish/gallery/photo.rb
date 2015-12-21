@@ -1,9 +1,9 @@
 module Photish
   module Gallery
     class Photo
-      include Photish::Gallery::Traits::Urlable
-      include Photish::Gallery::Traits::Metadatable
-      include Photish::Gallery::Traits::Breadcrumbable
+      include Traits::Urlable
+      include Traits::Metadatable
+      include Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
       delegate :qualities,

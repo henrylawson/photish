@@ -1,10 +1,10 @@
 module Photish
   module Gallery
     class Collection
-      include Photish::Gallery::Traits::Urlable
-      include Photish::Gallery::Traits::Albumable
-      include Photish::Gallery::Traits::Metadatable
-      include Photish::Gallery::Traits::Breadcrumbable
+      include Traits::Urlable
+      include Traits::Albumable
+      include Traits::Metadatable
+      include Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
       attr_reader :qualities,

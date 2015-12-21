@@ -1,7 +1,7 @@
 module Photish
   module Gallery
     class Image
-      include Photish::Gallery::Traits::Urlable
+      include Traits::Urlable
       include Photish::Plugin::Pluginable
 
       delegate :name,
