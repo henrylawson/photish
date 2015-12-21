@@ -9,6 +9,10 @@ module Photish
         @config ||= RecursiveOpenStruct.new(prioritized_config)
       end
 
+      def version_hash
+        @version_hash ||= Digest::MD5.hexdigest(prioritized_config.to_json)
+      end
+
       private
 
       attr_reader :runtime_config
@@ -17,6 +21,13 @@ module Photish
         {}.merge(default_config)
           .merge(file_config)
           .merge(runtime_config)
+          .merge(derived_config)
+      end
+
+      def derived_config
+        {
+          config_file_location: file_config_location
+        }
       end
 
       def file_config
@@ -30,7 +41,7 @@ module Photish
 
       def file_config_location
         FileConfigLocation.new(runtime_config[:site_dir])
-                        .path
+                          .path
       end
 
       def symbolize(hash)

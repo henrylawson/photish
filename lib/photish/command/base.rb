@@ -21,12 +21,15 @@ module Photish
       attr_reader :runtime_config,
                   :log
 
-      def config
-        @config ||= Photish::Config::AppSettings.new(runtime_config)
-                                                .config
-      end
+      delegate :config,
+               :version_hash,
+               to: :app_settings
 
       private
+
+      def app_settings
+        @app_settings ||= Photish::Config::AppSettings.new(runtime_config)
+      end
 
       def setup_logging
         Photish::Log::Logger.instance.setup_logging(config)

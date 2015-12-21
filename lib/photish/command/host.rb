@@ -17,6 +17,7 @@ module Photish
                :output_dir,
                :site_dir,
                :photo_dir,
+               :config_file_location,
                to: :config
 
       def start_http_server_with_listener

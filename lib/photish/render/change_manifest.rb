@@ -1,7 +1,8 @@
 module Photish
   module Render
     class ChangeManifest
-      def initialize(output_dir)
+      def initialize(version_hash, output_dir)
+        @version_hash = version_hash
         @output_dir = output_dir
         @dirty = false
         @cache = {}
@@ -29,11 +30,13 @@ module Photish
 
       attr_reader :output_dir,
                   :dirty,
-                  :cache
+                  :cache,
+                  :version_hash
 
       def checksum_of_file(file_path)
         cache.fetch(file_path.hash) do |key|
-          cache[key] = Digest::MD5.file(file_path).hexdigest
+          cache[key] = version_hash.to_s +
+                       Digest::MD5.file(file_path).hexdigest
         end
       end
 

@@ -1,9 +1,10 @@
 module Photish
   module Render
     class ImageConversion
-      def initialize(output_dir, max_workers)
+      def initialize(output_dir, max_workers, version_hash)
         @output_dir = output_dir
         @max_workers = max_workers
+        @version_hash = version_hash
         @log = Logging.logger[self]
       end
 
@@ -32,7 +33,8 @@ module Photish
 
       attr_reader :output_dir,
                   :log,
-                  :max_workers
+                  :max_workers,
+                  :version_hash
 
       delegate :record,
                :changed?,
@@ -69,7 +71,7 @@ module Photish
       end
 
       def change_manifest
-        @change_manifest ||= ChangeManifest.new(output_dir)
+        @change_manifest ||= ChangeManifest.new(version_hash, output_dir)
       end
     end
   end

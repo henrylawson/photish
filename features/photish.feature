@@ -42,9 +42,12 @@ Feature: Photish
     And the album generated files should be gone
 
     When I edit a template
-    Then I should see the change appear in the template
-
+    Then the change should appear in the template
     And all 26 pages and images should be available
+
+    When I change the config and a file in the site dir
+    Then the config changes should reflect
+    And all 32 pages and images should be available
 
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"

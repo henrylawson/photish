@@ -79,12 +79,33 @@ Then(/^the album should be gone$/) do
   end
 end
 
+When(/^I change the config and a file in the site dir$/) do
+  config_file = File.join(@working_directory, 'config.yml')
+  config = YAML.load_file(config_file)
+  config['qualities'][2] = { 'name' => 'features', 'params' => ['-resize', '300x300'] }
+  File.open(config_file, 'w') { |f| f.write(config.to_yaml) }
+  FileUtils.touch(File.join(@working_directory, 'site', 'touchfile'))
+end
+
+Then(/^the config changes should reflect$/) do
+  new_image_file = File.join(@working_directory,
+                             'output',
+                             'big-dogs',
+                             'tired-dogs',
+                             'images',
+                             'tired-dogs-features.jpg')
+  Retriable.retriable(RETRY_OPTIONS) do
+    expect(File.exist?(new_image_file)).to be_truthy,
+      "Expected the new image file #{new_image_file} to be created"
+  end
+end
+
 Then(/^the album generated files should be gone$/) do
   expect(File.exist?(@new_album_file)).to be_falsey,
     "File exists #{@new_album_file}, it should be deleted as album gone"
 end
 
-Then(/^I should see the change appear in the template$/) do
+Then(/^the change should appear in the template$/) do
   Retriable.retriable(RETRY_OPTIONS) do
     expect(open(@uri).read).to include('Added by feature test')
   end

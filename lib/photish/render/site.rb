@@ -1,11 +1,12 @@
 module Photish
   module Render
     class Site
-      def initialize(templates, site_dir, output_dir, max_workers)
+      def initialize(templates, site_dir, output_dir, max_workers, version_hash)
         @templates = templates
         @site_dir = site_dir
         @output_dir = output_dir
         @max_workers = max_workers
+        @version_hash = version_hash
       end
 
       def all_for(collection)
@@ -24,7 +25,8 @@ module Photish
       attr_reader :templates,
                   :site_dir,
                   :output_dir,
-                  :max_workers
+                  :max_workers,
+                  :version_hash
 
       def delete_unknown_files(expected_url_paths)
         files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
@@ -40,19 +42,27 @@ module Photish
       end
 
       def image_conversion
-        Photish::Render::ImageConversion.new(output_dir, max_workers)
+        ImageConversion.new(output_dir,
+                            max_workers,
+                            version_hash)
       end
 
       def album_template
-        Photish::Render::Page.new(layout_file, template_album_file, output_dir)
+        Page.new(layout_file,
+                 template_album_file,
+                 output_dir)
       end
 
       def photo_template
-        Photish::Render::Page.new(layout_file, template_photo_file, output_dir)
+        Page.new(layout_file,
+                 template_photo_file,
+                 output_dir)
       end
 
       def collection_template
-        Photish::Render::Page.new(layout_file, template_collection_file, output_dir)
+        Page.new(layout_file,
+                 template_collection_file,
+                 output_dir)
       end
 
       def non_ignored_site_contents

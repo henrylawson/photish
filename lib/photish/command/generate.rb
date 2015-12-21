@@ -26,7 +26,8 @@ module Photish
         Photish::Render::Site.new(templates,
                                   site_dir,
                                   output_dir,
-                                  max_workers)
+                                  max_workers,
+                                  version_hash)
                              .all_for(collection)
       end
 
