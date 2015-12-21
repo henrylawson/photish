@@ -3,8 +3,8 @@ module Photish
     class FileConfigLocation
       FILE_NAME = 'config.yml'
 
-      def initialize(site_dir)
-        @site_dir = site_dir
+      def initialize(config_dir)
+        @config_dir = config_dir
       end
 
       def path
@@ -13,10 +13,10 @@ module Photish
 
       private
 
-      attr_reader :site_dir
+      attr_reader :config_dir
 
       def directory
-        site_dir || Dir.pwd
+        config_dir || Dir.pwd
       end
 
       def config_file_name

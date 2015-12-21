@@ -26,12 +26,12 @@ module Photish
 
       def derived_config
         {
-          config_file_location: file_config_location
+          config_file_location: config_file_location
         }
       end
 
       def file_config
-        symbolize(FileConfig.new(file_config_location)
+        symbolize(FileConfig.new(config_file_location)
                                             .hash)
       end
 
@@ -39,8 +39,8 @@ module Photish
         symbolize(DefaultConfig.new.hash)
       end
 
-      def file_config_location
-        FileConfigLocation.new(runtime_config[:site_dir])
+      def config_file_location
+        FileConfigLocation.new(runtime_config[:config_dir])
                           .path
       end
 
