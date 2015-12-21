@@ -3,17 +3,13 @@ module Photish
     module Traits
       module Breadcrumbable
         def breadcrumbs
-          doc = Nokogiri::HTML::DocumentFragment.parse("")
-          Nokogiri::HTML::Builder.with(doc) do |doc|
-            doc.ul(class: 'breadcrumbs') {
-              parents_and_me.each_with_index do |level, index|
-                doc.li(class: crumb_class(index)) {
-                  doc.a(level.name, href: level.url)
-                }
-              end
-            }
+          html = "<ul class=\"breadcrumbs\">"
+          parents_and_me.each_with_index do |level, index|
+            html << "<li class=\"" << crumb_class(index) << "\">"
+            html << "<a href=\"" << level.url << "\">" << level.name << "</a>"
+            html << "</li>"
           end
-          doc.to_html
+          html << "</ul>"
         end
 
         def parents_and_me

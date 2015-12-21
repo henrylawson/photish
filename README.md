@@ -34,9 +34,8 @@ It is strongly recommended to read through the [Installation](#installation)
 and [Usage](#usage) sections before seriously using Photish, however to get up
 and running:
 
-1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php),
-   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) and
-   [Nokogiri](http://www.nokogiri.org/tutorials/installing_nokogiri.html) are
+1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php) and
+   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are
    installed (see [Dependencies](#dependencies))
 1. Install Photish `gem install photish`
 1. Create a base project with `photish init --example`
@@ -191,8 +190,6 @@ Photish has dependencies on certain utilities:
   conversion
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
-- [Nokogiri](http://www.nokogiri.org/tutorials/installing_nokogiri.html) for
-  XML writing and parsing
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
@@ -521,8 +518,6 @@ called inside the template, it will render the message in bold wrapped in the
 
 **site/_plugins/shout.rb**
 ```ruby
-require 'nokogiri'
-
 module Photish::Plugin::Shout
 
   def self.is_for?(type)

@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 module Photish::Plugin::YellLoud
 
   def self.is_for?(type)
@@ -12,11 +10,7 @@ module Photish::Plugin::YellLoud
   end
 
   def yell_very_loud
-    doc = Nokogiri::HTML::DocumentFragment.parse("")
-    Nokogiri::HTML::Builder.with(doc) do |doc|
-      doc.span("Yelling \"#{name}\" from a plugin!",
-               style: 'font-weight:bold;color:red;font-size:200%;')
-    end
-    doc.to_html
+    text = "Yelling \"#{name}\" from a plugin!"
+    "<span style=\"font-weight:bold;color:red;font-size:200%;\">#{text}</span>"
   end
 end
