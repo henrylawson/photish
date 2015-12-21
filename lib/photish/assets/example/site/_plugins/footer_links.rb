@@ -10,13 +10,6 @@ module Photish::Plugin::FooterLinks
   end
 
   def links_with_seperator(links, seperator)
-    @cached_results ||= {}
-    @cached_results.fetch("#{links}#{seperator}") do |k|
-      @cached_results[k] = render(links, seperator)
-    end
-  end
-
-  def render(links, seperator)
     html = ''
     links.each_with_index do |link, index|
       if index == (links.count - 1)
