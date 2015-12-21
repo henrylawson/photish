@@ -25,7 +25,7 @@ module Photish
         end
 
         def normalized_host
-          url_info.host.try(:chomp, '/')
+          @normalized_host ||= url_info.host.try(:chomp, '/')
         end
 
         def slugify(word)

@@ -25,8 +25,8 @@ module Photish
         @photos ||= Dir.entries(path)
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(path, file) }
-                       .reject { |file| !File.file?(file) }
-                       .reject { |file| !image_format?(file) }
+                       .reject { |file| !File.file?(file) ||
+                                          !image_format?(file) }
                        .map    { |file| Photo.new(self, file) }
       end
 
