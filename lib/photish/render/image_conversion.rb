@@ -41,7 +41,7 @@ module Photish
 
       def to_queue(images)
         image_queue = Queue.new
-        Array(images).each { |image| image_queue << image }
+        Array(images).shuffle.each { |image| image_queue << image }
         image_queue
       end
 

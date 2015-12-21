@@ -4,6 +4,7 @@ module Photish
       def initialize(output_dir)
         @output_dir = output_dir
         @dirty = false
+        @cache = {}
       end
 
       def record(key, file_path = nil)
@@ -27,10 +28,13 @@ module Photish
       private
 
       attr_reader :output_dir,
-                  :dirty
+                  :dirty,
+                  :cache
 
       def checksum_of_file(file_path)
-        Digest::MD5.file(file_path).hexdigest
+        cache.fetch(file_path.hash) do |key|
+          cache[key] = Digest::MD5.file(file_path).hexdigest
+        end
       end
 
       def old_checksum_of_file(file_path)

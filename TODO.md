@@ -2,6 +2,8 @@
 
 ## In Progress
 
+1. Try Rubinius and concurrent page generation
+
 ## Backlog
 
 1. Plugin as a gem to deploy to github pages, netlify, amazon s3
