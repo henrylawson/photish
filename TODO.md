@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Try Rubinius and concurrent page generation
+1. Try ruby that support threads and concurrent page generation
 
 ## Backlog
 
