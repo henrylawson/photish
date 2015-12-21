@@ -26,7 +26,7 @@ module Photish
                        .reject { |file| ['.', '..'].include?(file) }
                        .map    { |file| File.join(path, file) }
                        .reject { |file| !File.file?(file) }
-                       .reject { |file| !FileMagic.new(FileMagic::MAGIC_MIME).file(file).match(formats) }
+                       .reject { |file| !image_format?(file) }
                        .map    { |file| Photo.new(self, file) }
       end
 
@@ -40,6 +40,14 @@ module Photish
                   :parent
 
       alias_method :base_url_name, :name
+
+      def image_format?(file)
+        extension = File.extname(file).split('.').last.try(:downcase)
+        return if extension.nil?
+        MIME::Types.type_for(extension).any? do
+          |mime| mime.to_s.match(formats)
+        end
+      end
 
       def album_class
         self.class

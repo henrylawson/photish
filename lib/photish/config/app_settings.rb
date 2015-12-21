@@ -10,7 +10,7 @@ module Photish
       end
 
       def version_hash
-        @version_hash ||= Digest::MD5.hexdigest(prioritized_config.to_json)
+        @version_hash ||= Digest::MD5.hexdigest(sensitive_config.to_json)
       end
 
       private
@@ -22,6 +22,10 @@ module Photish
           .merge(file_config)
           .merge(runtime_config)
           .merge(derived_config)
+      end
+
+      def sensitive_config
+        prioritized_config.slice('qualities')
       end
 
       def derived_config

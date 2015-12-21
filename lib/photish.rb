@@ -10,10 +10,10 @@ require 'webrick'
 require 'listen'
 require 'yaml'
 require 'thor'
-require 'filemagic'
 require 'recursive_open_struct'
 require 'cgi'
 require 'facter'
+require 'mime-types'
 
 # Photish
 require 'photish/plugin/type'
