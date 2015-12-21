@@ -29,9 +29,10 @@ module Photish
                   :version_hash
 
       def delete_unknown_files(expected_url_paths)
+        path_set = Set.new(expected_url_paths)
         files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
           relative_file_path = f.gsub(/#{output_dir}\/?/, '')
-          File.file?(f) && expected_url_paths.exclude?(relative_file_path)
+          File.file?(f) && !path_set.include?(relative_file_path)
         end
         FileUtils.rm_rf(files_to_delete)
       end

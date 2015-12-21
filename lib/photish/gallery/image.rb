@@ -36,7 +36,7 @@ module Photish
       alias_method :base_url_name, :name
 
       def url_end
-        "#{slugify(basename)}-#{slugify(quality_name)}#{extension}"
+        @url_end ||= "#{slugify(basename)}-#{slugify(quality_name)}#{extension}"
       end
 
       def basename
