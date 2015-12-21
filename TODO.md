@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Try ruby that support threads and concurrent page generation
+1. Coordinators and workers to parallelize generation
 
 ## Backlog
 
