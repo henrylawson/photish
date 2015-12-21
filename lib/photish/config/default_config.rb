@@ -26,7 +26,7 @@ module Photish
             level: 'info'
           },
           url: {
-            host: '/',
+            host: '',
             base: nil
           }
         }

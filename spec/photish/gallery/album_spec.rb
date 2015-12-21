@@ -129,7 +129,7 @@ class AlbumParent
   end
 
   def url_info
-    OpenStruct.new(host: '/')
+    OpenStruct.new(host: '')
   end
 
   def parents_and_me

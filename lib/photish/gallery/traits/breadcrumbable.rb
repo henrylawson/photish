@@ -21,7 +21,7 @@ module Photish
 
         def crumb_class(index)
           crumb_class = 'breadcrumb'
-          crumb_class << ' crumb-' << index
+          crumb_class << ' crumb-' << index.to_s
           crumb_class << ' crumb-first' if index == 0
           crumb_class << ' crumb-last' if index == (parents_and_me.count - 1)
           crumb_class << ' crumb-only' if parents_and_me.count == 1
