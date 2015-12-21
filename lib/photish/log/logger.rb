@@ -22,7 +22,7 @@ module Photish
       private
 
       def logging_level(config)
-        config.logging.level.to_sym
+        config.logging.level.try(:to_sym)
       end
 
       def colorize?(config)
