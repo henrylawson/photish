@@ -7,8 +7,8 @@ module Photish
           site_dir: File.join(Dir.pwd, 'site'),
           photo_dir: File.join(Dir.pwd, 'photos'),
           output_dir: File.join(Dir.pwd, 'output'),
-          workers: Facter.value('processors')['count'],
-          threads: Facter.value('processors')['count'],
+          workers: workers,
+          threads: threads,
           worker_index: 0,
           photish_executable: photish_executable,
           qualities: [
@@ -36,6 +36,14 @@ module Photish
       end
 
       private
+
+      def workers
+        Facter.value('processors')['count'] / 2
+      end
+
+      def threads
+        Facter.value('processors')['count']
+      end
 
       def photish_executable
         File.join(File.dirname(__FILE__),
