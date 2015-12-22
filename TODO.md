@@ -2,7 +2,10 @@
 
 ## In Progress
 
-1. Coordinators and workers to parallelize generation
+1. Document workers and threads
+1. Look at error handling and exiting
+1. Look at stdout stream from multiple processes
+1. Clean up code and see if it reads well with new changes
 
 ## Backlog
 
