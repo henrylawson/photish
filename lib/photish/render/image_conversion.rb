@@ -9,10 +9,23 @@ module Photish
       end
 
       def render(images)
-        preload
-        images.each do |image|
-          convert(image) if changed?(image.url_path, image.path)
+        image_queue = to_queue(images)
+
+        log.info "Rendering #{images.count} images across #{workers} threads"
+
+        change_manifest.preload
+        threads = (0...workers).map do
+          Thread.new do
+            begin
+              while image = image_queue.pop(true)
+                convert(image) if changed?(image.url_path, image.path)
+              end
+            rescue ThreadError => e
+              log.info "Expected exception, queue is empty #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
+            end
+          end
         end
+        threads.map(&:join)
         flush_to_disk
       end
 
@@ -28,6 +41,12 @@ module Photish
                :flush_to_disk,
                :preload,
                to: :change_manifest
+
+      def to_queue(images)
+        image_queue = Queue.new
+        Array(images).shuffle.each { |image| image_queue << image }
+        image_queue
+      end
 
       def convert(image)
         create_parent_directories(image)

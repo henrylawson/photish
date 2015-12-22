@@ -20,7 +20,7 @@ module Photish
 
       def flush_to_disk
         return unless dirty
-        File.open(db_file, 'w') { |f| f.write((db || {}).to_yaml) }
+        File.open(worker_db_file, 'w') { |f| f.write((db || {}).to_yaml) }
       end
 
       def preload
@@ -30,7 +30,8 @@ module Photish
       def self.concat_db_files(output_dir, workers)
         changes = (1..workers).inject({}) do |changes, worker_index|
           file = worker_db_file(output_dir, worker_index)
-          changes.merge(YAML.load_file(file)) if File.exist?(file)
+          changes.merge!(YAML.load_file(file)) if File.exist?(file)
+          changes
         end
         File.open(db_file(output_dir), 'w') { |f| f.write(changes.to_yaml) }
       end
@@ -64,7 +65,7 @@ module Photish
 
       def db
         return @db if @db
-        @db = File.exist?(db_file) ? YAML.load_file(db_file) || {} : {}
+        @db = File.exist?(db_file) ? YAML.load_file(db_file) : {}
       end
 
       def db_file
