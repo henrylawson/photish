@@ -8,6 +8,8 @@ module Photish
           photo_dir: File.join(Dir.pwd, 'photos'),
           output_dir: File.join(Dir.pwd, 'output'),
           workers: Facter.value('processors')['count'],
+          worker_index: 0,
+          photish_executable: 'photish',
           qualities: [
             { name: 'Original',
               params: [] },

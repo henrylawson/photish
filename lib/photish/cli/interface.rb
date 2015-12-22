@@ -4,6 +4,7 @@ module Photish
       package_name "Photish"
 
       desc "generate", "Generates the gallery static site"
+      option :worker_index, type: :numeric
       def generate
         Photish::Command::Generate.new(options).execute
       end

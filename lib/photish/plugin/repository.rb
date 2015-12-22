@@ -11,10 +11,6 @@ module Photish
         def plugins_for(type)
           self.instance.plugins_for(type)
         end
-
-        def all_plugins
-          self.instance.all_plugins
-        end
       end
 
       def reload(log, site_dir)

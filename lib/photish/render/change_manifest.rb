@@ -1,9 +1,10 @@
 module Photish
   module Render
     class ChangeManifest
-      def initialize(version_hash, output_dir)
-        @version_hash = version_hash
+      def initialize(output_dir, worker_index, version_hash)
         @output_dir = output_dir
+        @worker_index = worker_index
+        @version_hash = version_hash
         @dirty = false
         @cache = {}
       end
@@ -26,12 +27,25 @@ module Photish
         db
       end
 
+      def self.concat_db_files(output_dir, workers)
+        changes = (1..workers).inject({}) do |changes, worker_index|
+          file = db_file(output_dir, worker_index)
+          changes.merge(YAML.load_file(file)) if File.exist?(file)
+        end
+        File.open('.changes.yml', 'w') { |f| f.write(changes.to_yaml) }
+      end
+
+      def self.db_file(output_dir, index)
+        db_file = File.join(output_dir, ".changes.#{index}.yml")
+      end
+
       private
 
       attr_reader :output_dir,
                   :dirty,
                   :cache,
-                  :version_hash
+                  :version_hash,
+                  :worker_index
 
       def checksum_of_file(file_path)
         cache.fetch(file_path.hash) do |key|
@@ -50,7 +64,7 @@ module Photish
       end
 
       def db_file
-        File.join(output_dir, '.changes.yml')
+        self.class.db_file(output_dir, worker_index)
       end
     end
   end

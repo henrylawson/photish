@@ -29,7 +29,7 @@ Then(/^all (.*) pages and images should be available$/) do |number|
         pages << page
       end
     end
-    expect(pages.count).to eq(number.to_i)
+    expect(pages.count).to eq(number.to_i), "Found pages #{pages.join("\n")}"
 
     error_message = -> do
       failed_urls = pages.reject! { |p| p.code == 200 }

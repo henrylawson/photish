@@ -14,6 +14,8 @@ require 'recursive_open_struct'
 require 'cgi'
 require 'facter'
 require 'mime-types'
+require 'thread'
+require 'thwait'
 
 # Photish
 require 'photish/plugin/type'

@@ -6,14 +6,15 @@ module Photish
       end
 
       def all_for(collection)
-        delete_unknown_files(collection.all_url_paths)
-        move_non_ignored_site_contents
+        if worker_index == 1
+          delete_unknown_files(collection.all_url_paths)
+          move_non_ignored_site_contents
+          collection_template.render(collection)
+        end
 
-        collection_template.render(collection)
-        album_template.render(collection.all_albums)
-        photo_template.render(collection.all_photos)
-
-        image_conversion.render(collection.all_images)
+        album_template.render(worker_subset(collection.all_albums))
+        photo_template.render(worker_subset(collection.all_photos))
+        image_conversion.render(worker_subset(collection.all_images))
       end
 
       private
@@ -25,7 +26,12 @@ module Photish
                :output_dir,
                :workers,
                :version_hash,
+               :worker_index,
                to: :config
+
+      def worker_subset(items)
+        items.in_groups(workers, false)[worker_index-1] || []
+      end
 
       def delete_unknown_files(expected_url_paths)
         path_set = Set.new(expected_url_paths)
@@ -43,7 +49,7 @@ module Photish
 
       def image_conversion
         ImageConversion.new(output_dir,
-                            workers,
+                            worker_index,
                             version_hash)
       end
 

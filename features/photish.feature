@@ -27,7 +27,7 @@ Feature: Photish
     And a site directory should be created
 
     When I run `photish generate`
-    Then the output should contain "Site generation completed successfully"
+    Then the output should contain "Site generation completed"
     And the exit status should be 0
 
     When I run `photish host` interactively
