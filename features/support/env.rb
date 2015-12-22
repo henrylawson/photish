@@ -12,6 +12,7 @@ require 'rspec'
 Before do
   set_environment_variable('COVERAGE', 'true')
   @working_directory = File.join('tmp', 'aruba')
+  FileUtils.rm_rf(@working_directory)
 end
 
 RETRY_OPTIONS = {

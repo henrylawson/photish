@@ -29,14 +29,18 @@ module Photish
 
       def self.concat_db_files(output_dir, workers)
         changes = (1..workers).inject({}) do |changes, worker_index|
-          file = db_file(output_dir, worker_index)
+          file = worker_db_file(output_dir, worker_index)
           changes.merge(YAML.load_file(file)) if File.exist?(file)
         end
-        File.open('.changes.yml', 'w') { |f| f.write(changes.to_yaml) }
+        File.open(db_file(output_dir), 'w') { |f| f.write(changes.to_yaml) }
       end
 
-      def self.db_file(output_dir, index)
-        db_file = File.join(output_dir, ".changes.#{index}.yml")
+      def self.db_file(output_dir)
+        File.join(output_dir, '.changes.yml')
+      end
+
+      def self.worker_db_file(output_dir, index)
+        File.join(output_dir, ".changes.#{index}.yml")
       end
 
       private
@@ -60,11 +64,15 @@ module Photish
 
       def db
         return @db if @db
-        @db = File.exist?(db_file) ? YAML.load_file(db_file) : {}
+        @db = File.exist?(db_file) ? YAML.load_file(db_file) || {} : {}
       end
 
       def db_file
-        self.class.db_file(output_dir, worker_index)
+        self.class.db_file(output_dir)
+      end
+
+      def worker_db_file
+        self.class.worker_db_file(output_dir, worker_index)
       end
     end
   end

@@ -14,6 +14,9 @@ Feature: Photish
     When I run `photish host` interactively
     Then the site should be available via HTTP
     And all 1 pages and images should be available
+
+    When I send the signal "INT" to the command started last
+    Then the output should contain "Photish host has shutdown"
     And the exit status should be 0
 
   Scenario: Generates an example site and runs it

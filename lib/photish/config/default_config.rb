@@ -9,7 +9,7 @@ module Photish
           output_dir: File.join(Dir.pwd, 'output'),
           workers: Facter.value('processors')['count'],
           worker_index: 0,
-          photish_executable: 'photish',
+          photish_executable: photish_executable,
           qualities: [
             { name: 'Original',
               params: [] },
@@ -32,6 +32,17 @@ module Photish
             base: nil
           }
         }
+      end
+
+      private
+
+      def photish_executable
+        File.join(File.dirname(__FILE__),
+                  '..',
+                  '..',
+                  '..',
+                  'exe',
+                  'photish')
       end
     end
   end
