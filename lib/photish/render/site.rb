@@ -1,12 +1,8 @@
 module Photish
   module Render
     class Site
-      def initialize(templates, site_dir, output_dir, max_workers, version_hash)
-        @templates = templates
-        @site_dir = site_dir
-        @output_dir = output_dir
-        @max_workers = max_workers
-        @version_hash = version_hash
+      def initialize(config)
+        @config = config
       end
 
       def all_for(collection)
@@ -22,11 +18,14 @@ module Photish
 
       private
 
-      attr_reader :templates,
-                  :site_dir,
-                  :output_dir,
-                  :max_workers,
-                  :version_hash
+      attr_reader :config
+
+      delegate :templates,
+               :site_dir,
+               :output_dir,
+               :workers,
+               :version_hash,
+               to: :config
 
       def delete_unknown_files(expected_url_paths)
         path_set = Set.new(expected_url_paths)
@@ -44,7 +43,7 @@ module Photish
 
       def image_conversion
         ImageConversion.new(output_dir,
-                            max_workers,
+                            workers,
                             version_hash)
       end
 

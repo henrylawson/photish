@@ -7,7 +7,7 @@ module Photish
           site_dir: File.join(Dir.pwd, 'site'),
           photo_dir: File.join(Dir.pwd, 'photos'),
           output_dir: File.join(Dir.pwd, 'output'),
-          max_workers: Facter.value('processors')['count'],
+          workers: Facter.value('processors')['count'],
           qualities: [
             { name: 'Original',
               params: [] },

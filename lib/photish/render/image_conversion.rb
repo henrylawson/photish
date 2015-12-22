@@ -1,9 +1,9 @@
 module Photish
   module Render
     class ImageConversion
-      def initialize(output_dir, max_workers, version_hash)
+      def initialize(output_dir, workers, version_hash)
         @output_dir = output_dir
-        @max_workers = max_workers
+        @workers = workers
         @version_hash = version_hash
         @log = Logging.logger[self]
       end
@@ -11,10 +11,10 @@ module Photish
       def render(images)
         image_queue = to_queue(images)
 
-        log.info "Rendering #{images.count} images across #{max_workers} threads"
+        log.info "Rendering #{images.count} images across #{workers} threads"
 
         change_manifest.preload
-        workers = (0...max_workers).map do
+        worker_threads = (0...workers).map do
           Thread.new do
             begin
               while image = image_queue.pop(true)
@@ -25,7 +25,7 @@ module Photish
             end
           end
         end
-        workers.map(&:join)
+        worker_threads.map(&:join)
         flush_to_disk
       end
 
@@ -33,7 +33,7 @@ module Photish
 
       attr_reader :output_dir,
                   :log,
-                  :max_workers,
+                  :workers,
                   :version_hash
 
       delegate :record,

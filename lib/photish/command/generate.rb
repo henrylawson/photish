@@ -9,13 +9,10 @@ module Photish
 
       private
 
-      delegate :output_dir,
-               :site_dir,
+      delegate :site_dir,
                :photo_dir,
                :qualities,
-               :templates,
                :url,
-               :max_workers,
                to: :config
 
       def load_all_plugins
@@ -23,11 +20,7 @@ module Photish
       end
 
       def render_whole_site
-        Photish::Render::Site.new(templates,
-                                  site_dir,
-                                  output_dir,
-                                  max_workers,
-                                  version_hash)
+        Photish::Render::Site.new(config)
                              .all_for(collection)
       end
 
