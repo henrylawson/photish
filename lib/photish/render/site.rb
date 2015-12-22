@@ -12,9 +12,10 @@ module Photish
           collection_template.render(collection)
         end
 
-        album_template.render(worker_subset(collection.all_albums))
-        photo_template.render(worker_subset(collection.all_photos))
-        image_conversion.render(worker_subset(collection.all_images))
+        [->{ album_template.render(subset(collection.all_albums))   },
+         ->{ photo_template.render(subset(collection.all_photos))   },
+         ->{ image_conversion.render(subset(collection.all_images)) }].shuffle
+                                                                      .each(&:call)
       end
 
       private
@@ -30,7 +31,7 @@ module Photish
                :worker_index,
                to: :config
 
-      def worker_subset(items)
+      def subset(items)
         items.in_groups(workers, false)[worker_index-1] || []
       end
 
