@@ -17,7 +17,7 @@ end
 
 RETRY_OPTIONS = {
   tries: 10,
-  base_interval: 0.5,
+  base_interval: 1,
   max_interval: 15,
   on: [RSpec::Expectations::ExpectationNotMetError,
        Errno::ECONNREFUSED]
