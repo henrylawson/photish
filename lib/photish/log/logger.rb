@@ -57,7 +57,7 @@ module Photish
         stdout_appender = Logging.appenders.stdout(
           'stdout',
           layout: Logging.layouts.pattern(
-            pattern: '[%d] %-5l %c: %m\n',
+            pattern: '[%d][%p][%t] %-5l %c: %m\n',
             color_scheme: 'bright'
           )
         )
@@ -69,7 +69,7 @@ module Photish
         file_appender = Logging.appenders.file(
            'log/photish.log',
            layout: Logging.layouts.pattern(
-              pattern: '[%d] %-5l %c: %m\n',
+              pattern: '[%d][%p][%t] %-5l %c: %m\n',
            )
         )
         Logging.logger.root.add_appenders(file_appender)
