@@ -11,6 +11,8 @@ module Photish
 
       def setup_logging(config)
         return if setup_complete
+
+        $stdout.sync = true
         setup_color_scheme if colorize?(config)
         setup_stdout_output if output_to_stdout?(config)
         setup_file_output if output_to_file?(config)
