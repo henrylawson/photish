@@ -1,8 +1,9 @@
 module Photish
   module Render
     class Site
-      def initialize(config)
+      def initialize(config, version_hash)
         @config = config
+        @version_hash = version_hash
       end
 
       def all_for(collection)
@@ -20,14 +21,14 @@ module Photish
 
       private
 
-      attr_reader :config
+      attr_reader :config,
+                  :version_hash
 
       delegate :templates,
                :site_dir,
                :output_dir,
                :workers,
                :threads,
-               :version_hash,
                :worker_index,
                to: :config
 
