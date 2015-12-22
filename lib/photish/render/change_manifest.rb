@@ -7,20 +7,22 @@ module Photish
         @version_hash = version_hash
         @dirty = false
         @cache = {}
+        @worker_db = {}
       end
 
       def record(key, file_path = nil)
         @dirty = true
-        db[key] = checksum_of_file(file_path || key)
+        worker_db[key] = checksum_of_file(file_path || key)
       end
 
       def changed?(key, file_path = nil)
-        checksum_of_file(file_path || key) != old_checksum_of_file(key)
+        checksum_of_file(file_path || key) != db[key] &&
+          checksum_of_file(file_path || key) != worker_db[key]
       end
 
       def flush_to_disk
         return unless dirty
-        File.open(worker_db_file, 'w') { |f| f.write((db || {}).to_yaml) }
+        File.open(worker_db_file, 'w') { |f| f.write(worker_db.to_yaml) }
       end
 
       def preload
@@ -50,17 +52,14 @@ module Photish
                   :dirty,
                   :cache,
                   :version_hash,
-                  :worker_index
+                  :worker_index,
+                  :worker_db
 
       def checksum_of_file(file_path)
         cache.fetch(file_path.hash) do |key|
           cache[key] = version_hash.to_s +
                        Digest::MD5.file(file_path).hexdigest
         end
-      end
-
-      def old_checksum_of_file(file_path)
-        db[file_path]
       end
 
       def db
