@@ -38,10 +38,14 @@ module Photish
       private
 
       def workers
-        Facter.value('processors')['count'] / 2
+        processor_count / 2
       end
 
       def threads
+        processor_count
+      end
+
+      def processor_count
         Facter.value('processors')['count']
       end
 
