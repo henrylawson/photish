@@ -25,7 +25,7 @@ module Photish
       end
 
       def render_whole_site
-        Render::Site.new(config, version_hash)
+        Render::SiteWorker.new(config, version_hash)
                              .all_for(collection)
       end
 
