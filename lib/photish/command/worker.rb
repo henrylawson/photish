@@ -38,11 +38,6 @@ module Photish
       def qualities_mapped
         qualities.map { |quality| OpenStruct.new(quality) }
       end
-
-      def concat_db_files
-        Render::ChangeManifest.concat_db_files(output_dir,
-                                               workers)
-      end
     end
   end
 end
