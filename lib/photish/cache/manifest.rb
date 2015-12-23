@@ -39,10 +39,12 @@ module Photish
       end
 
       def self.db_file(output_dir)
+        FileUtils.mkdir_p(output_dir)
         File.join(output_dir, '.changes.yml')
       end
 
       def self.worker_db_file(output_dir, index)
+        FileUtils.mkdir_p(output_dir)
         File.join(output_dir, ".changes.#{index}.yml")
       end
 

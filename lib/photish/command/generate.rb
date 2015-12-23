@@ -4,11 +4,11 @@ module Photish
       def run
         log.info "Starting generation with #{workers} workers"
 
-        load_all_plugins
-        perform_serial_generation
         spawn_all_workers
+        load_all_plugins
         wait_for_workers_to_complete
         concat_db_files
+        perform_serial_generation
 
         log.info "Generation completed successfully"
       end

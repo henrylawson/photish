@@ -6,7 +6,7 @@ module Photish
       end
 
       def all_for(collection)
-        delete_unknown_files(collection.all_url_paths)
+        delete_unknown_files(collection.all_url_parts)
         move_non_ignored_site_contents
         collection_template.render(collection)
       end
@@ -26,6 +26,15 @@ module Photish
         FileUtils.cp_r(non_ignored_site_contents, output_dir)
       end
 
+      def delete_unknown_files(url_parts)
+        do_not_delete = Set.new(url_parts.map { |url| File.join(output_dir, url) }
+                                         .map(&:to_s))
+        files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
+          File.file?(f) && !do_not_delete.include?(f)
+        end
+        FileUtils.rm_rf(files_to_delete)
+      end
+
       def collection_template
         Page.new(layout_file,
                  template_collection_file,
@@ -34,15 +43,6 @@ module Photish
 
       def non_ignored_site_contents
         Dir.glob(File.join(site_dir, '[!_]*'))
-      end
-
-      def delete_unknown_files(expected_url_paths)
-        path_set = Set.new(expected_url_paths)
-        files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
-          relative_file_path = f.gsub(/#{output_dir}\/?/, '')
-          File.file?(f) && !path_set.include?(relative_file_path)
-        end
-        FileUtils.rm_rf(files_to_delete)
       end
 
       def layout_file

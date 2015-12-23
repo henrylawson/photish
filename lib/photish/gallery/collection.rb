@@ -29,11 +29,11 @@ module Photish
         Photish::Plugin::Type::Collection
       end
 
-      def all_url_paths
-        @all_url_paths ||= [url_path,
-                            all_albums.map(&:url_path),
-                            all_photos.map(&:url_path),
-                            all_images.map(&:url_path)].flatten
+      def all_url_parts
+        @all_url_parts ||= [url_parts,
+                            all_albums.map(&:url_parts),
+                            all_photos.map(&:url_parts),
+                            all_images.map(&:url_parts)].flatten(1)
       end
 
       private

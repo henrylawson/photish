@@ -36,15 +36,6 @@ module Photish
         worker_index - 1
       end
 
-      def delete_unknown_files(expected_url_paths)
-        path_set = Set.new(expected_url_paths)
-        files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
-          relative_file_path = f.gsub(/#{output_dir}\/?/, '')
-          File.file?(f) && !path_set.include?(relative_file_path)
-        end
-        FileUtils.rm_rf(files_to_delete)
-      end
-
       def image_conversion
         ImageConversion.new(output_dir,
                             worker_index,

@@ -67,9 +67,9 @@ Then(/^the album should appear$/) do
                               'index.html')
   Retriable.retriable(RETRY_OPTIONS) do
     expect(open(@uri).read).to include('Big Dogs Copy')
+    expect(File.exist?(@new_album_file)).to be_truthy,
+      "File does not exist #{@new_album_file}, it should exist as album created"
   end
-  expect(File.exist?(@new_album_file)).to be_truthy,
-    "File does not exist #{@new_album_file}, it should exist as album created"
 end
 
 Then(/^the album should be gone$/) do
@@ -103,8 +103,10 @@ Then(/^the config changes should reflect$/) do
 end
 
 Then(/^the album generated files should be gone$/) do
-  expect(File.exist?(@new_album_file)).to be_falsey,
-    "File exists #{@new_album_file}, it should be deleted as album gone"
+  Retriable.retriable(RETRY_OPTIONS) do
+    expect(File.exist?(@new_album_file)).to be_falsey,
+      "File exists #{@new_album_file}, it should be deleted as album gone"
+  end
 end
 
 Then(/^the change should appear in the template$/) do
