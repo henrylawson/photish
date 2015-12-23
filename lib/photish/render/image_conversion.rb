@@ -22,7 +22,7 @@ module Photish
                 convert(image) if changed?(image.url_path, image.path)
               end
             rescue ThreadError => e
-              log.info "Expected exception, queue is empty #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
+              log.info "Expected exception, queue is empty"
             end
           end
         end

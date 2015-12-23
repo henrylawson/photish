@@ -3,6 +3,7 @@
 Gemfile.lock
 _yardoc
 coverage
+profile
 doc
 pkg
 spec/reports

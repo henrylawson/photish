@@ -9,6 +9,12 @@ module Photish
         Photish::Command::Generate.new(options).execute
       end
 
+      desc "worker", "A worker process that helps the generate command"
+      option :worker_index, type: :numeric
+      def worker
+        Photish::Command::Worker.new(options).execute
+      end
+
       desc "host", "Serves the HTML on a HTTP server"
       def host
         Photish::Command::Host.new(options).execute

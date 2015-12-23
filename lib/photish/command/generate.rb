@@ -2,53 +2,38 @@ module Photish
   module Command
     class Generate < Base
       def run
-        if worker_index == 0
-          threads = (1..workers).map do |worker_index|
-            Thread.new do
-              system(photish_executable,
-                     'generate',
-                     "--worker_index=#{worker_index}") || exit(false)
-            end
-          end
-          ThreadsWait.all_waits(*threads)
-          concat_db_files
-        else
-          log.info "Worker ##{worker_index} starting"
-          load_all_plugins
-          render_whole_site
-          log.info "Site generation completed, by Worker ##{worker_index}"
-        end
+        log.info "Starting generation with #{workers} workers"
+
+        spawn_all_workers
+        wait_for_workers_to_complete
+        concat_db_files
+
+        log.info "Generation completed successfully"
       end
 
       private
 
-      delegate :site_dir,
-               :photo_dir,
-               :output_dir,
-               :qualities,
-               :url,
-               :workers,
-               :worker_index,
+      delegate :output_dir,
                :photish_executable,
+               :workers,
                to: :config
 
-      def load_all_plugins
-        Photish::Plugin::Repository.reload(log, site_dir)
+      def spawn_all_workers
+        @spawned_processes ||= (1..workers).map do |index|
+          Process.spawn(worker_command(index))
+        end
       end
 
-      def render_whole_site
-        Photish::Render::Site.new(config, version_hash)
-                             .all_for(collection)
+      def wait_for_workers_to_complete
+        @spawned_processes.map do |pid|
+          Process.waitpid(pid)
+        end
       end
 
-      def collection
-        @collection ||= Gallery::Collection.new(photo_dir,
-                                                qualities_mapped,
-                                                url)
-      end
-
-      def qualities_mapped
-        qualities.map { |quality| OpenStruct.new(quality) }
+      def worker_command(worker_index)
+        [photish_executable,
+         'worker',
+         "--worker_index=#{worker_index}"].join(' ')
       end
 
       def concat_db_files

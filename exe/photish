@@ -1,10 +1,23 @@
 #!/usr/bin/env ruby
+
 if ENV['COVERAGE']
   require 'simplecov'
-
   SimpleCov.command_name "photish-binary-#{Process.pid}"
   SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..'))
 end
 
+if ENV['PROFILE']
+  require 'ruby-prof'
+  RubyProf.start
+end
+
 require 'photish'
 Photish::CLI::Interface.start
+
+if ENV['PROFILE']
+  FileUtils.rm_rf('profile')
+  FileUtils.mkdir_p('profile')
+  RubyProf::MultiPrinter.new(RubyProf.stop)
+                        .print(profile: "profile-#{Process.pid}",
+                               path: 'profile')
+end

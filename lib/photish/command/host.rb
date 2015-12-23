@@ -7,7 +7,7 @@ module Photish
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         log.info "Monitoring paths #{paths_to_monitor}"
 
-        regenerate_entire_site
+        regenerate_thread
         start_http_server_with_listener
       end
 
@@ -24,8 +24,20 @@ module Photish
         trap 'INT' do server.shutdown end
         listener.start
         server.start
-        listener.stop
         log.info "Photish host has shutdown"
+      ensure
+        regenerate_thread.exit if @regenerate_thread
+        listener.stop if @listener
+      end
+
+      def regenerate_thread
+        @regenerate_thread ||= Thread.new do
+          loop do
+            regenerate_entire_site
+            queue.pop
+            queue.clear
+          end
+        end
       end
 
       def server
@@ -40,8 +52,7 @@ module Photish
           log.info "File was modified #{modified}" if modified.present?
           log.info "File was added #{added}" if added.present?
           log.info "File was removed #{removed}" if removed.present?
-
-          regenerate_entire_site
+          queue.push(modified || added || removed)
         end
       end
 
@@ -61,6 +72,10 @@ module Photish
         log.info "Regenerating site"
         Photish::Command::Generate.new(runtime_config)
                                   .execute
+      end
+
+      def queue
+        @queue ||= Queue.new
       end
     end
   end
