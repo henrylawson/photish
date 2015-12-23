@@ -33,7 +33,13 @@ module Photish
                to: :config
 
       def subset(items)
-        items.in_groups(workers, false)[worker_index-1] || []
+        (worker..(items.count-worker)).step(workers)
+                                      .map { |x| items[x] }
+                                      .compact
+      end
+
+      def worker
+        worker_index - 1
       end
 
       def delete_unknown_files(expected_url_paths)
