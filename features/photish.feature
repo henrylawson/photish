@@ -34,7 +34,6 @@ Feature: Photish
     And the exit status should be 0
 
     When I run `photish host` interactively
-    And binding pry
     Then the site should be available via HTTP
     And all 26 pages and images should be available
 

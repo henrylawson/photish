@@ -16,7 +16,7 @@ Before do
 end
 
 RETRY_OPTIONS = {
-  tries: 30,
+  tries: 10,
   base_interval: 1,
   max_interval: 30,
   on: [RSpec::Expectations::ExpectationNotMetError,
