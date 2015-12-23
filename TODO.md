@@ -5,10 +5,7 @@
 1. Document workers and threads, performance
 1. Document latest config file values
 1. Look at error handling and exiting
-1. Look at stdout stream from multiple processes
-1. Clean up code and see if it reads well with new changes
 1. Add profiling to each binary and toggle like COVERAGE does
-1. Stabilise tests
 
 ## Backlog
 

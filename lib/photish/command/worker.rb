@@ -21,11 +21,11 @@ module Photish
                to: :config
 
       def load_all_plugins
-        Photish::Plugin::Repository.reload(log, site_dir)
+        Plugin::Repository.reload(log, site_dir)
       end
 
       def render_whole_site
-        Photish::Render::Site.new(config, version_hash)
+        Render::Site.new(config, version_hash)
                              .all_for(collection)
       end
 

@@ -23,7 +23,7 @@ module Photish
       end
 
       def load_all_plugins
-        Photish::Plugin::Repository.reload(log, site_dir)
+        Plugin::Repository.reload(log, site_dir)
       end
 
       def engine_class
@@ -33,11 +33,11 @@ module Photish
       end
 
       def deploy_plugins
-        Photish::Plugin::Repository.plugins_for(deploy_plugin_type)
+        Plugin::Repository.plugins_for(deploy_plugin_type)
       end
 
       def deploy_plugin_type
-        Photish::Plugin::Type::Deploy
+        Plugin::Type::Deploy
       end
     end
   end
