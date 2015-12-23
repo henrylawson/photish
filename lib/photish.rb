@@ -16,6 +16,7 @@ require 'facter'
 require 'mime-types'
 require 'thread'
 require 'thwait'
+require 'slim'
 
 # Photish
 require 'photish/plugin/type'
@@ -48,7 +49,7 @@ require 'photish/render/page'
 require 'photish/render/site'
 require 'photish/render/site_worker'
 require 'photish/render/image_conversion'
-require 'photish/render/change_manifest'
+require 'photish/cache/manifest'
 require 'photish/rake/task'
 require 'photish/version'
 

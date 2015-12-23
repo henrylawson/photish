@@ -1,6 +1,6 @@
 module Photish
-  module Render
-    class ChangeManifest
+  module Cache
+    class Manifest
       def initialize(output_dir, worker_index, version_hash)
         @output_dir = output_dir
         @worker_index = worker_index

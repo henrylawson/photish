@@ -75,9 +75,9 @@ module Photish
       end
 
       def change_manifest
-        @change_manifest ||= ChangeManifest.new(output_dir,
-                                                worker_index,
-                                                version_hash)
+        @change_manifest ||= Cache::Manifest.new(output_dir,
+                                                 worker_index,
+                                                 version_hash)
       end
     end
   end
