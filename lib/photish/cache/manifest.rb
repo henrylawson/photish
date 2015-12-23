@@ -30,10 +30,10 @@ module Photish
       end
 
       def self.concat_db_files(output_dir, workers)
-        changes = (1..workers).inject({}) do |changes, worker_index|
+        changes = (1..workers).inject({}) do |accumulator, worker_index|
           file = worker_db_file(output_dir, worker_index)
-          changes.merge!(YAML.load_file(file)) if File.exist?(file)
-          changes
+          accumulator.merge!(YAML.load_file(file)) if File.exist?(file)
+          accumulator
         end
         File.open(db_file(output_dir), 'w') { |f| f.write(changes.to_yaml) }
       end
