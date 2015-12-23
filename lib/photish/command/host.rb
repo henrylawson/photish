@@ -7,6 +7,7 @@ module Photish
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         log.info "Monitoring paths #{paths_to_monitor}"
 
+        regenerate_entire_site
         regenerate_thread
         start_http_server_with_listener
       end
@@ -33,9 +34,9 @@ module Photish
       def regenerate_thread
         @regenerate_thread ||= Thread.new do
           loop do
-            regenerate_entire_site
             queue.pop
             queue.clear
+            regenerate_entire_site
           end
         end
       end
