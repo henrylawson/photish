@@ -50,6 +50,7 @@ require 'photish/render/site'
 require 'photish/render/site_worker'
 require 'photish/render/image_conversion'
 require 'photish/cache/manifest'
+require 'photish/cache/manifest_db_file'
 require 'photish/rake/task'
 require 'photish/version'
 

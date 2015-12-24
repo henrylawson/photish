@@ -2,6 +2,8 @@
 
 ## In Progress
 
+1. Step function for workers
+1. Image cache for workers
 1. Document workers and threads, performance
 1. Document latest config file values
 1. Look at error handling and exiting

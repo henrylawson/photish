@@ -62,8 +62,7 @@ module Photish
       end
 
       def concat_db_files
-        Cache::Manifest.concat_db_files(output_dir,
-                                        workers)
+        Cache::ManifestDbFile.concat_db_files(output_dir, workers)
       end
     end
   end
