@@ -13,7 +13,11 @@ Feature: Photish
 
     When I change the config to use a single worker and thread
 
-    When I run `photish host` interactively
+    When I run `photish generate`
+    Then the output should contain "Site generation completed"
+    And the exit status should be 0
+
+    When I run `photish host --force` interactively
     Then the site should be available via HTTP
     And the welcome page should appear
 
