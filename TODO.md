@@ -5,7 +5,6 @@
 1. Document workers and threads, performance
 1. Document latest config file values
 1. Look at error handling and exiting
-1. Add profiling to each binary and toggle like COVERAGE does
 
 ## Backlog
 

@@ -8,6 +8,7 @@ end
 
 if ENV['PROFILE']
   require 'ruby-prof'
+  FileUtils.rm_rf('profile')
   RubyProf.start
 end
 
@@ -15,9 +16,9 @@ require 'photish'
 Photish::CLI::Interface.start
 
 if ENV['PROFILE']
-  FileUtils.rm_rf('profile')
+  profile_filename = "cmd-#{ARGV[0] || 'unknown'}-#{Process.pid}"
   FileUtils.mkdir_p('profile')
   RubyProf::MultiPrinter.new(RubyProf.stop)
-                        .print(profile: "profile-#{Process.pid}",
+                        .print(profile: profile_filename,
                                path: 'profile')
 end

@@ -30,7 +30,7 @@ module Photish
 
       def spawn_all_workers
         @spawned_processes ||= (1..workers).map do |index|
-          Process.spawn(worker_command(index))
+          Process.spawn(ENV, worker_command(index))
         end
       end
 
