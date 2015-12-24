@@ -42,7 +42,7 @@ module Photish
       end
 
       def threads
-        processor_count
+        2
       end
 
       def processor_count
