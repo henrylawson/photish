@@ -41,6 +41,12 @@ Then(/^all (.*) pages and images should be available$/) do |number|
   end
 end
 
+And(/^the welcome page should appear$/) do
+  Retriable.retriable(RETRY_OPTIONS) do
+    expect(open(@uri).read).to include('Welcome')
+  end
+end
+
 When(/^I add an album of photos$/) do
   FileUtils.cp_r(File.join(@working_directory, 'photos', 'Big Dogs'),
                  File.join(@working_directory, 'photos', 'Big Dogs Copy'))
@@ -81,12 +87,20 @@ Then(/^the album should be gone$/) do
   end
 end
 
+When(/^I change the config to use a single worker and thread$/) do
+  change_config do |config|
+    config['workers'] = 1
+    config['threads'] = 1
+  end
+end
+
 When(/^I change the config and a file in the site dir$/) do
-  config_file = File.join(@working_directory, 'config.yml')
-  config = YAML.load_file(config_file)
-  config['qualities'][2] = { 'name' => 'features', 'params' => ['-resize', '300x300'] }
-  File.open(config_file, 'w') { |f| f.write(config.to_yaml) }
-  FileUtils.touch(File.join(@working_directory, 'site', 'touchfile'))
+  change_config do |config|
+    config['qualities'][2] = { 
+      'name' => 'features', 
+      'params' => ['-resize', '300x300'] 
+    }
+  end
 end
 
 Then(/^the config changes should reflect$/) do

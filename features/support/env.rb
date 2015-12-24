@@ -22,3 +22,11 @@ RETRY_OPTIONS = {
   on: [RSpec::Expectations::ExpectationNotMetError,
        Errno::ECONNREFUSED]
 }
+
+def change_config
+  config_file = File.join(@working_directory, 'config.yml')
+  config = YAML.load_file(config_file)
+  yield(config)
+  File.open(config_file, 'w') { |f| f.write(config.to_yaml) }
+  FileUtils.touch(File.join(@working_directory, 'site', 'touchfile'))
+end

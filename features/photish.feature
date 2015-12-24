@@ -11,9 +11,11 @@ Feature: Photish
     And a photos directory should be created
     And a site directory should be created
 
+    When I change the config to use a single worker and thread
+
     When I run `photish host` interactively
     Then the site should be available via HTTP
-    And all 1 pages and images should be available
+    And the welcome page should appear
 
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"
