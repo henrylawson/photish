@@ -12,7 +12,7 @@ module Photish
       def render(images)
         log.info "Rendering #{images.count} images across #{threads} threads"
 
-        change_manifest.preload
+        cache.preload
         threads = spawn_thread_instances(to_queue(images))
         threads.map(&:join)
         flush_to_disk
@@ -30,7 +30,7 @@ module Photish
                :changed?,
                :flush_to_disk,
                :preload,
-               to: :change_manifest
+               to: :cache
 
       def spawn_thread_instances(image_queue)
         (0...threads).map do
@@ -74,10 +74,10 @@ module Photish
         FileUtils.mkdir_p(File.join(output_dir, image.base_url_parts))
       end
 
-      def change_manifest
-        @change_manifest ||= Cache::Manifest.new(output_dir,
-                                                 worker_index,
-                                                 version_hash)
+      def cache
+        @cache ||= Cache::Manifest.new(output_dir,
+                                       worker_index,
+                                       version_hash)
       end
     end
   end
