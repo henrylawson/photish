@@ -32,7 +32,9 @@ module Photish
       end
 
       def subset(items)
-        items.in_groups(workers, false)[worker_index-1] || []
+        worker_index_zeroed.step(items.count, workers)
+                           .map { |i| items[i] }
+                           .compact
       end
 
       def image_conversion
@@ -68,6 +70,10 @@ module Photish
 
       def templates_dir
         '_templates'
+      end
+
+      def worker_index_zeroed
+        worker_index - 1
       end
     end
   end
