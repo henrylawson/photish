@@ -7,10 +7,7 @@ module Photish
       end
 
       def all_for(collection)
-        [->{ album_template.render(subset(collection.all_albums))   },
-         ->{ photo_template.render(subset(collection.all_photos))   },
-         ->{ image_conversion.render(subset(collection.all_images)) }].shuffle
-                                                                      .each(&:call)
+        tasks(collection).shuffle.each(&:call)
       end
 
       private
@@ -25,6 +22,14 @@ module Photish
                :threads,
                :worker_index,
                to: :config
+
+      def tasks(collection)
+        [
+          ->{ album_template.render(subset(collection.all_albums))   },
+          ->{ photo_template.render(subset(collection.all_photos))   },
+          ->{ image_conversion.render(subset(collection.all_images)) },
+        ]
+      end
 
       def subset(items)
         items.in_groups(workers, false)[worker_index-1] || []
