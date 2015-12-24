@@ -4,6 +4,7 @@ module Photish
       def run
         log.info "Starting generation with #{workers} workers"
 
+        clear_cache if force_regeneration?
         spawn_all_workers
         load_all_plugins
         wait_for_workers_to_complete
@@ -22,7 +23,16 @@ module Photish
                :qualities,
                :photish_executable,
                :workers,
+               :force,
                to: :config
+
+      def force_regeneration?
+        force == true
+      end
+
+      def clear_cache
+        Cache::ManifestDbFile.clear(output_dir)
+      end
 
       def load_all_plugins
         Plugin::Repository.reload(log, site_dir)

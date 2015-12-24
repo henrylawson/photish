@@ -31,7 +31,7 @@ Feature: Photish
     And a photos directory should be created
     And a site directory should be created
 
-    When I run `photish generate`
+    When I run `photish generate --force`
     Then the output should contain "Site generation completed"
     And the exit status should be 0
 

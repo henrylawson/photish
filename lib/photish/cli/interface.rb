@@ -4,7 +4,7 @@ module Photish
       package_name "Photish"
 
       desc "generate", "Generates the gallery static site"
-      option :worker_index, type: :numeric
+      option :force, type: :boolean
       def generate
         Photish::Command::Generate.new(options).execute
       end
@@ -16,6 +16,7 @@ module Photish
       end
 
       desc "host", "Serves the HTML on a HTTP server"
+      option :force, type: :boolean
       def host
         Photish::Command::Host.new(options).execute
       end

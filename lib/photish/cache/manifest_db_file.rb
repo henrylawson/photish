@@ -10,6 +10,10 @@ module Photish
         File.open(db_file(output_dir), 'w') { |f| f.write(changes.to_yaml) }
       end
 
+      def clear(output_dir)
+        FileUtils.rm_rf(db_file(output_dir))
+      end
+
       def db_file(output_dir)
         FileUtils.mkdir_p(output_dir)
         File.join(output_dir, '.changes.yml')
@@ -22,7 +26,8 @@ module Photish
 
       module_function :concat_db_files,
                       :db_file,
-                      :worker_db_file
+                      :worker_db_file,
+                      :clear
     end
   end
 end

@@ -10,6 +10,7 @@ module Photish
           workers: workers,
           threads: threads,
           worker_index: 0,
+          force: false,
           photish_executable: photish_executable,
           qualities: [
             { name: 'Original',

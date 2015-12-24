@@ -294,6 +294,7 @@ url:
   base: 'subdirectory'
 workers: 4
 threads: 2
+force: false
 ```
 
 The meanings and purpose of each field is defined below:
@@ -318,6 +319,7 @@ Field                  | Purpose
 `url/base`             | if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
 `workers`              | the number of workers to create, for computers with multiple processors, photish is configured by default to spawn a worker for each process, a worker is responsible for image generation and html generation, load balancing is done randomly via a simple round robin allocation
 `threads`              | the number of threads each worker should create to handle image magick transcoding
+`force`                | this should always be false, if true, all content will be regenerated and nothing cached
 
 #### Customizing Templates
 
@@ -473,11 +475,11 @@ The Generate command does the following:
 
 #### Workers and Threads
 
-In order to achieve maximum utilization of all processors on a CPU during
+In order to achieve maximum utilization of all processors on a computer during
 generation, Photish has the ability to create multiple workers and threads.
 
 A worker is a spawned sub process created by the Generate command. The worker
-sub process is responsible for generating the HTML and Images for a sub set of
+sub process is responsible for generating the HTML and Images for a subset of
 the collection.
 
 Within each worker, threads are created when calling out to the Image Magick
@@ -486,11 +488,11 @@ utilization so rather then block the whole worker, it can be more performant to
 spawn multiple Image Magick processes at once.
 
 For collections with a large number of images and HTML pages, multiple workers
-and threads can be used to rapidly speed up generation. However if the
-collection is quite small and the images are of a small size, workers and
-threads will increase the generation time as loading a new ruby runtime and
-creating multiple threads may have a higher setup time then just generating in
-a single ruby process.
+and threads can be used to rapidly speed up generation. However, if the
+collection has a small number of photos and pages, workers and threads will
+increase the generation time as loading a new ruby process and creating
+multiple threads may have a higher setup time then just generating everything
+in a single ruby process.
 
 The number of workers and threads is configurable in the [config
 file](#config-file-options) with the `workers` and `threads` options. By
@@ -510,10 +512,15 @@ a local version of Photish with the Host command.
 
 The cache file is stored in the `output_dir` and is named `.changes.yml`.
 
-To do a full regeneration, simple run the Generate command with the `force`
+To do a full regeneration, run the Generate command with the `--force`
 flag:
 
     $ photish generate --force
+
+The host command also supports the `--force` flag, to do a full regenerate
+on every change:
+
+    $ photish host --force
 
 Images are regenerated when they are modified, renamed or moved.
 
