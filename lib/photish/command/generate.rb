@@ -29,15 +29,25 @@ module Photish
       end
 
       def spawn_all_workers
+        return single_worker if one_worker?
         @spawned_processes ||= (1..workers).map do |index|
           Process.spawn(ENV, worker_command(index))
         end
       end
 
       def wait_for_workers_to_complete
+        return if one_worker?
         @spawned_processes.map do |pid|
           Process.waitpid(pid)
         end
+      end
+
+      def one_worker?
+        workers == 1
+      end
+
+      def single_worker
+        Worker.new(runtime_config.merge(worker_index: 1)).execute
       end
 
       def perform_serial_generation

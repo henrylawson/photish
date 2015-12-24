@@ -11,6 +11,10 @@ module Photish
         def plugins_for(type)
           self.instance.plugins_for(type)
         end
+
+        def loaded?
+          self.instance.loaded?
+        end
       end
 
       def reload(log, site_dir)
@@ -33,6 +37,10 @@ module Photish
       def all_plugins
         @all_plugins ||= constants.map    { |m| constantize(m) }
                                   .reject { |m| ignored_modules.include?(m) }
+      end
+
+      def loaded?
+        @all_plugins.present?
       end
 
       private

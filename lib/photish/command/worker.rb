@@ -21,12 +21,13 @@ module Photish
                to: :config
 
       def load_all_plugins
+        return if Plugin::Repository.loaded?
         Plugin::Repository.reload(log, site_dir)
       end
 
       def render_whole_site
         Render::SiteWorker.new(config, version_hash)
-                             .all_for(collection)
+                          .all_for(collection)
       end
 
       def collection
