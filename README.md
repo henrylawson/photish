@@ -64,6 +64,8 @@ and running:
     - [Execution Order](#execution-order)
     - [Workers and Threads](#workers-and-threads)
     - [Caching](#caching)
+      - [Automatic Rengeneration](#automatic-regeneration)
+      - [Forced Regeneration](#forced-regeneration)
   - [Host](#host)
   - [Rake Task](#rake-task)
   - [Plugins](#plugins)
@@ -512,20 +514,24 @@ a local version of Photish with the Host command.
 
 The cache file is stored in the `output_dir` and is named `.changes.yml`.
 
-To do a full regeneration, run the Generate command with the `--force`
-flag:
-
-    $ photish generate --force
-
-The host command also supports the `--force` flag, to do a full regenerate
-on every change:
-
-    $ photish host --force
+##### Automatic Regeneration
 
 Images are regenerated when they are modified, renamed or moved.
 
 Changing the `qualities` option in the config file will also trigger a full
 regeneration of all images.
+
+##### Forced Regeneration
+
+To do a full regeneration, run the Generate command with the `--force`
+flag:
+
+    $ photish generate --force
+
+The host command also supports the `--force` flag, to do a full regeneration
+on every change:
+
+    $ photish host --force
 
 ### Host
 
