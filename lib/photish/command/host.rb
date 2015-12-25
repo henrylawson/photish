@@ -33,11 +33,17 @@ module Photish
 
       def regenerate_thread
         @regenerate_thread ||= Thread.new do
-          loop do
-            queue.pop
-            queue.clear
-            regenerate_entire_site
+          handle_errors('Regenerate Thread') do
+            regenerate_loop
           end
+        end
+      end
+
+      def regenerate_loop
+        loop do
+          queue.pop
+          queue.clear
+          regenerate_entire_site
         end
       end
 
@@ -50,10 +56,16 @@ module Photish
 
       def listener
         @listener ||= Listen.to(*paths_to_monitor) do |mod, add, del|
-          changes = changes_as_hash(mod, add, del)
-          log.info "File change detected: #{changes}}"
-          queue.push(changes)
+          handle_errors('File Change Listener') do
+            handle_change(mod, add, del)
+          end
         end
+      end
+
+      def handle_change(mod, add, del)
+        changes = changes_as_hash(mod, add, del)
+        log.info "File change detected: #{changes}}"
+        queue.push(changes)
       end
 
       def changes_as_hash(mod, add, del)

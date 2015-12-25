@@ -34,7 +34,9 @@ module Photish
 
       def spawn_thread_instances(image_queue)
         (0...threads).map do
-          Thread.new { process_images(image_queue) }
+          Thread.new do
+            process_images(image_queue)
+          end
         end
       end
 

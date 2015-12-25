@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Look at error handling, exiting and cleanup (files, processes and threads)
+1. Active Support logger
 
 ## Backlog
 

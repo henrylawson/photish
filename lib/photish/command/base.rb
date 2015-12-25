@@ -2,6 +2,7 @@ module Photish
   module Command
     class Base
       include Log::Loggable
+      include Log::SafeBlock
 
       def initialize(runtime_config)
         @runtime_config = runtime_config
@@ -9,11 +10,8 @@ module Photish
 
       def execute
         setup_logging
-        begin
+        handle_errors(self.class.name) do
           run
-        rescue => e
-          log.fatal "An exception occured #{e.class} \"#{e.message}\" #{e.backtrace.join("\n")}"
-          exit(false)
         end
       end
 
