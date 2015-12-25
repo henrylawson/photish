@@ -542,10 +542,12 @@ Below are some crude performance measures to get a ballpark idea of how
 Photish performs when generating for a large collection.
 
 **Benchmark Computer:**
-MacBook Pro (Retina, 13-inch, Early 2015)
-2.7 GHz Intel Core i5
-8 GB 1867 MHz DDR3
-_Note, this computer has 4 processors_
+
+    MacBook Pro (Retina, 13-inch, Early 2015)
+    2.7 GHz Intel Core i5
+    8 GB 1867 MHz DDR3
+
+_Note: this computer has 4 processors_
 
 Photos  | Size (M) | Workers   | Threads | Total Threads | Time (Seconds)
 --------|----------|-----------|---------|---------------|----------------
