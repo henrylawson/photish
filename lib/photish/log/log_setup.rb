@@ -19,7 +19,6 @@ module Photish
 
       def configure(incoming_config)
         return if config
-        String.disable_colorization = !incoming_config.colorize
         @config = incoming_config
       end
 
@@ -36,6 +35,7 @@ module Photish
 
       delegate :output,
                :level,
+               :colorize,
                to: :config
 
       def null_file
@@ -53,13 +53,13 @@ module Photish
         file = File.join('log', 'photish.log')
         FileUtils.mkdir_p('log')
         logger = setup_new_logger(name, file)
-        logger.formatter = Log::Formatter.new
+        logger.formatter = Log::Formatter.new(false)
         ActiveSupport::Logger.broadcast(logger)
       end
 
       def stdout_broadcast(name)
         logger = setup_new_logger(name, STDOUT)
-        logger.formatter = Log::Formatter.new
+        logger.formatter = Log::Formatter.new(colorize)
         ActiveSupport::Logger.broadcast(logger)
       end
 

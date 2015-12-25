@@ -1,14 +1,19 @@
 module Photish
   module Log
     class Formatter
+      def initialize(color)
+        @color = color
+      end
+
       def call(severity, datetime, progname, msg)
-        LogLine.new(severity, datetime, progname, msg).format
+        LogLine.new(@color, severity, datetime, progname, msg).format
       end
 
       private
 
       class LogLine
-        def initialize(severity, datetime, progname, msg)
+        def initialize(color, severity, datetime, progname, msg)
+          @color = color
           @severity = severity
           @datetime = datetime
           @progname = progname
@@ -22,7 +27,6 @@ module Photish
           line << severity
           line << progname
           line << msg
-          line << reset_colors
           line
         end
 
@@ -36,22 +40,33 @@ module Photish
           'FATAL' => [:white,  :red    ],
         }
 
+       def color?
+         !!@color
+       end
+
         def severity
-          str = "#{@severity}".colorize(color: SEV[@severity].first,
-                                        background: SEV[@severity].last)
+          str = "#{@severity}"
+          str = str.colorize(color: SEV[@severity].first,
+                             background: SEV[@severity].last) if color?
           " #{str} "
         end
 
         def timestamp
-          "[#{@datetime.strftime("%Y-%m-%dT%H:%M:%S.%L")}]".colorize(:cyan)
+          str = "[#{@datetime.strftime("%Y-%m-%dT%H:%M:%S.%L")}]"
+          str = str.colorize(:cyan) if color?
+          str
         end
 
         def pid
-          "[#{Process.pid.to_s.rjust(5, '0')}]".colorize(:light_magenta)
+          str = "[#{Process.pid.to_s.rjust(5, '0')}]"
+          str = str.colorize(:light_magenta) if color?
+          str
         end
 
         def progname
-          "#{@progname}".colorize(:magenta)
+          str = "#{@progname}"
+          str = str.colorize(:magenta) if color?
+          str
         end
 
         def msg
@@ -63,11 +78,8 @@ module Photish
             str << "#{@msg}"
           end
           str << "\n"
-          str.colorize(:light_blue)
-        end
-
-        def reset_colors
-          ''.colorize(:default)
+          str = str.colorize(:light_blue) if color?
+          str
         end
       end
     end
