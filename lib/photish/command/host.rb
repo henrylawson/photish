@@ -2,8 +2,6 @@ module Photish
   module Command
     class Host < Base
       def run
-        Photish::Log::Logger.instance.setup_logging(config)
-
         log.info "Site will be running at http://0.0.0.0:#{port}/"
         log.info "Monitoring paths #{paths_to_monitor}"
 

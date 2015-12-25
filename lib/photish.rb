@@ -1,6 +1,5 @@
 # 3rd Party
 require 'mini_magick'
-require 'logging'
 require 'tilt'
 require 'rake'
 require 'active_support'
@@ -17,10 +16,12 @@ require 'mime-types'
 require 'thread'
 require 'thwait'
 require 'slim'
+require 'colorize'
 
 # Photish
 require 'photish/log/loggable'
-require 'photish/log/logger'
+require 'photish/log/formatter'
+require 'photish/log/log_setup'
 require 'photish/log/access_log'
 require 'photish/log/safe_block'
 require 'photish/plugin/type'

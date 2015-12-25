@@ -30,7 +30,7 @@ module Photish
       end
 
       def setup_logging
-        Log::Logger.instance.setup_logging(config)
+        Log::LogSetup.instance.configure(config.logging)
       end
     end
   end

@@ -314,7 +314,7 @@ Field                  | Purpose
 `templates/photo`      | the photo template file in the `site/_templates` folder, must be overridden if using a different template engine
 `logging`              | a listing of the various logging options
 `logging/colorize`     | when outputting to `STDOUT`, `true` to use color, `false` for none
-`logging/level`        | the default logging level, it is advised to keep this at `info`
+`logging/level`        | the default logging level, it is advised to keep this at `info`, supported are `debug`, `info`, `warn`, `error` and `failure`
 `logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
 `url`                  | a listing of the various url options
 `url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it as '/' or do not set this configuration at all

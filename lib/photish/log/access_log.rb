@@ -1,9 +1,7 @@
 module Photish
   module Log
     class AccessLog
-      def initialize
-        @log = Logging.logger[self]
-      end
+      include Loggable
 
       def <<(message)
         log.info message.chomp

@@ -2,7 +2,7 @@ module Photish
   module Log
     module Loggable
       def log
-        @log ||= Logging.logger[self]
+        @log ||= LogSetup.instance.new_logger(self.class.name)
       end
     end
   end

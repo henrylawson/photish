@@ -2,8 +2,6 @@
 
 ## In Progress
 
-1. Active Support logger
-
 ## Backlog
 
 1. Plugin as a gem to deploy to github pages, netlify, amazon s3
