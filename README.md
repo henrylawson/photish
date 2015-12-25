@@ -542,12 +542,12 @@ Below are some crude performance measures to get a ballpark idea of how
 Photish performs when generating for a large collection.
 
 **Benchmark Computer:**
+_Note: this computer has 4 processors_
 
     MacBook Pro (Retina, 13-inch, Early 2015)
     2.7 GHz Intel Core i5
     8 GB 1867 MHz DDR3
 
-_Note: this computer has 4 processors_
 
 Photos  | Size (M) | Workers   | Threads | Total Threads | Time (Seconds)
 --------|----------|-----------|---------|---------------|----------------
@@ -560,7 +560,7 @@ Photos  | Size (M) | Workers   | Threads | Total Threads | Time (Seconds)
 934     | 464      | 1         | 8       | 8             | 290
 934     | 464      | 2         | 2       | 4             | 309
 
-It is interesting to note the ~20-30 second difference between using 4 workers
+It is interesting to note the 20-30 second difference between using 4 workers
 vs. 4 threads. The time difference is due to the setup time of creating a whole
 new ruby process for each worker.
 
