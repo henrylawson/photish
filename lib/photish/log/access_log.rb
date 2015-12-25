@@ -6,10 +6,6 @@ module Photish
       def <<(message)
         log.info message.chomp
       end
-
-      private
-
-      attr_reader :log
     end
   end
 end
