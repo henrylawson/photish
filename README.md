@@ -337,12 +337,6 @@ the file extension will change. By default the template engine is
 
 `site/_templates/layout.{type}`
 
-The layout template is the base layout for all the other templates. The
-`collection`, `album` and `photo` templates will be rendered inside this
-layout. The layout template **must** include the `yield` statement to bind the
-sub template inside it. Below is an example [Slim](http://slim-lang.com/)
-template, the other templates will be bound where the `yield` statement is:
-
 ```slim
 doctype html
 html
@@ -352,9 +346,24 @@ html
     == yield
 ```
 
+The layout template is the base layout for all the other templates. The
+`collection`, `album` and `photo` templates will be rendered inside this
+layout. The layout template **must** include the `yield` statement to bind the
+sub template inside it. Below is an example [Slim](http://slim-lang.com/)
+template, the other templates will be bound where the `yield` statement is:
+
 ##### Collection Template
 
 `site/_templates/collection.{type}`
+
+```slim
+h1 Photo Collection
+- albums.each do |album|
+  div.album
+    div.album-title
+      a href=album.url
+        | #{album.name}
+```
 
 The collection template becomes the `index.html` for the root of the website.
 
@@ -374,6 +383,18 @@ all_images          | an array of all child [Images](https://github.com/henrylaw
 ##### Album Template
 
 `site/_templates/album.{type}`
+
+```slim
+h1 Album
+h2
+  a href=url
+    | #{name}
+div.album-photos
+  - photos.each do |photo|
+    div.album-photo
+      a href=photo.url title=photo.name
+        img src=photo.images.find{ |i|i.quality_name=='Low' }.url alt=photo.name
+```
 
 For each folder in the `photos` directory, a slugified album folder is created
 with an `index.html` in it.
@@ -395,6 +416,18 @@ all_images          | an array of all child [Images](https://github.com/henrylaw
 ##### Photo Template
 
 `site/_templates/photo.{type}`
+
+```
+h1 Photo
+h2
+  a href=url
+    | #{name}
+  div.album-photos
+    - images.each do |image|
+      div.album-photo
+        a href=image.url title=image.name
+          img src=image.url alt=image.quality_name
+```
 
 For each image in an Albums directory, a slugified photo folder is created
 with an `index.html` in it.
