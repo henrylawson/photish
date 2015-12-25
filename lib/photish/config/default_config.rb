@@ -55,11 +55,11 @@ module Photish
       end
 
       def workers
-        processor_count / 2
+        1
       end
 
       def threads
-        2
+        processor_count
       end
 
       def processor_count

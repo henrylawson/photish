@@ -2,7 +2,7 @@ module Photish
   module Command
     class Generate < Base
       def run
-        log.info "Starting generation with #{workers} workers"
+        log.info "Generating with #{workers} workers and #{threads} threads"
 
         clear if force_regeneration?
         spawn_all_workers
@@ -24,6 +24,7 @@ module Photish
                :photish_executable,
                :workers,
                :force,
+               :threads,
                to: :config
 
       delegate :concat_db_files,

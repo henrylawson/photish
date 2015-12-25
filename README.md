@@ -66,6 +66,7 @@ and running:
     - [Caching](#caching)
       - [Automatic Rengeneration](#automatic-regeneration)
       - [Forced Regeneration](#forced-regeneration)
+    - [Crude Performance Measures](#crude-performance-measures)
   - [Host](#host)
   - [Rake Task](#rake-task)
   - [Plugins](#plugins)
@@ -494,17 +495,19 @@ and threads can be used to rapidly speed up generation. However, if the
 collection has a small number of photos and pages, workers and threads will
 increase the generation time as loading a new ruby process and creating
 multiple threads may have a higher setup time then just generating everything
-in a single ruby process.
+in a single ruby process and thread.
 
 The number of workers and threads is configurable in the [config
 file](#config-file-options) with the `workers` and `threads` options. By
-default, Photish will spawn a worker for each processor detected on the
-computer. It will then create 2 threads per worker. As each worker spawns it's
-own thread, for a computer with 4 processors, 4 workers will be created, each
-with 2 threads, which means in total Photish will manage 8 threads and
-potentially run 8 Image Magick processes concurrently. When tweaking the number
-of workers and threads it is important to consider IO bottlenecks as this will
-most likely be the limiting factor in performance.
+default, Photish will spawn a thread for each processor detected on the
+computer. It will then run this on a single worker.
+
+When configuring more than 1 worker, it is important to remember that each
+worker will spawn their own set of threads, if 4 workers are created, each with
+2 threads, it means in total Photish will manage 8 threads and potentially run
+8 Image Magick processes concurrently.  When tweaking the number of workers and
+threads it is important to consider IO bottlenecks as this will most likely be
+the limiting factor in performance.
 
 #### Caching
 
@@ -516,7 +519,7 @@ The cache file is stored in the `output_dir` and is named `.changes.yml`.
 
 ##### Automatic Regeneration
 
-Images are regenerated when they are modified, renamed or moved.
+Images are regenerated when a photo is modified, renamed or moved.
 
 Changing the `qualities` option in the config file will also trigger a full
 regeneration of all images.
@@ -532,6 +535,32 @@ The host command also supports the `--force` flag, to do a full regeneration
 on every change:
 
     $ photish host --force
+
+### Crude Performance Measures
+
+Below are some crude performance measures to get a ballpark idea of how
+Photish performs when generating for a large collection.
+
+**Benchmark Computer:**
+MacBook Pro (Retina, 13-inch, Early 2015)
+2.7 GHz Intel Core i5
+8 GB 1867 MHz DDR3
+_Note, this computer has 4 processors_
+
+Photos  | Size (M) | Workers   | Threads | Total Threads | Time (Seconds)
+--------------------------------------------------------------------------
+934     | 464      | 1         | 1       | 1             | 601
+934     | 464      | 2         | 1       | 2             | 367
+934     | 464      | 4         | 1       | 4             | 312
+934     | 464      | 8         | 1       | 8             | 328
+934     | 464      | 1         | 2       | 2             | 346
+934     | 464      | 1         | 4       | 4             | **288**
+934     | 464      | 1         | 8       | 8             | 290
+934     | 464      | 2         | 2       | 4             | 309
+
+It is interesting to note the ~20-30 second difference between using 4 workers
+vs. 4 threads. The time difference is due to the setup time of creating a whole
+new ruby process for each worker.
 
 ### Host
 
