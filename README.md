@@ -337,6 +337,8 @@ the file extension will change. By default the template engine is
 
 `site/_templates/layout.{type}`
 
+Example:
+
 ```slim
 doctype html
 html
@@ -355,6 +357,8 @@ template, the other templates will be bound where the `yield` statement is:
 ##### Collection Template
 
 `site/_templates/collection.{type}`
+
+Example:
 
 ```slim
 h1 Photo Collection
@@ -383,6 +387,8 @@ all_images          | an array of all child [Images](https://github.com/henrylaw
 ##### Album Template
 
 `site/_templates/album.{type}`
+
+Example:
 
 ```slim
 h1 Album
@@ -416,6 +422,8 @@ all_images          | an array of all child [Images](https://github.com/henrylaw
 ##### Photo Template
 
 `site/_templates/photo.{type}`
+
+Example:
 
 ```slim
 h1 Photo
