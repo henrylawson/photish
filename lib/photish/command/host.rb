@@ -50,7 +50,7 @@ module Photish
 
       def listener
         @listener ||= Listen.to(*paths_to_monitor) do |mod, add, del|
-          changes = chnges_as_hash(mod, add, del)
+          changes = changes_as_hash(mod, add, del)
           log.info "File change detected: #{changes}}"
           queue.push(changes)
         end
@@ -59,7 +59,7 @@ module Photish
       def changes_as_hash(mod, add, del)
         { modified: mod,
           added:    add,
-          removed:  del, }.compact
+          removed:  del, }
       end
 
       def paths_to_monitor
