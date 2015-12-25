@@ -28,8 +28,18 @@ module Photish
 
         private
 
+        SEV = {
+          'DEBUG' => [:green,  :default],
+          'INFO'  => [:green,  :default],
+          'WARN'  => [:yellow, :default],
+          'ERROR' => [:red,    :default],
+          'FATAL' => [:white,  :red    ],
+        }
+
         def severity
-          " #{@severity} -- ".colorize(:green)
+          str = "#{@severity}".colorize(color: SEV[@severity].first,
+                                        background: SEV[@severity].last)
+          " #{str} "
         end
 
         def timestamp
@@ -45,7 +55,15 @@ module Photish
         end
 
         def msg
-          ": #{@msg}\n".colorize(:light_blue)
+          str = ': '
+          if @msg.kind_of?(Exception)
+            str << "#{@msg.class} \"#{@msg.message}\"\n"
+            str << "#{@msg.backtrace.join("\n")}"
+          else
+            str << "#{@msg}"
+          end
+          str << "\n"
+          str.colorize(:light_blue)
         end
 
         def reset_colors

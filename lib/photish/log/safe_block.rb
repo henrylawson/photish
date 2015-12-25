@@ -7,7 +7,7 @@ module Photish
           @runtime_error_occured = false
         rescue Exception => e
           log.fatal "#{name} died due to exception"
-          log.error e unless e.kind_of?(SystemExit)
+          log.fatal e unless e.kind_of?(SystemExit)
           Thread.list.each(&:kill) 
           exit(1)
         end
