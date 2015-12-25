@@ -417,7 +417,7 @@ all_images          | an array of all child [Images](https://github.com/henrylaw
 
 `site/_templates/photo.{type}`
 
-```
+```slim
 h1 Photo
 h2
   a href=url
