@@ -617,7 +617,6 @@ called inside the template, it will render the message in bold wrapped in the
 **site/_plugins/shout.rb**
 ```ruby
 module Photish::Plugin::Shout
-
   def self.is_for?(type)
     Photish::Plugin::Type::Photo == type
   end
