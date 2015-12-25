@@ -12,31 +12,47 @@ module Photish
           worker_index: 0,
           force: false,
           photish_executable: photish_executable,
-          qualities: [
-            { name: 'Original',
-              params: [] },
-            { name: 'Low',
-              params: ['-resize', '200x200'] }
-          ],
-          templates: {
-            layout: 'layout.slim',
-            collection: 'collection.slim',
-            album: 'album.slim',
-            photo: 'photo.slim'
-          },
-          logging: {
-            colorize: true,
-            output: ['stdout', 'file'],
-            level: 'info'
-          },
-          url: {
-            host: '',
-            base: nil
-          }
+          qualities: qualities,
+          templates: templates,
+          logging: logging,
+          url: url
         }
       end
 
       private
+
+      def url
+        {
+          host: '',
+          base: nil
+        }
+      end
+
+      def logging
+        {
+          colorize: true,
+          output: ['stdout', 'file'],
+          level: 'info'
+        }
+      end
+
+      def templates
+        {
+          layout: 'layout.slim',
+          collection: 'collection.slim',
+          album: 'album.slim',
+          photo: 'photo.slim'
+        }
+      end
+
+      def qualities
+        [
+          { name: 'Original',
+            params: [] },
+          { name: 'Low',
+            params: ['-resize', '200x200'] }
+        ]
+      end
 
       def workers
         processor_count / 2
