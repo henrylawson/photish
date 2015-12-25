@@ -3,6 +3,7 @@ require "rspec/core/rake_task"
 require 'cucumber'
 require 'cucumber/rake/task'
 require 'photish/rake/task'
+require 'metric_fu'
 
 RSpec::Core::RakeTask.new(:spec)
 
@@ -25,7 +26,8 @@ end
 task :default => [:clean,
                   :spec,
                   :features,
-                  :gather_coverage]
+                  :gather_coverage,
+                  'metrics:all']
 
 namespace :photish do
   Photish::Rake::Task.new(:init, 'Creates a basic project') do |t|
