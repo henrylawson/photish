@@ -2,8 +2,6 @@
 
 ## In Progress
 
-1. Make cache manifest db file module a class
-1. Remove plugin repository class methods
 1. Look at error handling, exiting and cleanup (files, processes and threads)
 
 ## Backlog

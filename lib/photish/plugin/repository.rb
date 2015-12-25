@@ -2,32 +2,14 @@ module Photish
   module Plugin
     class Repository
       include Singleton
+      include Log::Loggable
 
-      class << self
-        def reload(log, site_dir)
-          self.instance.reload(log, site_dir)
-        end
-
-        def plugins_for(type)
-          self.instance.plugins_for(type)
-        end
-
-        def loaded?
-          self.instance.loaded?
-        end
-      end
-
-      def reload(log, site_dir)
+      def reload(site_dir)
         log.info "Loading plugins..."
-        Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
-          load file
-        end
 
-        @all_plugins = nil
-
-        all_plugins.each do |plugin|
-          log.info "Found plugin #{plugin}"
-        end
+        load_each_plugin_file(site_dir)
+        clear_plugin_cache
+        load_each_plugin_constant
       end
 
       def plugins_for(type)
@@ -44,6 +26,22 @@ module Photish
       end
 
       private
+
+      def load_each_plugin_constant
+        all_plugins.each do |plugin|
+          log.info "Found plugin #{plugin}"
+        end
+      end
+
+      def clear_plugin_cache
+        @all_plugins = nil
+      end
+
+      def load_each_plugin_file(site_dir)
+        Dir[File.join(site_dir, '_plugins', '*.rb')].each do |file|
+          load file
+        end
+      end
 
       def constants
         Photish::Plugin.constants

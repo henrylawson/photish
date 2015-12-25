@@ -21,8 +21,8 @@ module Photish
                to: :config
 
       def load_all_plugins
-        return if Plugin::Repository.loaded?
-        Plugin::Repository.reload(log, site_dir)
+        return if Plugin::Repository.instance.loaded?
+        Plugin::Repository.instance.reload(site_dir)
       end
 
       def render_whole_site

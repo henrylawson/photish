@@ -4,11 +4,11 @@ module Photish
       def run
         log.info "Starting generation with #{workers} workers"
 
-        clear_cache if force_regeneration?
+        clear if force_regeneration?
         spawn_all_workers
         load_all_plugins
         wait_for_workers_to_complete
-        concat_db_files
+        concat_db_files(workers)
         perform_serial_generation
 
         log.info "Generation completed successfully"
@@ -26,16 +26,16 @@ module Photish
                :force,
                to: :config
 
+      delegate :concat_db_files,
+               :clear,
+               to: :manifest_db_file
+
       def force_regeneration?
         force == true
       end
 
-      def clear_cache
-        Cache::ManifestDbFile.clear(output_dir)
-      end
-
       def load_all_plugins
-        Plugin::Repository.reload(log, site_dir)
+        Plugin::Repository.instance.reload(site_dir)
       end
 
       def spawn_all_workers
@@ -81,8 +81,8 @@ module Photish
          "--worker_index=#{worker_index}"].join(' ')
       end
 
-      def concat_db_files
-        Cache::ManifestDbFile.concat_db_files(output_dir, workers)
+      def manifest_db_file
+        Cache::ManifestDbFile.new(output_dir)
       end
     end
   end

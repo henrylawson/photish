@@ -22,7 +22,9 @@ module Photish
       end
 
       def flush_to_disk
-        File.open(worker_db_file, 'w') { |f| f.write(worker_db.to_yaml) }
+        File.open(worker_db_file(worker_index), 'w') do
+          |f| f.write(worker_db.to_yaml)
+        end
       end
 
       def preload
@@ -37,6 +39,10 @@ module Photish
                   :worker_index,
                   :worker_db
 
+      delegate :db_file,
+               :worker_db_file,
+               to: :manifest_db_file
+
       def checksum_of_file(file_path)
         cache.fetch(file_path.hash) do |key|
           cache[key] = version_hash.to_s +
@@ -49,12 +55,8 @@ module Photish
         @db = File.exist?(db_file) ? YAML.load_file(db_file) : {}
       end
 
-      def db_file
-        ManifestDbFile.db_file(output_dir)
-      end
-
-      def worker_db_file
-        ManifestDbFile.worker_db_file(output_dir, worker_index)
+      def manifest_db_file
+        ManifestDbFile.new(output_dir)
       end
     end
   end

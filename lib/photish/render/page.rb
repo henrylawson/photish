@@ -1,11 +1,12 @@
 module Photish
   module Render
     class Page
+      include Log::Loggable
+
       def initialize(layout_file, template_file, output_dir)
         @layout_file = layout_file
         @template_file = template_file
         @output_dir = output_dir
-        @log = Logging.logger[self]
       end
 
       def render(models)
@@ -17,8 +18,7 @@ module Photish
 
       attr_reader :template_file,
                   :layout_file,
-                  :output_dir,
-                  :log
+                  :output_dir
 
       def render_all(models)
         Array(models).each do |model|

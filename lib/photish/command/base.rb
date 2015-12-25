@@ -1,9 +1,10 @@
 module Photish
   module Command
     class Base
+      include Log::Loggable
+
       def initialize(runtime_config)
         @runtime_config = runtime_config
-        @log = Logging.logger[self]
       end
 
       def execute
@@ -18,8 +19,7 @@ module Photish
 
       protected
 
-      attr_reader :runtime_config,
-                  :log
+      attr_reader :runtime_config
 
       delegate :config,
                :version_hash,

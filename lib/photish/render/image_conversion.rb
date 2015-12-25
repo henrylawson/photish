@@ -1,12 +1,13 @@
 module Photish
   module Render
     class ImageConversion
+      include Log::Loggable
+
       def initialize(output_dir, worker_index, version_hash, threads)
         @output_dir = output_dir
         @worker_index = worker_index
         @version_hash = version_hash
         @threads = threads
-        @log = Logging.logger[self]
       end
 
       def render(images)
@@ -21,7 +22,6 @@ module Photish
       private
 
       attr_reader :output_dir,
-                  :log,
                   :worker_index,
                   :version_hash,
                   :threads
