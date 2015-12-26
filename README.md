@@ -206,6 +206,12 @@ Photish has dependencies on certain software:
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
 
+Softer dependencies:
+
+- [Unix](http://www.unix.org/) based OS, Photish has been tested thoroughly on
+  Linux and MacOSX computers but theoretically should work on Windows, though
+  this is not tested.
+
 **On MacOSX, using [Brew](http://brew.sh/)**
 
     $ brew install imagemagick
