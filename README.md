@@ -195,7 +195,7 @@ photo site so you can track the version of Photish you are building with:
 
 ### Dependencies
 
-Photish has dependencies on certain utilities:
+Photish has dependencies on certain software:
 
 - [Ruby](https://www.ruby-lang.org/en/) as the utility is written in Ruby and
   is a Gem
