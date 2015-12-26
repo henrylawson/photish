@@ -4,7 +4,7 @@ rvm:
 sudo: false
 before_install:
   - gem install bundler -v 1.10.6
-script: rake
+script: bundle exec rake
 addons:
   code_climate:
     repo_token: ae398c193255da8c5e030cb6251f053c76757635e5215e65efa32f52d003a519
