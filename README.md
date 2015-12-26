@@ -210,7 +210,7 @@ Softer dependencies:
 
 - [Unix](http://www.unix.org/) based OS, Photish has been tested thoroughly on
   Linux and MacOSX computers but theoretically should work on Windows, though
-  this is not tested.
+  this is not tested
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
