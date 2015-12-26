@@ -1,5 +1,7 @@
 require 'simplecov'
 SimpleCov.command_name 'rspec'
+SimpleCov.add_filter 'vendor'
+SimpleCov.add_filter 'tmp'
 SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..'))
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
