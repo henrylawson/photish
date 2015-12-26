@@ -26,8 +26,9 @@ end
 task :default => [:clean,
                   :spec,
                   :features,
-                  :gather_coverage,
-                  'metrics:all']
+                  :gather_coverage]
+
+task :stats => ['metrics:all']
 
 namespace :photish do
   Photish::Rake::Task.new(:init, 'Creates a basic project') do |t|
