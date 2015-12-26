@@ -11,7 +11,10 @@
 
 ## Backlog
 
-1. Empty folders exist in output dir after orig removed and regeneration has happened
+1. Add more than 1 worker in one of the feature tests
+1. Mime-types gem required 2.0 and above, lost 1.9.x, does this matter?
+1. Empty folders exist in output dir after orig removed and regeneration has
+   happened
 1. Worker can die when large folders moved mid generation
 1. Changing convert items does not trigger regeneration but changing name does
 1. Templates with exif data, super slow
