@@ -721,6 +721,7 @@ To develop:
     $ git clone git@github.com:henrylawson/photish.git
     $ cd photish
     $ ./bin/setup     # installs dependencies
+    $ Install exiftool as detailed above.
     $ rake            # runs the tests
     $ vim             # open up the project and begin contributing
     $ ./bin/console   # for an interactive prompt
@@ -738,10 +739,10 @@ To release:
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/henrylawson/photish. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
-the [Contributor Covenant](contributor-covenant.org) code of conduct.
+the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT
-License](http://opensource.org/licenses/MIT).
+License](https://opensource.org/licenses/MIT).
 
