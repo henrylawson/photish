@@ -2,9 +2,10 @@
 
 ## In Progress
 
-1. Url and base a broken during template/image creation
+1. Url and base are broken during template/image creation
 1. Solve problem for explicit urls mentioned in templates (that need host/base)
 1. Need to have parameters to change on deploy
+1. During Host command nullify url options to work on host
 1. Deploy README content
 1. Extract the SSH deploy to gem
 
