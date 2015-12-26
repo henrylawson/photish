@@ -197,6 +197,10 @@ photo site so you can track the version of Photish you are building with:
 
 Photish has dependencies on certain utilities:
 
+- [Ruby](https://www.ruby-lang.org/en/) as the utility is written in Ruby and
+  is a Gem
+- [Bundler](http://bundler.io/) is not required but recommended to manage the
+  version, installations and updates of the Photish gem
 - [ImageMagick](http://www.imagemagick.org/script/index.php) for Image
   conversion
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
