@@ -11,6 +11,7 @@
 
 ## Backlog
 
+1. Dry up the SimpleCov config that is everywhere
 1. Add more than 1 worker in one of the feature tests
 1. Mime-types gem required 2.0 and above, lost 1.9.x, does this matter?
 1. Empty folders exist in output dir after orig removed and regeneration has
