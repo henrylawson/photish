@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.2.2
+  - 2.2.4
 sudo: false
 before_install:
   - gem install bundler -v 1.10.6
@@ -12,3 +12,4 @@ addons:
     packages:
       - libmagic-dev
       - libimage-exiftool-perl
+cache: bundler
