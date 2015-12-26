@@ -5,10 +5,10 @@ module Photish
         load_all_plugins
         log.info "Requested engine: #{engine}"
 
-        return no_engine_found unless engine
+        return no_engine_found unless engine && engine_class
 
         log.info "Deploying with engine #{engine_class}"
-        engine_class.new(config, log).deploy
+        engine_class.new(config, log).deploy_site
       end
 
       private

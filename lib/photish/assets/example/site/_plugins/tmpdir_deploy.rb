@@ -5,7 +5,7 @@ class Photish::Plugin::TmpdirDeploy
     @log = log
   end
 
-  def deploy
+  def deploy_site
     tmpdir = Dir.mktmpdir
     FileUtils.cp_r(config.output_dir, tmpdir)
 

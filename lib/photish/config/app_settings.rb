@@ -18,10 +18,10 @@ module Photish
       attr_reader :runtime_config
 
       def prioritized_config
-        {}.merge(default_config)
-          .merge(file_config)
-          .merge(runtime_config)
-          .merge(derived_config)
+        {}.deep_merge(default_config)
+          .deep_merge(file_config)
+          .deep_merge(runtime_config)
+          .deep_merge(derived_config)
       end
 
       def sensitive_config
