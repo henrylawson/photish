@@ -28,7 +28,7 @@ has changed, it is not needlessly regenerated. This results in a responsive
 and fast local development environment, making it easy to perfect the design
 of your photo based website without having to wait for regeneration.
 
-[Photish Demo](https://foinq.com/photish/photish-demo.png)
+![Photish Demo](https://foinq.com/photish/photish-demo.png)
 
 ## Getting Started
 
