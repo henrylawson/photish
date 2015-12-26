@@ -9,8 +9,6 @@ module Photish
         LogLine.new(@color, severity, datetime, progname, msg).format
       end
 
-      private
-
       class LogLine
         def initialize(color, severity, datetime, progname, msg)
           @color = color
