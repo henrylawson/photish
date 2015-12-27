@@ -309,7 +309,9 @@ This method of config override is only recommended for cases where the value
 needs to be temporarily overridden, such as during a deployment or while
 debugging.
 
-Below is a complete `config.yml` file:
+Below is a complete `config.yml` file, recommended practice is to only set the
+config values you need, otherwise just use the defaults, the file can be empty
+and Photish will still function:
 
 ```yaml
 port: 9876
