@@ -651,6 +651,14 @@ the `engine` argument.
 
     $ photish deploy --engine=name
 
+To utilize a Deployment Engine Plugin someone in the community has written,
+take a look at [Plugin Loading](#plugin-loading) for how to include it in your
+site.
+
+If you would like to write a [Deployment Engine
+Plugin](#deployment-engine-plugins) instructions are available in the [plugin
+section](#deployment-engine-plugins).
+
 ### Rake Task
 
 If you would prefer to use Photish as a task in
@@ -775,9 +783,10 @@ Photish supports the following methods of Plugin loading:
    most simple way and is recommended if you just want a simple helper specific
    to your site.
 1. Including a Gem in your Photish site's `Gemfile` and listing the name of the
-   Gem in the `plugins` [Config File Option](#config-file-options). This is a
-   bit more work and is recommended if you want to utilize a plugin created by
-   someone else in the community.
+   Gem in the `plugins` [Config File Option](#config-file-options). This is
+   recommended if you want to utilize a plugin created by someone else in the
+   community - rather than simple copy pasting their code to your
+   `site/_plugins` directory.
 
 ## Development
 

@@ -2,7 +2,6 @@
 
 ## In Progress
 
-1. Deploy README content
 1. Extract the SSH deploy to gem
 
 ## Backlog
