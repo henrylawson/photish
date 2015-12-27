@@ -86,8 +86,12 @@ module Photish
 
       def regenerate_entire_site
         log.info "Regenerating site"
-        Photish::Command::Generate.new(runtime_config)
+        Photish::Command::Generate.new(regenerate_runtime_config)
                                   .execute
+      end
+
+      def regenerate_runtime_config
+        runtime_config.merge(url: { type: 'absolute_relative' })
       end
 
       def queue
