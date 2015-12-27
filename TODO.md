@@ -4,7 +4,6 @@
 
 ## Backlog
 
-1. Need to have parameters to change on deploy
 1. Worker can die when large folders moved mid generation
 1. Changing convert items does not trigger regeneration but changing name does
 1. Templates with exif data, super slow
