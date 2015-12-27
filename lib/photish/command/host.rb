@@ -91,7 +91,8 @@ module Photish
       end
 
       def regenerate_runtime_config
-        runtime_config.merge(url: { type: 'absolute_relative' })
+        runtime_config.merge(url: { type: 'absolute_relative' },
+                             soft_failure: true)
       end
 
       def queue

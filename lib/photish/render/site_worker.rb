@@ -19,7 +19,6 @@ module Photish
                :site_dir,
                :output_dir,
                :workers,
-               :threads,
                :worker_index,
                to: :config
 
@@ -38,10 +37,7 @@ module Photish
       end
 
       def image_conversion
-        ImageConversion.new(output_dir,
-                            worker_index,
-                            version_hash,
-                            threads)
+        ImageConversion.new(config)
       end
 
       def album_template

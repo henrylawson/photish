@@ -3,11 +3,8 @@ module Photish
     class ImageConversion
       include Log::Loggable
 
-      def initialize(output_dir, worker_index, version_hash, threads)
-        @output_dir = output_dir
-        @worker_index = worker_index
-        @version_hash = version_hash
-        @threads = threads
+      def initialize(config)
+        @config = config
       end
 
       def render(images)
@@ -21,10 +18,14 @@ module Photish
 
       private
 
-      attr_reader :output_dir,
-                  :worker_index,
-                  :version_hash,
-                  :threads
+      attr_reader :config
+
+      delegate :output_dir,
+               :worker_index,
+               :version_hash,
+               :threads,
+               :soft_failure,
+               to: :config
 
       delegate :record,
                :changed?,
@@ -42,9 +43,16 @@ module Photish
 
       def process_images(image_queue)
         while !image_queue.empty?
-          image = image_queue.pop
-          convert(image) if changed?(image.url_path, image.path)
+          process_next_image(image_queue)
         end
+      end
+
+      def process_next_image(image_queue)
+        image = image_queue.pop
+        convert(image) if changed?(image.url_path, image.path)
+      rescue Errno::ENOENT
+        log.warn "Image not found #{image.path}"
+        raise unless soft_failure
       end
 
       def to_queue(images)
@@ -66,6 +74,10 @@ module Photish
           convert << output_path(image)
           log.info "Performing image conversion #{convert.command}"
         end
+      rescue MiniMagick::Error => e
+        log.warn "Error occured while converting"
+        log.warn e
+        raise unless soft_failure
       end
 
       def output_path(image)

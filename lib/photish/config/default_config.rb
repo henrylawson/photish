@@ -17,7 +17,8 @@ module Photish
           logging: logging,
           url: url,
           plugins: [],
-          image_extensions: image_extensions
+          image_extensions: image_extensions,
+          soft_failure: false
         }
       end
 
