@@ -830,7 +830,7 @@ command, you should see the plugin load:
 
 ```
 ...
-Photish::Plugin::Repository: Found plugin Photish::Plugin::Sshdeploy::Deploy
+... Photish::Plugin::Repository: Found plugin Photish::Plugin::Sshdeploy::Deploy
 ...
 ```
 
