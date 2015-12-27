@@ -210,8 +210,8 @@ Photish has dependencies on certain software:
 
 Target OS dependencies:
 
-- [Unix](http://www.unix.org/) based OS, Photish has been tested thoroughly on
-  Linux and MacOSX operating systems
+- [Unix](http://www.unix.org/) based operating system, Photish has been tested
+  thoroughly on Ubuntu and MacOSX
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
