@@ -675,7 +675,7 @@ Photish supports extension through the creation of plugins.
 
 To create a template helper plugin you must:
 
-1. Create a **Ruby module** in the `Photish:Plugin` module namespace
+1. Create a **Ruby module** in the `Photish::Plugin` module namespace
 1. Make the plugin available for [loading](#plugin-loading)
 1. Implement the `self.is_for?(type)` method
 1. Implement your custom helper method(s)
@@ -699,10 +699,6 @@ module Photish::Plugin::Shout
 end
 
 ```
-If the above code is saved to `site/_plugins/shout.rb` Photish will detect the
-plugin ruby file at runtime and it will load and make the method available in
-the template.
-
 A Template Helper Plugin `self.is_for?(type)` method could potentially receive
 any of the below types, simply return true for the types the Template Helper
 Plugin supports:
@@ -712,7 +708,9 @@ Plugin supports:
 1. `Photish::Plugin::Type::Photo`
 1. `Photish::Plugin::Type::Image`
 
-A usage example is below
+To use the Template Helper Plugin, simply call the custom method(s) in your
+template file. For the above example, it can be used by calling the `shout`
+method in a template file:
 
 **site/_templates/photo.slim**
 ```slim
@@ -724,7 +722,7 @@ div.my-shouting-content
 
 To create a deployment engine plugin you must:
 
-1. Create a **Ruby class** in the `Photish:Plugin` module namespace
+1. Create a **Ruby class** in the `Photish::Plugin` module namespace
 1. Make the plugin available for [loading](#plugin-loading)
 1. Implement a `self.is_for?(type)` method and respond true when it receives
    the `Photish::Plugin::Type::Deploy` type
@@ -739,7 +737,7 @@ To create a deployment engine plugin you must:
 
 A simple sample implementation is below:
 
-**site/_plugins/shout.rb**
+**site/_plugins/my_custom_deploy.rb**
 ```ruby
 module Photish::Plugin::MyCustomDeploy
   def initialize(config, log)
