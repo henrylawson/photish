@@ -11,9 +11,10 @@ Feature: Photish
     And a photos directory should be created
     And a site directory should be created
 
-    When I change the config to use two workers and one thread each
-
-    When I run `photish generate`
+    When I change the config to use workers, threads and a plugin Gem
+    And I run `photish generate`
+    Then the output should contain "Generating with 2 workers and 1 threads"
+    Then the output should contain "Photish::Plugin::Sshdeploy::Deploy"
     Then the output should contain "Site generation completed"
     And the exit status should be 0
 

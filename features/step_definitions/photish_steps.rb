@@ -87,7 +87,7 @@ Then(/^the album should be gone$/) do
   end
 end
 
-When(/^I change the config to use two workers and one thread each$/) do
+When(/^I change the config to use workers, threads and a plugin Gem$/) do
   change_config do |config|
     config['workers'] = 2
     config['threads'] = 1

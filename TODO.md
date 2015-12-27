@@ -2,8 +2,6 @@
 
 ## In Progress
 
-1. Coverage is picking up plugin code, dropping it down
-
 ## Backlog
 
 1. Dry up the SimpleCov config that is everywhere
