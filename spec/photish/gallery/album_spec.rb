@@ -128,6 +128,10 @@ class AlbumParent
     '/'
   end
 
+  def image_extensions
+    ['jpg']
+  end
+
   def url_info
     OpenStruct.new(host: '')
   end

@@ -22,7 +22,8 @@ describe Photish::Gallery::Collection do
                                              [OpenStruct.new(name: 'low')],
                                              OpenStruct.new(host: url_host,
                                                             base: url_base,
-                                                            type: url_type)) }
+                                                            type: url_type),
+                                             ['jpg']) }
 
   context '#albums' do
     it 'crawls the albums' do

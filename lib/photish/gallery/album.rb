@@ -7,6 +7,7 @@ module Photish
       include Photish::Plugin::Pluginable
 
       delegate :qualities,
+               :image_extensions,
                :url_info,
                to: :parent, allow_nil: true
 
@@ -42,10 +43,7 @@ module Photish
 
       def image_format?(file)
         extension = File.extname(file).split('.').last.try(:downcase)
-        return if extension.nil?
-        MIME::Types.type_for(extension).any? do
-          |mime| mime.to_s.match(formats)
-        end
+        image_extensions.include?(extension)
       end
 
       def album_class
@@ -54,12 +52,6 @@ module Photish
 
       def url_end
         'index.html'
-      end
-
-      def formats
-        Regexp.union([
-          /image/i
-        ])
       end
     end
   end

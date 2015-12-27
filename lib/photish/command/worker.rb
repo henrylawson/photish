@@ -18,6 +18,7 @@ module Photish
                :qualities,
                :url,
                :worker_index,
+               :image_extensions,
                to: :config
 
       def load_all_plugins
@@ -33,7 +34,8 @@ module Photish
       def collection
         @collection ||= Gallery::Collection.new(photo_dir,
                                                 qualities_mapped,
-                                                url)
+                                                url,
+                                                image_extensions)
       end
 
       def qualities_mapped

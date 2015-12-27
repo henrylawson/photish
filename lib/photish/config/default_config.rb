@@ -16,11 +16,20 @@ module Photish
           templates: templates,
           logging: logging,
           url: url,
-          plugins: []
+          plugins: [],
+          image_extensions: image_extensions
         }
       end
 
       private
+
+      def image_extensions
+        out, _err, _status = Open3.capture3('convert -list format')
+        out.split($/)
+           .map { |line| /(\S+)(?=\*)/.match(line).try(:[], 0) }
+           .compact
+           .map { |ext| ext.downcase }
+      end
 
       def url
         {

@@ -25,6 +25,7 @@ module Photish
                :workers,
                :force,
                :threads,
+               :image_extensions,
                to: :config
 
       delegate :concat_db_files,
@@ -69,7 +70,8 @@ module Photish
       def collection
         @collection ||= Gallery::Collection.new(photo_dir,
                                                 qualities_mapped,
-                                                url)
+                                                url,
+                                                image_extensions)
       end
 
       def qualities_mapped

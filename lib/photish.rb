@@ -12,11 +12,11 @@ require 'thor'
 require 'recursive_open_struct'
 require 'cgi'
 require 'facter'
-require 'mime-types'
 require 'thread'
 require 'thwait'
 require 'slim'
 require 'colorize'
+require 'open3'
 
 # Photish
 require 'photish/log/loggable'

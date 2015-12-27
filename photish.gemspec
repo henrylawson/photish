@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "recursive-open-struct", "~> 1.0"
   spec.add_dependency "listen", "~> 3.0"
   spec.add_dependency "facter", "~> 2.4"
-  spec.add_dependency "mime-types", "~> 3.0"
   spec.add_dependency "colorize", "~> 0.7.7"
 
   spec.add_development_dependency "anemone", "~> 0.7"

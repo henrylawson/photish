@@ -7,13 +7,15 @@ module Photish
       include Photish::Plugin::Pluginable
 
       attr_reader :qualities,
-                  :url_info
+                  :url_info,
+                  :image_extensions
 
-      def initialize(path, qualities, url_info)
+      def initialize(path, qualities, url_info, image_extensions)
         super
         @path = path
         @qualities = qualities
         @url_info = url_info
+        @image_extensions = Set.new(image_extensions)
       end
 
       def name

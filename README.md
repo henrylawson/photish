@@ -318,6 +318,7 @@ workers: 4
 threads: 2
 force: false
 plugins: ['ssh_deploy', 'other_plugin']
+image_extensions: ['jpg', 'gif']
 ```
 
 The meanings and purpose of each field is defined below:
@@ -345,6 +346,7 @@ Field                  | Purpose
 `threads`              | the number of threads each worker should create to handle image magick transcoding
 `force`                | this should always be false, if true, all content will be regenerated and nothing cached
 `plugins`              | an array of plugin names that have been included in your Gemfile and that Photish should require into it's runtime
+`image_extensions`     | by default, Photish obtains a list of supported image format extensions from ImageMagick, however if you choose too, you can explicitly list the extensions that Photish should use to find images
 
 #### Customizing Templates
 

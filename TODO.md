@@ -4,7 +4,6 @@
 
 ## Backlog
 
-1. Dry up the SimpleCov config that is everywhere
 1. Mime-types gem required 2.0 and above, lost 1.9.x, does this matter?
 1. Need to have parameters to change on deploy
 1. Worker can die when large folders moved mid generation
