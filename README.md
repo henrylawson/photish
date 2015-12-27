@@ -311,6 +311,7 @@ logging:
 url:
   host: http://mydomain.com
   base: 'subdirectory'
+  type: 'relative_uri'
 workers: 4
 threads: 2
 force: false
@@ -336,6 +337,7 @@ Field                  | Purpose
 `url`                  | a listing of the various url options
 `url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it as '/' or do not set this configuration at all
 `url/base`             | if your website will be hosted in a sub folder and will not be accessible at the root of the host, you can specify the sub folder(s) here, this will also mean your website will be hosted in a sub folder when ran using `photish host`
+`url/type`             | if your website URLs require the host name in them, you can use `absolute_uri` (i.e. http://mysite.com/subdirectory/index.html), if you would prefer to generate URLs that end at the root, you can use `absolute_relative` (i.e. /subdirectory/index.html)
 `workers`              | the number of workers to create, for computers with multiple processors, photish is configured by default to spawn a worker for each process, a worker is responsible for image generation and html generation, load balancing is done randomly via a simple round robin allocation
 `threads`              | the number of threads each worker should create to handle image magick transcoding
 `force`                | this should always be false, if true, all content will be regenerated and nothing cached

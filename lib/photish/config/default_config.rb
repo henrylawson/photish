@@ -24,7 +24,8 @@ module Photish
       def url
         {
           host: '',
-          base: nil
+          base: nil,
+          type: 'absolute_uri'
         }
       end
 

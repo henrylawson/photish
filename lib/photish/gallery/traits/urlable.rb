@@ -7,7 +7,7 @@ module Photish
         end
 
         def url_path
-          @url_path ||= url_parts.join('/')
+          @url_path ||= url_parts.join(File::SEPARATOR)
         end
 
         def url_parts
@@ -21,7 +21,11 @@ module Photish
         private
 
         def host
-          @host ||= url_info.host || ''
+          @host ||= if url_info.type == 'absolute_uri'
+                      url_info.host || ''
+                    else
+                      ''
+                    end
         end
 
         def slugify(word)

@@ -7,6 +7,7 @@ SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..'))
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'photish'
 require 'rspec-html-matchers'
+require 'pry'
 
 def fixture_file(path)
   File.join(File.dirname(__FILE__), 'fixtures', path)

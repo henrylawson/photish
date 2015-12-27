@@ -16,10 +16,13 @@ describe Photish::Gallery::Collection do
 
   let(:url_host) { nil }
   let(:url_base) { nil }
+  let(:url_type) { 'absolute_relative' }
 
-  subject { Photish::Gallery::Collection.new(@dir, 
+  subject { Photish::Gallery::Collection.new(@dir,
                                              [OpenStruct.new(name: 'low')],
-                                             OpenStruct.new(host: url_host, base: url_base)) }
+                                             OpenStruct.new(host: url_host,
+                                                            base: url_base,
+                                                            type: url_type)) }
 
   context '#albums' do
     it 'crawls the albums' do
@@ -75,18 +78,35 @@ describe Photish::Gallery::Collection do
     end
   end
 
-  context '#url' do
+  context '#url, #url_parts, #base_url_parts' do
     context 'no URL config provided' do
       it 'is the index at the root' do
         expect(subject.url).to eq('/index.html')
+        expect(subject.url_path).to eq('index.html')
+        expect(subject.url_parts).to eq(['index.html'])
+        expect(subject.base_url_parts).to eq([])
       end
     end
 
     context 'host is provieded' do
       let(:url_host) { 'https://mysite.com' }
 
-      it 'is the index at the root with host' do
-        expect(subject.url).to eq('https://mysite.com/index.html')
+      it 'url is the index at the root without host' do
+        expect(subject.url).to eq('/index.html')
+        expect(subject.url_path).to eq('index.html')
+        expect(subject.url_parts).to eq(['index.html'])
+        expect(subject.base_url_parts).to eq([])
+      end
+
+      context 'type is absolute_uri' do
+        let(:url_type) { 'absolute_uri' }
+
+        it 'url is the index at the root without host' do
+          expect(subject.url).to eq('https://mysite.com/index.html')
+          expect(subject.url_path).to eq('index.html')
+          expect(subject.url_parts).to eq(['index.html'])
+          expect(subject.base_url_parts).to eq([])
+        end
       end
     end
 
@@ -95,6 +115,9 @@ describe Photish::Gallery::Collection do
 
       it 'is the index within the base' do
         expect(subject.url).to eq('/subdir/index.html')
+        expect(subject.url_path).to eq('subdir/index.html')
+        expect(subject.url_parts).to eq(['subdir', 'index.html'])
+        expect(subject.base_url_parts).to eq(['subdir'])
       end
     end
 
@@ -103,20 +126,22 @@ describe Photish::Gallery::Collection do
       let(:url_base) { 'subdir' }
 
       it 'is the index within the base' do
-        expect(subject.url).to eq('https://mysite.com/subdir/index.html')
+        expect(subject.url).to eq('/subdir/index.html')
+        expect(subject.url_path).to eq('subdir/index.html')
+        expect(subject.url_parts).to eq(['subdir', 'index.html'])
+        expect(subject.base_url_parts).to eq(['subdir'])
       end
-    end
-  end
 
-  context '#url_parts' do
-    it 'is the snake version of the name with html file' do
-      expect(subject.url_parts).to eq(['index.html'])
-    end
-  end
+      context 'type is absolute_uri' do
+        let(:url_type) { 'absolute_uri' }
 
-  context '#base_url_parts' do
-    it 'is the snake version of the name' do
-      expect(subject.base_url_parts).to eq([])
+        it 'is the index within the base and host' do
+          expect(subject.url).to eq('https://mysite.com/subdir/index.html')
+          expect(subject.url_path).to eq('subdir/index.html')
+          expect(subject.url_parts).to eq(['subdir', 'index.html'])
+          expect(subject.base_url_parts).to eq(['subdir'])
+        end
+      end
     end
   end
 
