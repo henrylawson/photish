@@ -7,6 +7,7 @@ module Photish
 
       def all_for(collection)
         delete_unknown_files(collection.all_url_parts)
+        delete_empty_folders
         move_non_ignored_site_contents
         collection_template.render(collection)
       end
@@ -28,11 +29,23 @@ module Photish
                        File.join([output_dir, url.base].compact))
       end
 
+      def delete_empty_folders
+        Dir["#{output_dir}/**/"].reverse_each do |d|
+          FileUtils.rm_rf(d) if empty_dir?(d)
+        end
+      end
+
+      def empty_dir?(dir)
+        Dir.entries(dir)
+           .reject { |d| File.basename(d).starts_with?('.') }
+           .empty?
+      end
+
       def delete_unknown_files(url_parts)
-        do_not_delete = Set.new(url_parts.map { |url| File.join(output_dir, url) }
-                                         .map(&:to_s))
+        keep = Set.new(url_parts.map { |url| File.join(output_dir, url) }
+                                .map(&:to_s))
         files_to_delete = Dir["#{output_dir}/**/*"].select do |f|
-          File.file?(f) && !do_not_delete.include?(f)
+          File.file?(f) && !keep.include?(f)
         end
         FileUtils.rm_rf(files_to_delete)
       end

@@ -29,7 +29,7 @@ module Photish
       end
 
       def all_url_parts
-        @all_url_parts ||= [url_parts,
+        @all_url_parts ||= [[url_parts],
                             all_albums.map(&:url_parts),
                             all_photos.map(&:url_parts),
                             all_images.map(&:url_parts)].flatten(1)
