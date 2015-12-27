@@ -74,9 +74,11 @@ and running:
       - [Forced Regeneration](#forced-regeneration)
     - [Crude Performance Measures](#crude-performance-measures)
   - [Host](#host)
+  - [Deploy](#deploy)
   - [Rake Task](#rake-task)
   - [Plugins](#plugins)
     - [Template Helper Plugins](#template-helper-plugins)
+    - [Deployment Engine Plugins](#deployment-engine-plugins)
     - [Plugin Loading](#plugin-loading)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -638,6 +640,15 @@ The local version of your website will be visible at
 The Host command will also automatically regenerate the website on startup and
 when a file is added, removed or modified in the `photo_dir` or `site_dir`.
 
+### Deploy
+
+Photish provides a plugin type specifically for deployments, called the
+[Deployment Engine](#deployment-engine-plugins). Once a deploy plugin is
+configured, it can be ran by passing the deploy plugins name as a value with
+the `engine` argument.
+
+    $ photish deploy --engine=name
+
 ### Rake Task
 
 If you would prefer to use Photish as a task in
@@ -664,7 +675,8 @@ Photish supports extension through the creation of plugins.
 
 To create a template helper plugin you must:
 
-1. Create a module in the `Photish:Plugin` module namespace
+1. Create a **Ruby module** in the `Photish:Plugin` module namespace
+1. Make the plugin available for [loading](#plugin-loading)
 1. Implement the `self.is_for?(type)` method
 1. Implement your custom helper method(s)
 
@@ -685,8 +697,8 @@ module Photish::Plugin::Shout
     "<strong>I am shouting '#{message}'!!!</strong>"
   end
 end
-```
 
+```
 If the above code is saved to `site/_plugins/shout.rb` Photish will detect the
 plugin ruby file at runtime and it will load and make the method available in
 the template.
@@ -706,6 +718,48 @@ A usage example is below
 ```slim
 div.my-shouting-content
   == shout("HELLO")
+```
+
+#### Deployment Engine Plugins
+
+To create a deployment engine plugin you must:
+
+1. Create a **Ruby class** in the `Photish:Plugin` module namespace
+1. Make the plugin available for [loading](#plugin-loading)
+1. Implement a `self.is_for?(type)` method and respond true when it receives
+   the `Photish::Plugin::Type::Deploy` type
+1. Implement a `self.engine_name` method and respond with the name of the
+   engine, this needs to match the value the user will pass on the
+   [Deploy](#deploy) command
+1. Implement a constructor, it should expect two argumnets `initialize(config,
+   log)`, a structure representing the config file and an instance of the
+   logger
+1. Finally the plugin should also implement a `deploy_site` method, this method
+   will execute the actual deployment
+
+A simple sample implementation is below:
+
+**site/_plugins/shout.rb**
+```ruby
+module Photish::Plugin::MyCustomDeploy
+  def initialize(config, log)
+    @config = config
+    @log = log
+  end
+
+  def self.is_for?(type)
+    Photish::Plugin::Type::Photo == type
+  end
+
+  def self.engine_name
+    'my_custom_deploy'
+  end
+
+  def deploy_site
+    @log.info "Deploying using my plugin"
+    FileUtils.cp(@config.output_dir, '/srv/www')
+  end
+end
 ```
 
 ### Plugin Loading
