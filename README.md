@@ -685,7 +685,7 @@ Photish supports extension through the creation of plugins.
 
 To create a template helper plugin you must:
 
-1. Create a **Ruby module** in the `Photish::Plugin` module namespace, if
+1. Create a **Ruby Module** in the `Photish::Plugin` module namespace, if
    you are packaging the plugin as a Gem, you can implement your module one
    level deeper in the namespace to allow for the Gem namespace, e.g.
    `Photish::Plugin::MyGemPlugin::MyTemplateHelper`
@@ -740,7 +740,7 @@ Some "core" Template Helper plugins available in Photish by default are:
 
 To create a deployment engine plugin you must:
 
-1. Create a **Ruby class** in the `Photish::Plugin` module namespace, if
+1. Create a **Ruby Class** in the `Photish::Plugin` module namespace, if
    you are packaging the plugin as a Gem, you can implement your module one
    level deeper in the namespace to allow for the Gem namespace, e.g.
    `Photish::Plugin::MyGemPlugin::MyDeployEngine`
