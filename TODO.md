@@ -2,6 +2,8 @@
 
 ## In Progress
 
+1. Make specs use files in lib/assets
+
 ## Backlog
 
 1. Worker can die when large folders moved mid generation
