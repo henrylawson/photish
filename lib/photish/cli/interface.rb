@@ -5,6 +5,7 @@ module Photish
 
       desc "generate", "Generates the gallery static site"
       option :force, type: :boolean
+      option :config_override, type: :string
       def generate
         Photish::Command::Generate.new(options).execute
       end
@@ -17,18 +18,21 @@ module Photish
 
       desc "host", "Serves the HTML on a HTTP server"
       option :force, type: :boolean
+      option :config_override, type: :string
       def host
         Photish::Command::Host.new(options).execute
       end
 
       desc "init", "Creates a basic Photish site structure"
       option :example, type: :boolean
+      option :config_override, type: :string
       def init
         Photish::Command::Init.new(options).execute
       end
 
       desc "deploy", "Deploys the static site, using the specified engine"
       method_option :engine, required: true
+      option :config_override, type: :string
       def deploy
         Photish::Command::Deploy.new(options).execute
       end

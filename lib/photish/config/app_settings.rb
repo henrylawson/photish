@@ -2,7 +2,7 @@ module Photish
   module Config
     class AppSettings
       def initialize(runtime_config)
-        @runtime_config = symbolize(runtime_config)
+        @runtime_config = symbolize(extract_config(runtime_config))
       end
 
       def config
@@ -17,11 +17,16 @@ module Photish
 
       attr_reader :runtime_config
 
+      def extract_config(hash)
+        {}.deep_merge(hash)
+          .deep_merge(JSON.parse(hash.fetch('config_override', '{}')))
+      end
+
       def prioritized_config
-        {}.deep_merge(default_config)
-          .deep_merge(file_config)
-          .deep_merge(runtime_config)
-          .deep_merge(derived_config)
+        @prioritized_config = {}.deep_merge(default_config)
+                                .deep_merge(file_config)
+                                .deep_merge(runtime_config)
+                                .deep_merge(derived_config)
       end
 
       def sensitive_config
