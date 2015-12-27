@@ -815,7 +815,7 @@ gem 'photish-plugin-sshdeploy'
 And in your Photish config, ensure it is listed in your `plugins` [Config File
 Option](#config-file-options).
 
-**./config.yml**
+**config.yml**
 
 ```YAML
 plugins: ['photish/plugin/sshdeploy']
