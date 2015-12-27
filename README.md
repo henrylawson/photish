@@ -796,6 +796,9 @@ By default, Photish will automatically load all files in the `site/_plugins`
 directory. This is the most simple way and is recommended if you just want to
 write a simple helper specific to your site.
 
+The example site created when running `photish generate --example` uses this
+method to load plugins.
+
 #### Explicit Gem Loading
 
 This is recommended method if you want to utilize a plugin created by someone
@@ -803,6 +806,12 @@ else in the community - rather than simply copy pasting their code to your
 `site/_plugins` directory. It is done by including a Gem in your Photish site's
 `Gemfile` and listing the require path of the Gem in the `plugins` [Config File
 Option](#config-file-options).
+
+An example of Explicit Gem Loading is provided by the [Photish
+Montage](https://github.com/henrylawson/photish-montage) demo that explicitly
+loads the
+[Photish::Plugin::Sshdeploy](https://github.com/henrylawson/photish-plugin-sshdeploy)
+Gem.
 
 To load a Gem as a plugin, first of all add the Gem to your Gemfile:
 
