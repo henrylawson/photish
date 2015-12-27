@@ -300,8 +300,8 @@ generated file, the generated file will clobber the asset.
 The default way to express config is in the `config.yml` file. However config
 can also be overridden using the `--config_override` flag to any of the Photish
 commands. When using the `--config_override` flag, the config must be expressed
-as JSON. For example, to override logging when calling the Generate command,
-you can use:
+as [JSON](http://www.json.org/). For example, to override logging when calling
+the Generate command, you can use:
 
     $ photish generate --config_override='{"logging":{"colorize":false}}'
 
