@@ -2,7 +2,8 @@
 
 ## In Progress
 
-1. Extract the SSH deploy to gem
+1. Coverage is picking up plugin code, dropping it down
+1. Make a note in README about demo of deploy plugin
 
 ## Backlog
 
