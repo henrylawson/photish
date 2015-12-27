@@ -25,7 +25,9 @@ module Photish
 
       def image_extensions
         out, _err, _status = Open3.capture3('convert -list format')
-        out.encode('UTF-8', 'UTF-8', invalid: :replace, replace: '')
+        out.encode('UTF-8', 'UTF-8', invalid: :replace,
+                                     undef: :replace,
+                                     replace: '')
            .split($/)
            .map { |line| /(\S+)(?=\*)/.match(line).try(:[], 0) }
            .compact
