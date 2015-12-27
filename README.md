@@ -788,7 +788,7 @@ Some reference implementations of deploy plugins are:
 
 ### Plugin Loading
 
-Photish supports the following methods of Plugin loading:
+Photish supports the following methods of Plugin loading.
 
 #### Site Folder Loading
 
@@ -806,7 +806,7 @@ Option](#config-file-options).
 
 To load a Gem as a plugin, first of all add the Gem to your Gemfile:
 
-**./Gemfile**
+**Gemfile**
 
 ```Gemfile
 gem 'photish-plugin-sshdeploy'
@@ -826,7 +826,7 @@ Then run `bundle install`.
 To confirm that it is installed correctly, when you run the `photish generate`
 command, you should see the plugin load:
 
-**./log/photish.log or STDOUT**
+**log/photish.log or STDOUT**
 
 ```
 ...
