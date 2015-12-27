@@ -208,6 +208,11 @@ Photish has dependencies on certain software:
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
 
+Target OS dependencies:
+
+- [Unix](http://www.unix.org/) based OS, Photish has been tested thoroughly on
+  Linux and MacOSX operating systems
+
 **On MacOSX, using [Brew](http://brew.sh/)**
 
     $ brew install ruby
@@ -223,11 +228,6 @@ Photish has dependencies on certain software:
     $
     $ sudo apt-get install imagemagick
     $ sudo apt-get install libimage-exiftool-perl
-
-Target OS dependencies:
-
-- [Unix](http://www.unix.org/) based OS, Photish has been tested thoroughly on
-  Linux and MacOSX operating systems
 
 ## Usage
 
