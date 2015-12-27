@@ -22,3 +22,4 @@
 1. Provide generic way to override config from arguments to allow for host name
    override on deploy etc.
 1. Video transcoding and template rendering
+1. JRuby support, perhaps?
