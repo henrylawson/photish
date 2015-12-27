@@ -685,7 +685,10 @@ Photish supports extension through the creation of plugins.
 
 To create a template helper plugin you must:
 
-1. Create a **Ruby module** in the `Photish::Plugin` module namespace
+1. Create a **Ruby module** in the `Photish::Plugin` module namespace, if
+   you are packaging the plugin as a Gem, you can implement your module one
+   level deeper in the namespace to allow for the Gem namespace, e.g.
+   `Photish::Plugin::MyGemPlugin::MyTemplateHelper`
 1. Make the plugin available for [loading](#plugin-loading)
 1. Implement the `self.is_for?(type)` method
 1. Implement your custom helper method(s)
@@ -737,7 +740,10 @@ Some "core" Template Helper plugins available in Photish by default are:
 
 To create a deployment engine plugin you must:
 
-1. Create a **Ruby class** in the `Photish::Plugin` module namespace
+1. Create a **Ruby class** in the `Photish::Plugin` module namespace, if
+   you are packaging the plugin as a Gem, you can implement your module one
+   level deeper in the namespace to allow for the Gem namespace, e.g.
+   `Photish::Plugin::MyGemPlugin::MyDeployEngine`
 1. Make the plugin available for [loading](#plugin-loading)
 1. Implement a `self.is_for?(type)` method and respond true when it receives
    the `Photish::Plugin::Type::Deploy` type
@@ -775,18 +781,61 @@ module Photish::Plugin::MyCustomDeploy
 end
 ```
 
+Some reference implementations of deploy plugins are:
+
+1. [Photish SSH Deploy](https://github.com/henrylawson/photish-plugin-sshdeploy)
+1. [Tmp Dir Deploy](https://github.com/henrylawson/photish/blob/master/lib/photish/assets/example/site/_plugins/tmpdir_deploy.rb)
+
 ### Plugin Loading
 
 Photish supports the following methods of Plugin loading:
 
-1. Automatic loading of files in the `site/_plugins` directory. This is the
-   most simple way and is recommended if you just want a simple helper specific
-   to your site.
-1. Including a Gem in your Photish site's `Gemfile` and listing the name of the
-   Gem in the `plugins` [Config File Option](#config-file-options). This is
-   recommended if you want to utilize a plugin created by someone else in the
-   community - rather than simple copy pasting their code to your
-   `site/_plugins` directory.
+#### Site Folder Loading
+
+By default, Photish will automatically load all files in the `site/_plugins`
+directory. This is the most simple way and is recommended if you just want to
+write a simple helper specific to your site.
+
+#### Explicit Gem Loading
+
+This is recommended method if you want to utilize a plugin created by someone
+else in the community - rather than simply copy pasting their code to your
+`site/_plugins` directory. It is done by including a Gem in your Photish site's
+`Gemfile` and listing the require path of the Gem in the `plugins` [Config File
+Option](#config-file-options).
+
+To load a Gem as a plugin, first of all add the Gem to your Gemfile:
+
+**./Gemfile**
+
+```Gemfile
+gem 'photish-plugin-sshdeploy'
+```
+
+And in your Photish config, ensure it is listed in your `plugins` [Config File
+Option](#config-file-options).
+
+**./config.yml**
+
+```YAML
+plugins: ['photish/plugin/sshdeploy']
+```
+
+Then run `bundle install`.
+
+To confirm that it is installed correctly, when you run the `photish generate`
+command, you should see the plugin load:
+
+**./log/photish.log or STDOUT**
+
+```
+...
+Photish::Plugin::Repository: Found plugin Photish::Plugin::Sshdeploy::Deploy
+...
+```
+
+Note the 'photish-plugin-sshdeploy' Gem has other install steps documented in
+it's [README](https://github.com/henrylawson/photish-plugin-sshdeploy).
 
 ## Development
 
