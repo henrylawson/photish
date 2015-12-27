@@ -1,8 +1,5 @@
 require 'simplecov'
 SimpleCov.command_name 'cucumber'
-SimpleCov.add_filter 'vendor'
-SimpleCov.add_filter 'tmp'
-SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..', '..'))
 
 require 'pry'
 require 'retriable'

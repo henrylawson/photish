@@ -3,9 +3,6 @@
 if ENV['COVERAGE']
   require 'simplecov'
   SimpleCov.command_name "photish-binary-#{Process.pid}"
-  SimpleCov.add_filter 'vendor'
-  SimpleCov.add_filter 'tmp'
-  SimpleCov.root(File.join(File.expand_path(File.dirname(__FILE__)), '..'))
 end
 
 if ENV['PROFILE']

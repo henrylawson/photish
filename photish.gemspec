@@ -44,4 +44,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "codeclimate-test-reporter"
   spec.add_development_dependency "rspec-html-matchers"
   spec.add_development_dependency "metric_fu"
+  spec.add_development_dependency "photish-plugin-sshdeploy"
 end

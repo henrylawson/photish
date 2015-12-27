@@ -91,6 +91,7 @@ When(/^I change the config to use two workers and one thread each$/) do
   change_config do |config|
     config['workers'] = 2
     config['threads'] = 1
+    config['plugins'] = ['photish/plugin/sshdeploy']
   end
 end
 
