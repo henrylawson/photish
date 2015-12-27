@@ -663,6 +663,12 @@ The local version of your website will be visible at
 The Host command will also automatically regenerate the website on startup and
 when a file is added, removed or modified in the `photo_dir` or `site_dir`.
 
+Note, when running in this mode any Image Conversion errors are swallowed and
+logged. This is done as it is quite common for image files to be moved while
+conversion is in progress. Rather then terminate the Host, the file move is
+recorded and regeneration will be triggered once the current generation
+completes.
+
 ### Deploy
 
 Photish provides a plugin type specifically for deployments, called the
