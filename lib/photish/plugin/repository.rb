@@ -18,8 +18,7 @@ module Photish
       end
 
       def all_plugins
-        @all_plugins ||= constants.map    { |m| constantize(m) }
-                                  .reject { |m| ignored_modules.include?(m) }
+        @all_plugins ||= constants + sub_constants
       end
 
       def loaded?
@@ -30,6 +29,7 @@ module Photish
 
       def require_each_explicit_plugin(plugins)
         plugins.each do |plugin|
+          log.info "Requiring config explicit plugin, #{plugin}"
           require plugin
         end
       end
@@ -51,7 +51,17 @@ module Photish
       end
 
       def constants
-        Photish::Plugin.constants
+        Photish::Plugin.constants.map    { |m| constantize(m) }
+                                 .reject { |m| ignored_modules.include?(m) }
+                                 .select { |m| m.respond_to?(:is_for?) }
+      end
+
+      def sub_constants
+        Photish::Plugin.constants.map    { |c| constantize(c) }
+                                 .reject { |m| ignored_modules.include?(m) }
+                                 .map    { |c| c.constants.map { |d| constantize("#{c.name}::#{d}") } }
+                                 .flatten
+                                 .select { |m| m.respond_to?(:is_for?) }
       end
 
       def ignored_modules
