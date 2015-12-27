@@ -508,9 +508,10 @@ Custom template helpers are supported through [Plugins](#plugins).
 
 By default, Photish comes with the following helpers:
 
-Method      | Description
------------ | -----------
-breadcrumbs | an unordered list of pages above the current page in the hierarchy
+Method              | Description
+------------------- | -----------
+breadcrumbs         | an unordered list of pages above the current page in the hierarchy
+build_url(\*pieces) | use this to ensure your URLs have the correct host name and base directory, to avoid having it hard coded in the template
 
 ### Generate
 

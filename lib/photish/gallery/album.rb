@@ -4,7 +4,6 @@ module Photish
       include Traits::Urlable
       include Traits::Albumable
       include Traits::Metadatable
-      include Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
       delegate :qualities,

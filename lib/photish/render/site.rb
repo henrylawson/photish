@@ -19,11 +19,13 @@ module Photish
                :site_dir,
                :output_dir,
                :worker_index,
+               :url,
                to: :config
 
       def move_non_ignored_site_contents
         FileUtils.mkdir_p(output_dir)
-        FileUtils.cp_r(non_ignored_site_contents, output_dir)
+        FileUtils.cp_r(non_ignored_site_contents,
+                       File.join([output_dir, url.base].flatten))
       end
 
       def delete_unknown_files(url_parts)

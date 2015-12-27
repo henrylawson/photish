@@ -7,6 +7,9 @@ module Photish
 
         return no_engine_found unless engine && engine_class
 
+        log.info "Regenerating site, to ensure fresh copy"
+        regenerate_entire_site
+
         log.info "Deploying with engine #{engine_class}"
         engine_class.new(config, log).deploy_site
       end
@@ -17,6 +20,10 @@ module Photish
                :site_dir,
                to: :config
 
+      def regenerate_entire_site
+        Photish::Command::Generate.new(runtime_config)
+                                  .execute
+      end
 
       def no_engine_found
         log.info "No engine found..."

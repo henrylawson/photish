@@ -2,10 +2,8 @@
 
 ## In Progress
 
-1. Url and base are broken during template/image creation
-1. Solve problem for explicit urls mentioned in templates (that need host/base)
-1. Need to have parameters to change on deploy
-1. During Host command nullify url options to work on host
+1. Empty folders exist in output dir after orig removed and regeneration has
+   happened
 1. Deploy README content
 1. Extract the SSH deploy to gem
 
@@ -14,8 +12,7 @@
 1. Dry up the SimpleCov config that is everywhere
 1. Add more than 1 worker in one of the feature tests
 1. Mime-types gem required 2.0 and above, lost 1.9.x, does this matter?
-1. Empty folders exist in output dir after orig removed and regeneration has
-   happened
+1. Need to have parameters to change on deploy
 1. Worker can die when large folders moved mid generation
 1. Changing convert items does not trigger regeneration but changing name does
 1. Templates with exif data, super slow

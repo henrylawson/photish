@@ -3,7 +3,6 @@ module Photish
     class Photo
       include Traits::Urlable
       include Traits::Metadatable
-      include Traits::Breadcrumbable
       include Photish::Plugin::Pluginable
 
       delegate :qualities,

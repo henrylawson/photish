@@ -1,5 +1,4 @@
 module Photish::Plugin::FooterLinks
-
   def self.is_for?(type)
     [
       Photish::Plugin::Type::Collection,

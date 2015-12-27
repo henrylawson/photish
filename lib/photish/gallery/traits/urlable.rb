@@ -18,8 +18,6 @@ module Photish
           @base_url_parts ||= parent.base_url_parts + [slugify(base_url_name)]
         end
 
-        private
-
         def host
           @host ||= if url_info.type == 'absolute_uri'
                       url_info.host || ''
@@ -27,6 +25,8 @@ module Photish
                       ''
                     end
         end
+
+        private
 
         def slugify(word)
           CGI.escape(word.downcase.gsub(' ', '-'))

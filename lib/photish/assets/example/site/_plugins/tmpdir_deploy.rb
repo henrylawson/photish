@@ -1,5 +1,4 @@
 class Photish::Plugin::TmpdirDeploy
-
   def initialize(config, log)
     @config = config
     @log = log

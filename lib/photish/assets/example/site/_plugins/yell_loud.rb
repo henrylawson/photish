@@ -1,5 +1,4 @@
 module Photish::Plugin::YellLoud
-
   def self.is_for?(type)
     [
       Photish::Plugin::Type::Collection,

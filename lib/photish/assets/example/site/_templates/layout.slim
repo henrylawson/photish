@@ -2,7 +2,7 @@ doctype html
 html
   head
     title Photish example site
-    link href="/styles/basic.css" media="screen" rel="stylesheet" type="text/css"
+    link href="#{build_url('styles', 'basic.css')}" media="screen" rel="stylesheet" type="text/css"
   body
     div.header
       a href="/"
@@ -13,5 +13,5 @@ html
       == yield
     div.footer
       | Site assets:
-      == links_with_seperator([{text: 'My Custom Page', url: '/custom.html'},
-                               {text: 'CSS Download',   url: '/styles/basic.css'}], '|')
+      == links_with_seperator([{text: 'My Custom Page', url: build_url('custom.html')},
+                               {text: 'CSS Download',   url: build_url('styles', 'basic.css')}], '|')
