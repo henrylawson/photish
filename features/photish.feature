@@ -11,7 +11,7 @@ Feature: Photish
     And a photos directory should be created
     And a site directory should be created
 
-    When I change the config to use a single worker and thread
+    When I change the config to use two workers and one thread each
 
     When I run `photish generate`
     Then the output should contain "Site generation completed"

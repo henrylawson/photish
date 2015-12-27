@@ -2,15 +2,12 @@
 
 ## In Progress
 
-1. Empty folders exist in output dir after orig removed and regeneration has
-   happened
 1. Deploy README content
 1. Extract the SSH deploy to gem
 
 ## Backlog
 
 1. Dry up the SimpleCov config that is everywhere
-1. Add more than 1 worker in one of the feature tests
 1. Mime-types gem required 2.0 and above, lost 1.9.x, does this matter?
 1. Need to have parameters to change on deploy
 1. Worker can die when large folders moved mid generation
