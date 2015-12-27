@@ -15,7 +15,8 @@ module Photish
           qualities: qualities,
           templates: templates,
           logging: logging,
-          url: url
+          url: url,
+          plugins: []
         }
       end
 

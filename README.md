@@ -317,6 +317,7 @@ url:
 workers: 4
 threads: 2
 force: false
+plugins: ['ssh_deploy', 'other_plugin']
 ```
 
 The meanings and purpose of each field is defined below:
@@ -343,6 +344,7 @@ Field                  | Purpose
 `workers`              | the number of workers to create, for computers with multiple processors, photish is configured by default to spawn a worker for each process, a worker is responsible for image generation and html generation, load balancing is done randomly via a simple round robin allocation
 `threads`              | the number of threads each worker should create to handle image magick transcoding
 `force`                | this should always be false, if true, all content will be regenerated and nothing cached
+`plugins`              | an array of plugin names that have been included in your Gemfile and that Photish should require into it's runtime
 
 #### Customizing Templates
 
@@ -718,6 +720,11 @@ div.my-shouting-content
   == shout("HELLO")
 ```
 
+Some "core" Template Helper plugins available in Photish by default are:
+
+1. [Breadcrumb](https://github.com/henrylawson/photish/blob/master/lib/photish/core_plugin/breadcrumb.rb)
+1. [BuildUrl](https://github.com/henrylawson/photish/blob/master/lib/photish/core_plugin/build_url.rb)
+
 #### Deployment Engine Plugins
 
 To create a deployment engine plugin you must:
@@ -762,9 +769,15 @@ end
 
 ### Plugin Loading
 
-All ruby files in `site/_plugins` will be loaded into the runtime but only
-those in the `Photish::Plugin` namespace with a `self.is_for?(type)` method
-will be used by Photish as plugins.
+Photish supports the following methods of Plugin loading:
+
+1. Automatic loading of files in the `site/_plugins` directory. This is the
+   most simple way and is recommended if you just want a simple helper specific
+   to your site.
+1. Including a Gem in your Photish site's `Gemfile` and listing the name of the
+   Gem in the `plugins` [Config File Option](#config-file-options). This is a
+   bit more work and is recommended if you want to utilize a plugin created by
+   someone else in the community.
 
 ## Development
 

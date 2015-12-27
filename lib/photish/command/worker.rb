@@ -22,7 +22,7 @@ module Photish
 
       def load_all_plugins
         return if Plugin::Repository.instance.loaded?
-        Plugin::Repository.instance.reload(site_dir)
+        Plugin::Repository.instance.reload(config)
       end
 
       def render_whole_site

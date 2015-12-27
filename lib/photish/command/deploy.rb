@@ -30,7 +30,7 @@ module Photish
       end
 
       def load_all_plugins
-        Plugin::Repository.instance.reload(site_dir)
+        Plugin::Repository.instance.reload(config)
       end
 
       def engine_class

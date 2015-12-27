@@ -4,10 +4,11 @@ module Photish
       include Singleton
       include Log::Loggable
 
-      def reload(site_dir)
+      def reload(config)
         log.info "Loading plugins..."
 
-        load_each_plugin_file(site_dir)
+        load_each_plugin_file(config.site_dir)
+        require_each_explicit_plugin(config.plugins)
         clear_plugin_cache
         load_each_plugin_constant
       end
@@ -26,6 +27,12 @@ module Photish
       end
 
       private
+
+      def require_each_explicit_plugin(plugins)
+        plugins.each do |plugin|
+          require plugin
+        end
+      end
 
       def load_each_plugin_constant
         all_plugins.each do |plugin|
