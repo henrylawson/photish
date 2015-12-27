@@ -15,6 +15,7 @@ module Photish::Plugin::BuildUrl
     url_pieces.flatten
               .compact
               .join('/')
+              .squeeze('/')
   end
 end
 
