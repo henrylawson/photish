@@ -7,6 +7,7 @@
 ## Backlog
 
 1. Change most logging to debug, leave info for summaries
+1. Redirect SSH debug to logger
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
 1. Video transcoding and template rendering for videos
 1. Templates with exif data, super slow
