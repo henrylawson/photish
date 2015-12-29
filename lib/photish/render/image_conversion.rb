@@ -3,8 +3,9 @@ module Photish
     class ImageConversion
       include Log::Loggable
 
-      def initialize(config)
+      def initialize(config, version_hash)
         @config = config
+        @version_hash = version_hash
       end
 
       def render(images)
@@ -18,11 +19,11 @@ module Photish
 
       private
 
-      attr_reader :config
+      attr_reader :config,
+                  :version_hash
 
       delegate :output_dir,
                :worker_index,
-               :version_hash,
                :threads,
                :soft_failure,
                to: :config

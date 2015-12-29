@@ -30,7 +30,7 @@ module Photish
       end
 
       def sensitive_config
-        prioritized_config.slice('qualities')
+        prioritized_config.slice(:qualities)
       end
 
       def derived_config

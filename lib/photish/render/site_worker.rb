@@ -37,7 +37,7 @@ module Photish
       end
 
       def image_conversion
-        ImageConversion.new(config)
+        ImageConversion.new(config, version_hash)
       end
 
       def album_template
