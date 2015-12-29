@@ -2,8 +2,8 @@ module Photish
   module Command
     class Host < Base
       def run
-        log.info "Site will be running at http://0.0.0.0:#{port}/"
-        log.info "Monitoring paths #{paths_to_monitor}"
+        log.debug "Site will be running at http://0.0.0.0:#{port}/"
+        log.debug "Monitoring paths #{paths_to_monitor}"
 
         regenerate_entire_site
         regenerate_thread
@@ -23,7 +23,7 @@ module Photish
         trap 'INT' do server.shutdown end
         listener.start
         server.start
-        log.info "Photish host has shutdown"
+        log.debug "Photish host has shutdown"
       ensure
         regenerate_thread.exit if @regenerate_thread
         listener.stop if @listener
@@ -62,7 +62,7 @@ module Photish
 
       def handle_change(mod, add, del)
         changes = changes_as_hash(mod, add, del)
-        log.info "File change detected: #{changes}}"
+        log.debug "File change detected: #{changes}}"
         queue.push(changes)
       end
 
@@ -85,7 +85,7 @@ module Photish
       end
 
       def regenerate_entire_site
-        log.info "Regenerating site"
+        log.debug "Regenerating site"
         Photish::Command::Generate.new(regenerate_runtime_config)
                                   .execute
       end

@@ -3,14 +3,14 @@ module Photish
     class Deploy < Base
       def run
         load_all_plugins
-        log.info "Requested engine: #{engine}"
+        log.debug "Requested engine: #{engine}"
 
         return no_engine_found unless engine && engine_class
 
-        log.info "Regenerating site, to ensure fresh copy"
+        log.debug "Regenerating site, to ensure fresh copy"
         regenerate_entire_site
 
-        log.info "Deploying with engine #{engine_class}"
+        log.debug "Deploying with engine #{engine_class}"
         engine_class.new(config, log).deploy_site
       end
 
@@ -26,7 +26,7 @@ module Photish
       end
 
       def no_engine_found
-        log.info "No engine found..."
+        log.debug "No engine found..."
       end
 
       def load_all_plugins

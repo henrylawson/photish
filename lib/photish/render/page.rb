@@ -26,7 +26,7 @@ module Photish
           output_model_file = relative_to_output_dir(model.url_parts)
           output_model_dir = relative_to_output_dir(model.base_url_parts)
 
-          log.info "Rendering #{model.url} with template #{template_file} to #{output_model_file}"
+          log.debug "Rendering #{model.url} with template #{template_file} to #{output_model_file}"
 
           FileUtils.mkdir_p(output_model_dir)
           File.write(output_model_file, rendered_model)
@@ -34,7 +34,7 @@ module Photish
       end
 
       def template_missing
-        log.info "Template not found #{template_file}, skipping rendering"
+        log.debug "Template not found #{template_file}, skipping rendering"
       end
 
       def relative_to_output_dir(url_parts)

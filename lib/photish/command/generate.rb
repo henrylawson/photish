@@ -2,7 +2,7 @@ module Photish
   module Command
     class Generate < Base
       def run
-        log.info "Generating with #{workers} workers and #{threads} threads"
+        log.debug "Generating with #{workers} workers and #{threads} threads"
 
         clear if force_regeneration?
         spawn_all_workers
@@ -11,7 +11,7 @@ module Photish
         concat_db_files(workers)
         perform_serial_generation
 
-        log.info "Generation completed successfully"
+        log.debug "Generation completed successfully"
       end
 
       private

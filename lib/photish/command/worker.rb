@@ -2,12 +2,12 @@ module Photish
   module Command
     class Worker < Base
       def run
-        log.info "Worker ##{worker_index} starting"
+        log.debug "Worker ##{worker_index} starting"
 
         load_all_plugins
         render_whole_site
 
-        log.info "Site generation completed, by Worker ##{worker_index}"
+        log.debug "Site generation completed, by Worker ##{worker_index}"
       end
 
       private

@@ -40,7 +40,7 @@ module Photish
         {
           colorize: true,
           output: ['stdout', 'file'],
-          level: 'info'
+          level: 'debug'
         }
       end
 

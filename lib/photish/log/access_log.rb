@@ -4,7 +4,7 @@ module Photish
       include Loggable
 
       def <<(message)
-        log.info message.chomp
+        log.debug message.chomp
       end
     end
   end

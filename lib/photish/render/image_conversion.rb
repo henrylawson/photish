@@ -9,7 +9,7 @@ module Photish
       end
 
       def render(images)
-        log.info "Rendering #{images.count} images across #{threads} threads"
+        log.debug "Rendering #{images.count} images across #{threads} threads"
 
         cache.preload
         threads = spawn_thread_instances(to_queue(images))
@@ -73,7 +73,7 @@ module Photish
           convert << image.path
           convert.merge!(image.quality_params)
           convert << output_path(image)
-          log.info "Performing image conversion #{convert.command}"
+          log.debug "Performing image conversion #{convert.command}"
         end
       rescue MiniMagick::Error => e
         log.warn "Error occured while converting"

@@ -5,7 +5,7 @@ module Photish
       include Log::Loggable
 
       def reload(config)
-        log.info "Loading plugins..."
+        log.debug "Loading plugins..."
 
         load_each_plugin_file(config.site_dir)
         require_each_explicit_plugin(config.plugins)
@@ -29,14 +29,14 @@ module Photish
 
       def require_each_explicit_plugin(plugins)
         plugins.each do |plugin|
-          log.info "Requiring config explicit plugin, #{plugin}"
+          log.debug "Requiring config explicit plugin, #{plugin}"
           require plugin
         end
       end
 
       def load_each_plugin_constant
         all_plugins.each do |plugin|
-          log.info "Found plugin #{plugin}"
+          log.debug "Found plugin #{plugin}"
         end
       end
 

@@ -7,7 +7,7 @@ module Photish
         else
            init_barebones
         end
-        log.info "Photish site initiated successfully"
+        log.debug "Photish site initiated successfully"
       end
 
       private

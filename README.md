@@ -327,7 +327,7 @@ templates:
   photo: photo.slim
 logging:
   colorize: true
-  level: 'info'
+  level: 'debug'
   output: ['stdout', 'file']
 url:
   host: http://mydomain.com
@@ -355,7 +355,7 @@ Field                  | Purpose
 `templates/photo`      | the photo template file in the `site/_templates` folder, must be overridden if using a different template engine
 `logging`              | a listing of the various logging options
 `logging/colorize`     | when outputting to `STDOUT`, `true` to use color, `false` for none
-`logging/level`        | the default logging level, it is advised to keep this at `info`, supported are `debug`, `info`, `warn`, `error` and `fatal`
+`logging/level`        | the default logging level, it is advised to keep this at `debug`, supported are `debug`, `info`, `warn`, `error` and `fatal`
 `logging/output`       | the appenders for the logger, `stdout` goes to `STDOUT`, `file` goes to `log/photish.log`
 `url`                  | a listing of the various url options
 `url/host`             | if you would like URLs generated with a specific host prefix, you can define it here, otherwise leave it as '/' or do not set this configuration at all
@@ -802,7 +802,7 @@ module Photish::Plugin::MyCustomDeploy
   end
 
   def deploy_site
-    @log.info "Deploying using my plugin"
+    @log.debug "Deploying using my plugin"
     FileUtils.cp(@config.output_dir, '/srv/www')
   end
 end
