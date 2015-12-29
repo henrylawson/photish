@@ -79,7 +79,7 @@ module Photish
 
       def access_log
         [
-          [Photish::Log::AccessLog.new,
+          [Photish::Log::IO.new(log, :debug),
            WEBrick::AccessLog::COMBINED_LOG_FORMAT]
         ]
       end
