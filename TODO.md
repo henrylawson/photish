@@ -2,11 +2,10 @@
 
 ## In Progress
 
-1. Changing convert items does not trigger regeneration but changing name does
+1. Change most logging to debug, leave info for summaries
 
 ## Backlog
 
-1. Change most logging to debug, leave info for summaries
 1. Redirect SSH deploy debug to logger
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
 1. Video transcoding and template rendering for videos
