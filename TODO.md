@@ -6,6 +6,13 @@
 1. Move plugins from core_plugins into correct namespace, move library code elsewhere
 1. Make metadata and exif core plugins
 1. Simplify config code, class names, level of config
+1. Clean up api of manifest db file, workers should be initialised
+1. Consider bang operations on the manifest file class
+1. Rename it existing manifest db file as a repo, and create an actual file object to encapsulate write
+1. Use pry as the console tool, with awesome print
+1. Delete bread crumbable
+1. Rename and rethink render classes
+1. Load all plugins method in base
 
 ## Backlog
 
