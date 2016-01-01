@@ -23,6 +23,10 @@ module Photish
                :version_hash,
                to: :app_settings
 
+      def load_all_plugins
+        Plugin::Repository.instance.reload(config)
+      end      
+
       private
 
       def app_settings

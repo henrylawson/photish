@@ -36,10 +36,6 @@ module Photish
         force == true
       end
 
-      def load_all_plugins
-        Plugin::Repository.instance.reload(config)
-      end
-
       def spawn_all_workers
         return single_worker if one_worker?
         @spawned_processes ||= (1..workers).map do |index|

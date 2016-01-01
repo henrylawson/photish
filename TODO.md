@@ -10,9 +10,7 @@
 1. Consider bang operations on the manifest file class
 1. Rename it existing manifest db file as a repo, and create an actual file object to encapsulate write
 1. Use pry as the console tool, with awesome print
-1. Delete bread crumbable
 1. Rename and rethink render classes
-1. Load all plugins method in base
 
 ## Backlog
 

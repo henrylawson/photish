@@ -21,11 +21,6 @@ module Photish
                :image_extensions,
                to: :config
 
-      def load_all_plugins
-        return if Plugin::Repository.instance.loaded?
-        Plugin::Repository.instance.reload(config)
-      end
-
       def render_whole_site
         Render::SiteWorker.new(config, version_hash)
                           .all_for(collection)
