@@ -4,7 +4,7 @@ module Photish
       def run
         log.debug "Generating with #{workers} workers and #{threads} threads"
 
-        clear if force_regeneration?
+        master_db_file_clear if force_regeneration?
         spawn_all_workers
         load_all_plugins
         wait_for_workers_to_complete
@@ -29,8 +29,8 @@ module Photish
                to: :config
 
       delegate :concat_worker_db_files,
-               :clear,
-               to: :manifest_db_file
+               :master_db_file_clear,
+               to: :cache_repository
 
       def force_regeneration?
         force == true
@@ -80,8 +80,8 @@ module Photish
          "--worker_index=#{worker_index}"].join(' ')
       end
 
-      def manifest_db_file
-        Cache::ManifestDbFile.new(output_dir, workers)
+      def cache_repository
+        Cache::Repository.new(output_dir, workers)
       end
     end
   end

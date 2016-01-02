@@ -3,9 +3,6 @@
 ## In Progress
 
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
-1. Clean up api of manifest db file, workers should be initialised
-1. Consider bang operations on the manifest file class
-1. Rename it existing manifest db file as a repo, and create an actual file object to encapsulate write
 1. Use pry as the console tool, with awesome print
 1. Rename and rethink render classes
 

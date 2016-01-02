@@ -13,23 +13,21 @@ module Photish
       def record(key, file_path = nil)
         checksum = checksum_of_file(file_path || key)
         worker_db[key] = checksum
-        db[key] = checksum
+        master_db[key] = checksum
       end
 
       def changed?(key, file_path = nil)
         checksum = checksum_of_file(file_path || key)
         worker_db[key] = checksum
-        checksum != db[key]
+        checksum != master_db[key]
       end
 
       def flush_to_disk
-        File.open(worker_db_file(worker_index), 'w') do
-          |f| f.write(worker_db.to_yaml)
-        end
+        worker_db_file(worker_index).write(worker_db)
       end
 
       def load_from_disk
-        db
+        master_db
       end
 
       private
@@ -43,22 +41,24 @@ module Photish
 
       delegate :master_db_file,
                :worker_db_file,
-               to: :manifest_db_file
+               to: :repository
 
       def checksum_of_file(file_path)
         cache.fetch(file_path.hash) do |key|
-          cache[key] = version_hash.to_s +
-                       Digest::MD5.file(file_path).hexdigest
+          cache[key] = hash(file_path)
         end
       end
 
-      def db
-        return @db if @db
-        @db = File.exist?(master_db_file) ? YAML.load_file(master_db_file) : {}
+      def hash(file_path)
+        version_hash.to_s + Digest::MD5.file(file_path).hexdigest
       end
 
-      def manifest_db_file
-        ManifestDbFile.new(output_dir, workers)
+      def master_db
+        @master_db ||= master_db_file.read
+      end
+
+      def repository
+        @repository ||= Repository.new(output_dir, workers)
       end
     end
   end
