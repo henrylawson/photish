@@ -7,7 +7,8 @@ module Photish
 
       delegate :qualities,
                :url_info,
-               to: :parent, allow_nil: true
+               to: :parent,
+               allow_nil: true
 
       def initialize(parent, path)
         super
@@ -21,10 +22,6 @@ module Photish
 
       def images
         @images ||= qualities.map { |quality| Image.new(self, path, quality) }
-      end
-
-      def exif
-        @exif ||= MiniExiftool.new(path)
       end
 
       def plugin_type
