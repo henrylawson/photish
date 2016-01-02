@@ -1,6 +1,6 @@
 module Photish
   module Log
-    class LogSetup
+    class Setup
       LEVEL = {
         debug: Logger::DEBUG,
         info:  Logger::INFO,

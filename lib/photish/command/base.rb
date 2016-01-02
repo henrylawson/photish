@@ -34,7 +34,7 @@ module Photish
       end
 
       def setup_logging
-        Log::LogSetup.instance.configure(config.logging)
+        Log::Setup.instance.configure(config.logging)
       end
     end
   end

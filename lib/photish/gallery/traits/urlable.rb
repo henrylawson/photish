@@ -19,17 +19,21 @@ module Photish
         end
 
         def host
-          @host ||= if url_info.type == 'absolute_uri'
-                      url_info.host || ''
-                    else
-                      ''
-                    end
+          @host ||= absolute_uris? ? url_info_host : ''
         end
 
         private
 
         def slugify(word)
           CGI.escape(word.downcase.gsub(' ', '-'))
+        end
+
+        def absolute_uris?
+          url_info.type == 'absolute_uri'
+        end
+
+        def url_info_host
+          url_info.host || ''
         end
       end
     end

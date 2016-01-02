@@ -21,7 +21,7 @@ require 'open3'
 # Photish
 require 'photish/log/loggable'
 require 'photish/log/formatter'
-require 'photish/log/log_setup'
+require 'photish/log/setup'
 require 'photish/log/io'
 require 'photish/log/safe_block'
 require 'photish/plugin/type'
