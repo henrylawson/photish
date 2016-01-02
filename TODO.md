@@ -3,7 +3,6 @@
 ## In Progress
 
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
-1. Rename and rethink render classes
 
 ## Backlog
 
