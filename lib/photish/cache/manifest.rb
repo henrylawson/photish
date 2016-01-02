@@ -1,8 +1,9 @@
 module Photish
   module Cache
     class Manifest
-      def initialize(output_dir, worker_index, version_hash)
+      def initialize(output_dir, workers, worker_index, version_hash)
         @output_dir = output_dir
+        @workers = workers
         @worker_index = worker_index
         @version_hash = version_hash
         @cache = {}
@@ -27,7 +28,7 @@ module Photish
         end
       end
 
-      def preload
+      def load_from_disk
         db
       end
 
@@ -37,9 +38,10 @@ module Photish
                   :cache,
                   :version_hash,
                   :worker_index,
-                  :worker_db
+                  :worker_db,
+                  :workers
 
-      delegate :db_file,
+      delegate :master_db_file,
                :worker_db_file,
                to: :manifest_db_file
 
@@ -52,11 +54,11 @@ module Photish
 
       def db
         return @db if @db
-        @db = File.exist?(db_file) ? YAML.load_file(db_file) : {}
+        @db = File.exist?(master_db_file) ? YAML.load_file(master_db_file) : {}
       end
 
       def manifest_db_file
-        ManifestDbFile.new(output_dir)
+        ManifestDbFile.new(output_dir, workers)
       end
     end
   end

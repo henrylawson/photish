@@ -8,7 +8,7 @@ module Photish
         spawn_all_workers
         load_all_plugins
         wait_for_workers_to_complete
-        concat_db_files(workers)
+        concat_worker_db_files
         perform_serial_generation
 
         log.debug "Generation completed successfully"
@@ -28,7 +28,7 @@ module Photish
                :image_extensions,
                to: :config
 
-      delegate :concat_db_files,
+      delegate :concat_worker_db_files,
                :clear,
                to: :manifest_db_file
 
@@ -81,7 +81,7 @@ module Photish
       end
 
       def manifest_db_file
-        Cache::ManifestDbFile.new(output_dir)
+        Cache::ManifestDbFile.new(output_dir, workers)
       end
     end
   end

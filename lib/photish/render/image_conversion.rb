@@ -11,7 +11,7 @@ module Photish
       def render(images)
         log.debug "Rendering #{images.count} images across #{threads} threads"
 
-        cache.preload
+        load_from_disk
         threads = spawn_thread_instances(to_queue(images))
         threads.map(&:join)
         flush_to_disk
@@ -26,12 +26,13 @@ module Photish
                :worker_index,
                :threads,
                :soft_failure,
+               :workers,
                to: :config
 
       delegate :record,
                :changed?,
                :flush_to_disk,
-               :preload,
+               :load_from_disk,
                to: :cache
 
       def spawn_thread_instances(image_queue)
@@ -91,6 +92,7 @@ module Photish
 
       def cache
         @cache ||= Cache::Manifest.new(output_dir,
+                                       workers,
                                        worker_index,
                                        version_hash)
       end
