@@ -1,8 +1,8 @@
 module Photish
   module Config
-    class AppSettings
+    class Settings
       def initialize(runtime_config)
-        @runtime_config = symbolize(extract_config(runtime_config))
+        @runtime_config = extract_config(runtime_config)
       end
 
       def config
@@ -20,6 +20,7 @@ module Photish
       def extract_config(hash)
         {}.deep_merge(hash)
           .deep_merge(JSON.parse(hash.fetch('config_override', '{}')))
+          .deep_symbolize_keys
       end
 
       def prioritized_config
@@ -35,27 +36,23 @@ module Photish
 
       def derived_config
         {
-          config_file_location: config_file_location
+          config_file_location: file_config_instance.path
         }
       end
 
       def file_config
-        symbolize(FileConfig.new(config_file_location)
-                                            .hash)
+        file_config_instance.hash
+                            .deep_symbolize_keys
       end
 
       def default_config
-        symbolize(DefaultConfig.new.hash)
+        DefaultConfig.new
+                     .hash
+                     .deep_symbolize_keys
       end
 
-      def config_file_location
-        FileConfigLocation.new(runtime_config[:config_dir])
-                          .path
-      end
-
-      def symbolize(hash)
-        (hash || {})
-          .deep_symbolize_keys
+      def file_config_instance
+        @file_config_instance ||= FileConfig.new(runtime_config[:config_dir])
       end
     end
   end

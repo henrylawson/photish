@@ -30,7 +30,7 @@ module Photish
       private
 
       def app_settings
-        @app_settings ||= Config::AppSettings.new(runtime_config)
+        @app_settings ||= Config::Settings.new(runtime_config)
       end
 
       def setup_logging
