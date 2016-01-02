@@ -17,13 +17,21 @@ describe Photish::Gallery::Collection do
   let(:url_host) { nil }
   let(:url_base) { nil }
   let(:url_type) { 'absolute_relative' }
+  let(:config) do
+    RecursiveOpenStruct.new({
+      photo_dir: @dir,
+      qualities: [{ name: 'low' }],
+      url: {
+        host: url_host,
+        base: url_base,
+        type: url_type,
+      },
+      image_extensions: ['jpg'],
+      page_extension: ['slim'],
+    })
+  end
 
-  subject { Photish::Gallery::Collection.new(@dir,
-                                             [OpenStruct.new(name: 'low')],
-                                             OpenStruct.new(host: url_host,
-                                                            base: url_base,
-                                                            type: url_type),
-                                             ['jpg']) }
+  subject { Photish::Gallery::Collection.new(config) }
 
   context '#albums' do
     it 'crawls the albums' do

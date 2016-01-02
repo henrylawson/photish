@@ -7,8 +7,10 @@ module Photish
 
       delegate :qualities,
                :image_extensions,
+               :page_extension,
                :url_info,
-               to: :parent, allow_nil: true
+               to: :parent,
+               allow_nil: true
 
       def initialize(parent, path)
         super
@@ -21,11 +23,13 @@ module Photish
       end
 
       def photos
-        @photos ||= Dir.entries(path)
-                       .reject { |file| ['.', '..'].include?(file) }
-                       .map    { |file| File.join(path, file)      }
-                       .reject { |file| !image_format?(file)       }
-                       .map    { |file| Photo.new(self, file)      }
+        @photos ||= child_files.select { |file| image_format?(file)   }
+                               .map    { |file| Photo.new(self, file) }
+      end
+
+      def pages
+        @pages ||=  child_files.select { |file| page_format?(file)   }
+                               .map    { |file| Page.new(self, file) }
       end
 
       def plugin_type
@@ -39,10 +43,26 @@ module Photish
 
       alias_method :base_url_name, :name
 
+      def child_files
+        @child_files ||= Dir.entries(path)
+                            .reject { |file| ['.', '..'].include?(file) }
+                            .map    { |file| File.join(path, file)      }
+                            .select { |file| File.file?(file)           }
+      end
+
       def image_format?(file)
-        return unless File.file?(file)
-        extension = File.extname(file).split('.').last.try(:downcase)
-        image_extensions.include?(extension)
+        image_extensions.include?(extension(file))
+      end
+
+      def page_format?(file)
+        page_extension == extension(file)
+      end
+
+      def extension(file)
+        File.extname(file)
+            .split('.')
+            .last
+            .try(:downcase)
       end
 
       def album_class

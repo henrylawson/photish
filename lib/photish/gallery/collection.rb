@@ -5,16 +5,15 @@ module Photish
       include Traits::Albumable
       include Plugin::Pluginable
 
-      attr_reader :qualities,
-                  :url_info,
-                  :image_extensions
+      delegate :page_extension,
+               :photo_dir,
+               to: :config
 
-      def initialize(path, qualities, url_info, image_extensions)
+      alias_method :path, :photo_dir
+
+      def initialize(config)
         super
-        @path = path
-        @qualities = qualities
-        @url_info = url_info
-        @image_extensions = Set.new(image_extensions)
+        @config = config
       end
 
       def name
@@ -36,9 +35,22 @@ module Photish
                             all_images.map(&:url_parts)].flatten(1)
       end
 
+      def image_extensions
+        @image_extensions ||= Set.new(config.image_extensions)
+      end
+
+      def qualities
+        @qualities ||= config.qualities
+                             .map { |quality| OpenStruct.new(quality) }
+      end
+
+      def url_info
+        config.url
+      end
+
       private
 
-      attr_reader :path
+      attr_reader :config
 
       def album_class
         Album

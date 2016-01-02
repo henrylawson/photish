@@ -6,6 +6,7 @@ module Photish
       module Photo;      end
       module Image;      end
       module Deploy;     end
+      module Page;      end
     end
   end
 end

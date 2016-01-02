@@ -27,14 +27,7 @@ module Photish
       end
 
       def collection
-        @collection ||= Gallery::Collection.new(photo_dir,
-                                                qualities_mapped,
-                                                url,
-                                                image_extensions)
-      end
-
-      def qualities_mapped
-        qualities.map { |quality| OpenStruct.new(quality) }
+        @collection ||= Gallery::Collection.new(config)
       end
     end
   end
