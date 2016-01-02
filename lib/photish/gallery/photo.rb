@@ -2,6 +2,7 @@ module Photish
   module Gallery
     class Photo
       include Traits::Urlable
+      include Traits::Fileable
       include Plugin::Pluginable
 
       delegate :qualities,
@@ -15,7 +16,7 @@ module Photish
       end
 
       def name
-        @name ||= File.basename(path, '.*')
+        @name ||= basename_without_extension
       end
 
       def images

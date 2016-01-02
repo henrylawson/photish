@@ -2,6 +2,7 @@ module Photish
   module Gallery
     class Image
       include Traits::Urlable
+      include Traits::Fileable
       include Plugin::Pluginable
 
       delegate :name,
@@ -21,7 +22,7 @@ module Photish
       end
 
       def name
-        @name ||= "#{basename} #{quality_name}"
+        @name ||= "#{basename_without_extension} #{quality_name}"
       end
 
       def plugin_type
@@ -36,15 +37,7 @@ module Photish
       alias_method :base_url_name, :name
 
       def url_end
-        @url_end ||= "#{slugify(basename)}-#{slugify(quality_name)}#{extension}"
-      end
-
-      def basename
-        @basename ||= File.basename(path, '.*')
-      end
-
-      def extension
-        @extentsion ||= File.extname(path)
+        @url_end ||= slugify("#{basename_without_extension}-#{quality_name}.#{extension}")
       end
 
       def base_url_name

@@ -3,6 +3,7 @@ module Photish
     class Album
       include Traits::Urlable
       include Traits::Albumable
+      include Traits::Fileable
       include Plugin::Pluginable
 
       delegate :qualities,
@@ -19,16 +20,16 @@ module Photish
       end
 
       def name
-        @name ||= File.basename(path)
+        @name ||= basename
       end
 
       def photos
-        @photos ||= child_files.select { |file| image_format?(file)   }
+        @photos ||= child_files.select { |file| image?(file)   }
                                .map    { |file| Photo.new(self, file) }
       end
 
       def pages
-        @pages ||=  child_files.select { |file| page_format?(file)   }
+        @pages ||=  child_files.select { |file| page?(file)   }
                                .map    { |file| Page.new(self, file) }
       end
 
@@ -50,19 +51,12 @@ module Photish
                             .select { |file| File.file?(file)           }
       end
 
-      def image_format?(file)
-        image_extensions.include?(extension(file))
+      def image?(file)
+        image_extensions.include?(extension_of(file))
       end
 
-      def page_format?(file)
-        page_extension == extension(file)
-      end
-
-      def extension(file)
-        File.extname(file)
-            .split('.')
-            .last
-            .try(:downcase)
+      def page?(file)
+        page_extension == extension_of(file)
       end
 
       def album_class

@@ -3,6 +3,7 @@ module Photish
     class Page
       include Traits::Urlable
       include Traits::Albumable
+      include Traits::Fileable
       include Plugin::Pluginable
 
       def initialize(parent, path)
@@ -12,7 +13,7 @@ module Photish
       end
 
       def name
-        @name ||= File.basename(path, '.*')
+        @name ||= basename_without_extension
       end
 
       def plugin_type
