@@ -1,6 +1,6 @@
 module Photish
   module Render
-    class SiteWorker
+    class Model
       def initialize(config, version_hash)
         @config = config
         @version_hash = version_hash
@@ -37,7 +37,7 @@ module Photish
       end
 
       def image_conversion
-        ImageConversion.new(config, version_hash)
+        Image.new(config, version_hash)
       end
 
       def album_template

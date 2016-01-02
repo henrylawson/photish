@@ -1,6 +1,6 @@
 module Photish
   module Render
-    class ImageConversion
+    class Image
       include Log::Loggable
 
       def initialize(config, version_hash)
@@ -11,10 +11,10 @@ module Photish
       def render(images)
         log.debug "Rendering #{images.count} images across #{threads} threads"
 
-        load_from_disk
+        cache_load_from_disk
         threads = spawn_thread_instances(to_queue(images))
         threads.map(&:join)
-        flush_to_disk
+        cache_flush_to_disk
       end
 
       private
@@ -33,7 +33,8 @@ module Photish
                :changed?,
                :flush_to_disk,
                :load_from_disk,
-               to: :cache
+               to: :cache,
+               prefix: true
 
       def spawn_thread_instances(image_queue)
         (0...threads).map do
@@ -51,7 +52,7 @@ module Photish
 
       def process_next_image(image_queue)
         image = image_queue.pop
-        convert(image) if changed?(image.url_path, image.path)
+        convert(image) if cache_changed?(image.url_path, image.path)
       rescue Errno::ENOENT
         log.warn "Image not found #{image.path}"
         raise unless soft_failure
@@ -66,7 +67,7 @@ module Photish
       def convert(image)
         create_parent_directories(image)
         convert_with_imagemagick(image)
-        record(image.url_path, image.path)
+        cache_record(image.url_path, image.path)
       end
 
       def convert_with_imagemagick(image)
