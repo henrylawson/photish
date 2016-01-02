@@ -3,7 +3,7 @@ module Photish
     class Collection
       include Traits::Urlable
       include Traits::Albumable
-      include Photish::Plugin::Pluginable
+      include Plugin::Pluginable
 
       attr_reader :qualities,
                   :url_info,
@@ -26,7 +26,7 @@ module Photish
       end
 
       def plugin_type
-        Photish::Plugin::Type::Collection
+        Plugin::Type::Collection
       end
 
       def all_url_parts

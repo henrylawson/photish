@@ -2,7 +2,7 @@ module Photish
   module Gallery
     class Image
       include Traits::Urlable
-      include Photish::Plugin::Pluginable
+      include Plugin::Pluginable
 
       delegate :name,
                :params,
@@ -25,7 +25,7 @@ module Photish
       end
 
       def plugin_type
-        Photish::Plugin::Type::Image
+        Plugin::Type::Image
       end
 
       private

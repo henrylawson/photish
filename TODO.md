@@ -3,8 +3,6 @@
 ## In Progress
 
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
-1. Move plugins from core_plugins into correct namespace, move library code elsewhere
-1. Make metadata and exif core plugins
 1. Simplify config code, class names, level of config
 1. Clean up api of manifest db file, workers should be initialised
 1. Consider bang operations on the manifest file class

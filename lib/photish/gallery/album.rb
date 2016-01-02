@@ -3,7 +3,7 @@ module Photish
     class Album
       include Traits::Urlable
       include Traits::Albumable
-      include Photish::Plugin::Pluginable
+      include Plugin::Pluginable
 
       delegate :qualities,
                :image_extensions,
@@ -23,14 +23,13 @@ module Photish
       def photos
         @photos ||= Dir.entries(path)
                        .reject { |file| ['.', '..'].include?(file) }
-                       .map    { |file| File.join(path, file) }
-                       .reject { |file| !File.file?(file) ||
-                                          !image_format?(file) }
-                       .map    { |file| Photo.new(self, file) }
+                       .map    { |file| File.join(path, file)      }
+                       .reject { |file| !image_format?(file)       }
+                       .map    { |file| Photo.new(self, file)      }
       end
 
       def plugin_type
-        Photish::Plugin::Type::Album
+        Plugin::Type::Album
       end
 
       private
@@ -41,6 +40,7 @@ module Photish
       alias_method :base_url_name, :name
 
       def image_format?(file)
+        return unless File.file?(file)
         extension = File.extname(file).split('.').last.try(:downcase)
         image_extensions.include?(extension)
       end

@@ -2,7 +2,7 @@ module Photish
   module Gallery
     class Photo
       include Traits::Urlable
-      include Photish::Plugin::Pluginable
+      include Plugin::Pluginable
 
       delegate :qualities,
                :url_info,
@@ -19,7 +19,7 @@ module Photish
       end
 
       def images
-        @images ||= qualities.map { |quality| Photish::Gallery::Image.new(self, path, quality) }
+        @images ||= qualities.map { |quality| Image.new(self, path, quality) }
       end
 
       def exif
@@ -27,7 +27,7 @@ module Photish
       end
 
       def plugin_type
-        Photish::Plugin::Type::Photo
+        Plugin::Type::Photo
       end
 
       private
