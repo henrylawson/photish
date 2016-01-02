@@ -15,7 +15,8 @@ module Photish
         end
 
         def base_url_parts
-          @base_url_parts ||= parent.base_url_parts + [slugify(base_url_name)]
+          @base_url_parts ||= (parent.base_url_parts +
+                               [slugify(base_url_name)]).compact
         end
 
         def host
@@ -25,7 +26,7 @@ module Photish
         private
 
         def slugify(word)
-          CGI.escape(word.downcase.gsub(' ', '-'))
+          CGI.escape(word.downcase.gsub(' ', '-')) if word
         end
 
         def absolute_uris?

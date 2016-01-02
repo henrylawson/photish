@@ -6,6 +6,10 @@ module Photish
       include Traits::Fileable
       include Plugin::Pluginable
 
+      delegate :url_info,
+               to: :parent,
+               allow_nil: true
+
       def initialize(parent, path)
         super
         @parent = parent
@@ -24,6 +28,14 @@ module Photish
 
       attr_reader :parent,
                   :path
+
+      def base_url_name
+        nil
+      end
+
+      def url_end
+        basename_without_extension
+      end
     end
   end
 end

@@ -6,7 +6,8 @@ module Photish
           [
             Photish::Plugin::Type::Collection,
             Photish::Plugin::Type::Album,
-            Photish::Plugin::Type::Photo
+            Photish::Plugin::Type::Photo,
+            Photish::Plugin::Type::Page,
           ].include?(type)
         end
 
