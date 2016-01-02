@@ -21,10 +21,6 @@ module Photish
         @all_plugins ||= constants + sub_constants
       end
 
-      def loaded?
-        @all_plugins.present?
-      end
-
       private
 
       def require_each_explicit_plugin(plugins)
