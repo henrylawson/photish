@@ -28,7 +28,7 @@ has changed, it is not needlessly regenerated. This results in a responsive
 and fast local development environment, making it easy to perfect the design
 of your photo based website without having to wait for regeneration.
 
-## Photish Example Site
+## Example
 
 [Photish Montage](https://foinq.com/photish-montage/index.html) - A quick
 mockup to show what can be done with Photish. [Source
