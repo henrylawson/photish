@@ -3,7 +3,6 @@ module Photish
     class Collection
       include Traits::Urlable
       include Traits::Albumable
-      include Traits::Metadatable
       include Photish::Plugin::Pluginable
 
       attr_reader :qualities,

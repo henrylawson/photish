@@ -3,7 +3,6 @@ module Photish
     class Album
       include Traits::Urlable
       include Traits::Albumable
-      include Traits::Metadatable
       include Photish::Plugin::Pluginable
 
       delegate :qualities,

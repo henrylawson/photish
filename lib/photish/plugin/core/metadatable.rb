@@ -1,7 +1,15 @@
 module Photish
-  module Gallery
-    module Traits
+  module Plugin
+    module Core
       module Metadatable
+        def self.is_for?(type)
+          [
+            Photish::Plugin::Type::Collection,
+            Photish::Plugin::Type::Album,
+            Photish::Plugin::Type::Photo
+          ].include?(type)
+        end
+
         def metadata
           return unless File.exist?(metadata_file)
           @metadata ||= RecursiveOpenStruct.new(YAML.load_file(metadata_file))
