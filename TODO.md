@@ -3,7 +3,6 @@
 ## In Progress
 
 1. Custom template rendering outside of `_templates` folder using `page.{type}`
-1. Use pry as the console tool, with awesome print
 1. Rename and rethink render classes
 
 ## Backlog
