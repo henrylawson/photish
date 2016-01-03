@@ -41,15 +41,15 @@ module Photish
       end
 
       def album_template
-        Page.new(layout_file,
-                 template_album_file,
-                 output_dir)
+        Template.new(layout_file,
+                     template_album_file,
+                     output_dir)
       end
 
       def photo_template
-        Page.new(layout_file,
-                 template_photo_file,
-                 output_dir)
+        Template.new(layout_file,
+                     template_photo_file,
+                     output_dir)
       end
 
       def layout_file

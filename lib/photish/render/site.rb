@@ -51,9 +51,9 @@ module Photish
       end
 
       def collection_template
-        Page.new(layout_file,
-                 template_collection_file,
-                 output_dir)
+        Template.new(layout_file,
+                     template_collection_file,
+                     output_dir)
       end
 
       def non_ignored_site_contents
