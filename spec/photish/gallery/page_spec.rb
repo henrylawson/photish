@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Photish::Gallery::Page do
   before(:each) do
     @dir = Dir.mktmpdir('photish')
-    @page_path = File.join(@dir, 'page1.html.slim')
-    FileUtils.cp(fixture_file('page1.html.slim'), @page_path)
+    @page_path = File.join(@dir, 'Page 1.slim')
+    FileUtils.cp(fixture_file('page1.slim'), @page_path)
   end
 
   after(:each) do
@@ -15,32 +15,32 @@ describe Photish::Gallery::Page do
 
   context '#url' do
     it 'is the snake version of the name with html file' do
-      expect(subject.url).to eq('/pets/page1.html')
+      expect(subject.url).to eq('/pets/page-1/index.html')
     end
   end
 
   context '#url_parts' do
     it 'is the snake version of the name with html file' do
-      expect(subject.url_parts).to eq(['pets', 'page1.html'])
+      expect(subject.url_parts).to eq(['pets', 'page-1', 'index.html'])
     end
   end
 
   context '#base_url_parts' do
     it 'is the snake version of the name' do
-      expect(subject.base_url_parts).to eq(['pets'])
+      expect(subject.base_url_parts).to eq(['pets', 'page-1'])
     end
   end
 
   context '#name' do
     it 'is the raw file name' do
-      expect(subject.name).to eq('page1.html')
+      expect(subject.name).to eq('Page 1')
     end
   end
 
   context '#metadata' do
     context 'when a YAML file is present' do
       it 'has all the data loaded' do
-        metadata_file = File.join(@dir, 'page1.html.yml')
+        metadata_file = File.join(@dir, 'Page 1.yml')
         FileUtils.cp(fixture_file('metadata.yml'), metadata_file)
 
         expect(subject.metadata.description).to eq('Description')

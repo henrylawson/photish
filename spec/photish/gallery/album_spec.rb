@@ -7,8 +7,8 @@ describe Photish::Gallery::Album do
     FileUtils.mkdir_p(@album_dir)
     FileUtils::cp(fixture_file('dog1.jpg'), @album_dir)
     FileUtils::cp(fixture_file('dog2.jpg'), @album_dir)
-    FileUtils::cp(fixture_file('page1.html.slim'), @album_dir)
-    FileUtils::cp(fixture_file('page2.html.slim'), @album_dir)
+    FileUtils::cp(fixture_file('page1.slim'), @album_dir)
+    FileUtils::cp(fixture_file('page2.slim'), @album_dir)
     FileUtils.mkdir_p(File.join(@album_dir, 'Day 1'))
     FileUtils.mkdir_p(File.join(@album_dir, 'Day 2'))
     FileUtils.mkdir_p(File.join(@album_dir, 'Day 3'))
@@ -31,8 +31,8 @@ describe Photish::Gallery::Album do
   context '#pages' do
     it 'loads all the pages in each album' do
       expect(subject.pages
-        .map(&:name)).to contain_exactly('page1.html',
-                                         'page2.html')
+        .map(&:name)).to contain_exactly('page1',
+                                         'page2')
     end
   end
 

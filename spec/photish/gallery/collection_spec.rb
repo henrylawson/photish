@@ -76,8 +76,8 @@ describe Photish::Gallery::Collection do
 
   context '#all_pages' do
     it 'loads all pages in all albums' do
-      expect(subject.all_pages.map(&:name)).to contain_exactly('page1.html',
-                                                               'page2.html')
+      expect(subject.all_pages.map(&:name)).to contain_exactly('page1',
+                                                               'page2')
     end
   end
 
@@ -204,7 +204,7 @@ describe Photish::Gallery::Collection do
     FileUtils::mkdir_p(album1)
     FileUtils::cp(fixture_file('dog1.jpg'), album1)
     FileUtils::cp(fixture_file('dog2.jpg'), album1)
-    FileUtils::cp(fixture_file('page1.html.slim'), album1)
+    FileUtils::cp(fixture_file('page1.slim'), album1)
   end
 
   def setup_album2
@@ -212,7 +212,7 @@ describe Photish::Gallery::Collection do
     FileUtils::mkdir_p(album2)
     FileUtils::cp(fixture_file('dog3.jpg'), album2)
     FileUtils::cp(fixture_file('dog4.jpg'), album2)
-    FileUtils::cp(fixture_file('page2.html.slim'), album2)
+    FileUtils::cp(fixture_file('page2.slim'), album2)
   end
 
   def setup_album3

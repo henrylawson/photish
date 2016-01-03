@@ -28,14 +28,12 @@ module Photish
 
       private
 
-      attr_reader :parent,
+      attr_reader :parent
 
-      def base_url_name
-        nil
-      end
+      alias_method :base_url_name, :name
 
       def url_end
-        basename_without_extension
+        'index.html'
       end
     end
   end
