@@ -18,6 +18,7 @@ module Photish
           url: url,
           plugins: [],
           image_extensions: image_extensions,
+          page_extension: 'slim',
           soft_failure: false
         }
       end
