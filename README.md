@@ -552,13 +552,13 @@ A gallery page is a simple way to create a custom web page within the
 collection or album of your gallery that will render within your site's [Layout
 Template](#layout-template).
 
-For example, if you would like to create a "more details about album" page
-somewhere within an album, and you would like it rendered in the [Layout
+For example, if you would like to create a "more details" page somewhere within
+an album, or the collection root, and you would like it rendered in the [Layout
 Template](#layout-template) to have a consistent look and feel, you can do it
-by creating a file a Gallery Page file such as `more-about.slim` in your
-album's directory. The file extension is determined using the `page_extension`
-[Config File Option](#config-file-option). A Gallery Page can live anywhere and
-you can have as many of them as you like within the `photos` directory.
+by creating a Gallery Page such as `more-about.slim` anywhere in your `photos`
+directory. The file extension is determined using the `page_extension` [Config
+File Option](#config-file-option). A Gallery Page can live anywhere and you can
+have as many of them as you like within the `photos` directory.
 
 `photos/**/*.{page_extension}`
 
@@ -783,6 +783,7 @@ Plugin supports:
 1. `Photish::Plugin::Type::Album`
 1. `Photish::Plugin::Type::Photo`
 1. `Photish::Plugin::Type::Image`
+1. `Photish::Plugin::Type::Page`
 
 To use the Template Helper Plugin, simply call the custom method(s) in your
 template file. For the above example, it can be used by calling the `shout`
@@ -796,8 +797,10 @@ div.my-shouting-content
 
 Some "core" Template Helper plugins available in Photish by default are:
 
-1. [Breadcrumb](https://github.com/henrylawson/photish/blob/master/lib/photish/core_plugin/breadcrumb.rb)
-1. [BuildUrl](https://github.com/henrylawson/photish/blob/master/lib/photish/core_plugin/build_url.rb)
+1. [Breadcrumb](https://github.com/henrylawson/photish/blob/master/lib/photish/plugin/core/breadcrumb.rb)
+1. [BuildUrl](https://github.com/henrylawson/photish/blob/master/lib/photish/plugin/core/build_url.rb)
+1. [Metadatable](https://github.com/henrylawson/photish/blob/master/lib/photish/plugin/core/metadatable.rb)
+1. [Exifable](https://github.com/henrylawson/photish/blob/master/lib/photish/plugin/core/exifable.rb)
 
 #### Deployment Engine Plugins
 

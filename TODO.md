@@ -3,11 +3,17 @@
 ## In Progress
 
 1. Create the Asset Page feature, pages in the site folder, passing collection
-   reference
-1. RCode tools
+   reference, no layout, simple render it
+1. Plugin doco for gallery page
+1. Ensure file exists and check version hash, rather then just cache
+1. Get url by smart key
+1. Fix spelling in gallery page content
 
 ## Backlog
 
+1. RCode tools
+1. A CLI version option
+1. A CLI credits
 1. Video transcoding and template rendering for videos
 1. Templates with exif data, super slow
 1. Proper asset pipeline for CSS
