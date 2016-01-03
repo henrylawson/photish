@@ -2,8 +2,8 @@
 
 ## In Progress
 
-1. Custom template rendering outside of `_templates` folder using `page.{type}`
-1. Fileable for common file operations
+1. Method to render without `name/index.html`, e.g. sitemap.xml
+1. Document `Pages` in README
 1. RCode tools
 
 ## Backlog
