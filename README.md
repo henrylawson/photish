@@ -570,8 +570,8 @@ div.more-about-album
   p Lorem ipsum...
 ```
 
-As with other gallery generated content, it is accessible from the `all_pages`
-method within the [Collection](#collection-template) or
+As with other gallery generated content, a gallery page is accessible from the
+`all_pages` method within the [Collection](#collection-template) or
 [Album](#album-template) template.
 
 ### Generate
