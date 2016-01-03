@@ -4,10 +4,10 @@
 
 1. Create the Asset Page feature, pages in the site folder, passing collection
    reference, no layout, simple render it
-1. Get url by smart key
 
 ## Backlog
 
+1. Get url by smart key
 1. A CLI version option
 1. A CLI credits
 1. Video transcoding and template rendering for videos
