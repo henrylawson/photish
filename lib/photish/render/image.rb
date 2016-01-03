@@ -52,10 +52,15 @@ module Photish
 
       def process_next_image(image_queue)
         image = image_queue.pop
-        convert(image) if cache_changed?(image.url_path, image.path)
+        convert(image) if regenerate?(image)
       rescue Errno::ENOENT
         log.warn "Image not found #{image.path}"
         raise unless soft_failure
+      end
+
+      def regenerate?(image)
+        cache_changed?(image.url_path, image.path) ||
+          !File.exist?(output_path(image))
       end
 
       def to_queue(images)
