@@ -7,6 +7,10 @@ div.album
       div.album-photo
         a href=photo.url title=photo.name
           img src=photo.images.find{ |i|i.quality_name=='Low' }.url alt=photo.name
+  div.album-pages
+    - pages.each do |page|
+      div.album-page
+        a href=page.url title=page.name #{page.name}
 
 div.sub-albums
   - albums.each do |album|

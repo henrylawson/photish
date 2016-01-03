@@ -4,7 +4,8 @@ module Photish::Plugin::FooterLinks
       Photish::Plugin::Type::Collection,
       Photish::Plugin::Type::Album,
       Photish::Plugin::Type::Photo,
-      Photish::Plugin::Type::Image
+      Photish::Plugin::Type::Image,
+      Photish::Plugin::Type::Page,
     ].include?(type)
   end
 

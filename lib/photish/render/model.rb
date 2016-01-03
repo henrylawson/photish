@@ -27,6 +27,7 @@ module Photish
           ->{ album_template.render(subset(collection.all_albums))   },
           ->{ photo_template.render(subset(collection.all_photos))   },
           ->{ image_conversion.render(subset(collection.all_images)) },
+          ->{ page_template.render(subset(collection.all_pages))     },
         ]
       end
 
@@ -44,6 +45,10 @@ module Photish
         Template.new(layout_file,
                      template_album_file,
                      output_dir)
+      end
+
+      def page_template
+        Page.new(layout_file, output_dir)
       end
 
       def photo_template

@@ -32,7 +32,9 @@ module Photish
         @all_url_parts ||= [[url_parts],
                             all_albums.map(&:url_parts),
                             all_photos.map(&:url_parts),
-                            all_images.map(&:url_parts)].flatten(1)
+                            all_images.map(&:url_parts),
+                            all_pages.map(&:url_parts),
+                           ].flatten(1)
       end
 
       def image_extensions
