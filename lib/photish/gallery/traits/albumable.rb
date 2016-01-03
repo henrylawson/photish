@@ -21,6 +21,12 @@ module Photish
                                     .flatten
         end
 
+        def all_pages
+          @all_pages ||= all_albums.map(&:pages)
+                                    .concat(self.try(:pages) || [])
+                                    .flatten
+        end
+
         def all_images
           @all_images ||= all_photos.map(&:images)
                                     .flatten
