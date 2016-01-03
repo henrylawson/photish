@@ -8,7 +8,6 @@
 
 ## Backlog
 
-1. RCode tools
 1. A CLI version option
 1. A CLI credits
 1. Video transcoding and template rendering for videos
