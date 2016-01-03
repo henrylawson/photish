@@ -3,6 +3,7 @@ module Photish
     class Collection
       include Traits::Urlable
       include Traits::Albumable
+      include Traits::Fileable
       include Plugin::Pluginable
 
       delegate :page_extension,

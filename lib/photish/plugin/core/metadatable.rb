@@ -18,20 +18,8 @@ module Photish
 
         private
 
-        def basename
-          File.basename(path, extname)
-        end
-
-        def extname
-          File.extname(path)
-        end
-
-        def dirname
-          File.dirname(path)
-        end
-
         def metadata_file
-          File.join(dirname, basename + '.yml')
+          File.join(dirname, basename_without_extension + '.yml')
         end
       end
     end

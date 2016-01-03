@@ -13,6 +13,10 @@ module Photish
           extension_of(path)
         end
 
+        def dirname
+          File.dirname(path)
+        end
+
         def basename
           File.basename(path)
         end
