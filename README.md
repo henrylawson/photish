@@ -66,6 +66,8 @@ and running:
       - [Album Template](#album-template)
       - [Photo Template](#photo-template)
       - [Template Helpers](#template-helpers)
+    - [Custom Rendered Content](#custom-rendered-content)
+      - [Gallery Page](#gallery-page)
   - [Generate](#generate)
     - [Execution Order](#execution-order)
     - [Workers and Threads](#workers-and-threads)
@@ -338,6 +340,7 @@ threads: 2
 force: false
 plugins: ['ssh_deploy', 'other_plugin']
 image_extensions: ['jpg', 'gif']
+page_extension: 'slim'
 ```
 
 The meanings and purpose of each field is defined below:
@@ -366,6 +369,7 @@ Field                  | Purpose
 `force`                | this should always be false, if true, all content will be regenerated and nothing cached
 `plugins`              | an array of plugin names that have been included in your Gemfile and that Photish should require into it's runtime
 `image_extensions`     | by default, Photish obtains a list of supported image format extensions from ImageMagick, however if you choose too, you can explicitly list the extensions that Photish should use to find images
+`page_extension`       | the extension of **Pages** files that will live amongst the photo collection
 
 #### Customizing Templates
 
@@ -426,6 +430,7 @@ albums              | an array of child [Albums](https://github.com/henrylawson/
 all_albums          | an array of all child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb)
 all_photos          | an array of all child [Photos](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/photo.rb)
 all_images          | an array of all child [Images](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/image.rb)
+all_pages           | an array of all child [Pages](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/page.rb)
 
 ##### Album Template
 
@@ -461,6 +466,7 @@ albums              | an array of child [Albums](https://github.com/henrylawson/
 all_albums          | an array of all child [Albums](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/album.rb)
 all_photos          | an array of all child [Photos](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/photo.rb)
 all_images          | an array of all child [Images](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/image.rb)
+all_pages           | an array of all child [Pages](https://github.com/henrylawson/photish/blob/master/lib/photish/gallery/page.rb)
 
 ##### Photo Template
 
@@ -537,6 +543,36 @@ Method              | Description
 ------------------- | -----------
 breadcrumbs         | an unordered list of pages above the current page in the hierarchy
 build_url(\*pieces) | use this to ensure your URLs have the correct host name and base directory, to avoid having it hard coded in the template
+
+#### Custom Rendered Content
+
+##### Gallery Page
+
+A gallery page is a simple way to create a custom web page within the
+collection or album of your gallery that will render within your site's [Layout
+Template](#layout-template).
+
+For example, if you would like to create a "more details about album" page
+somewhere within an album, and you would like it rendered in the [Layout
+Template](#layout-template) to have a consistent look and feel, you can do it
+by creating a file a Gallery Page file such as `more-about.slim` in your
+album's directory. The file extension is determined using the `page_extension`
+[Config File Option](#config-file-option). A Gallery Page can live anywhere and
+you can have as many of them as you like within the `photos` directory.
+
+`photos/**/*.{page_extension}`
+
+```slim
+div.more-about-album
+  h2 The More Details Page
+  p Lorem ipsum...
+  p Lorem ipsum...
+  p Lorem ipsum...
+```
+
+As with other gallery generated content, it is accessible from the `all_pages`
+method within the [Collection](#collection-template) or
+[Album](#album-template) template.
 
 ### Generate
 
