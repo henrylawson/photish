@@ -4,10 +4,8 @@
 
 1. Create the Asset Page feature, pages in the site folder, passing collection
    reference, no layout, simple render it
-1. Plugin doco for gallery page
 1. Ensure file exists and check version hash, rather then just cache
 1. Get url by smart key
-1. Fix spelling in gallery page content
 
 ## Backlog
 
