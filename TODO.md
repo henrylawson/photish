@@ -3,6 +3,7 @@
 ## In Progress
 
 1. Method to render without `name/index.html`, e.g. sitemap.xml
+1. The `page_extension` convention is kinda weird, is there a better way
 1. Document `Pages` in README
 1. RCode tools
 
