@@ -33,7 +33,7 @@ module Photish
 
       def self.path(output_dir, filename)
         FileUtils.mkdir_p(output_dir)
-        path = File.join(output_dir, filename)
+        File.join(output_dir, filename)
       end
     end
   end
