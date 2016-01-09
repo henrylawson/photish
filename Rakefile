@@ -9,9 +9,9 @@ RSpec::Core::RakeTask.new(:spec)
 
 Cucumber::Rake::Task.new(:features) do |t|
   tags = ['']
-  tags << '~@wip'
-  tags << '~@mri' unless RUBY_ENGINE == 'ruby'
-  t.cucumber_opts = "features --format pretty #{tags.join('--tags ')}"
+  tags << '--tags ~@wip'
+  tags << '--tags ~@mri' unless RUBY_ENGINE == 'ruby'
+  t.cucumber_opts = "features --format pretty #{tags.join(' ')}"
 end
 
 desc 'Gather code climate results'
