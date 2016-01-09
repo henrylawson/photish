@@ -23,7 +23,7 @@ cache: bundler
 matrix:
   include:
     - rvm: 2.3.0
-      env: COVERAGE=true
+      env: COVERAGE=1
   fast_finish: true
   allow_failures:
     - rvm: jruby-9.0
