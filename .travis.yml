@@ -26,3 +26,8 @@ matrix:
     - rvm: rbx
     - rvm: rbx-3.2
     - rvm: rbx-2
+  fast_finish: true
+  allow_failure:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: rbx

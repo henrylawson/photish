@@ -243,7 +243,7 @@ Ruby Version                              | Minimum | Maximum | Comments
 [Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable
 
 The latest version and all releases of Photish are tested against the above
-ruby versions in the [CI pipeline](https://travis-ci.org/henrylawson/photish)
+ruby versions in the [CI pipeline](https://travis-ci.org/henrylawson/photish).
 
 
 ## Usage
