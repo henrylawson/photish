@@ -36,7 +36,7 @@ Feature: Photish
     And the exit status should be 0
 
   Scenario: Generates an example site and runs it
-    Given the default aruba exit timeout is 60 seconds
+    Given the default aruba exit timeout is 90 seconds
 
     When I run `photish init --example`
     Then the output should contain "Photish site initiated successfully"
