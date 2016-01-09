@@ -234,15 +234,15 @@ Target OS dependencies:
 
 ### Ruby Versions
 
-Photish supports multiple ruby versions, our [Travis
-build](https://travis-ci.org/henrylawson/photish) is continually running all
+Photish supports multiple ruby versions, our [Travis](https://travis-ci.org)
+[build](https://travis-ci.org/henrylawson/photish) is continually running all
 changes against the supported ruby versions:
 
 Ruby Version                              | Minimum | Maximum | Comments
 ----------------------------------------- | --------|---------|---------
-[MRI Ruby](https://www.ruby-lang.org/en/) | ~> 2.0  | HEAD    | Very stable
-[JRuby](http://jruby.org/)                | ~> 9.0  | HEAD    | Mostly stable, potentially issues with monitoring file system changes
-[Rubinius](http://rubinius.com/)          | ~> 2.0  | ~> 3.0  | Mostly stable, potentially issues with monitoring file system changes
+[MRI Ruby](https://www.ruby-lang.org/en/) | 2.0     | HEAD    | Very stable
+[JRuby](http://jruby.org/)                | 9.0     | HEAD    | Mostly stable
+[Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable
 
 ## Usage
 
