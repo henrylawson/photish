@@ -238,9 +238,9 @@ Photish supports multiple ruby versions, our [Travis
 build](https://travis-ci.org/henrylawson/photish) is continually running tests
 against all of them:
 
-1. [MRI Ruby](https://www.ruby-lang.org/en/) >= 2.x, >= 3.x
-1. [JRuby](http://jruby.org/) >= 9.x
-1. [Rubinius](http://rubinius.com/) >= 2.x, >= 3.x
+1. [MRI Ruby](https://www.ruby-lang.org/en/) ~> 2.0, ~> 3.0
+1. [JRuby](http://jruby.org/) ~> 9.0
+1. [Rubinius](http://rubinius.com/) ~> 2.0, ~> 3.0
 
 ## Usage
 
