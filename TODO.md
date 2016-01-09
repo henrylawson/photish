@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. JRuby and Rubinius stability
+1. JRuby and Rubinius stability - move last feature to only run for "ruby"
 1. Create the Asset Page feature, pages in the site folder, passing collection
    reference, no layout, simple render it
 
