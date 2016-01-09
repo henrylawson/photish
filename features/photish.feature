@@ -4,6 +4,8 @@ Feature: Photish
   I want to run a single command to create a static site
 
   Scenario: Generates the basic site and runs it
+    Given the default aruba exit timeout is 60 seconds
+
     When I run `photish --version`
     Then the output should contain "Photish v"
 
