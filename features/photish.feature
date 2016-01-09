@@ -31,12 +31,12 @@ Feature: Photish
     And the welcome page should appear
 
     When I send the signal "INT" to the command started last
-    When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"
     And the exit status should be 0
 
+  @mri
   Scenario: Generates an example site and runs it
-    Given the default aruba exit timeout is 90 seconds
+    Given the default aruba exit timeout is 60 seconds
 
     When I run `photish init --example`
     Then the output should contain "Photish site initiated successfully"
@@ -54,7 +54,6 @@ Feature: Photish
     And all 27 pages and images should be available
 
     When I add an album of photos
-    When I add an album of photos
     Then the album should appear
 
     When I remove an album of photos
@@ -69,7 +68,6 @@ Feature: Photish
     Then the config changes should reflect
     And all 33 pages and images should be available
 
-    When I send the signal "INT" to the command started last
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"
     And the exit status should be 0

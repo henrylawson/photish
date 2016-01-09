@@ -1,5 +1,7 @@
-require 'simplecov'
-SimpleCov.command_name 'cucumber'
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.command_name 'cucumber'
+end
 
 require 'pry'
 require 'retriable'

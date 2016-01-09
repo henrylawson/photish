@@ -1,5 +1,7 @@
-require 'simplecov'
-SimpleCov.command_name 'rspec'
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.command_name 'rspec'
+end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'photish'

@@ -8,12 +8,15 @@ require 'metric_fu'
 RSpec::Core::RakeTask.new(:spec)
 
 Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format pretty --tags ~@wip"
+  tags = ['']
+  tags << '~@wip'
+  tags << '~@mri' unless RUBY_ENGINE == 'ruby'
+  t.cucumber_opts = "features --format pretty #{tags.join('--tags ')}"
 end
 
 desc 'Gather code climate results'
 task :gather_coverage do
-  next if RUBY_ENGINE == 'ruby'
+  next unless ENV['COVERAGE']
   require 'simplecov'
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter::Formatter.new.format(SimpleCov.result)
