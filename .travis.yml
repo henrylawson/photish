@@ -23,7 +23,7 @@ addons:
 cache: bundler
 matrix:
   allow_failures:
-    - rvm: ruby-head
+    - rvm: jruby-9.0
     - rvm: jruby-head
     - rvm: rbx-2
     - rvm: rbx-3.2
