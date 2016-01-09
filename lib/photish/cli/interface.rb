@@ -2,6 +2,18 @@ module Photish
   module CLI
     class Interface < Thor
       package_name "Photish"
+      map "-v" => :version
+      map "--version" => :version
+
+      desc "version", "Current version"
+      def version
+        puts "Photish v#{Photish::VERSION}"
+      end
+
+      desc "credits", "Major conritbutors"
+      def credits
+        puts "#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>"
+      end
 
       desc "generate", "Generates the gallery static site"
       option :force, type: :boolean

@@ -6,8 +6,8 @@ require 'photish/version'
 Gem::Specification.new do |spec|
   spec.name          = "photish"
   spec.version       = Photish::VERSION
-  spec.authors       = ["Henry Lawson"]
-  spec.email         = ["henry.lawson@foinq.com"]
+  spec.authors       = [Photish::AUTHOR_NAME]
+  spec.email         = [Photish::AUTHOR_EMAIL]
 
   spec.summary       = %q{A static photo site generator}
   spec.description   = %q{Photish is a simple, convention based (but

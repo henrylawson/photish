@@ -4,6 +4,12 @@ Feature: Photish
   I want to run a single command to create a static site
 
   Scenario: Generates the basic site and runs it
+    When I run `photish --version`
+    Then the output should contain "Photish v"
+
+    When I run `photish credits`
+    Then the output should contain "Henry"
+
     When I run `photish init`
     Then the output should contain "Photish site initiated successfully"
     And the exit status should be 0
