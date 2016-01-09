@@ -13,6 +13,7 @@ end
 
 desc 'Gather code climate results'
 task :gather_coverage do
+  return if RUBY_ENGINE == 'ruby'
   require 'simplecov'
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter::Formatter.new.format(SimpleCov.result)
