@@ -235,11 +235,11 @@ Target OS dependencies:
 ### Ruby Versions
 
 Photish supports multiple ruby versions, our [Travis
-build](https://travis-ci.org/henrylawson/photish) is continually testing each
-version against all of them. Currently Photish supports:
+build](https://travis-ci.org/henrylawson/photish) is continually running tests
+against all of them:
 
-1. [MRI Ruby](https://www.ruby-lang.org/en/) 2.0 to HEAD
-1. [JRuby](http://jruby.org/) 9.0 to HEAD
+1. [MRI Ruby](https://www.ruby-lang.org/en/) 2.0+
+1. [JRuby](http://jruby.org/) 9.0+
 
 ## Usage
 
