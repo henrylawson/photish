@@ -2,6 +2,7 @@
 
 ## In Progress
 
+1. jruby
 1. Create the Asset Page feature, pages in the site folder, passing collection
    reference, no layout, simple render it
 
