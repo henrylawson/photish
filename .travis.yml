@@ -8,6 +8,7 @@ rvm:
   - jruby-9.0
   - jruby-head
   - rbx-2
+  - rbx-3
 sudo: false
 before_install:
   - gem install bundler -v 1.10.6
@@ -23,3 +24,4 @@ cache: bundler
 matrix:
   allow_failures:
     - rvm: rbx-2
+    - rvm: rbx-3
