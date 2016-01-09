@@ -21,5 +21,10 @@ matrix:
     - rvm: 2.0
     - rvm: jruby-head
     - rvm: jruby-9.0
+    - rvm: rbx-head
     - rvm: rbx-3.2
+    - rvm: rbx-3
     - rvm: rbx-2
+  allow_failures:
+    - rvm: rbx-head
+    - rvm: rbx-3
