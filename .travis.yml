@@ -26,5 +26,5 @@ matrix:
     - rvm: rbx-3
     - rvm: rbx-2
   allow_failures:
-    - rvm: rbx-head
+    - rvm: rbx
     - rvm: rbx-3
