@@ -20,4 +20,4 @@ SimpleCov.start(CodeClimate::TestReporter.configuration.profile) do
   add_group 'Library',  'lib'
   add_group 'Specs',    'spec'
   add_group 'Features', ['features', 'tmp/aruba']
-end
+end if RUBY_ENGINE == 'ruby'
