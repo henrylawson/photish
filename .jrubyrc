@@ -4,4 +4,4 @@ objectspace.enabled=true
 backtrace.color=true
 compat.version=2.2
 backtrace.style=mri
-cli.debug=true
+cli.debug=false
