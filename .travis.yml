@@ -7,6 +7,7 @@ rvm:
   - ruby-head
   - jruby-9.0
   - jruby-head
+  - rbx-2.2
 sudo: false
 before_install:
   - gem install bundler -v 1.10.6
@@ -23,3 +24,4 @@ matrix:
   allow_failures:
     - rvm: jruby-9.0
     - rvm: jruby-head
+    - rvm: rbx-2.2
