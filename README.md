@@ -238,9 +238,9 @@ Photish supports multiple ruby versions:
 
 Ruby Version                              | Minimum | Maximum | Comments
 ----------------------------------------- |---------|---------|---------
-[MRI Ruby](https://www.ruby-lang.org/en/) | 2.0     | HEAD    | Very stable
-[JRuby](http://jruby.org/)                | 9.0     | HEAD    | Mostly stable
-[Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable
+[MRI Ruby](https://www.ruby-lang.org/en/) | 2.0     | HEAD    | Very stable, all tests pass consistently
+[JRuby](http://jruby.org/)                | 9.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
+[Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
 
 The latest version and all releases of Photish are tested against the above
 ruby versions in the [CI pipeline](https://travis-ci.org/henrylawson/photish).
