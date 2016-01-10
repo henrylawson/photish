@@ -15,3 +15,5 @@
 1. Stabilize full tests for JRuby and Rubinius
 1. Add unit tests to classes relying on feature tests
 1. Improve metric scores from `rake stats`
+1. AWS CLI tool deploy engine
+1. Github pages deploy engine
