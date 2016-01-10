@@ -69,6 +69,7 @@ and running:
       - [Template Helpers](#template-helpers)
     - [Custom Rendered Content](#custom-rendered-content)
       - [Gallery Page](#gallery-page)
+      - [Asset Page](#asset-page)
   - [Generate](#generate)
     - [Execution Order](#execution-order)
     - [Workers and Threads](#workers-and-threads)
@@ -588,6 +589,41 @@ div.more-about-album
 As with other gallery generated content, a gallery page is accessible from the
 `all_pages` method within the [Collection](#collection-template) or
 [Album](#album-template) template.
+
+##### Asset Page
+
+An Asset Page is a custom page that lives inside your `site` directory that
+is rendered using your template engine of choice. When an Asset Page template
+is rendered it is not rendered inside the site's [Layout
+Template](#layout-template). Asset Page's are standalone templates. Like other
+assets, they maintain the same folder structure in the `output` directory that
+they have in the `site` directory. When rendered, the template is passed the
+Collection model, as such they have access to all attributes that a [Collection
+Template](#collection-template) does.
+
+For example, if you would like to create an index page of all albums in your
+collection you can create the following file:
+
+`site/index/all_albums.html.{page_extension}`
+
+```slim
+doctype html
+html
+  head
+    title All Albums
+  body
+    ol
+      - all_albums.each do |album|
+        li #{album.name}
+```
+
+When rendered, the above Asset Page will be available at
+[http://localhost:9876/index/all_albums.html](http://localhost:9876/index/all_albums.html).
+
+It is important to note that once rendered, the template extension is removed
+and the basename is used for the final filename. This allows you to specify
+custom extensions before the `page_extension` such as TXT or XML. In the
+example above, HTML is specified.
 
 ### Generate
 
