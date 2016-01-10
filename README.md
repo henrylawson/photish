@@ -16,8 +16,9 @@ the information in your website templates. Photish supports all template
 engines implemented by [Tilt](https://github.com/rtomayko/tilt) (currently over
 30 formats). It will also read your configuration and automatically convert
 your images to your configured size, dimensions, colourscheme, etc using
-[ImageMagick](http://www.imagemagick.org/script/index.php). Using this
-information, Photish creates a complete static website that can be hosted on an
+[ImageMagick](http://www.imagemagick.org/) or
+[GraphicsMagick](http://www.graphicsmagick.org/). Using this information,
+Photish creates a complete static website that can be hosted on an
 [NGINX](http://nginx.org/), [Apache HTTP Server](https://httpd.apache.org/), or
 even on [Github Pages](https://pages.github.com/).
 
@@ -40,9 +41,10 @@ It is strongly recommended to read through the [Installation](#installation)
 and [Usage](#usage) sections before seriously using Photish, however to get up
 and running:
 
-1. Ensure [ImageMagick](http://www.imagemagick.org/script/index.php) and
-   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are
-   installed (see [Dependencies](#dependencies))
+1. Ensure [ImageMagick](http://www.imagemagick.org/) (or
+   [GraphicsMagick](http://www.graphicsmagick.org/)) and
+   [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
+   [Dependencies](#dependencies))
 1. Install Photish `gem install photish`
 1. Create a base project with `photish init --example`
 1. Generate the HTML using `photish generate`
@@ -208,8 +210,8 @@ Photish has dependencies on certain software:
   is a [Gem](https://www.ruby-lang.org/en/libraries/)
 - [Bundler](http://bundler.io/) is not required but recommended to manage the
   version, installations and updates of the Photish gem
-- [ImageMagick](http://www.imagemagick.org/script/index.php) for Image
-  conversion
+- [ImageMagick](http://www.imagemagick.org/) or
+  [GraphicsMagick](http://www.graphicsmagick.org/) for Image conversion
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
 
@@ -221,7 +223,7 @@ Target OS dependencies:
 **On MacOSX, using [Brew](http://brew.sh/)**
 
     $ brew install ruby
-    $ brew install imagemagick
+    $ brew install imagemagick # or brew install graphicsmagick
     $ brew install exiftool
     $ gem install bundler
 
@@ -231,7 +233,7 @@ Target OS dependencies:
     $ sudo apt-get update
     $ sudo apt-get install ruby2.2
     $
-    $ sudo apt-get install imagemagick
+    $ sudo apt-get install imagemagick # or sudo apt-get install graphicsmagick
     $ sudo apt-get install libimage-exiftool-perl
 
 ### Ruby Versions
@@ -367,7 +369,7 @@ Field                  | Purpose
 `port`                 | the port number that the `photish host` command will bind to, default is `9876`
 `qualities`            | an array of `name` and `params` fields for **Images**
 `qualities[]/name`     | the name of the **Image** quality
-`qualities[]/params`   | the parameters to be provided to the ImageMagick `convert` utility  for the **Image** file quality
+`qualities[]/params`   | the parameters to be provided to the ImageMagick or GraphicsMagick `convert` utility  for the **Image** file quality
 `templates`            | a listing of the various template files
 `templates/layout`     | the layout template file in the `site/_templates` folder, must be overridden if using a different template engine
 `templates/collection` | the collection template file in the `site/_templates` folder, must be overridden if using a different template engine
@@ -385,7 +387,7 @@ Field                  | Purpose
 `threads`              | the number of threads each worker should create to handle image magick transcoding
 `force`                | this should always be false, if true, all content will be regenerated and nothing cached
 `plugins`              | an array of plugin names that have been included in your Gemfile and that Photish should require into it's runtime
-`image_extensions`     | by default, Photish obtains a list of supported image format extensions from ImageMagick, however if you choose too, you can explicitly list the extensions that Photish should use to find images
+`image_extensions`     | by default, Photish has a complete list of image extensions, however if you choose too, you can explicitly list the extensions that Photish should use to find images
 `page_extension`       | the extension of **Pages** files that will live amongst the photo collection
 
 #### Customizing Templates
