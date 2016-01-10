@@ -86,6 +86,7 @@ and running:
     - [Plugin Loading](#plugin-loading)
 - [Development](#development)
 - [Contributing](#contributing)
+- [Versioning](#versioning)
 - [License](#license)
 
 ## Overview
@@ -992,6 +993,10 @@ Bug reports and pull requests are welcome on GitHub at
 https://github.com/henrylawson/photish. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Versioning
+
+This project follows [Semantic Versioning 2.0.0](http://semver.org/).
 
 ## License
 
