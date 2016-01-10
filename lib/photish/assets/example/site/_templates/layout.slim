@@ -14,4 +14,5 @@ html
     div.footer
       | Site assets:
       == links_with_seperator([{text: 'My Custom Page', url: build_url('custom.html')},
+                               {text: 'My Asset Page', url: build_url('map', 'site_albums.html')},
                                {text: 'CSS Download',   url: build_url('styles', 'basic.css')}], '|')

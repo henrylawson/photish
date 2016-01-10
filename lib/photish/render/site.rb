@@ -10,6 +10,7 @@ module Photish
         delete_empty_folders
         move_non_ignored_site_contents
         collection_template.render(collection)
+        render_asset_pages(collection)
       end
 
       private
@@ -21,7 +22,20 @@ module Photish
                :output_dir,
                :worker_index,
                :url,
+               :page_extension,
                to: :config
+
+      def render_asset_pages(collection)
+        AssetPage.new(collection,
+                      output_dir,
+                      site_dir).render(asset_page_paths)
+      end
+
+      def asset_page_paths
+        Dir["#{site_dir}/**/*.#{page_extension}"].reject do |dir|
+          dir.include? "#{File::SEPARATOR}_"
+        end
+      end
 
       def move_non_ignored_site_contents
         FileUtils.mkdir_p(output_dir)

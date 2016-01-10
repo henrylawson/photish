@@ -51,7 +51,7 @@ Feature: Photish
 
     When I run `photish host` interactively
     Then the site should be available via HTTP
-    And all 27 pages and images should be available
+    And all 28 pages and images should be available
 
     When I add an album of photos
     Then the album should appear
@@ -62,11 +62,11 @@ Feature: Photish
 
     When I edit a template
     Then the change should appear in the template
-    And all 27 pages and images should be available
+    And all 28 pages and images should be available
 
     When I change the config and a file in the site dir
     Then the config changes should reflect
-    And all 33 pages and images should be available
+    And all 34 pages and images should be available
 
     When I send the signal "INT" to the command started last
     Then the output should contain "Photish host has shutdown"

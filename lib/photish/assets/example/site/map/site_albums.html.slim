@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Photish asset page
+    link href="#{build_url('styles', 'basic.css')}" media="screen" rel="stylesheet" type="text/css"
+  body
+    div.header
+      a href="/"
+        h1 PHOTISH
+    div.content
+      ol
+        - all_albums.each do |album|
+          li #{album.name}

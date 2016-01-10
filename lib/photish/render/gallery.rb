@@ -48,7 +48,7 @@ module Photish
       end
 
       def page_template
-        Page.new(layout_file, output_dir)
+        GalleryPage.new(layout_file, output_dir)
       end
 
       def photo_template

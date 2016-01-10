@@ -1,6 +1,6 @@
 module Photish
   module Render
-    class Page
+    class GalleryPage
       include Log::Loggable
 
       def initialize(layout_file, output_dir)
