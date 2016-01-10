@@ -1,6 +1,6 @@
 module Photish
   module Render
-    class Model
+    class Gallery
       def initialize(config, version_hash)
         @config = config
         @version_hash = version_hash

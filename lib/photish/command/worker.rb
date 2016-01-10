@@ -22,8 +22,8 @@ module Photish
                to: :config
 
       def render_whole_site
-        Render::Model.new(config, version_hash)
-                     .all_for(collection)
+        Render::Gallery.new(config, version_hash)
+                       .all_for(collection)
       end
 
       def collection
