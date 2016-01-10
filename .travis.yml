@@ -21,11 +21,16 @@ matrix:
     - rvm: 2.0
 
     - rvm: jruby-head
+      env: SMOKE_TEST_ONLY=1
     - rvm: jruby-9.0
+      env: SMOKE_TEST_ONLY=1
 
     - rvm: rbx
+      env: SMOKE_TEST_ONLY=1
     - rvm: rbx-3.2
+      env: SMOKE_TEST_ONLY=1
     - rvm: rbx-2
+      env: SMOKE_TEST_ONLY=1
   fast_finish: true
   allow_failures:
     - rvm: ruby-head

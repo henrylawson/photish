@@ -10,7 +10,7 @@ RSpec::Core::RakeTask.new(:spec)
 Cucumber::Rake::Task.new(:features) do |t|
   tags = ['']
   tags << '--tags ~@wip'
-  tags << '--tags ~@mri' unless RUBY_ENGINE == 'ruby'
+  tags << '--tags @smoke' if ENV['SMOKE_TEST_ONLY']
   t.cucumber_opts = "features --format pretty #{tags.join(' ')}"
 end
 
