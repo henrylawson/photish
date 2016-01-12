@@ -27,7 +27,7 @@ matrix:
     - rvm: rbx
     - rvm: rbx-3.2
       env: SMOKE_TEST_ONLY=1
-    - rvm: rbx-2
+    - rvm: rbx-2.7
       env: SMOKE_TEST_ONLY=1
   fast_finish: true
   allow_failures:
