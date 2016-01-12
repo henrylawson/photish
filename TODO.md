@@ -2,6 +2,8 @@
 
 ## In Progress
 
+1. Create config to toggle to Graphics Magick
+   (https://github.com/minimagick/minimagick#switching-clis-imagemagick--graphicsmagick)
 1. An example Asset Page that is a `sitemap.xml`
 1. Get url by smart key
 
