@@ -2,14 +2,17 @@
 
 ## In Progress
 
-1. Create config to toggle to Graphics Magick
-   (https://github.com/minimagick/minimagick#switching-clis-imagemagick--graphicsmagick)
+1. Create config to configure mini magick
+   (http://www.rubydoc.info/github/minimagick/minimagick/MiniMagick/Configuration)
+1. Create config to configure mini exiftool, also invalid chars
+   (https://github.com/janfri/mini_exiftool#configuration)
 1. An example Asset Page that is a `sitemap.xml`
 1. Get url by smart key
 
 ## Backlog
 
 1. Video transcoding and template rendering for videos
+   (https://github.com/streamio/streamio-ffmpeg)
 1. Performance of image, video and page generation
 1. Improve the `--example` template of Photish
 1. Allow deploy engine to be specified in config, not requiring on CLI
