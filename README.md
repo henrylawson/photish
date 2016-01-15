@@ -238,6 +238,14 @@ Target OS dependencies:
     $ sudo apt-get install imagemagick # or sudo apt-get install graphicsmagick
     $ sudo apt-get install libimage-exiftool-perl
 
+**On CentOS, RedHat, etc.**
+
+    $ sudo apt-get install ruby2.2
+    $ sudo yum install ruby-rdoc ruby-devel rubygems
+    $
+    $ sudo yum install ImageMagick
+    $ sudo yum install perl-Image-ExifTool
+
 ### Ruby Versions
 
 Photish supports multiple ruby versions:
