@@ -39,7 +39,6 @@ deploy:
   on:
     repo: henrylawson/photish
     condition: "$DEPLOY = 1"
-    branch: master
     tags: true
   api_key:
     secure: nFNY85dNmvdhc8H2t/tIiv0xTeWctitZSs2WtlVzOFpbNFac9rqd4ZhNQb/l2QiukquMdbWVzSr2uPZ+gJwhV/yWtX+xNbnPHdW/u5upX5PO9SNZImx8iVS95bViW+zygp3rZvVS6oVeIg4xAzuBMlviomYhp8lGRISWAM5efznK+NkLw16BiiDVQQ3KKLst0Ydo2TIzjkpfeFyNK9qj0Joxqllojo+QVBFUN+vHQcC2VgOQIJjCKshlRKDtMwvvt5+qjBPs5IsTwWkySkkum3WRLxwUXHoMqKqxbYfgXtr2A7KUKiGkK9L2zVYOYCErKDuS+YgQ3AgxnFsToOR8hp6SRv1WhR8Vix67u3A7dRmJ1hdyt0Re5+LyvHAuKXuUB6gJ8rbWpf56i4fbGCjl9IVE4YB+PfwRDwBAttXQTtYZE7AuseH+qdUYPRq3zLlYIcFxEliyNhh5Ud8aBh+ciM2R7ql0wA2Fu8tOK/2beoBWjifZc0z/B/hDHO4JGsphJaz59wPk/3DV6sCmaS4iMPAKtoyRdTyUN/hnzpq99LOEoQLCWUteWet5saV0svOQ3THRTZYO2mUX18Yb1Xjrm6iGhpjOMueBn+X12WLSXgHLuWV07/30cFdUOuhrGGu68weoMUY060PIdslUFtygSWIVVtvDpX1W52MLZyINeaA=
