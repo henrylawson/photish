@@ -28,10 +28,9 @@ task :clean do
 end
 
 desc 'Release a new version'
-task :bump => ['release:source_control_push'] do
-  `vim lib/photish/version.rb`
-  `git add lib/photish/version.rb`
-  `git commit`
+task :bump do
+  system("mvim -f lib/photish/version.rb && git add lib/photish/version.rb && git commit")
+  Rake::Task['release:source_control_push'].invoke
 end
 
 task :default => [:clean,
