@@ -110,6 +110,10 @@ class PhotoParent
     ['pets']
   end
 
+  def config
+    RecursiveOpenStruct.new(dependencies: { miniexiftool: { command: nil } })
+  end
+
   def name
     'Pets'
   end

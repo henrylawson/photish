@@ -10,6 +10,7 @@ module Photish
                :image_extensions,
                :page_extension,
                :url_info,
+               :config,
                to: :parent,
                allow_nil: true
 

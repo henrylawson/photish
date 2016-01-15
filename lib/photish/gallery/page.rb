@@ -9,6 +9,7 @@ module Photish
       attr_reader :path
 
       delegate :url_info,
+               :config,
                to: :parent,
                allow_nil: true
 

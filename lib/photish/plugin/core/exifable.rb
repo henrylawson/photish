@@ -7,7 +7,13 @@ module Photish
         end
 
         def exif
-          @exif ||= MiniExiftool.new(path)
+          return @exif if @exif
+          MiniExifTool.command = exiftool_path if exiftool_path
+          @exif = MiniExiftool.new(path)
+        end
+
+        def exiftool_path
+          config.dependencies.miniexiftool.command
         end
       end
     end

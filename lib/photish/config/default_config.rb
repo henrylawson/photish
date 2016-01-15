@@ -21,12 +21,19 @@ module Photish
           page_extension: 'slim',
           soft_failure: false,
           dependencies: {
-            minimagick: minimagick
+            minimagick: minimagick,
+            miniexiftool: miniexiftool
           }
         }
       end
 
       private
+
+      def miniexiftool
+        {
+          command: nil
+        }
+      end
 
       def minimagick
         {

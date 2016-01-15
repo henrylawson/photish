@@ -7,10 +7,14 @@ module Photish
 
       delegate :name,
                :params,
-               to: :quality, prefix: true, allow_nil: true
+               to: :quality,
+               prefix: true,
+               allow_nil: true
 
       delegate :url_info,
-               to: :parent, allow_nil: true
+               :config,
+               to: :parent,
+               allow_nil: true
 
       attr_reader :path
 

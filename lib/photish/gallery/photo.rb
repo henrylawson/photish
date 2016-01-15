@@ -7,6 +7,7 @@ module Photish
 
       delegate :qualities,
                :url_info,
+               :config,
                to: :parent,
                allow_nil: true
 

@@ -364,8 +364,10 @@ page_extension: 'slim'
 dependencies:
   minimagick:
     cli: 'imagemagick'
-    cli_path:
+    cli_path: '/usr/bin/convert'
     timeout: 3600
+  miniexiftool:
+    command: '/usr/bin/'
 ```
 
 The meanings and purpose of each field is defined below:
@@ -398,8 +400,10 @@ Field                  | Purpose
 `dependencies`         | this section is for the configuration of third party tools
 `dependencies/minimagick`          | configuration for [minimagick](https://github.com/minimagick/minimagick), the wrapping library around [ImageMagick](http://www.imagemagick.org/) or [GraphicsMagick](http://www.graphicsmagick.org/)
 `dependencies/minimagick/cli`      | provide `imagemagick`, or `graphicsmagick` depending on your chosen library
-`dependencies/minimagick/cli_path` | if the above executables are not in your PATH, you can provide it explicitly here
+`dependencies/minimagick/cli_path` | if the above executables are not in your PATH, you can provide the location explicitly here
 `dependencies/minimagick/timeout`  | terminate a command after the provided number of seconds
+`dependencies/miniexiftool` | configuration for [mini_exiftool](https://github.com/janfri/mini_exiftool), the wrapping library around [Exif Tool](http://www.sno.phy.queensu.ca/~phil/exiftool/)
+`dependencies/miniexiftool/command` | if exiftool is not in your PATH, you can provide the location explicitly here
 
 #### Customizing Templates
 
