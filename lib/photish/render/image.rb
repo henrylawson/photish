@@ -11,6 +11,7 @@ module Photish
       def render(images)
         log.debug "Rendering #{images.count} images across #{threads} threads"
 
+        setup_minimagick
         cache_load_from_disk
         threads = spawn_thread_instances(to_queue(images))
         threads.map(&:join)
@@ -80,7 +81,6 @@ module Photish
           convert << image.path
           convert.merge!(image.quality_params)
           convert << output_path(image)
-          log.debug "Performing image conversion #{convert.command}"
         end
       rescue MiniMagick::Error => e
         log.warn "Error occured while converting"
@@ -101,6 +101,27 @@ module Photish
                                        workers,
                                        worker_index,
                                        version_hash)
+      end
+
+      def minimagick_config
+        config.dependencies.minimagick
+      end
+
+      def debug?
+        config.logging.level == 'debug'
+      end
+
+      def setup_minimagick
+        MiniMagick.configure do |config|
+          config.cli = minimagick_config.cli.to_sym
+          config.cli_path = minimagick_config.cli_path if minimagick_config.cli_path
+          config.debug = debug?
+          config.logger = MiniMagick::Logger.new(Log::IO.new(log, :debug))
+          config.timeout = minimagick_config.timeout
+          config.validate_on_create = minimagick_config.validate_on_create
+          config.validate_on_write = minimagick_config.validate_on_write
+          config.whiny = minimagick_config.whiny
+        end
       end
     end
   end

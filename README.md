@@ -74,6 +74,7 @@ and running:
       - [Asset Page](#asset-page)
   - [Generate](#generate)
     - [Execution Order](#execution-order)
+    - [Image Conversion Tools](#image-conversion-tools)
     - [Workers and Threads](#workers-and-threads)
     - [Caching](#caching)
       - [Automatic Rengeneration](#automatic-regeneration)
@@ -360,6 +361,11 @@ force: false
 plugins: ['ssh_deploy', 'other_plugin']
 image_extensions: ['jpg', 'gif']
 page_extension: 'slim'
+dependencies:
+  minimagick:
+    cli: 'imagemagick'
+    cli_path:
+    timeout: 3600
 ```
 
 The meanings and purpose of each field is defined below:
@@ -389,6 +395,11 @@ Field                  | Purpose
 `plugins`              | an array of plugin names that have been included in your Gemfile and that Photish should require into it's runtime
 `image_extensions`     | by default, Photish has a complete list of image extensions, however if you choose too, you can explicitly list the extensions that Photish should use to find images
 `page_extension`       | the extension of **Pages** files that will live amongst the photo collection
+`dependencies`         | this section is for the configuration of third party tools
+`dependencies/minimagick`          | configuration for [minimagick](https://github.com/minimagick/minimagick), the wrapping library around [ImageMagick](http://www.imagemagick.org/) or [GraphicsMagick](http://www.graphicsmagick.org/)
+`dependencies/minimagick/cli`      | provide "imagemagick", or "graphicsmagick" depending on your chosen library
+`dependencies/minimagick/cli_path` | if the above executables are not in your PATH, you can provide it explicitly here
+`dependencies/minimagick/timeout`  | terminate a command after the provided number of seconds
 
 #### Customizing Templates
 
@@ -650,6 +661,34 @@ The Generate command does the following:
    Image(s) to the `output` folder
 1. Converts all Photo(s) to the configured quality versions, writing various
    images to the `output` folder
+
+#### Image Conversion Tools
+
+Photish supports [ImageMagick](http://www.imagemagick.org/) or
+[GraphicsMagick](http://www.graphicsmagick.org/) for image conversion.
+
+By default, Photish will assume ImageMagick is installed. To change this,
+ensure [GraphicsMagick](http://www.graphicsmagick.org/) is installed and the
+utility is availabe on the PATH. Then ensure that the [Config File
+Option](#config-file-option) `dependencies/minimagick/cli` is set to
+`graphicsmagick`. For example:
+
+```yaml
+dependencies:
+  minimagick:
+    cli: graphicsmagick
+```
+
+If [ImageMagick](http://www.imagemagick.org/) or
+[GraphicsMagick](http://www.graphicsmagick.org/) is not available on the PATH
+you can manually specify it's location by setting
+`dependencies/minimagick/cli_path`. For example:
+
+```yaml
+dependencies:
+  minimagick:
+    cli_path: '/usr/bin/convert'
+```
 
 #### Workers and Threads
 
