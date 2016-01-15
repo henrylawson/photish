@@ -27,6 +27,13 @@ task :clean do
   FileUtils.rm_rf('coverage')
 end
 
+desc 'Release a new version'
+task :bump => ['release:source_control_push'] do
+  `vim lib/photish/version.rb`
+  `git add lib/photish/version.rb`
+  `git commit`
+end
+
 task :default => [:clean,
                   :spec,
                   :features,
