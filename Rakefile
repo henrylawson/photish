@@ -33,7 +33,7 @@ task :bump do
   system("git add lib/photish/version.rb") || abort('Error adding verison'.red)
   system("git commit") || abort("Error creating commit".red)
   system("git diff-index --quiet HEAD") || abort("Uncommited changes".red)
-  system("rake release:source_control_push")
+  system("rake release:source_control_push") || abort("Creating tag failed".red)
 end
 
 task :default => [:clean,
