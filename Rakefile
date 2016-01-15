@@ -4,6 +4,7 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require 'photish/rake/task'
 require 'metric_fu'
+require 'colorize'
 
 RSpec::Core::RakeTask.new(:spec)
 

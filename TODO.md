@@ -2,12 +2,12 @@
 
 ## In Progress
 
+1. Add a photish-montage travis release workflow
 1. Consider adding after release step of bumping and pushing other projects
    (https://docs.travis-ci.com/user/deployment/custom/)
 
 ## Backlog
 
-1. Add a photish-montage travis release workflow
 1. An example Asset Page that is a `sitemap.xml`
 1. Get url by smart key
 1. Video transcoding and template rendering for videos
