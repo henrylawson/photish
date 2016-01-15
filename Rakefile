@@ -29,8 +29,11 @@ end
 
 desc 'Release a new version'
 task :bump do
-  system("mvim -f lib/photish/version.rb && git add lib/photish/version.rb && git commit")
-  Rake::Task['release:source_control_push'].invoke
+  system("mvim -f lib/photish/version.rb") || abort('Error updating version'.red)
+  system("git add lib/photish/version.rb") || abort('Error adding verison'.red)
+  system("git commit") || abort("Error creating commit".red)
+  system("git diff-index --quiet HEAD") || abort("Uncommited changes".red)
+  system("rake release:source_control_push")
 end
 
 task :default => [:clean,
