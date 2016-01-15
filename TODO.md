@@ -2,8 +2,6 @@
 
 ## In Progress
 
-1. Create config to configure mini exiftool, also invalid chars
-   (https://github.com/janfri/mini_exiftool#configuration)
 1. Consider adding after release step of bumping and pushing other projects
    (https://docs.travis-ci.com/user/deployment/custom/)
 
