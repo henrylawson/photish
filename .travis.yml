@@ -13,27 +13,20 @@ addons:
 cache: bundler
 matrix:
   include:
-    - rvm: ruby-head
     - rvm: 2.3.0
       env: COVERAGE=1 DEPLOY=1
     - rvm: 2.2
     - rvm: 2.1
     - rvm: 2.0
 
-    - rvm: jruby-head
     - rvm: jruby-9.0
       env: SMOKE_TEST_ONLY=1
 
-    - rvm: rbx
     - rvm: rbx-3.2
       env: SMOKE_TEST_ONLY=1
     - rvm: rbx-2.7
       env: SMOKE_TEST_ONLY=1
   fast_finish: true
-  allow_failures:
-    - rvm: ruby-head
-    - rvm: jruby-head
-    - rvm: rbx
 deploy:
   provider: rubygems
   on:
