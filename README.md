@@ -397,7 +397,7 @@ Field                  | Purpose
 `page_extension`       | the extension of **Pages** files that will live amongst the photo collection
 `dependencies`         | this section is for the configuration of third party tools
 `dependencies/minimagick`          | configuration for [minimagick](https://github.com/minimagick/minimagick), the wrapping library around [ImageMagick](http://www.imagemagick.org/) or [GraphicsMagick](http://www.graphicsmagick.org/)
-`dependencies/minimagick/cli`      | provide "imagemagick", or "graphicsmagick" depending on your chosen library
+`dependencies/minimagick/cli`      | provide `imagemagick`, or `graphicsmagick` depending on your chosen library
 `dependencies/minimagick/cli_path` | if the above executables are not in your PATH, you can provide it explicitly here
 `dependencies/minimagick/timeout`  | terminate a command after the provided number of seconds
 
@@ -667,9 +667,10 @@ The Generate command does the following:
 Photish supports [ImageMagick](http://www.imagemagick.org/) or
 [GraphicsMagick](http://www.graphicsmagick.org/) for image conversion.
 
-By default, Photish will assume ImageMagick is installed. To change this,
-ensure [GraphicsMagick](http://www.graphicsmagick.org/) is installed and the
-utility is availabe on the PATH. Then ensure that the [Config File
+By default, Photish will assume [ImageMagick](http://www.imagemagick.org/) is
+installed. To change this, ensure
+[GraphicsMagick](http://www.graphicsmagick.org/) is installed and the utility
+is availabe on the PATH. Then ensure that the [Config File
 Option](#config-file-option) `dependencies/minimagick/cli` is set to
 `graphicsmagick`. For example:
 
