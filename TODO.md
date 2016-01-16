@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Get url by smart key
+1. Enhance snapci pipelines
 
 ## Backlog
 
