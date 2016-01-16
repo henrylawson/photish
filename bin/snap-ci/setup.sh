@@ -11,11 +11,12 @@ sudo yum install ImageMagick
 # update rbenv
 rbenv update > /dev/null
 rbenv --version
+eval "$(rbenv init -)"
 
 # install ruby
 rbenv download $RUBY_VERSION
-eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
+rbenv global $RUBY_VERSION
 ruby --version
 gem --version
 
