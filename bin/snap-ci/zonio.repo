@@ -1,7 +1,0 @@
-[zonio]
-name=Zonio $releasever - $basearch
-baseurl=https://zonio.net/repos/epel/$releasever/$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://zonio.net/repos/GPG-Key-Zonio
-priority=5
