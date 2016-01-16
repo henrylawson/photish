@@ -28,7 +28,8 @@ module Photish
       def render_asset_pages(collection)
         AssetPage.new(collection,
                       output_dir,
-                      site_dir).render(asset_page_paths)
+                      site_dir,
+                      url).render(asset_page_paths)
       end
 
       def asset_page_paths
