@@ -55,6 +55,7 @@ and running:
 # Documentation
 
 - [Overview](#overview)
+- [Versions](#versions)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
   - [Ruby Versions](#ruby-versions)
@@ -188,6 +189,16 @@ The number of Images and the quality of each is completely configurable. Using
 the templating language of your choice you can easily generate a Photo
 collection driven website with all of your photos available in various
 qualities and formats.
+
+## Latest Version
+
+Photish follows [Semantic Versioning 2.0.0](http://semver.org/).
+
+Releases happen regularly and automatically from
+[Snap-CI](https://snap-ci.com/henrylawson/photish/branch/master).
+
+The [latest version](https://github.com/henrylawson/photish/releases/latest) is
+published with artifacts on GitHub.
 
 ## Installation
 
@@ -1054,10 +1065,6 @@ Bug reports and pull requests are welcome on GitHub at
 https://github.com/henrylawson/photish. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Versioning
-
-This project follows [Semantic Versioning 2.0.0](http://semver.org/).
 
 ## License
 
