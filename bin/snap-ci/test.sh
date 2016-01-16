@@ -14,6 +14,7 @@ then
 else
   rbenv install $RUBY_VERSION
 fi
+eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
 
 ruby --version
