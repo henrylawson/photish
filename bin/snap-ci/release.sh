@@ -6,6 +6,7 @@ export COMMIT=$SNAP_COMMIT
 export BRANCH=$SNAP_BRANCH
 
 # conditionally release app
+rbenv shell $RUBY_VERSION
 if git describe --exact-match $COMMIT && [ $BRANCH = 'master' ]
 then
   bundle exec rake build release:rubygem_push

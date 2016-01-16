@@ -16,7 +16,6 @@ eval "$(rbenv init -)"
 # install ruby
 rbenv download $RUBY_VERSION
 rbenv shell $RUBY_VERSION
-rbenv global $RUBY_VERSION
 ruby --version
 gem --version
 

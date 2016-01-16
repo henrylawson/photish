@@ -8,6 +8,7 @@ set -xeuo pipefail
 : ${PROFILE:=0}
 
 # run tests
+rbenv shell $RUBY_VERSION
 if [ $SOFT_FAILURE == "1" ]
 then
   bundle exec rake || true
