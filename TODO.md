@@ -2,7 +2,6 @@
 
 ## In Progress
 
-1. An example Asset Page that is a `sitemap.xml`
 1. Get url by smart key
 
 ## Backlog
