@@ -14,7 +14,7 @@ then
 else
   rbenv install $RUBY_VERSION
 fi
-rbenv use $RUBY_VERSION
+rbenv shell $RUBY_VERSION
 
 ruby --version
 gem --version
