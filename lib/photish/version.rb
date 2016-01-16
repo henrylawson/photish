@@ -1,5 +1,5 @@
 module Photish
-  VERSION = "0.7.0"
+  VERSION = "0.7.1"
   AUTHOR_NAME = "Henry Lawson"
   AUTHOR_EMAIL = "henry.lawson@foinq.com"
 end
