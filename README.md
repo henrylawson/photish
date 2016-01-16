@@ -55,7 +55,7 @@ and running:
 # Documentation
 
 - [Overview](#overview)
-- [Versions](#versions)
+- [Latest Version](#latest-version)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
   - [Ruby Versions](#ruby-versions)
