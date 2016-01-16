@@ -59,7 +59,7 @@ task 'release:github' do
        puts JSON.parse(`curl -sS -H "Content-Type: application/octet-stream" \
                    -u henrylawson:#{ENV['GITHUB_TOKEN']} \
                    --request POST \
-                   --data @"#{file[:path]}" \
+                   --data-binary @"#{file[:path]}" \
                    #{upload_url}?name=#{URI.escape(file[:name])}&label=#{URI.escape(file[:label])}`)
   end
 end
