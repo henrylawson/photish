@@ -2,7 +2,9 @@
 
 ## In Progress
 
-1. Enhance snapci pipelines
+1. Clean up rake tasks, split them out
+1. Test a release with latest code
+1. Update README to reference releases
 
 ## Backlog
 
