@@ -5,31 +5,22 @@ set -xeuo pipefail
 sudo yum install perl-Image-ExifTool
 sudo yum install ImageMagick
 
-# install ruby version
+# update rbenv
 rbenv update > /dev/null
 rbenv --version
-if [ $RUBY_IS_CACHED == "1" ]
-then
-  rbenv download $RUBY_VERSION
-else
-  sudo yum install clang
-  sudo yum install llvm-devel
-  rbenv download 2.2.4
-  eval "$(rbenv init -)"
-  rbenv shell 2.2.4
-  rbenv global 2.2.4
-  gem install bundler
-  CC=clang rbenv install $RUBY_VERSION
-fi
+
+# install ruby
+rbenv download $RUBY_VERSION
 eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
-
 ruby --version
 gem --version
 
-# setup bundler
+# install bundler
 gem install bundler
 bundle --version
+
+# configure bundler
 rbenv rehash
 bundle config path $SNAP_CACHE_DIR/gems/$RUBY_VERSION
 bundle install
