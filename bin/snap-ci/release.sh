@@ -17,5 +17,5 @@ if git describe --exact-match $COMMIT && [ $BRANCH = 'master' ]
 then
   bundle exec rake build release:rubygem_push
 else
-  echo "This is not a tagged commit, skipping release."
+  echo "This is not a tagged commit on master, skipping release."
 fi
