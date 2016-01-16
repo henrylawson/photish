@@ -2,6 +2,8 @@
 
 ## In Progress
 
+1. Travelling Ruby binaries
+
 ## Backlog
 
 1. Video transcoding and template rendering for videos
@@ -13,6 +15,5 @@
 1. Stabilize full tests for JRuby and Rubinius
 1. Add unit tests to classes relying on feature tests
 1. Improve metric scores from `rake stats`
-1. Travelling Ruby binaries
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
