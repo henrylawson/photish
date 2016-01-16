@@ -2,9 +2,6 @@
 
 ## In Progress
 
-1. Test a release with latest code
-1. Update README to reference releases
-
 ## Backlog
 
 1. Video transcoding and template rendering for videos
