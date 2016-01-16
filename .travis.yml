@@ -4,8 +4,6 @@ before_install:
   - gem install bundler -v 1.10.6
 script: bundle exec rake
 addons:
-  code_climate:
-    repo_token: ae398c193255da8c5e030cb6251f053c76757635e5215e65efa32f52d003a519
   apt:
     packages:
       - libmagic-dev
@@ -13,8 +11,6 @@ addons:
 cache: bundler
 matrix:
   include:
-    - rvm: 2.3.0
-      env: COVERAGE=1
     - rvm: jruby-9.0
       env: SMOKE_TEST_ONLY=1
     - rvm: rbx-3.2
