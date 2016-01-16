@@ -7,16 +7,21 @@ sudo yum install ImageMagick
 
 # install ruby version
 rbenv update > /dev/null
+rbenv --version
 if [ $RUBY_IS_CACHED == "1" ]
 then
   rbenv download $RUBY_VERSION
 else
   rbenv install $RUBY_VERSION
 fi
-rbenv global $RUBY_VERSION
+rbenv use $RUBY_VERSION
+
+ruby --version
+gem --version
 
 # setup bundler
 gem install bundler
+bundle --version
 rbenv rehash
 bundle config path $SNAP_CACHE_DIR/gems/$RUBY_VERSION
 bundle install
