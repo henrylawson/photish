@@ -2,7 +2,6 @@
 
 ## In Progress
 
-1. Clean up rake tasks, split them out
 1. Test a release with latest code
 1. Update README to reference releases
 
@@ -18,3 +17,5 @@
 1. Add unit tests to classes relying on feature tests
 1. Improve metric scores from `rake stats`
 1. Travelling Ruby binaries
+1. Fix jruby tests on snap-ci
+1. Setup rbx builds on snap-ci
