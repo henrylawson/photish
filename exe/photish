@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 if ENV['COVERAGE']
   require 'simplecov'
   SimpleCov.command_name "photish-binary-#{Process.pid}"
