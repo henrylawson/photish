@@ -2,7 +2,7 @@
 set -xeuo pipefail
 
 # map values from snap-ci
-export CACHE_DIR = $SNAP_CACHE_DIR
+export CACHE_DIR=$SNAP_CACHE_DIR
 
 # install dependencies
 sudo yum install perl-Image-ExifTool
