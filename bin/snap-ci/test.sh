@@ -13,12 +13,13 @@ then
   rbenv download $RUBY_VERSION
 else
   sudo yum install clang
+  sudo yum install llvm-devel
   rbenv download 2.2.4
   eval "$(rbenv init -)"
   rbenv shell 2.2.4
   rbenv global 2.2.4
   gem install bundler
-  rbenv install $RUBY_VERSION
+  CC=clang rbenv install $RUBY_VERSION
 fi
 eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
