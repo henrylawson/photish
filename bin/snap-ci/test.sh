@@ -12,6 +12,7 @@ if [ $RUBY_IS_CACHED == "1" ]
 then
   rbenv download $RUBY_VERSION
 else
+  sudo yum install clang
   rbenv download 2.2.4
   eval "$(rbenv init -)"
   rbenv shell 2.2.4
