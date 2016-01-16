@@ -15,6 +15,8 @@ else
   rbenv download 2.2.4
   eval "$(rbenv init -)"
   rbenv shell 2.2.4
+  rbenv global 2.2.4
+  gem install bundler
   rbenv install $RUBY_VERSION
 fi
 eval "$(rbenv init -)"
