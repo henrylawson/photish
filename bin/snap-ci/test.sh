@@ -17,6 +17,7 @@ else
   rbenv shell 2.2.4
   rbenv install $RUBY_VERSION
 fi
+eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
 
 ruby --version
