@@ -22,4 +22,9 @@ bundle config path $SNAP_CACHE_DIR/gems/$RUBY_VERSION
 bundle install
 
 # run tests
-bundle exec rake
+if [ $SOFT_FAILURE == "1" ]
+then
+  bundle exec rake || true
+else
+  bundle exec rake
+fi
