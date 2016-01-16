@@ -12,9 +12,11 @@ if [ $RUBY_IS_CACHED == "1" ]
 then
   rbenv download $RUBY_VERSION
 else
+  rbenv download 2.2.4
+  eval "$(rbenv init -)"
+  rbenv shell 2.2.4
   rbenv install $RUBY_VERSION
 fi
-eval "$(rbenv init -)"
 rbenv shell $RUBY_VERSION
 
 ruby --version
