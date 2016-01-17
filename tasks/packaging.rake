@@ -21,20 +21,8 @@ namespace :package do
   namespace :install do
     desc "Create a debian package"
     task :deb do
-      sh "fpm " + "-s tar " +
-                  "-t deb " +
-                  "--architecture linux-x86 " +
-                  "--name #{Photish::NAME} " +
-                  "--vendor \"Foinq\" " +
-                  "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
-                  "--version #{VERSION} " +
-                  "--description \"#{Photish::DESCRIPTION}\" " +
-                  "--license \"#{Photish::LICENSE}\" " +
-                  "--prefix \"/usr/local/photish\" " +
-                  "--after-install #{PACKAGING_DIR}/after-install.sh " +
-                  "--package 'pkg' " +
-                  "--force " +
-                  "#{BINARY_DIR}/#{package_dir_of("linux-x86")}.tar.gz"
+      create_deb('i386', 'linux-x86')
+      create_deb('amd64', 'linux-x86_64')
     end
   end
 
@@ -133,4 +121,21 @@ def download_runtime(target)
   sh "mkdir -p #{RELEASES_DIR}"
   sh "cd #{RELEASES_DIR} && curl -L -O --fail " +
      "http://d6r77u77i8pq3.cloudfront.net/releases/traveling-ruby-#{TRAVELING_RUBY_VERSION}-#{target}.tar.gz"
+end
+
+def create_deb(architecture, package_architecture)
+  sh "fpm " + "-s tar " +
+              "-t deb " +
+              "--architecture #{architecture} " +
+              "--name #{Photish::NAME} " +
+              "--vendor \"Foinq\" " +
+              "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
+              "--version #{VERSION} " +
+              "--description \"#{Photish::DESCRIPTION}\" " +
+              "--license \"#{Photish::LICENSE}\" " +
+              "--prefix \"/usr/local/lib\" " +
+              "--after-install #{PACKAGING_DIR}/after-install.sh " +
+              "--package 'pkg' " +
+              "--force " +
+              "#{BINARY_DIR}/#{package_dir_of(package_architecture)}.tar.gz"
 end
