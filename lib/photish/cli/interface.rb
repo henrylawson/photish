@@ -8,6 +8,7 @@ module Photish
       desc "version", "Current version"
       def version
         puts "Photish v#{Photish::VERSION}"
+        puts "Ruby runtime: #{RUBY_VERSION} p#{RUBY_PATCHLEVEL} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
       end
 
       desc "credits", "Major conritbutors"
