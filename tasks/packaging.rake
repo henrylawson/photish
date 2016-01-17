@@ -169,6 +169,7 @@ def create_rpm(architecture, package_architecture)
   package_dir = package_dir_of(package_architecture)
   sh "fpm " + "-s tar " +
               "-t rpm " +
+              "--rpm-os linux " +
               "--architecture #{architecture} " +
               "--name #{Photish::NAME} " +
               "--vendor \"Foinq\" " +
