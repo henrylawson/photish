@@ -9,9 +9,6 @@ pkg
 spec/reports
 tmp
 lib/photish/assets/output
-packaging/releases
-packaging/tmp
-packaging/vendor
 
 # Added these to not force others to use them.
 .overcommit.yml

@@ -2,9 +2,13 @@ require 'photish/version'
 
 PACKAGE_NAME = "photish"
 VERSION = Photish::VERSION
-TRAVELING_RUBY_VERSION = "20150715-2.2.2"
+EXPECTED_RUBY_VERSION = '2.2.2'
+TRAVELING_RUBY_VERSION = "20150715-#{EXPECTED_RUBY_VERSION}"
+PACKAGING_DIR = 'packaging'
 BINARY_DIR = 'pkg'
-RELEASES_DIR = ENV['RELEASES_DIR'] || 'packaging/releases'
+TEMP_DIR = ENV['TEMP_DIR'] || 'tmp/packaging'
+RELEASES_DIR = "#{TEMP_DIR}/releases"
+SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Package your app"
 task :package => ['package:linux:x86', 'package:linux:x86_64', 'package:osx']
@@ -29,18 +33,18 @@ namespace :package do
 
   desc "Install gems to local directory"
   task :bundle_install do
-    if RUBY_VERSION !~ /^2\.2\./
+    if RUBY_VERSION !~ /^#{EXPECTED_RUBY_VERSION.sub('.', '\.')}/
       abort "You can only 'bundle install' using Ruby 2.1, because that's what Traveling Ruby uses."
     end
-    sh "rm -rf packaging/tmp"
-    sh "mkdir packaging/tmp"
-    sh "cp Gemfile Gemfile.lock packaging/tmp/"
-    new_contents = File.read('packaging/tmp/Gemfile').gsub(/^gemspec.*$/, "gemspec path: '../../'")
-    File.open('packaging/tmp/Gemfile', "w") {|file| file.puts(new_contents) }
+    sh "rm -rf #{SCRATCH_DIR}"
+    sh "mkdir -p #{SCRATCH_DIR}"
+    sh "cp Gemfile Gemfile.lock #{SCRATCH_DIR}"
+    new_contents = File.read("#{SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '../../../'")
+    File.open("#{SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
     Bundler.with_clean_env do
-      sh "cd packaging/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
+      sh "cd #{SCRATCH_DIR} && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
     end
-    sh "rm -f packaging/vendor/*/*/cache/*"
+    sh "rm -f #{TEMP_DIR}/vendor/*/*/cache/*"
   end
 end
 
@@ -64,16 +68,17 @@ def create_package(target)
   sh "cp -rf exe #{package_dir}/lib/app/"
   sh "mkdir #{package_dir}/lib/ruby"
   sh "tar -xzf #{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-#{target}.tar.gz -C #{package_dir}/lib/ruby"
-  sh "cp packaging/wrapper.sh #{package_dir}/photish"
-  sh "cp -pR packaging/vendor #{package_dir}/lib/"
+  sh "cp #{PACKAGING_DIR}/wrapper.sh #{package_dir}/photish"
+  sh "cp -pR #{TEMP_DIR}/vendor #{package_dir}/lib/"
   sh "cp photish.gemspec #{package_dir}/lib/app"
-  new_contents = File.read('packaging/tmp/Gemfile').gsub(/^gemspec.*$/, "gemspec path: '../app'")
-  File.open('packaging/tmp/Gemfile', "w") {|file| file.puts(new_contents) }
-  sh "cp packaging/tmp/Gemfile packaging/tmp/Gemfile.lock #{package_dir}/lib/vendor/"
+  new_contents = File.read("#{SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '../app'")
+  File.open("#{SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
+  sh "cp #{SCRATCH_DIR}/Gemfile #{SCRATCH_DIR}/Gemfile.lock #{package_dir}/lib/vendor/"
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
-  sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
+  sh "cp #{PACKAGING_DIR}/bundler-config #{package_dir}/lib/vendor/.bundle/config"
   sh "chmod +x #{package_dir}/photish"
   if !ENV['DIR_ONLY']
+    sh "mkdir -p #{BINARY_DIR}"
     sh "tar -czf #{BINARY_DIR}/#{package_dir}.tar.gz #{package_dir}"
     sh "rm -rf #{package_dir}"
   end

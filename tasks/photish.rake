@@ -13,5 +13,9 @@ namespace :photish do
     t.options = "host"
   end
 
+  Photish::Rake::Task.new(:version, 'Version information') do |t|
+    t.options = "version"
+  end
+
   task :all => [:init, :generate, :host]
 end
