@@ -2,8 +2,7 @@
 set -e
 
 # figure out where this script is located
-SELFDIR="`dirname \"$0\"`"
-SELFDIR="`cd \"$SELFDIR\" && pwd`"
+SELFDIR="$(dirname "$(readlink -f "$0")")"
 
 # tell Bundler where the Gemfile and gems are
 export BUNDLE_GEMFILE="$SELFDIR/lib/vendor/Gemfile"

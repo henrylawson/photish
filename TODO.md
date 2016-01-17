@@ -2,10 +2,7 @@
 
 ## In Progress
 
-1. Travelling Ruby binaries, update after-install, test debian package
-    - gemspec, causes git to be ran - remove need for it
-    - root file does not point to photish executable
-    - dynamic method to symlink
+1. Travelling Ruby binaries, automated i386, amd65 for DEB and RPM
 
 ## Backlog
 
@@ -21,3 +18,4 @@
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
 1. Tweak FPM to allow homepage
+1. Improve CLI help commands and documentation

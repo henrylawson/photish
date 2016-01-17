@@ -100,7 +100,11 @@ def create_package(target, os_type)
     sh "cp packaging/wrapper.bat #{package_dir}/photish.bat"
   end
   sh "cp -pR #{TEMP_DIR}/vendor #{package_dir}/lib/"
+
   sh "cp photish.gemspec #{package_dir}/lib/app"
+  new_contents = File.read("#{package_dir}/lib/app/photish.gemspec").gsub(/spec\.files.*$/, "spec.files = ''")
+  File.open("#{package_dir}/lib/app/photish.gemspec", "w") {|file| file.puts(new_contents) }
+
   new_contents = File.read("#{SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '../app'")
   File.open("#{SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
   sh "cp #{SCRATCH_DIR}/Gemfile #{SCRATCH_DIR}/Gemfile.lock #{package_dir}/lib/vendor/"
@@ -124,6 +128,11 @@ def download_runtime(target)
 end
 
 def create_deb(architecture, package_architecture)
+  package_dir = package_dir_of(package_architecture)
+
+  new_contents = File.read("#{PACKAGING_DIR}/after-install.sh").gsub(/PACKAGE_PLACEHOLDER/, package_dir)
+  File.open("#{TEMP_DIR}/after-install.sh", "w") {|file| file.puts(new_contents) }
+
   sh "fpm " + "-s tar " +
               "-t deb " +
               "--architecture #{architecture} " +
@@ -134,8 +143,8 @@ def create_deb(architecture, package_architecture)
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +
               "--prefix \"/usr/local/lib\" " +
-              "--after-install #{PACKAGING_DIR}/after-install.sh " +
+              "--after-install #{TEMP_DIR}/after-install.sh " +
               "--package 'pkg' " +
               "--force " +
-              "#{BINARY_DIR}/#{package_dir_of(package_architecture)}.tar.gz"
+              "#{BINARY_DIR}/#{package_dir}.tar.gz"
 end
