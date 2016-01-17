@@ -11,24 +11,32 @@ RELEASES_DIR = "#{TEMP_DIR}/releases"
 SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Package your app"
-task :package => ['package:linux:x86', 'package:linux:x86_64', 'package:osx']
+task :package => ['package:linux:x86',
+                  'package:linux:x86_64',
+                  'package:osx',
+                  'package:win32']
 
 namespace :package do
   namespace :linux do
     desc "Package your app for Linux x86"
     task :x86 => [:bundle_install, "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz"] do
-      create_package("linux-x86")
+      create_package("linux-x86", :unix)
     end
 
     desc "Package your app for Linux x86_64"
     task :x86_64 => [:bundle_install, "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86_64.tar.gz"] do
-      create_package("linux-x86_64")
+      create_package("linux-x86_64", :unix)
     end
   end
 
   desc "Package your app for OS X"
   task :osx => [:bundle_install, "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz"] do
-    create_package("osx")
+    create_package("osx", :unix)
+  end
+
+  desc "Package your app for Windows x86"
+  task :win32 => [:bundle_install, "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz"] do
+    create_package("win32", :windows)
   end
 
   desc "Install gems to local directory"
@@ -48,6 +56,10 @@ namespace :package do
   end
 end
 
+file "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz" do
+  download_runtime("win32")
+end
+
 file "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz" do
   download_runtime("linux-x86")
 end
@@ -60,7 +72,7 @@ file "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz" do
   download_runtime("osx")
 end
 
-def create_package(target)
+def create_package(target, os_type)
   package_dir = "#{PACKAGE_NAME}-#{VERSION}-#{target}"
   sh "rm -rf #{package_dir}"
   sh "mkdir -p #{package_dir}/lib/app"
@@ -68,7 +80,12 @@ def create_package(target)
   sh "cp -rf exe #{package_dir}/lib/app/"
   sh "mkdir #{package_dir}/lib/ruby"
   sh "tar -xzf #{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-#{target}.tar.gz -C #{package_dir}/lib/ruby"
-  sh "cp #{PACKAGING_DIR}/wrapper.sh #{package_dir}/photish"
+  if os_type == :unix
+    sh "cp packaging/wrapper.sh #{package_dir}/photish"
+    sh "chmod +x #{package_dir}/photish"
+  else
+    sh "cp packaging/wrapper.bat #{package_dir}/photish.bat"
+  end
   sh "cp -pR #{TEMP_DIR}/vendor #{package_dir}/lib/"
   sh "cp photish.gemspec #{package_dir}/lib/app"
   new_contents = File.read("#{SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '../app'")
@@ -76,10 +93,13 @@ def create_package(target)
   sh "cp #{SCRATCH_DIR}/Gemfile #{SCRATCH_DIR}/Gemfile.lock #{package_dir}/lib/vendor/"
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
   sh "cp #{PACKAGING_DIR}/bundler-config #{package_dir}/lib/vendor/.bundle/config"
-  sh "chmod +x #{package_dir}/photish"
   if !ENV['DIR_ONLY']
     sh "mkdir -p #{BINARY_DIR}"
-    sh "tar -czf #{BINARY_DIR}/#{package_dir}.tar.gz #{package_dir}"
+    if os_type == :unix
+      sh "tar -czf #{BINARY_DIR}/#{package_dir}.tar.gz #{package_dir}"
+    else
+      sh "zip -9r #{BINARY_DIR}/#{package_dir}.zip #{package_dir}"
+    end
     sh "rm -rf #{package_dir}"
   end
 end
