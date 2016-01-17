@@ -1,3 +1,5 @@
+require 'photish'
+
 module Photish
   module Rake
     class Task
