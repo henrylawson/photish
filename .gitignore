@@ -9,7 +9,6 @@ pkg
 spec/reports
 tmp
 lib/photish/assets/output
-
-# Added these to not force others to use them.
+.vagrant
 .overcommit.yml
 .rvmrc

@@ -3,6 +3,9 @@
 ## In Progress
 
 1. Travelling Ruby binaries, update after-install, test debian package
+    - gemspec, causes git to be ran - remove need for it
+    - root file does not point to photish executable
+    - dynamic method to symlink
 
 ## Backlog
 
