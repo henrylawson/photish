@@ -34,7 +34,7 @@ namespace :package do
     end
 
     task :rpm do
-      create_rpm('x86', 'linux-x86')
+      create_rpm('i386', 'linux-x86')
       create_rpm('x86_64', 'linux-x86_64')
     end
   end
