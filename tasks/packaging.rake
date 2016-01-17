@@ -11,18 +11,31 @@ RELEASES_DIR = "#{TEMP_DIR}/releases"
 SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Package your app"
-task :package => ['package:linux:x86',
+task :package => ['package:clean',
+                  'package:linux:x86',
                   'package:linux:x86_64',
                   'package:osx',
                   'package:win32',
-                  'package:install:deb']
+                  'package:installer:deb',
+                  'package:installer:rpm']
 
 namespace :package do
-  namespace :install do
+  task :clean do
+    sh "rm -rf #{BINARY_DIR}/*tar"
+    sh "rm -rf #{BINARY_DIR}/*deb"
+    sh "rm -rf #{BINARY_DIR}/*rpm"
+  end
+
+  namespace :installer do
     desc "Create a debian package"
     task :deb do
       create_deb('i386', 'linux-x86')
       create_deb('amd64', 'linux-x86_64')
+    end
+
+    task :rpm do
+      create_rpm('x86', 'linux-x86')
+      create_rpm('x86_64', 'linux-x86_64')
     end
   end
 
@@ -137,6 +150,7 @@ def create_deb(architecture, package_architecture)
   package_dir = package_dir_of(package_architecture)
   sh "fpm " + "-s tar " +
               "-t deb " +
+              "--deb-no-default-config-files " +
               "--architecture #{architecture} " +
               "--name #{Photish::NAME} " +
               "--vendor \"Foinq\" " +
@@ -145,6 +159,25 @@ def create_deb(architecture, package_architecture)
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +
               "--prefix \"/usr/local/lib\" " +
+              "--after-install #{update_after_install_script(package_dir)} " +
+              "--package 'pkg' " +
+              "--force " +
+              "#{BINARY_DIR}/#{package_dir}.tar.gz"
+end
+
+def create_rpm(architecture, package_architecture)
+  package_dir = package_dir_of(package_architecture)
+  sh "fpm " + "-s tar " +
+              "-t rpm " +
+              "--architecture #{architecture} " +
+              "--name #{Photish::NAME} " +
+              "--vendor \"Foinq\" " +
+              "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
+              "--version #{VERSION} " +
+              "--description \"#{Photish::DESCRIPTION}\" " +
+              "--license \"#{Photish::LICENSE}\" " +
+              "--prefix \"/usr/local/lib\" " +
+              "--epoch \"#{Time.now.to_i}\" " +
               "--after-install #{update_after_install_script(package_dir)} " +
               "--package 'pkg' " +
               "--force " +

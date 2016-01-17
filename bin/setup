@@ -4,5 +4,8 @@ IFS=$'\n\t'
 
 command -v convert >/dev/null 2>&1 || { echo >&2 "imagemagick required. run \"brew install imagemagick\""; exit 1; }
 command -v exiftool >/dev/null 2>&1 || { echo >&2 "exiftool required. run \"brew install exiftool\""; exit 1; }
+# gnu tar
+# rpm
+# ruby 2.2.2 for travelling ruby
 
 bundle install

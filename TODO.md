@@ -2,10 +2,13 @@
 
 ## In Progress
 
-1. Travelling Ruby binaries, automated i386, amd65 for DEB and RPM
+1. Travelling Ruby binaries, automated testing DEB, RPM, PKG (32 and 64 bit)
+1. Remove files not needed in package, caches, native extensions, dev gems
 
 ## Backlog
 
+1. Update development dependencies
+1. Schedule package building in pipeline and in releases
 1. Video transcoding and template rendering for videos
    (https://github.com/streamio/streamio-ffmpeg)
 1. Improve the `--example` template of Photish
