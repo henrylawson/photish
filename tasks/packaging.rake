@@ -127,12 +127,14 @@ def download_runtime(target)
      "http://d6r77u77i8pq3.cloudfront.net/releases/traveling-ruby-#{TRAVELING_RUBY_VERSION}-#{target}.tar.gz"
 end
 
-def create_deb(architecture, package_architecture)
-  package_dir = package_dir_of(package_architecture)
-
+def update_after_install_script(package_dir)
   new_contents = File.read("#{PACKAGING_DIR}/after-install.sh").gsub(/PACKAGE_PLACEHOLDER/, package_dir)
   File.open("#{TEMP_DIR}/after-install.sh", "w") {|file| file.puts(new_contents) }
+  "#{TEMP_DIR}/after-install.sh"
+end
 
+def create_deb(architecture, package_architecture)
+  package_dir = package_dir_of(package_architecture)
   sh "fpm " + "-s tar " +
               "-t deb " +
               "--architecture #{architecture} " +
@@ -143,7 +145,7 @@ def create_deb(architecture, package_architecture)
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +
               "--prefix \"/usr/local/lib\" " +
-              "--after-install #{TEMP_DIR}/after-install.sh " +
+              "--after-install #{update_after_install_script(package_dir)} " +
               "--package 'pkg' " +
               "--force " +
               "#{BINARY_DIR}/#{package_dir}.tar.gz"
