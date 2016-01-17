@@ -8,7 +8,7 @@ Feature: Photish
     Given the default aruba exit timeout is 90 seconds
 
     When I run `photish --version`
-    Then the output should contain "Photish v"
+    Then the output should contain "photish v"
 
     When I run `photish credits`
     Then the output should contain "Henry"

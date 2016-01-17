@@ -7,13 +7,12 @@ module Photish
 
       desc "version", "Current version"
       def version
-        puts "#{Photish::NAME} v#{Photish::VERSION}"
-        puts RUBY_DESCRIPTION
+        Photish::Command::Version.new(options).execute
       end
 
       desc "credits", "Major conritbutors"
       def credits
-        puts "#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>"
+        Photish::Command::Credits.new(options).execute
       end
 
       desc "generate", "Generates the gallery static site"

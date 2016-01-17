@@ -17,5 +17,9 @@ namespace :photish do
     t.options = "version"
   end
 
+  Photish::Rake::Task.new(:credits, 'Credits information') do |t|
+    t.options = "credits"
+  end
+
   task :all => [:init, :generate, :host]
 end
