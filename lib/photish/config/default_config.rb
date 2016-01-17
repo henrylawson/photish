@@ -93,7 +93,7 @@ module Photish
       end
 
       def processor_count
-        Facter.value('processors')['count']
+        1
       end
 
       def photish_executable
