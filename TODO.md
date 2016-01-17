@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Travelling Ruby binaries
+1. Travelling Ruby binaries, update after-install, test debian package
 
 ## Backlog
 
@@ -17,3 +17,4 @@
 1. Improve metric scores from `rake stats`
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
+1. Tweak FPM to allow homepage

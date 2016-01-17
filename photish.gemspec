@@ -4,16 +4,15 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'photish/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "photish"
+  spec.name          = Photish::NAME
   spec.version       = Photish::VERSION
   spec.authors       = [Photish::AUTHOR_NAME]
   spec.email         = [Photish::AUTHOR_EMAIL]
 
-  spec.summary       = %q{A static photo site generator}
-  spec.description   = %q{Photish is a simple, convention based (but
-  configurable) static photo site generator.}
-  spec.homepage      = "https://github.com/henrylawson/photish"
-  spec.license       = "MIT"
+  spec.summary       = Photish::SUMMARY
+  spec.description   = Photish::DESCRIPTION
+  spec.homepage      = Photish::HOMEPAGE
+  spec.license       = Photish::LICENSE
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
@@ -47,4 +46,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "photish-plugin-sshdeploy"
   spec.add_development_dependency "awesome_print"
   spec.add_development_dependency "travis"
+  spec.add_development_dependency "fpm"
 end

@@ -1,6 +1,6 @@
 require 'photish/version'
 
-PACKAGE_NAME = "photish"
+PACKAGE_NAME = Photish::NAME
 VERSION = Photish::VERSION
 EXPECTED_RUBY_VERSION = '2.2.2'
 TRAVELING_RUBY_VERSION = "20150715-#{EXPECTED_RUBY_VERSION}"
@@ -14,9 +14,30 @@ desc "Package your app"
 task :package => ['package:linux:x86',
                   'package:linux:x86_64',
                   'package:osx',
-                  'package:win32']
+                  'package:win32',
+                  'package:install:deb']
 
 namespace :package do
+  namespace :install do
+    desc "Create a debian package"
+    task :deb do
+      sh "fpm " + "-s tar " +
+                  "-t deb " +
+                  "--architecture linux-x86 " +
+                  "--name #{Photish::NAME} " +
+                  "--vendor \"Foinq\" " +
+                  "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
+                  "--version #{VERSION} " +
+                  "--description \"#{Photish::DESCRIPTION}\" " +
+                  "--license \"#{Photish::LICENSE}\" " +
+                  "--prefix \"/usr/local/photish\" " +
+                  "--after-install #{PACKAGING_DIR}/after-install.sh " +
+                  "--package 'pkg' " +
+                  "--force " +
+                  "#{BINARY_DIR}/#{package_dir_of("linux-x86")}.tar.gz"
+    end
+  end
+
   namespace :linux do
     desc "Package your app for Linux x86"
     task :x86 => [:bundle_install, "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz"] do
@@ -72,8 +93,12 @@ file "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz" do
   download_runtime("osx")
 end
 
+def package_dir_of(target)
+  "#{PACKAGE_NAME}-#{VERSION}-#{target}"
+end
+
 def create_package(target, os_type)
-  package_dir = "#{PACKAGE_NAME}-#{VERSION}-#{target}"
+  package_dir = package_dir_of(target)
   sh "rm -rf #{package_dir}"
   sh "mkdir -p #{package_dir}/lib/app"
   sh "cp -rf lib #{package_dir}/lib/app/"
