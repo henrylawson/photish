@@ -18,4 +18,5 @@
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
 1. Tweak FPM to allow homepage
+1. Work out way to determine processes without facter
 1. Improve CLI help commands and documentation
