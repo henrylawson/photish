@@ -12,5 +12,4 @@ unset BUNDLE_IGNORE_CONFIG
 exec "$SELFDIR/lib/ruby/bin/ruby" \
      -rbundler/setup \
      "$SELFDIR/lib/app/exe/photish" \
-     "$@" \
-     2> /dev/null
+     "$@"
