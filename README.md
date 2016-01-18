@@ -1,6 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
 [![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
 [![Build Status](https://snap-ci.com/henrylawson/photish/branch/master/build_image)](https://snap-ci.com/henrylawson/photish/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/b2pj9985aeylx0mi/branch/master?svg=true)](https://ci.appveyor.com/project/HenryLawson/photish/branch/master)
 [![Dependency Status](https://gemnasium.com/henrylawson/photish.svg)](https://gemnasium.com/henrylawson/photish)
 [![Code Climate](https://codeclimate.com/github/henrylawson/photish/badges/gpa.svg)](https://codeclimate.com/github/henrylawson/photish)
 [![Test Coverage](https://codeclimate.com/github/henrylawson/photish/badges/coverage.svg)](https://codeclimate.com/github/henrylawson/photish/coverage)
