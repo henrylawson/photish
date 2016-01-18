@@ -154,7 +154,7 @@ def create_deb(architecture, package_architecture)
               "--architecture #{architecture} " +
               "--name #{Photish::NAME} " +
               "--vendor \"Foinq\" " +
-              "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
+              "--maintainer \"#{Photish::CONTACT}>\" " +
               "--version #{VERSION} " +
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +
@@ -173,7 +173,7 @@ def create_rpm(architecture, package_architecture)
               "--architecture #{architecture} " +
               "--name #{Photish::NAME} " +
               "--vendor \"Foinq\" " +
-              "--maintainer \"#{Photish::AUTHOR_NAME} <#{Photish::AUTHOR_EMAIL}>\" " +
+              "--maintainer \"#{Photish::CONTACT}>\" " +
               "--version #{VERSION} " +
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +

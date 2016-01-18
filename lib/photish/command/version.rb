@@ -2,7 +2,7 @@ module Photish
   module Command
     class Version < Base
       def run
-        puts "#{Photish::NAME} v#{Photish::VERSION}"
+        puts "#{Photish::NAME_AND_VERSION}"
         puts ''
         puts "#{RUBY_DESCRIPTION}"
         puts ''
