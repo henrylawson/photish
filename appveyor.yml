@@ -1,0 +1,11 @@
+version: 1.0.{build}
+build: off
+test: off
+deploy: off
+notifications:
+- provider: Email
+  to:
+  - hen3rz@gmail.com
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: true
