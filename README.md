@@ -1,3 +1,4 @@
+ -------------------|--------
  **Package**        | [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
  **CI/CD Pipeline** | [![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
                     | [![Build Status](https://snap-ci.com/henrylawson/photish/branch/master/build_image)](https://snap-ci.com/henrylawson/photish/branch/master)
