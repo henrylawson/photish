@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Automated testing of binaries on architectures
+1. Automated testing of binaries on architectures, vagrant and provision
 1. Remove files not needed in package, caches, native extensions, dev gems
 
 ## Backlog
