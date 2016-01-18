@@ -2,7 +2,7 @@
 
 ## In Progress
 
-1. Travelling Ruby binaries, automated testing DEB, RPM, PKG (32 and 64 bit)
+1. Automated testing of binaries on architectures
 1. Remove files not needed in package, caches, native extensions, dev gems
 
 ## Backlog
@@ -20,6 +20,13 @@
 1. Improve metric scores from `rake stats`
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
-1. Tweak FPM to allow homepage
+1. Tweak FPM to allow homepage field override in DEB
 1. Work out way to determine processes without facter
 1. Improve CLI help commands and documentation
+1. Host packages beyong gtihub, perhaps publix repos
+1. Determine if other metadata can be set in packages
+1. Create Mac OSX package
+1. Create Solaris package
+1. Create ArchLinux package
+1. Create MSI package
+1. Look at how to create a brew installer
