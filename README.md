@@ -49,7 +49,7 @@ and running:
 
 Category | Purpose | Badge
 ---------|---------|------
- **Package** | RubyGems | [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
+ **Package** | RubyGems Status | [![Gem Version](https://badge.fury.io/rb/photish.svg)](https://badge.fury.io/rb/photish)
  **CI/CD Pipeline** | Main Build | [![Build Status](https://snap-ci.com/henrylawson/photish/branch/master/build_image)](https://snap-ci.com/henrylawson/photish/branch/master)
                     | JRuby & Rubinius Builds | [![Build Status](https://travis-ci.org/henrylawson/photish.svg)](https://travis-ci.org/henrylawson/photish)
                     | Windows Build | [![Build status](https://ci.appveyor.com/api/projects/status/b2pj9985aeylx0mi?svg=true)](https://ci.appveyor.com/project/HenryLawson/photish)
