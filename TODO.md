@@ -28,5 +28,6 @@
 1. Create Mac OSX package
 1. Create Solaris package
 1. Create ArchLinux package
-1. Create MSI package
+1. Create MSI/choco package with appveyor, maybe git submodule
 1. Look at how to create a brew installer
+1. Update development instructions

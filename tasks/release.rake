@@ -16,7 +16,7 @@ task 'release:github' do
   payload = {
     tag_name: "v#{Photish::VERSION}",
     target_commiish: "master",
-    name: "Photish v#{Photish::VERSION}",
+    name: "#{Photish::NAME} v#{Photish::VERSION}",
     body: `git log -1 --pretty=%B`.strip
   }
   puts response = JSON.parse(`curl -sS -H "Content-Type: application/json" \
