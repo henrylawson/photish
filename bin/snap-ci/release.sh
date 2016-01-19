@@ -11,6 +11,7 @@ DIR="$(dirname "$(readlink -f "$0")")"
 # setup dependencies and ruby
 source "$DIR/setup.sh"
 
+# ls the artifact dir
 ls -larth ./pkg
 
 # conditionally release app

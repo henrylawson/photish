@@ -14,4 +14,5 @@ source "$DIR/setup.sh"
 # build and package
 bundle exec rake clean pack
 
+# ls the artifact dir
 ls -larth ./pkg
