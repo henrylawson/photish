@@ -12,7 +12,8 @@ namespace :dev do
       sh "git tag -a -m \"Version #{Photish::VERSION}\" v#{Photish::VERSION}"
     rescue
       sh "git tag -d v#{Photish::VERSION}"
-      abort("Creating tag failed".red)
+      "Creating tag failed".red
+      raise
     end
   end
 end
