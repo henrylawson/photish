@@ -5,7 +5,7 @@ module TaskConfig
   PACKAGING_DIR = 'packaging'
   WORKING_DIR = ENV['WORKING_DIR']
   BINARY_DIR = ENV['BINARY_DIR'] || 'pkg'
-  TEMP_DIR = ENV['TEMP_DIR'] || 'tmp/packaging'
-  RELEASES_DIR = "#{TEMP_DIR}/releases"
-  SCRATCH_DIR = "#{TEMP_DIR}/scratch"
+  CACHE_DIR = ENV['CACHE_DIR'] || 'tmp/packaging'
+  RELEASES_DIR = "#{CACHE_DIR}/releases"
+  SCRATCH_DIR = "#{CACHE_DIR}/scratch"
 end

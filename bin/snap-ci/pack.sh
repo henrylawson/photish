@@ -2,7 +2,7 @@
 set -xeuo pipefail
 
 # map values from snap-ci
-export TEMP_DIR=$SNAP_CACHE_DIR
+export CACHE_DIR=$SNAP_CACHE_DIR
 export WORKING_DIR=$SNAP_WORKING_DIR
 
 # determine script dir

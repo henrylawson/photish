@@ -58,29 +58,29 @@ namespace :build do
     Bundler.with_clean_env do
       sh "cd #{TaskConfig::SCRATCH_DIR} && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
     end
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/*/*/cache/*"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/*/*/cache/*"
 
-    sh "rm -rf #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/test"
-    sh "rm -rf #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/tests"
-    sh "rm -rf #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/spec"
-    sh "rm -rf #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/features"
-    sh "rm -rf #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/benchmark"
+    sh "rm -rf #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/test"
+    sh "rm -rf #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/tests"
+    sh "rm -rf #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/spec"
+    sh "rm -rf #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/features"
+    sh "rm -rf #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/benchmark"
 
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/ruby/*/rdoc*"
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/ext/Makefile"
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/Makefile"
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
-    sh "rm -f #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.c' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.cpp' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.h' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.rl' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name 'extconf.rb' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems -name '*.o' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems -name '*.so' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby/*/gems -name '*.bundle' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.java' | xargs rm -f"
-    sh "find #{TaskConfig::TEMP_DIR}/vendor/ruby -name '*.class' | xargs rm -f"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/ruby/*/rdoc*"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/ext/Makefile"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/ext/*/Makefile"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
+    sh "rm -f #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.c' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.cpp' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.h' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.rl' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name 'extconf.rb' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems -name '*.o' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems -name '*.so' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby/*/gems -name '*.bundle' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.java' | xargs rm -f"
+    sh "find #{TaskConfig::CACHE_DIR}/vendor/ruby -name '*.class' | xargs rm -f"
   end
 end
 
@@ -118,7 +118,7 @@ def create_package(target, os_type)
   else
     sh "cp packaging/wrapper.bat #{package_dir}/photish.bat"
   end
-  sh "cp -pR #{TaskConfig::TEMP_DIR}/vendor #{package_dir}/lib/"
+  sh "cp -pR #{TaskConfig::CACHE_DIR}/vendor #{package_dir}/lib/"
 
   sh "cp photish.gemspec #{package_dir}/lib/app"
   new_contents = File.read("#{package_dir}/lib/app/photish.gemspec").gsub(/spec\.files.*$/, "spec.files = ''")
@@ -148,7 +148,7 @@ end
 
 def update_after_install_script(package_dir)
   new_contents = File.read("#{TaskConfig::PACKAGING_DIR}/after-install.sh").gsub(/PACKAGE_PLACEHOLDER/, package_dir)
-  sh "mkdir -p #{TaskConfig::TEMP_DIR}"
-  File.open("#{TaskConfig::TEMP_DIR}/after-install.sh", "w") {|file| file.puts(new_contents) }
-  "#{TaskConfig::TEMP_DIR}/after-install.sh"
+  sh "mkdir -p #{TaskConfig::CACHE_DIR}"
+  File.open("#{TaskConfig::CACHE_DIR}/after-install.sh", "w") {|file| file.puts(new_contents) }
+  "#{TaskConfig::CACHE_DIR}/after-install.sh"
 end
