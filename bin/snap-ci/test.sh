@@ -8,8 +8,7 @@ set -xeuo pipefail
 : ${PROFILE:=0}
 
 # determine script dir
-DIR="${BASH_SOURCE%/*}"
-if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+DIR="$(dirname "$(readlink -f "$0")")"
 
 # setup dependencies and ruby
 source "$DIR/setup.sh"

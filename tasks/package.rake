@@ -5,8 +5,8 @@ task :package => ['package:deb',
 namespace :package do
   desc "Clean up package files"
   task :clean do
-    sh "rm -rf #{BINARY_DIR}/*deb"
-    sh "rm -rf #{BINARY_DIR}/*rpm"
+    sh "rm -rf #{TaskConfig::BINARY_DIR}/*deb"
+    sh "rm -rf #{TaskConfig::BINARY_DIR}/*rpm"
   end
 
   desc "Create a DEB package"

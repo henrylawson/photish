@@ -1,6 +1,7 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+Dir.glob('tasks/lib/**/*.rb').each { |r| import r }
 Dir.glob('tasks/*.rake').each { |r| import r }
 
 desc 'Test and gather metrics'
