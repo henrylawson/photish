@@ -14,24 +14,41 @@ namespace :release do
   end
 
   desc 'Release information to gtihub'
-  task :github do
-    raise "Please provide a GITHUB_TOKEN" unless ENV['GITHUB_TOKEN']
+  task :github => ['release:github:tagged_release',
+                   'release:github:upload_gem',
+                   'release:github:upload_rpm',
+                   'release:github:upload_deb',
+                   'release:github:upload_build']
 
-    puts response = create_github_release
-    puts upload_url = response['upload_url'].gsub(/\{.*\}/, '')
+  namespace :github do
+    task :ensure_token_set do
+      raise "Please provide a GITHUB_TOKEN" unless ENV['GITHUB_TOKEN']
+    end
 
-    upload_file_to_github(upload_url, "RubyGem", "photish*.gem")
+    task :tagged_release => [:ensure_token_set] do
+      puts create_github_release
+    end
 
-    upload_file_to_github(upload_url, "RPM i386", "photish*.i386.rpm")
-    upload_file_to_github(upload_url, "RPM x86_64", "photish*.x86_64.rpm")
+    task :upload_gem => [:ensure_token_set] do
+      upload_file_to_github("RubyGem", "photish*.gem")
+    end
 
-    upload_file_to_github(upload_url, "DEB i386", "photish*.i386.deb")
-    upload_file_to_github(upload_url, "DEB amd64", "photish*.amd64.deb")
+    task :upload_rpm => [:ensure_token_set] do
+      upload_file_to_github("RPM i386", "photish*.i386.rpm")
+      upload_file_to_github("RPM x86_64", "photish*.x86_64.rpm")
+    end
 
-    upload_file_to_github(upload_url, "Linux x86", "photish*-x86.tar.gz")
-    upload_file_to_github(upload_url, "Linux x86_64", "photish*-x86_64.tar.gz")
-    upload_file_to_github(upload_url, "MacOSX", "photish*-osx.tar.gz")
-    upload_file_to_github(upload_url, "Win32", "photish*-win32.tar.gz")
+    task :upload_deb => [:ensure_token_set] do
+      upload_file_to_github("DEB i386", "photish*.i386.deb")
+      upload_file_to_github("DEB amd64", "photish*.amd64.deb")
+    end
+
+    task :upload_build => [:ensure_token_set] do
+      upload_file_to_github("Linux x86", "photish*-x86.tar.gz")
+      upload_file_to_github("Linux x86_64", "photish*-x86_64.tar.gz")
+      upload_file_to_github("MacOSX", "photish*-osx.tar.gz")
+      upload_file_to_github("Win32", "photish*-win32.tar.gz")
+    end
   end
 end
 
@@ -53,13 +70,22 @@ def create_github_release
                    https://api.github.com/repos/henrylawson/photish/releases`)
 end
 
-def upload_file_to_github(upload_url, label, fuzzy_name)
+def get_upload_url
+  response = JSON.parse(`curl -sS \
+                   -u henrylawson:#{ENV['GITHUB_TOKEN']} \
+                   --request GET \
+                   https://api.github.com/repos/henrylawson/photish/releases/tags/v#{Photish::VERSION}`)
+  puts url = response.fetch('upload_url').gsub(/\{.*\}/, '')
+  url
+end
+
+def upload_file_to_github(label, fuzzy_name)
   puts path = fuzzy_file("pkg/#{fuzzy_name}")
   name = File.basename(path)
   puts JSON.parse(`curl -sS -H "Content-Type: application/octet-stream" \
              -u henrylawson:#{ENV['GITHUB_TOKEN']} \
              --request POST \
              --data-binary @"#{path}" \
-             #{upload_url}?name=#{URI.escape(name)}&label=#{URI.escape(label)}`)
+             #{get_upload_url}?name=#{URI.escape(name)}&label=#{URI.escape(label)}`)
 
 end
