@@ -2,12 +2,23 @@
 
 ## In Progress
 
-1. Automated testing of binaries on architectures, vagrant and provision
+1. Publish DEB on PPA
+1. Publish RPM on COPR
 
 ## Backlog
 
-1. Update development dependencies
-1. Schedule package building in pipeline and in releases
+1. Create BREW package, publish to TAP
+1. Create ArchLinux package, publish to AUR
+1. Create choco package with appveyor, maybe git submodule
+1. Update installation instructions with new packages and platforms
+1. Track the associated project pages - travi, snap-ci etc.
+1. Update development instructions
+1. Improve CLI help commands and documentation
+1. Full features do not work in packaged version, i.e. host command, feature
+   flag them
+1. Update development dependencies versions, remove warnings from gem creation
+1. Tweak FPM to allow homepage field override in DEB
+1. Determine if other metadata can be set in packages
 1. Video transcoding and template rendering for videos
    (https://github.com/streamio/streamio-ffmpeg)
 1. Improve the `--example` template of Photish
@@ -19,15 +30,4 @@
 1. Improve metric scores from `rake stats`
 1. Fix jruby tests on snap-ci
 1. Setup rbx builds on snap-ci
-1. Tweak FPM to allow homepage field override in DEB
 1. Work out way to determine processes without facter
-1. Improve CLI help commands and documentation
-1. Host packages beyong gtihub, perhaps publix repos
-1. Determine if other metadata can be set in packages
-1. Publish DEB on PPA
-1. Publish RPM on COPR
-1. Create BREW package, publish to TAP
-1. Create ArchLinux package, publish to AUR
-1. Create choco package with appveyor, maybe git submodule
-1. Update development instructions
-1. Full features do not work in packaged version, i.e. host command
