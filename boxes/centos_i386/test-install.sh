@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -xeuo pipefail
 
 cp /photish/pkg/*i386.rpm ~
 sudo rpm -e photish

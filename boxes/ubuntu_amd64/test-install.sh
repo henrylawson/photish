@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -xeuo pipefail
 
 cp /photish/pkg/*amd64.deb ~
 sudo dpkg -r photish
