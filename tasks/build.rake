@@ -21,6 +21,7 @@ namespace :builda do
   task :clean do
     sh "rm -rf #{BINARY_DIR}/*tar"
     sh "rm -rf #{BINARY_DIR}/*zip"
+    sh "rm -rf #{BINARY_DIR}/*gem"
   end
 
   desc "Create GEM file"
