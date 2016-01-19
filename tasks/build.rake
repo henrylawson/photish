@@ -53,7 +53,7 @@ namespace :build do
     sh "rm -rf #{TaskConfig::SCRATCH_DIR}"
     sh "mkdir -p #{TaskConfig::SCRATCH_DIR}"
     sh "cp Gemfile Gemfile.lock #{TaskConfig::SCRATCH_DIR}"
-    new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '#{TaskConfig::WORKING_DIR || '../../../'})'")
+    new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '#{TaskConfig::WORKING_DIR || '../../../'}'")
     File.open("#{TaskConfig::SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
     Bundler.with_clean_env do
       sh "cd #{TaskConfig::SCRATCH_DIR} && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
