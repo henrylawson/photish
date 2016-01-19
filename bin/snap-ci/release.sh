@@ -11,6 +11,8 @@ DIR="$(dirname "$(readlink -f "$0")")"
 # setup dependencies and ruby
 source "$DIR/setup.sh"
 
+ls -lrt ./pkg
+
 # conditionally release app
 if git describe --exact-match $COMMIT && [ $BRANCH = 'master' ]
 then
