@@ -5,7 +5,6 @@ set -xeuo pipefail
 export COMMIT=$SNAP_COMMIT
 export BRANCH=$SNAP_BRANCH
 
-
 # conditionally release app
 if git describe --exact-match $COMMIT && [ $BRANCH = 'master' ]
 then
