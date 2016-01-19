@@ -10,6 +10,7 @@ SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Build all"
 task :builda => ['builda:clean',
+                 'builda:gem',
                  'builda:linux:x86',
                  'builda:linux:x86_64',
                  'builda:osx',
@@ -20,6 +21,13 @@ namespace :builda do
   task :clean do
     sh "rm -rf #{BINARY_DIR}/*tar"
     sh "rm -rf #{BINARY_DIR}/*zip"
+  end
+
+  desc "Create GEM file"
+  task :gem do
+    sh "mkdir -p #{BINARY_DIR}"
+    sh "gem build photish.gemspec"
+    sh "mv photish*.gem #{BINARY_DIR}"
   end
 
   namespace :linux do
