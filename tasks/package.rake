@@ -11,14 +11,14 @@ namespace :package do
 
   desc "Create a DEB package"
   task :deb do
-    create_deb('pkg', 'i386', 'linux-x86')
-    create_deb('pkg', 'amd64', 'linux-x86_64')
+    create_deb("#{TaskConfig::BINARY_DIR}", 'i386', 'linux-x86')
+    create_deb("#{TaskConfig::BINARY_DIR}", 'amd64', 'linux-x86_64')
   end
 
   desc "Create a RPM package"
   task :rpm do
-    create_rpm('pkg', 'i386', 'linux-x86')
-    create_rpm('pkg', 'x86_64', 'linux-x86_64')
+    create_rpm("#{TaskConfig::BINARY_DIR}", 'i386', 'linux-x86')
+    create_rpm("#{TaskConfig::BINARY_DIR}", 'x86_64', 'linux-x86_64')
   end
 end
 
@@ -36,7 +36,7 @@ def create_deb(binary_dir, architecture, package_architecture)
               "--license \"#{Photish::LICENSE}\" " +
               "--prefix \"/usr/local/lib\" " +
               "--after-install #{update_after_install_script(package_dir)} " +
-              "--package 'pkg' " +
+              "--package '#{TaskConfig::BINARY_DIR}' " +
               "--force " +
               "#{binary_dir}/#{package_dir}.tar.gz"
 end
@@ -56,7 +56,7 @@ def create_rpm(binary_dir, architecture, package_architecture)
               "--prefix \"/usr/local/lib\" " +
               "--epoch \"#{Time.now.to_i}\" " +
               "--after-install #{update_after_install_script(package_dir)} " +
-              "--package 'pkg' " +
+              "--package '#{TaskConfig::BINARY_DIR}' " +
               "--force " +
               "#{binary_dir}/#{package_dir}.tar.gz"
 end

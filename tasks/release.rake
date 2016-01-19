@@ -7,7 +7,7 @@ namespace :release do
   task :rubygems do
     if Pathname.new("~/.gem/credentials").expand_path.exist?
       allowed_push_host = nil
-      sh "gem push 'pkg/photish-#{Photish::VERSION}.gem'"
+      sh "gem push '#{TaskConfig::BINARY_DIR}/photish-#{Photish::VERSION}.gem'"
     else
       raise "Your rubygems.org credentials aren't set. Run `gem push` to set them."
     end
@@ -80,7 +80,7 @@ def get_upload_url
 end
 
 def upload_file_to_github(label, fuzzy_name)
-  puts path = fuzzy_file("pkg/#{fuzzy_name}")
+  puts path = fuzzy_file("#{TaskConfig::BINARY_DIR}/#{fuzzy_name}")
   name = File.basename(path)
   puts JSON.parse(`curl -sS -H "Content-Type: application/octet-stream" \
              -u henrylawson:#{ENV['GITHUB_TOKEN']} \
