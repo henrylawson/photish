@@ -12,7 +12,7 @@ end
 
 namespace :release do
   desc 'Release information to gtihub'
-  task 'release:github' do
+  task :github do
     raise "Please provide a GITHUB_TOKEN" unless ENV['GITHUB_TOKEN']
     payload = {
       tag_name: "v#{Photish::VERSION}",

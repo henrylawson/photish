@@ -9,8 +9,7 @@ RELEASES_DIR = "#{TEMP_DIR}/releases"
 SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Build all"
-task :builda => ['builda:clean',
-                 'builda:gem',
+task :builda => ['builda:gem',
                  'builda:linux:x86',
                  'builda:linux:x86_64',
                  'builda:osx',
@@ -134,7 +133,7 @@ end
 
 def update_after_install_script(package_dir)
   new_contents = File.read("#{PACKAGING_DIR}/after-install.sh").gsub(/PACKAGE_PLACEHOLDER/, package_dir)
+  sh "mkdir -p #{TEMP_DIR}"
   File.open("#{TEMP_DIR}/after-install.sh", "w") {|file| file.puts(new_contents) }
   "#{TEMP_DIR}/after-install.sh"
 end
-

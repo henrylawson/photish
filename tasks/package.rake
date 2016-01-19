@@ -1,6 +1,5 @@
 desc "Package all"
-task :package => ['package:clean',
-                  'package:deb',
+task :package => ['package:deb',
                   'package:rpm']
 
 namespace :package do

@@ -2,11 +2,22 @@ require "rspec/core/rake_task"
 require 'cucumber'
 require 'cucumber/rake/task'
 
-RSpec::Core::RakeTask.new(:spec)
+desc 'Run all tests'
+task :test => ['test:spec',
+               'test:features']
 
-Cucumber::Rake::Task.new(:features) do |t|
-  tags = ['']
-  tags << '--tags ~@wip'
-  tags << '--tags @smoke' if ENV['SMOKE_TEST_ONLY']
-  t.cucumber_opts = "features --format pretty #{tags.join(' ')}"
+namespace :test do
+  desc 'Clean up test fodlers'
+  task :clean do
+    sh "rm -rf tmp/*"
+  end
+
+  RSpec::Core::RakeTask.new(:spec)
+
+  Cucumber::Rake::Task.new(:features) do |t|
+    tags = ['']
+    tags << '--tags ~@wip'
+    tags << '--tags @smoke' if ENV['SMOKE_TEST_ONLY']
+    t.cucumber_opts = "features --format pretty #{tags.join(' ')}"
+  end
 end
