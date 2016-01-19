@@ -13,3 +13,5 @@ source "$DIR/setup.sh"
 
 # build and package
 bundle exec rake clean pack
+
+ls -larth ./pkg
