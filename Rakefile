@@ -5,8 +5,7 @@ Dir.glob('tasks/lib/**/*.rb').each { |r| import r }
 Dir.glob('tasks/*.rake').each { |r| import r }
 
 desc 'Test and gather metrics'
-task :default => [:clean,
-                  :test]
+task :default => [:test]
 
 desc 'Create the various build files and packages'
 task :pack    => [:clean,
