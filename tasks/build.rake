@@ -67,6 +67,28 @@ namespace :build do
       sh "cd #{SCRATCH_DIR} && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
     end
     sh "rm -f #{TEMP_DIR}/vendor/*/*/cache/*"
+
+    sh "rm -rf #{TEMP_DIR}/vendor/ruby/*/gems/*/test"
+    sh "rm -rf #{TEMP_DIR}/vendor/ruby/*/gems/*/tests"
+    sh "rm -rf #{TEMP_DIR}/vendor/ruby/*/gems/*/spec"
+    sh "rm -rf #{TEMP_DIR}/vendor/ruby/*/gems/*/features"
+    sh "rm -rf #{TEMP_DIR}/vendor/ruby/*/gems/*/benchmark"
+
+    sh "rm -f #{TEMP_DIR}/vendor/ruby/*/rdoc*"
+    sh "rm -f #{TEMP_DIR}/vendor/ruby/*/gems/*/ext/Makefile"
+    sh "rm -f #{TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/Makefile"
+    sh "rm -f #{TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
+    sh "rm -f #{TEMP_DIR}/vendor/ruby/*/gems/*/ext/*/tmp"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.c' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.cpp' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.h' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.rl' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name 'extconf.rb' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby/*/gems -name '*.o' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby/*/gems -name '*.so' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby/*/gems -name '*.bundle' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.java' | xargs rm -f"
+    sh "find #{TEMP_DIR}/vendor/ruby -name '*.class' | xargs rm -f"
   end
 end
 

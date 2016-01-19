@@ -4,7 +4,6 @@
 
 1. Automated testing of binaries on architectures, vagrant and provision
 1. Remove files not needed in package, caches, native extensions, dev gems
-1. Create package, and release steps
 
 ## Backlog
 
