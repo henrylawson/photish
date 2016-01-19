@@ -25,9 +25,10 @@
 1. Improve CLI help commands and documentation
 1. Host packages beyong gtihub, perhaps publix repos
 1. Determine if other metadata can be set in packages
-1. Create Mac OSX package
-1. Create Solaris package
+1. Publish DEB on PPA
+1. Publish RPM on COPR
+1. Create BREW package, publish to TAP
 1. Create ArchLinux package
-1. Create MSI/choco package with appveyor, maybe git submodule
+1. Create choco package with appveyor, maybe git submodule
 1. Look at how to create a brew installer
 1. Update development instructions
