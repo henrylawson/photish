@@ -9,7 +9,7 @@ task :test => ['test:spec',
 namespace :test do
   desc 'Clean up test fodlers'
   task :clean do
-    sh "rm -rf tmp/*"
+    sh "rm -rf tmp/aruba"
   end
 
   RSpec::Core::RakeTask.new(:spec)

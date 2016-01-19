@@ -1,3 +1,4 @@
+require 'bundler'
 require 'photish/version'
 
 EXPECTED_RUBY_VERSION = '2.2.2'
