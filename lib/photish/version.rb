@@ -1,5 +1,5 @@
 module Photish
-  VERSION = "0.7.4"
+  VERSION = "0.7.5"
 
   NAME = 'photish'
   NAME_AND_VERSION = "#{NAME} v#{VERSION}"
