@@ -28,7 +28,7 @@
 1. Publish DEB on PPA
 1. Publish RPM on COPR
 1. Create BREW package, publish to TAP
-1. Create ArchLinux package
+1. Create ArchLinux package, publish to AUR
 1. Create choco package with appveyor, maybe git submodule
-1. Look at how to create a brew installer
 1. Update development instructions
+1. Create package, and release steps

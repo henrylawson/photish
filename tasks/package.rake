@@ -1,7 +1,5 @@
 require 'photish/version'
 
-PACKAGE_NAME = Photish::NAME
-VERSION = Photish::VERSION
 EXPECTED_RUBY_VERSION = '2.2.2'
 TRAVELING_RUBY_VERSION = "20150715-#{EXPECTED_RUBY_VERSION}"
 PACKAGING_DIR = 'packaging'
@@ -10,33 +8,18 @@ TEMP_DIR = ENV['TEMP_DIR'] || 'tmp/packaging'
 RELEASES_DIR = "#{TEMP_DIR}/releases"
 SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
-desc "Package your app"
+desc "Package all"
 task :package => ['package:clean',
                   'package:linux:x86',
                   'package:linux:x86_64',
                   'package:osx',
-                  'package:win32',
-                  'package:installer:deb',
-                  'package:installer:rpm']
+                  'package:win32']
 
 namespace :package do
+  desc "Clean up install files"
   task :clean do
     sh "rm -rf #{BINARY_DIR}/*tar"
-    sh "rm -rf #{BINARY_DIR}/*deb"
-    sh "rm -rf #{BINARY_DIR}/*rpm"
-  end
-
-  namespace :installer do
-    desc "Create a debian package"
-    task :deb do
-      create_deb('i386', 'linux-x86')
-      create_deb('amd64', 'linux-x86_64')
-    end
-
-    task :rpm do
-      create_rpm('i386', 'linux-x86')
-      create_rpm('x86_64', 'linux-x86_64')
-    end
+    sh "rm -rf #{BINARY_DIR}/*zip"
   end
 
   namespace :linux do
@@ -95,7 +78,7 @@ file "#{RELEASES_DIR}/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz" do
 end
 
 def package_dir_of(target)
-  "#{PACKAGE_NAME}-#{VERSION}-#{target}"
+  "#{Photish::NAME}-#{Photish::VERSION}-#{target}"
 end
 
 def create_package(target, os_type)
@@ -146,41 +129,3 @@ def update_after_install_script(package_dir)
   "#{TEMP_DIR}/after-install.sh"
 end
 
-def create_deb(architecture, package_architecture)
-  package_dir = package_dir_of(package_architecture)
-  sh "fpm " + "-s tar " +
-              "-t deb " +
-              "--deb-no-default-config-files " +
-              "--architecture #{architecture} " +
-              "--name #{Photish::NAME} " +
-              "--vendor \"Foinq\" " +
-              "--maintainer \"#{Photish::CONTACT}>\" " +
-              "--version #{VERSION} " +
-              "--description \"#{Photish::DESCRIPTION}\" " +
-              "--license \"#{Photish::LICENSE}\" " +
-              "--prefix \"/usr/local/lib\" " +
-              "--after-install #{update_after_install_script(package_dir)} " +
-              "--package 'pkg' " +
-              "--force " +
-              "#{BINARY_DIR}/#{package_dir}.tar.gz"
-end
-
-def create_rpm(architecture, package_architecture)
-  package_dir = package_dir_of(package_architecture)
-  sh "fpm " + "-s tar " +
-              "-t rpm " +
-              "--rpm-os linux " +
-              "--architecture #{architecture} " +
-              "--name #{Photish::NAME} " +
-              "--vendor \"Foinq\" " +
-              "--maintainer \"#{Photish::CONTACT}>\" " +
-              "--version #{VERSION} " +
-              "--description \"#{Photish::DESCRIPTION}\" " +
-              "--license \"#{Photish::LICENSE}\" " +
-              "--prefix \"/usr/local/lib\" " +
-              "--epoch \"#{Time.now.to_i}\" " +
-              "--after-install #{update_after_install_script(package_dir)} " +
-              "--package 'pkg' " +
-              "--force " +
-              "#{BINARY_DIR}/#{package_dir}.tar.gz"
-end
