@@ -3,7 +3,6 @@
 ## In Progress
 
 1. Automated testing of binaries on architectures, vagrant and provision
-1. Remove files not needed in package, caches, native extensions, dev gems
 
 ## Backlog
 
@@ -31,3 +30,4 @@
 1. Create ArchLinux package, publish to AUR
 1. Create choco package with appveyor, maybe git submodule
 1. Update development instructions
+1. Full features do not work in packaged version, i.e. host command
