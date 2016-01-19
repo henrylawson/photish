@@ -7,6 +7,7 @@ namespace :dev do
     sh("git add lib/photish/version.rb") || abort('Error adding verison'.red)
     sh("git commit") || abort("Error creating commit".red)
     sh("git diff-index --quiet HEAD") || abort("Uncommited changes".red)
+    load 'lib/photish/version.rb'
     begin
       sh "git tag -a -m \"Version #{Photish::VERSION}\" v#{Photish::VERSION}"
     rescue
