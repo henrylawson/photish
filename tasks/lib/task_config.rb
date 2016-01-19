@@ -3,6 +3,7 @@ module TaskConfig
   TRAVELING_RUBY_VERSION = "20150715-#{EXPECTED_RUBY_VERSION}"
 
   PACKAGING_DIR = 'packaging'
+  WORKING_DIR = ENV['WORKING_DIR']
   BINARY_DIR = ENV['BINARY_DIR'] || 'pkg'
   TEMP_DIR = ENV['TEMP_DIR'] || 'tmp/packaging'
   RELEASES_DIR = "#{TEMP_DIR}/releases"
