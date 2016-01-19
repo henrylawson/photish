@@ -15,5 +15,6 @@ namespace :dev do
       "Creating tag failed".red
       raise
     end
+    sh("git push --tags") || abort("Push failed".red)
   end
 end
