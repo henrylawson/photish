@@ -15,7 +15,7 @@ source "$DIR/setup.sh"
 # conditionally release app
 if git describe --exact-match $COMMIT && [ $BRANCH = 'master' ]
 then
-  bundle exec rake build release:rubygem_push release:github
+  bundle exec rake clean build package release
 else
   echo "This is not a tagged commit on master, skipping release."
 fi

@@ -9,13 +9,13 @@ RELEASES_DIR = "#{TEMP_DIR}/releases"
 SCRATCH_DIR = "#{TEMP_DIR}/scratch"
 
 desc "Build all"
-task :builda => ['builda:gem',
-                 'builda:linux:x86',
-                 'builda:linux:x86_64',
-                 'builda:osx',
-                 'builda:win32']
+task :build => ['build:gem',
+                'build:linux:x86',
+                'build:linux:x86_64',
+                'build:osx',
+                'build:win32']
 
-namespace :builda do
+namespace :build do
   desc "Clean up install files"
   task :clean do
     sh "rm -rf #{BINARY_DIR}/*tar"

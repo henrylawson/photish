@@ -1,16 +1,18 @@
-require "bundler/gem_tasks"
-require 'colorize'
-
-desc 'Release a new version'
-task :bump do
-  system("mvim -f lib/photish/version.rb") || abort('Error updating version'.red)
-  system("git add lib/photish/version.rb") || abort('Error adding verison'.red)
-  system("git commit") || abort("Error creating commit".red)
-  system("git diff-index --quiet HEAD") || abort("Uncommited changes".red)
-  system("rake release:source_control_push") || abort("Creating tag failed".red)
-end
+desc 'Release to all repositories'
+task :release => ['release:rubygems',
+                  'release:github']
 
 namespace :release do
+  desc 'Release to RubyGems'
+  task :rubygems do
+    if Pathname.new("~/.gem/credentials").expand_path.exist?
+      allowed_push_host = nil
+      sh "gem push 'pkg/photish-#{Photish::VERSION}.gem'"
+    else
+      raise "Your rubygems.org credentials aren't set. Run `gem push` to set them."
+    end
+  end
+
   desc 'Release information to gtihub'
   task :github do
     raise "Please provide a GITHUB_TOKEN" unless ENV['GITHUB_TOKEN']

@@ -8,12 +8,12 @@ task :default => [:clean,
                   :test]
 
 desc 'Create the various build files and packages'
-task :bundle  => [:clean,
-                  :builda,
+task :pack    => [:clean,
+                  :build,
                   :package]
 
 desc 'Clean everything'
 task :clean   => ['test:clean',
-                  'builda:clean',
+                  'build:clean',
                   'package:clean',
                   'metrics:clean']
