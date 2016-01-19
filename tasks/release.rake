@@ -39,8 +39,8 @@ namespace :release do
     end
 
     task :upload_deb => [:ensure_token_set] do
-      upload_file_to_github("DEB i386", "photish*.i386.deb")
-      upload_file_to_github("DEB amd64", "photish*.amd64.deb")
+      upload_file_to_github("DEB i386", "photish*_i386.deb")
+      upload_file_to_github("DEB amd64", "photish*_amd64.deb")
     end
 
     task :upload_build => [:ensure_token_set] do
