@@ -2,8 +2,6 @@
 set -xeuo pipefail
 
 # map values from snap-ci
-export COMMIT=$SNAP_COMMIT
-export BRANCH=$SNAP_BRANCH
 export TEMP_DIR=$SNAP_CACHE_DIR
 
 # determine script dir
