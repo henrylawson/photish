@@ -47,7 +47,7 @@ namespace :release do
       upload_file_to_github("Linux x86", "photish*-x86.tar.gz")
       upload_file_to_github("Linux x86_64", "photish*-x86_64.tar.gz")
       upload_file_to_github("MacOSX", "photish*-osx.tar.gz")
-      upload_file_to_github("Win32", "photish*-win32.tar.gz")
+      upload_file_to_github("Win32", "photish*-win32.zip")
     end
   end
 end
