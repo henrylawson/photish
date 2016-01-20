@@ -3,8 +3,7 @@
 ## In Progress
 
 1. Sign the packages with GPG
-1. Publish DEB on PPA
-1. Publish RPM on COPR
+1. Publish DEB and RPM on bintray
 
 ## Backlog
 
