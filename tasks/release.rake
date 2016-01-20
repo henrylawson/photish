@@ -20,7 +20,7 @@ namespace :release do
 
   namespace :bintray do
     task :ensure_token_set do
-      raise "Please provide a BINTRAY_TOKEN" unless ENV['BINTRAY_TOKEN']
+      raise "Please provide a BINTRAY_TOKEN and BINTRAY_GPG_PASS" unless ENV['BINTRAY_TOKEN'] && ENV['BINTRAY_GPG_PASS']
     end
 
     task :rpm => [:ensure_token_set] do
@@ -116,6 +116,7 @@ def upload_rpm_to_bintray(fuzzy_name)
   name = File.basename(path)
   puts JSON.parse(`curl -T #{path} \
                    -uhenrylawson:#{ENV['BINTRAY_TOKEN']} \
+                   --header "X-GPG-PASSPHRASE: #{ENV['BINTRAY_GPG_PASS']}" \
                    "https://api.bintray.com/content/henrylawson/rpm/photish/#{Photish::VERSION}/#{name}?publish=1&override=1"`)
 end
 
@@ -124,5 +125,6 @@ def upload_deb_to_bintray(fuzzy_name, architecture)
   name = File.basename(path)
   puts JSON.parse(`curl -T #{path} \
                    -uhenrylawson:#{ENV['BINTRAY_TOKEN']} \
+                   --header "X-GPG-PASSPHRASE: #{ENV['BINTRAY_GPG_PASS']}" \
                    "https://api.bintray.com/content/henrylawson/deb/photish/#{Photish::VERSION}/#{name};deb_distribution=all;deb_component=main;deb_architecture=#{architecture}?publish=1&override=1"`)
 end
