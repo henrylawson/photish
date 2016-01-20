@@ -49,7 +49,7 @@ def create_rpm(binary_dir, architecture, package_architecture)
               "--architecture #{architecture} " +
               "--name #{Photish::NAME} " +
               "--vendor \"Foinq\" " +
-              "--maintainer \"#{Photish::CONTACT}>\" " +
+              "--maintainer \"#{Photish::CONTACT}\" " +
               "--version #{Photish::VERSION} " +
               "--description \"#{Photish::DESCRIPTION}\" " +
               "--license \"#{Photish::LICENSE}\" " +
