@@ -2,23 +2,23 @@
 
 ## In Progress
 
-1. Sign the packages with GPG
-1. Publish DEB and RPM on bintray
+1. Update README with services the project uses, travis, snapci etc.
+1. Update README installation instructions with new packages and platforms, use
+   the latest version as a hard link with all the packages
+1. Sign/test/enforece the RPM packages with GPG
+1. Update README development instructions
 
 ## Backlog
 
 1. Create BREW package, publish to TAP
+1. Create Choco/OneGet package with appveyor, maybe git submodule
 1. Create ArchLinux package, publish to AUR
-1. Create choco package with appveyor, maybe git submodule
-1. Update README with services the project uses, travis, snapci etc.
-1. Update README installation instructions with new packages and platforms, use
-   the latest version as a hard link with all the packages
-1. Update README development instructions
 1. Improve CLI help commands and documentation
 1. Full features do not work in packaged version, i.e. host command, feature
    flag them
-1. Update development dependencies versions, remove warnings from gem creation
-1. Tweak FPM to allow homepage field override in DEB
+1. Update gem development dependencies versions, remove warnings from gem
+   creation
+1. Tweak FPM to allow homepage field override in DEB and RPM
 1. Determine if other metadata can be set in packages
 1. Video transcoding and template rendering for videos
    (https://github.com/streamio/streamio-ffmpeg)
