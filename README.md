@@ -66,7 +66,11 @@ Category | Purpose | Badge
 - [Latest Version](#latest-version)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
-  - [Ruby Versions](#ruby-versions)
+  - [Ruby Gem](#ruby-gem)
+  - [Debian Package](#debian-package)
+  - [RPM Package](#rpm-package)
+  - [Linux Binaries](#linux-binaries)
+  - [Windows Binaries](#windows-binaries)
 - [Usage](#usage)
   - [Initialize](#initialize)
     - [Basic Photish Structure](#basic-photish-structure)
@@ -210,6 +214,76 @@ published with artifacts on GitHub.
 
 ## Installation
 
+Photish is available across all platforms as a Ruby Gem:
+
+- [Ruby Gem](#ruby-gem)
+
+For convenience it is also packaged in platform native installers. The platform
+native installers come with all the Ruby Gems and Ruby runtime bundled inside
+the package. This means you simply need to install the package and you can
+immediately use Photish without having to configure ruby or any Gems, this is
+done using [Travelling Ruby](phusion.github.io/traveling-ruby/)
+
+Instructions are provided for each platform native installation:
+
+- [Debian Package](#debian-package)
+- [RPM Package](#rpm-package)
+- [Linux Binaries](#linux-binaries)
+- [Windows Binaries](#windows-binaries)
+
+The recommended installation is the [Ruby Gem](#ruby-gem) as not all
+features are currently available on the platform native packages.
+
+### Dependencies
+
+Photish has dependencies on certain software:
+
+- [ImageMagick](http://www.imagemagick.org/) or
+  [GraphicsMagick](http://www.graphicsmagick.org/) for Image conversion
+- [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
+  retrieval
+
+These packages are not listed as hard dependencies in any of the provided
+packages as it is only needed during runtime, and in the case of Exiftool, if
+exif metadata is not read during the generation of any templates, the
+dependency is not required.
+
+**On MacOSX, using [Brew](http://brew.sh/)**
+
+    $ brew install imagemagick # or brew install graphicsmagick
+    $ brew install exiftool
+
+**On Ubuntu or Debian**
+
+    $ sudo apt-get install imagemagick # or sudo apt-get install graphicsmagick
+    $ sudo apt-get install libimage-exiftool-perl
+
+**On CentOS, RedHat, etc.**
+
+    $ sudo yum install ImageMagick
+    $ sudo yum install perl-Image-ExifTool
+
+**On Windows**
+
+Please check the dependencies website for the latest Windows installation
+steps.
+
+### Ruby Gem
+
+Photish supports multiple ruby versions:
+
+Ruby Version                              | Minimum | Maximum | Comments
+----------------------------------------- |---------|---------|---------
+[MRI Ruby](https://www.ruby-lang.org/en/) | 2.0     | HEAD    | Very stable, all tests pass consistently
+[JRuby](http://jruby.org/)                | 9.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
+[Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
+
+The latest version and all releases of Photish are tested against the above
+ruby versions in the [CI pipeline](https://travis-ci.org/henrylawson/photish).
+
+Before installing Photish, ensure you have the latest version of
+[Bundler](http://bundler.io/) for your ruby version.
+
 Install the gem locally by running:
 
     $ gem install photish
@@ -223,61 +297,69 @@ photo site so you can track the version of Photish you are building with:
     $ echo 'gem "photish"' >> Gemfile
     $ bundle install
 
-### Dependencies
+### Debian Package
 
-Photish has dependencies on certain software:
+The latest Debian package for amd64 and i386 architectures is available on
+[Bintray](https://bintray.com/henrylawson/deb) and uploaded to the latest
+[Photish Github
+Release](https://github.com/henrylawson/photish/releases/latest).
 
-- [Ruby](https://www.ruby-lang.org/en/) as the utility is written in Ruby and
-  is a [Gem](https://www.ruby-lang.org/en/libraries/)
-- [Bundler](http://bundler.io/) is not required but recommended to manage the
-  version, installations and updates of the Photish gem
-- [ImageMagick](http://www.imagemagick.org/) or
-  [GraphicsMagick](http://www.graphicsmagick.org/) for Image conversion
-- [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
-  retrieval
+To be up to date with the latest version of Photish, we recommend you add our
+Debian repository and install using apt-get:
 
-Target OS dependencies:
-
-- [Unix](http://www.unix.org/) based operating system, Photish has been tested
-  thoroughly on Ubuntu and MacOSX
-
-**On MacOSX, using [Brew](http://brew.sh/)**
-
-    $ brew install ruby
-    $ brew install imagemagick # or brew install graphicsmagick
-    $ brew install exiftool
-    $ gem install bundler
-
-**On Ubuntu or Debian**
-
-    $ sudo apt-add-repository ppa:brightbox/ruby-ng
-    $ sudo apt-get update
-    $ sudo apt-get install ruby2.2
+    $ # add the repository and SSH key
+    $ echo "deb https://dl.bintray.com/henrylawson/deb all main" | sudo tee -a /etc/apt/sources.list
+    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F608A664B7DFFFEA
     $
-    $ sudo apt-get install imagemagick # or sudo apt-get install graphicsmagick
-    $ sudo apt-get install libimage-exiftool-perl
-
-**On CentOS, RedHat, etc.**
-
-    $ sudo apt-get install ruby2.2
-    $ sudo yum install ruby-rdoc ruby-devel rubygems
+    $ # update keys and latest packages
+    $ sudo apt-get update && sudo apt-key update
     $
-    $ sudo yum install ImageMagick
-    $ sudo yum install perl-Image-ExifTool
+    $ # install photish
+    $ sudo apt-get install photish
 
-### Ruby Versions
+If you have downloaded the *.deb file, simply install it with `dpkg`:
 
-Photish supports multiple ruby versions:
+    $ sudo dpkg -i photish*.deb
 
-Ruby Version                              | Minimum | Maximum | Comments
------------------------------------------ |---------|---------|---------
-[MRI Ruby](https://www.ruby-lang.org/en/) | 2.0     | HEAD    | Very stable, all tests pass consistently
-[JRuby](http://jruby.org/)                | 9.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
-[Rubinius](http://rubinius.com/)          | 2.0     | HEAD    | Mostly stable, smoke test passes consistently, full feature test flakey
+### RPM Package
 
-The latest version and all releases of Photish are tested against the above
-ruby versions in the [CI pipeline](https://travis-ci.org/henrylawson/photish).
+The latest RPM package for x86_64 and i386 architectures is available on
+[Bintray](https://bintray.com/henrylawson/rpm) and uploaded to the latest
+[Photish Github
+Release](https://github.com/henrylawson/photish/releases/latest).
 
+To be up to date with the latest version of Photish, we recommend you add our
+YUM repository and install using yum:
+
+    $ # add the repository and SSH key
+    $ wget https://bintray.com/henrylawson/rpm/rpm -O bintray-henrylawson-rpm.repo
+    $ sudo mv bintray-henrylawson-rpm.repo /etc/yum.repos.d/
+    $
+    $ # install photish
+    $ sudo yum install -y photish
+
+If you have downloaded the *.rpm file, simply install it with `rpm`:
+
+    $ sudo rpm -Uh photish*.rpm
+
+### Linux Binaries
+
+If you are using a distribution of Linux that we do not have a native package
+installer for, you can manually install Photish and use it by downloading the
+Photish x64 and x86 binaries from the [Photish Github
+Release](https://github.com/henrylawson/photish/releases/latest).
+
+You can then extract the binaries to your desired location and use them.
+
+    $ tar -zxf photish-*-linux-*.tar.gz -C /destination
+
+### Windows Binaries
+
+If you are using Windows, you can manually install Photish and use it by
+downloading the Photish x86 binaries from the [Photish Github
+Release](https://github.com/henrylawson/photish/releases/latest).
+
+You can then extract the binaries to your desired location and use them.
 
 ## Usage
 
@@ -1046,6 +1128,8 @@ it's [README](https://github.com/henrylawson/photish-plugin-sshdeploy).
 
 ## Development
 
+### Code Changes
+
 If you would like to contribute to Photish by creating a new feature or fixing
 bugs, you are more then welcome!
 
@@ -1053,19 +1137,43 @@ To develop:
 
     $ git clone git@github.com:henrylawson/photish.git
     $ cd photish
-    $ ./bin/setup     # installs dependencies
-    $ Install exiftool as detailed above.
+    $ ./bin/setup     # installs dependencies mentioned in output
     $ rake            # runs the tests
     $ vim             # open up the project and begin contributing
     $ ./bin/console   # for an interactive prompt
 
 To release:
 
-    $ vim lib/photish/version.rb      # update version
-    $ git add -p                      # add in changed files
-    $ git commit -m 'Final commit'    # finish up changes
-    $ rake                            # ensure all tests pass
-    $ rake release                    # release to rubygems
+    $ rake bump       # update version, create commit when prompted
+
+If you need ideas on how to help, checkout our
+[TODO](https://github.com/henrylawson/photish/blob/master/TODO.md) list.
+
+### Dev Services
+
+Photish uses a range of services to assist with development and to ensure
+Photish remains a high quality application. Before contributing it is worth
+browsing through these services to understand how Photish is configured
+and is using them:
+
+1. [Snap CI](https://snap-ci.com/henrylawson/photish/branch/master) is used as
+   the primary CI/CD server. All builds and tests are ran from Snap CI. Snap CI
+   is also used to release new versions of Photish to
+   [Github](https://github.com) and [Bintray](https://bintray.com).
+1. [Github](https://github.com/henrylawson/photish) is used for source control.
+   It is also used to record
+   [releases](https://github.com/henrylawson/photish/releases),
+   [issues](https://github.com/henrylawson/photish/issues),
+   [documentation](https://github.com/henrylawson/photish/blob/master/README.md)
+   and [todos](https://github.com/henrylawson/photish/blob/master/TODO.md).
+1. [Travis CI](https://travis-ci.org/henrylawson/photish) is used for the
+   testing of JRuby and Rubinius builds.
+1. [AppVeyor](https://ci.appveyor.com/project/HenryLawson/photish) is used for
+   testing and packaging of the Windows build.
+1. [Code Climate](https://codeclimate.com/github/henrylawson/photish) is used
+   to maintain high test coverage and quality code.
+1. [Gemnasium](https://gemnasium.com/henrylawson/photish) is used to ensure all
+   dependencies are up too date.
 
 ## Contributing
 

@@ -2,12 +2,6 @@
 
 ## In Progress
 
-1. Update README with services the project uses, travis, snapci etc.
-1. Update README installation instructions with new packages and platforms, use
-   the latest version as a hard link with all the packages
-1. Sign/test/enforece the RPM packages with GPG
-1. Update README development instructions
-
 ## Backlog
 
 1. Create BREW package, publish to TAP
