@@ -7,6 +7,7 @@
 1. Create BREW package, publish to TAP
 1. Create Choco/OneGet package with appveyor, maybe git submodule
 1. Create ArchLinux package, publish to AUR
+1. Use Docker to test packages instead of Vagrant
 1. Improve CLI help commands and documentation
 1. Full features do not work in packaged version, i.e. host command, feature
    flag them
