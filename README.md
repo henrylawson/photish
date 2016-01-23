@@ -39,7 +39,7 @@ and running:
    [GraphicsMagick](http://www.graphicsmagick.org/)) and
    [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
    [Dependencies](#dependencies))
-1. Install Photish `gem install photish`
+1. Install Photish `gem install photish` or a [native installer](#installation)
 1. Create a base project with `photish init --example`
 1. Generate the HTML using `photish generate`
 1. Run a local HTTP server to view the site with `photish host`
@@ -102,6 +102,8 @@ Category | Purpose | Badge
     - [Deployment Engine Plugins](#deployment-engine-plugins)
     - [Plugin Loading](#plugin-loading)
 - [Development](#development)
+  - [Code Changes](#code-changes)
+  - [Services](#services)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [License](#license)
@@ -214,15 +216,15 @@ published with artifacts on GitHub.
 
 ## Installation
 
-Photish is available across all platforms as a Ruby Gem:
+Photish is available across all platforms as a [Ruby Gem](#ruby-gem). The
+recommended installation is the [Ruby Gem](#ruby-gem) as not all features are
+currently available on the platform native packages.
 
-- [Ruby Gem](#ruby-gem)
-
-For convenience it is also packaged in platform native installers. The platform
-native installers come with all the Ruby Gems and Ruby runtime bundled inside
-the package. This means you simply need to install the package and you can
-immediately use Photish without having to configure ruby or any Gems, this is
-done using [Travelling Ruby](phusion.github.io/traveling-ruby/)
+For convenience Photish is also packaged in platform native installers. The
+platform native installers come with all the Ruby Gems and Ruby runtime bundled
+inside the package. This means you simply need to install the package and you
+can immediately use Photish without having to configure Ruby or any Gems, this
+is done using [Travelling Ruby](phusion.github.io/traveling-ruby/).
 
 Instructions are provided for each platform native installation:
 
@@ -231,22 +233,20 @@ Instructions are provided for each platform native installation:
 - [Linux Binaries](#linux-binaries)
 - [Windows Binaries](#windows-binaries)
 
-The recommended installation is the [Ruby Gem](#ruby-gem) as not all
-features are currently available on the platform native packages.
-
 ### Dependencies
 
 Photish has dependencies on certain software:
 
 - [ImageMagick](http://www.imagemagick.org/) or
-  [GraphicsMagick](http://www.graphicsmagick.org/) for Image conversion
+  [GraphicsMagick](http://www.graphicsmagick.org/) for image conversion
 - [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for image metadata
   retrieval
 
 These packages are not listed as hard dependencies in any of the provided
-packages as it is only needed during runtime, and in the case of Exiftool, if
-exif metadata is not read during the generation of any templates, the
-dependency is not required.
+packages as it is only needed during runtime, and in the case of
+[Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/), if [Exif
+Metadata](https://en.wikipedia.org/wiki/Exchangeable_image_file_format) is not
+read during the generation of any templates, the dependency is not required.
 
 **On MacOSX, using [Brew](http://brew.sh/)**
 
@@ -1149,12 +1149,11 @@ To release:
 If you need ideas on how to help, checkout our
 [TODO](https://github.com/henrylawson/photish/blob/master/TODO.md) list.
 
-### Dev Services
+### Services
 
-Photish uses a range of services to assist with development and to ensure
-Photish remains a high quality application. Before contributing it is worth
-browsing through these services to understand how Photish is configured
-and is using them:
+Photish uses a range of services. Before contributing it is worth browsing
+through these services to understand how Photish is configured and is using
+them:
 
 1. [Snap CI](https://snap-ci.com/henrylawson/photish/branch/master) is used as
    the primary CI/CD server. All builds and tests are ran from Snap CI. Snap CI
@@ -1171,9 +1170,9 @@ and is using them:
 1. [AppVeyor](https://ci.appveyor.com/project/HenryLawson/photish) is used for
    testing and packaging of the Windows build.
 1. [Code Climate](https://codeclimate.com/github/henrylawson/photish) is used
-   to maintain high test coverage and quality code.
+   to monitor high test coverage and quality code.
 1. [Gemnasium](https://gemnasium.com/henrylawson/photish) is used to ensure all
-   dependencies are up too date.
+   dependencies are up to date.
 
 ## Contributing
 
