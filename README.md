@@ -39,7 +39,7 @@ and running:
    [GraphicsMagick](http://www.graphicsmagick.org/)) and
    [Exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) are installed (see
    [Dependencies](#dependencies))
-1. Install Photish `gem install photish` or a [native installer](#installation)
+1. Install Photish with `gem install photish` or with a [native installer](#installation)
 1. Create a base project with `photish init --example`
 1. Generate the HTML using `photish generate`
 1. Run a local HTTP server to view the site with `photish host`
