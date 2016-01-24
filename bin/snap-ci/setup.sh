@@ -26,5 +26,5 @@ bundle --version
 # configure bundler
 rbenv rehash
 bundle config path $CACHE_DIR/gems/$RUBY_VERSION
-gem update --system 'version'
+gem update --system
 bundle update

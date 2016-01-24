@@ -31,6 +31,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "listen", "~> 3.0"
   spec.add_dependency "colorize", "~> 0.7.7"
 
+  # Ruby 2.0 dependency
+  spec.add_dependency "unparser", "~> 0.2.4"
+
   spec.add_development_dependency "anemone", "~> 0.7"
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.5"
