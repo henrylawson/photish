@@ -12,8 +12,6 @@
 1. Improve CLI help commands and documentation
 1. Full features do not work in packaged version, i.e. host command, feature
    flag them, create an integration test
-1. Update gem development dependencies versions, remove warnings from gem
-   creation
 1. Tweak FPM to allow homepage field override in DEB and RPM
 1. Determine if other metadata can be set in packages
 1. Video transcoding and template rendering for videos
