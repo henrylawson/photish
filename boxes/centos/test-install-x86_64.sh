@@ -13,5 +13,7 @@ sudo rpm -e photish
 # download repo file
 wget https://bintray.com/henrylawson/rpm/rpm -O bintray-henrylawson-rpm.repo
 sudo mv bintray-henrylawson-rpm.repo /etc/yum.repos.d/
-sudo yum install -y photish
+
+# install package
+sudo yum install -y photish.x86_64
 photish version

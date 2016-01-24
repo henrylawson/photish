@@ -4,7 +4,8 @@ IFS=$'\n\t'
 
 command -v convert >/dev/null 2>&1 || { echo >&2 "imagemagick required. run \"brew install imagemagick\""; exit 1; }
 command -v exiftool >/dev/null 2>&1 || { echo >&2 "exiftool required. run \"brew install exiftool\""; exit 1; }
-command -v tar >/dev/null 2>&1 || { echo >&2 "GNU tar required. run \"brew install exiftool\""; exit 1; }
-command -v rpm >/dev/null 2>&1 || { echo >&2 "RPM required. run \"brew install exiftool\""; exit 1; }
+command -v tar >/dev/null 2>&1 || { echo >&2 "GNU tar required. run \"brew install gnutar\""; exit 1; }
+command -v rpm >/dev/null 2>&1 || { echo >&2 "RPM required. run \"brew install docker\""; exit 1; }
+command -v docker >/dev/null 2>&1 || { echo >&2 "Docker required. run \"brew install docker\""; exit 1; }
 
 bundle install

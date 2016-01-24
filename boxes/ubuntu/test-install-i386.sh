@@ -14,5 +14,7 @@ sudo dpkg -r photish
 echo "deb https://dl.bintray.com/henrylawson/deb all main" | sudo tee -a /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F608A664B7DFFFEA
 sudo apt-get update && sudo apt-key update
-sudo apt-get install photish
+
+# install package
+sudo apt-get install photish:i386
 photish version
