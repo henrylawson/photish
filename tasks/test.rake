@@ -20,4 +20,9 @@ namespace :test do
     tags << '--tags @smoke' if ENV['SMOKE_TEST_ONLY']
     t.cucumber_opts = "features --format pretty #{tags.join(' ')}"
   end
+
+  desc 'Test packaged binary in docker'
+  task :integration do
+    sh './boxes/test.sh'
+  end
 end

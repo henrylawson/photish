@@ -17,14 +17,16 @@ eval "$(rbenv init -)"
 rbenv download $RUBY_VERSION
 rbenv shell $RUBY_VERSION
 ruby --version
+
+# configure bundler
+rbenv rehash
+bundle config path $CACHE_DIR/gems/$RUBY_VERSION
+gem update --system
 gem --version
 
 # install bundler
 gem install bundler
 bundle --version
 
-# configure bundler
-rbenv rehash
-bundle config path $CACHE_DIR/gems/$RUBY_VERSION
-gem update --system
-bundle update
+# install gems
+bundle install

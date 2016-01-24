@@ -53,7 +53,8 @@ namespace :build do
     sh "rm -rf #{TaskConfig::SCRATCH_DIR}"
     sh "mkdir -p #{TaskConfig::SCRATCH_DIR}"
     sh "cp Gemfile Gemfile.lock #{TaskConfig::SCRATCH_DIR}"
-    new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '#{TaskConfig::WORKING_DIR || '../../../'}'")
+    new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile")
+                       .gsub(/^gemspec.*$/, "gemspec path: '#{TaskConfig::WORKING_DIR || '../../../'}'")
     File.open("#{TaskConfig::SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
     Bundler.with_clean_env do
       sh "cd #{TaskConfig::SCRATCH_DIR} && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
@@ -121,10 +122,13 @@ def create_package(target, os_type)
   sh "cp -pR #{TaskConfig::CACHE_DIR}/vendor #{package_dir}/lib/"
 
   sh "cp photish.gemspec #{package_dir}/lib/app"
-  new_contents = File.read("#{package_dir}/lib/app/photish.gemspec").gsub(/spec\.files.*$/, "spec.files = ''")
+  new_contents = File.read("#{package_dir}/lib/app/photish.gemspec")
+                     .gsub(/spec\.files.*$/, "spec.files = ''")
+                     .gsub(/^.*add_development_dependency.*$/, '')
   File.open("#{package_dir}/lib/app/photish.gemspec", "w") {|file| file.puts(new_contents) }
 
-  new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile").gsub(/^gemspec.*$/, "gemspec path: '../app'")
+  new_contents = File.read("#{TaskConfig::SCRATCH_DIR}/Gemfile")
+                     .gsub(/^gemspec.*$/, "gemspec path: '../app'")
   File.open("#{TaskConfig::SCRATCH_DIR}/Gemfile", "w") {|file| file.puts(new_contents) }
   sh "cp #{TaskConfig::SCRATCH_DIR}/Gemfile #{TaskConfig::SCRATCH_DIR}/Gemfile.lock #{package_dir}/lib/vendor/"
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
