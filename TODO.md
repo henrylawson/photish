@@ -6,6 +6,8 @@
 
 ## Backlog
 
+1. Dev environment using Docker
+1. Amazon AWS, image processing using their service or an EC2 box
 1. Create BREW package, publish to TAP
 1. Create Choco/OneGet package with appveyor, maybe git submodule
 1. Create ArchLinux package, publish to AUR
