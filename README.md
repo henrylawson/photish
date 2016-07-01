@@ -1144,7 +1144,10 @@ To develop:
 
 To release:
 
-    $ rake bump       # update version, create commit when prompted
+    $ rake dev:bump       # update version, create commit when prompted
+
+The Snap CI will then detect that this is a tagged commit on MASTER and it will
+generate a build and release it.
 
 If you need ideas on how to help, checkout our
 [TODO](https://github.com/henrylawson/photish/blob/master/TODO.md) list.
@@ -1173,6 +1176,9 @@ them:
    to monitor high test coverage and quality code.
 1. [Gemnasium](https://gemnasium.com/henrylawson/photish) is used to ensure all
    dependencies are up to date.
+1. Bintray [DEB](https://bintray.com/henrylawson/deb/photish/view) &
+   [RPM](https://bintray.com/henrylawson/rpm/photish/view) binary install
+   packages for Linux distributions.
 
 ## Contributing
 
