@@ -115,8 +115,7 @@ module Photish
         MiniMagick.configure do |config|
           config.cli = minimagick_config.cli.to_sym
           config.cli_path = minimagick_config.cli_path if minimagick_config.cli_path
-          config.debug = debug?
-          config.logger = MiniMagick::Logger.new(Log::IO.new(log, :debug))
+          config.logger = debug? ? Logger::DEBUG : Logger::INFO
           config.timeout = minimagick_config.timeout
           config.validate_on_create = minimagick_config.validate_on_create
           config.validate_on_write = minimagick_config.validate_on_write

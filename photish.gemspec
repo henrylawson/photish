@@ -30,13 +30,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency "recursive-open-struct", "~> 1.0"
   spec.add_dependency "listen", "~> 3.0"
   spec.add_dependency "colorize", "~> 0.7.7"
+  spec.add_dependency "rake", "~> 10.5"
 
   # Ruby 2.0 dependency
   spec.add_dependency "unparser", "0.2.4"
 
   spec.add_development_dependency "anemone", "~> 0.7"
   spec.add_development_dependency "bundler", "~> 1"
-  spec.add_development_dependency "rake", "~> 10.5"
   spec.add_development_dependency "aruba", "~> 0.12"
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "cucumber", "~> 2.3"
