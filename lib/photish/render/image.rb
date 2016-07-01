@@ -115,12 +115,12 @@ module Photish
         MiniMagick.configure do |config|
           config.cli = minimagick_config.cli.to_sym
           config.cli_path = minimagick_config.cli_path if minimagick_config.cli_path
-          config.logger = debug? ? Logger::DEBUG : Logger::INFO
           config.timeout = minimagick_config.timeout
           config.validate_on_create = minimagick_config.validate_on_create
           config.validate_on_write = minimagick_config.validate_on_write
           config.whiny = minimagick_config.whiny
         end
+        MiniMagick.logger.level = Logger::DEBUG if debug?
       end
     end
   end
