@@ -120,7 +120,7 @@ module Photish
           config.validate_on_write = minimagick_config.validate_on_write
           config.whiny = minimagick_config.whiny
         end
-        MiniMagick.logger.level = Logger::DEBUG if debug?
+        MiniMagick.logger = log if debug?
       end
     end
   end
